@@ -21,7 +21,15 @@ private static MainDAO mnDAO;
 		return list;
 	}//selectMainMovie
 	
-	public double selectMainStarRating() {
-		double 
+	private double selectMainStarRating() {
+		double rating = 0.0;
+		//아직 안함
+		return rating;
 	}//selectMainStarRating
+	
+	public MainTrailerVO selectMainTrailer() {
+		MainTrailerVO mtVO = new MainTrailerVO();
+		
+		return mtVO;
+	}//selectMainTrailer
 }//class
