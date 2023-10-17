@@ -1,5 +1,8 @@
+<%@page import="AdiminLogin.AdminLoginDAO"%>
+<%@page import="AdiminLogin.AdminVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,22 +80,41 @@ body{
 }
 </style>
 <script type="text/javascript">
-	$(function(){
-	$("#btn").click(function(){
-		$("#login-form").submit();
-	})
+$(function(){
+	  $("#btn").click(function(){
+	    if ($("#userName").val() === "" || $("#userPassword").val() === "") {
+	      alert("아이디 혹은 비밀번호를 입력해주세요!!");
+	    } else {
+	       $("#login-form").submit(); 
+	   
+	    }
+	  })
 });
 </script>
 </head>
 <body>
+
 <%
+String id=request.getParameter("userName");
+String pass=request.getParameter("userPassword");
+
+/* AdminVO aVO=null;
+
+aVO=AdminLoginDAO.getInstance().selectAdminLogin(id, pass);
+if(!(aVO.getId()==null || aVO.getPassword()==null)){
+	response.sendRedirect("manage_dashboard.jsp");
+} */
+
+if(id!=null){
+	response.sendRedirect("../ManageDashBoard/manage_dashboard.jsp");
+}
 
 %>
     <div class="login-wrapper">
         <h2><img src="../../common/images/logo.png"></h2>
-        <form method="post" action="서버의url" id="login-form">
-            <input type="text" name="userName" placeholder="ID"><br/>
-            <input type="password" name="userPassword" placeholder="Password"><br/>
+        <form method="post" id="login-form">
+            <input type="text" name="userName" placeholder="ID" id="userName"><br/>
+            <input type="password" name="userPassword" placeholder="Password" id="userPassword"><br/>
             <label for="remember-check" style="width: 150px; margin-bottom:10px;">
                 <input type="checkbox" id="remember-check">아이디 저장하기
             </label><br/>
