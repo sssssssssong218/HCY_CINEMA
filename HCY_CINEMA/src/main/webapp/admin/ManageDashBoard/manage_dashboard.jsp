@@ -1,231 +1,700 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
-  <head>
- <!--  <script src="../assets/js/color-modes.js"></script> -->
- <script src="sidebars.js"></script>
- <script src="bootstrap.bundle.min.js"></script>
+<html lang="en"><!--<![endif]--><head>
+<meta charset="utf-8">
+<title>Source Admin | Dashboard v2</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="" name="description">
+<meta content="" name="author">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.118.2">
-    <title>Sidebars · Bootstrap v5.3</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
-
-    
-
-    <link rel="stylesheet" href="http://192.168.10.147/HCY_CINEMA/admin/ManageDashBoard/css@3">
-
+<link href="css" rel="stylesheet" id="fontFamilySrc">
+<link href="jquery-ui.min.css" rel="stylesheet">
 <link href="bootstrap.min.css" rel="stylesheet">
+<link href="all.css" rel="stylesheet">
+<link href="animate.min.css" rel="stylesheet">
+<link href="style.min.css" rel="stylesheet">
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+<link href="bootstrap_calendar.css" rel="stylesheet">
+<link href="jquery.gritter.css" rel="stylesheet">
+<link href="dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="responsive.bootstrap.min.css" rel="stylesheet">
 
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
 
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
+<script src="pace.min.js" type="text/javascript"></script>
 
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
+<!--[if lt IE 9]>
+	    <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+<style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style></head>
+<body class="  pace-done" cz-shortcut-listen="true"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+  <div class="pace-progress-inner"></div>
+</div>
+<div class="pace-activity"></div></div>
 
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
+<div id="page-loader" class="page-loader fade in hide"><span class="spinner">Loading...</span></div>
 
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
 
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+<div id="page-container" class="fade page-container page-header-fixed page-sidebar-fixed page-with-two-sidebar page-with-footer show">
 
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
+<div id="header" class="header navbar navbar-default navbar-fixed-top">
 
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
+<div class="container-fluid">
 
-      .bd-mode-toggle .dropdown-menu .active .bi {
-        display: block !important;
-      }
-      .dropdown-item {
-    display: block;
-    width: 100%;
-    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
-    clear: both;
-    font-weight: 400;
-    color: var(--bs-dropdown-link-color);
-    text-align: inherit;
-    text-decoration: none;
-    white-space: nowrap;
-    background-color: transparent;
-    border: 0;
-    border-radius: var(--bs-dropdown-item-border-radius,0);
-}
-    </style>
+<div class="navbar-header">
+<a href="index.html" class="navbar-brand"><img src="../assets/img/logo.png" class="logo" alt=""> Source Admin</a>
+<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+</div>
 
-    
-    <!-- Custom styles for this template -->
-    <link href="sidebars.css" rel="stylesheet">
-    <script type="text/javascript">
-	$(function(){
-	
-});
+
+<ul class="nav navbar-nav navbar-right">
+<li>
+<form class="navbar-form form-input-flat">
+<div class="form-group">
+<input type="text" class="form-control" placeholder="Enter keyword...">
+<button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+</div>
+</form>
+</li>
+<li class="dropdown">
+<a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle has-notify" data-click="toggle-notify">
+<i class="fa fa-bell"></i>
+</a>
+<ul class="dropdown-menu dropdown-notification pull-right">
+<li class="dropdown-header">Notifications (5)</li>
+<li class="notification-item">
+<a href="javascript:;">
+<div class="media"><i class="fa fa-exclamation-triangle"></i></div>
+<div class="message">
+<h6 class="title">Server Error Reports</h6>
+<div class="time">3 minutes ago</div>
+</div>
+<div class="option" data-toggle="tooltip" data-title="Mark as Read" data-click="set-message-status" data-status="unread" data-container="body" data-original-title="" title="">
+<i class="fa fa-circle"></i>
+</div>
+</a>
+</li>
+<li class="notification-item">
+<a href="javascript:;">
+<div class="media"><img src="../assets/img/user_1.jpg" alt=""></div>
+<div class="message">
+<h6 class="title">Solvia Smith</h6>
+<p class="desc">Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
+<div class="time">25 minutes ago</div>
+</div>
+<div class="option read" data-toggle="tooltip" data-title="Mark as Unread" data-click="set-message-status" data-status="read" data-container="body" data-original-title="" title="">
+<i class="fa fa-circle"></i>
+</div>
+</a>
+</li>
+<li class="notification-item">
+<a href="javascript:;">
+<div class="media"><img src="../assets/img/user_2.jpg" alt=""></div>
+<div class="message">
+<h6 class="title">Olivia</h6>
+<p class="desc">Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
+<div class="time">35 minutes ago</div>
+</div>
+<div class="option read" data-toggle="tooltip" data-title="Mark as Unread" data-click="set-message-status" data-status="read" data-container="body" data-original-title="" title="">
+<i class="fa fa-circle"></i>
+</div>
+</a>
+</li>
+<li class="notification-item">
+<a href="javascript:;">
+<div class="media"><i class="fa fa-user-plus media-object"></i></div>
+<div class="message">
+<h6 class="title"> New User Registered</h6>
+<div class="time">1 hour ago</div>
+</div>
+<div class="option read" data-toggle="tooltip" data-title="Mark as Unread" data-click="set-message-status" data-status="read" data-container="body" data-original-title="" title="">
+<i class="fa fa-circle"></i>
+</div>
+</a>
+</li>
+<li class="notification-item">
+<a href="javascript:;">
+<div class="media bg-success"><i class="fa fa-credit-card"></i></div>
+<div class="message">
+<h6 class="title"> New Item Sold</h6>
+<div class="time">2 hour ago</div>
+</div>
+<div class="option read" data-toggle="tooltip" data-title="Mark as Read" data-click="set-message-status" data-status="read" data-container="body" data-original-title="" title="">
+<i class="fa fa-circle"></i>
+</div>
+</a>
+</li>
+<li class="dropdown-footer text-center">
+<a href="javascript:;">View more</a>
+</li>
+</ul>
+</li>
+<li class="dropdown navbar-user">
+<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+<span class="image"><img src="../assets/img/user_profile.jpg" alt=""></span>
+<span class="hidden-xs">John Smith</span> <b class="caret"></b>
+</a>
+<ul class="dropdown-menu pull-right">
+<li><a href="javascript:;">Edit Profile</a></li>
+<li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
+<li><a href="javascript:;">Calendar</a></li>
+<li><a href="javascript:;">Setting</a></li>
+<li class="divider"></li>
+<li><a href="javascript:;">Log Out</a></li>
+</ul>
+</li>
+<li>
+<a href="javascript:;" data-click="right-sidebar-toggled">
+<i class="fa fa-align-left"></i>
+</a>
+</li>
+</ul>
+
+</div>
+
+</div>
+
+
+<div id="sidebar" class="sidebar">
+
+<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div data-scrollbar="true" data-height="100%" data-init="true" style="overflow: hidden; width: auto; height: 100%;">
+
+<ul class="nav">
+<li class="nav-user">
+<div class="image">
+<img src="../../common/images/admin.png" alt="">
+</div>
+<div class="info">
+<div class="name dropdown">
+<a href="javascript:;" data-toggle="dropdown">admin <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a href="javascript:;">Log Out</a></li>
+</ul>
+</div>
+<div class="position">Front End Designer</div>
+</div>
+</li>
+<li class="nav-header">Navigation</li>
+<li class="active has-sub">
+<a href="javascript:;">
+<img class="fa fa-home" src="../../common/images/dashboard2.png">
+<span>Dashboard <!-- <span class="label label-theme m-l-3">NEW</span> --></span>
+</a>
+<!-- <ul class="sub-menu">
+<li><a href="index.html">Dashboard v1</a></li>
+<li><a href="index_v2.html">Dashboard v2</a></li>
+<li class="active"><a href="index_v3.html">Dashboard v3</a></li>
+<li><a href="index_v4.html">Dashboard v4 <i class="fa fa-paper-plane text-theme m-l-3"></i></a></li>
+</ul> -->
+</li>
+<!-- <li>
+<a href="bootstrap_4.html">
+<div class="icon-img"><img src="../assets/img/bootstrap-4.png" alt=""></div>
+<span>Bootstrap 4</span>
+</a>
+</li> -->
+<li class="has-sub">
+<a href="javascript:;">
+<img class="fa fa-inbox" src="../../common/images/movie_icon.png">
+<span>영화</span>
+</a>
+<ul class="sub-menu">
+<li><a href="email_inbox.html">Inbox</a></li>
+<li><a href="email_compose.html">Compose</a></li>
+<li><a href="email_detail.html">Detail</a></li>
+</ul>
+</li>
+<li>
+<a href="widgets.html">
+<img class="fa fa-gem" src="../../common/images/cinema_icon.png">
+<span>상영관</span>
+</a>
+</li>
+<li class="has-sub">
+<a href="javascript:;">
+<img class="fa fa-suitcase" src="../../common/images/member_icon.png">
+<span>회원관리</span>
+</a>
+</li>
+<li class="has-sub">
+<a href="javascript:;">
+<img class="fa fa-file" src="../../common/images/board_icon.png">
+<span>게시판 관리</span>
+</a>
+
+</li>
+
+
+</div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 197.948px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+
+</div>
+<div class="sidebar-bg"></div>
+
+
+<div id="content" class="content">
+
+<ol class="breadcrumb pull-right">
+<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+<li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
+<li class="breadcrumb-item active">Dashboard v3</li>
+</ol>
+
+
+<h1 class="page-header">Dashboard v3 <small>header small text goes here...</small></h1>
+
+
+<div class="row">
+
+<div class="col-lg-10">
+
+<div class="radius-container m-b-30">
+
+<div class="panel no-rounded-corner bg-inverse text-white wrapper m-b-0"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+
+<div class="btn-group btn-group-xs pull-right">
+<a href="#" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+<i class="fa fa-cog"></i> Settings <b class="caret text-muted"></b>
+</a>
+<ul class="dropdown-menu" role="menu">
+<li><a href="javascript:;">Last Week</a></li>
+<li><a href="javascript:;">Last Month</a></li>
+<li><a href="javascript:;">Last Year</a></li>
+</ul>
+</div>
+
+
+<h4 class="text-white m-t-0 m-b-10">
+<i class="fa fa-snowflake-o text-success-light"></i> Sales Report
+<small class="text-muted m-l-5">past 12 months</small>
+</h4>
+
+
+<canvas id="monthly-report-chart" height="431" style="display: block; width: 1293px; height: 431px;" width="1293" class="chartjs-render-monitor"></canvas>
+
+</div>
+
+
+<div class="panel pagination-inverse bg-white clearfix no-rounded-corner m-b-0">
+
+<div id="data-table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="data-table_length"><label>Show <select name="data-table_length" aria-controls="data-table" class="form-control input-sm"><option value="10">10</option><option value="20">20</option><option value="-1">All</option></select> entries</label></div></div><div class="col-sm-6"><div id="data-table_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="data-table"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="data-table" data-order="[[1,&quot;asc&quot;]]" class="table table-bordered table-hover dataTable no-footer dtr-inline collapsed" role="grid" aria-describedby="data-table_info" style="width: 1335px;">
+<thead>
+<tr role="row"><th class="width-100 sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;" aria-label="Month: activate to sort column ascending">Month</th><th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 256px;" aria-sort="ascending" aria-label="Orders: activate to sort column descending">Orders</th><th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 206px;" aria-label="Earning: activate to sort column ascending">Earning</th><th data-sorting="disabled" class="sorting_disabled" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 451px;" aria-label=": activate to sort column descending"></th><th class="width-50 sorting_disabled" data-sorting="disabled" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 68px; display: none;" aria-label=": activate to sort column descending"></th></tr>
+</thead>
+<tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+<tr role="row" class="odd">
+<td tabindex="0">May</td>
+<td class="sorting_1">1,023 items sold</td>
+<td>$10,230</td>
+<td class="p-5"><div data-render="sparkline"><canvas width="187" height="28" style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas></div></td>
+<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> View Details</a></td>
+</tr><tr role="row" class="even">
+<td tabindex="0">November</td>
+<td class="sorting_1">1,239 items sold</td>
+<td>$12,390</td>
+<td class="p-5"><div data-render="sparkline"><canvas width="187" height="28" style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas></div></td>
+<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> View Details</a></td>
+</tr><tr role="row" class="odd">
+<td tabindex="0">February</td>
+<td class="sorting_1">1,392 items sold</td>
+<td>$13,920</td>
+<td class="p-5"><div data-render="sparkline"><canvas width="187" height="28" style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas></div></td>
+<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> View Details</a></td>
+</tr><tr role="row" class="even">
+<td tabindex="0">July</td>
+<td class="sorting_1">1,499 items sold</td>
+<td>$14,990</td>
+<td class="p-5"><div data-render="sparkline"><canvas width="187" height="28" style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas></div></td>
+<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> View Details</a></td>
+</tr><tr role="row" class="odd">
+<td tabindex="0">January</td>
+<td class="sorting_1">1,929 items sold</td>
+<td>$19,290</td>
+<td class="p-5"><div data-render="sparkline"><canvas width="187" height="28" style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas></div></td>
+<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> View Details</a></td>
+</tr><tr role="row" class="even">
+<td tabindex="0">September</td>
+<td class="sorting_1">433 items sold</td>
+<td>$4,330</td>
+<td class="p-5"><div data-render="sparkline"><canvas width="187" height="28" style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas></div></td>
+<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> View Details</a></td>
+</tr><tr role="row" class="odd">
+<td tabindex="0">June</td>
+<td class="sorting_1">502 items sold</td>
+<td>$5,020</td>
+<td class="p-5"><div data-render="sparkline"><canvas width="187" height="28" style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas></div></td>
+<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> View Details</a></td>
+</tr><tr role="row" class="even">
+<td tabindex="0">October</td>
+<td class="sorting_1">581 items sold</td>
+<td>$5,810</td>
+<td class="p-5"><div data-render="sparkline"><canvas width="187" height="28" style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas></div></td>
+<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> View Details</a></td>
+</tr><tr role="row" class="odd">
+<td tabindex="0">August</td>
+<td class="sorting_1">684 items sold</td>
+<td>$6,840</td>
+<td class="p-5"><div data-render="sparkline"><canvas width="187" height="28" style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas></div></td>
+<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> View Details</a></td>
+</tr><tr role="row" class="even">
+<td tabindex="0">April</td>
+<td class="sorting_1">780 items sold</td>
+<td>$7,800</td>
+<td class="p-5"><div data-render="sparkline"><canvas width="187" height="28" style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas></div></td>
+<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i> View Details</a></td>
+</tr></tbody>
+</table></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="data-table_info" role="status" aria-live="polite">Showing 1 to 10 of 12 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="data-table_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="data-table_previous"><a href="#" aria-controls="data-table" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="data-table" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="data-table" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button next" id="data-table_next"><a href="#" aria-controls="data-table" data-dt-idx="3" tabindex="0">Next</a></li></ul></div></div></div></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+<div id="sidebar-right" class="sidebar sidebar-right">
+
+<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div data-scrollbar="true" data-height="100%" data-init="true" style="overflow: hidden; width: auto; height: 100%;">
+
+<ul class="nav nav-tabs" role="tablist">
+<li class="width-half"><a class="active" href="#today" data-toggle="tab">Today</a></li>
+<li class="width-half"><a href="#notifications" data-toggle="tab">Notifications</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="today">
+<ul class="nav">
+<li class="nav-date">
+Sunday, May 31 st
+</li>
+<li class="divider"></li>
+<li class="nav-header">Stocks</li>
+<li>
+<ul class="stock-list">
+<li>
+<div class="name">AAPL</div>
+<div class="value">130.28</div>
+<div class="percentage"><span class="label label-inverse">- 1.14%</span></div>
+</li>
+<li>
+<div class="name">DOWJ</div>
+<div class="value">18010.68</div>
+<div class="percentage"><span class="label label-inverse">- 0.64%</span></div>
+</li>
+<li>
+<div class="name">SBUX</div>
+<div class="value">51.96</div>
+<div class="percentage"><span class="label label-success">+ 0.29%</span></div>
+</li>
+<li>
+<div class="name">NKE</div>
+<div class="value">18010.68</div>
+<div class="percentage"><span class="label label-inverse">- 0.62%</span></div>
+</li>
+<li>
+<div class="name">YHOO</div>
+<div class="value">42.94</div>
+<div class="percentage"><span class="label label-inverse">- 0.31%</span></div>
+</li>
+</ul>
+</li>
+<li class="divider"></li>
+<li class="nav-header">Calendar</li>
+<li>
+<div id="schedule-calendar"><div class="calendar" id="cal_18nl"><table class="table header"><tbody><tr></tr></tbody><td><i class="icon-arrow-left"></i></td><td colspan="5" class="year span6"><div class="visualmonthyear">October 2023</div></td><td><i class="icon-arrow-right"></i></td></table><table class="daysmonth table table"><tr class="week_days"><td class="first">S</td><td>M</td><td>T</td><td>W</td><td>T</td><td>F</td><td class="last">S</td></tr><tr><td id="cal_18nl_1_10_2023" class="first"><a>1</a></td><td id="cal_18nl_2_10_2023"><a>2</a></td><td id="cal_18nl_3_10_2023"><a>3</a></td><td id="cal_18nl_4_10_2023" class="event event_popover" style="background: rgb(23, 182, 164);"><a data-original-title="Client Meeting" data-trigger="manual" class="manual_popover" rel="popover" data-content="<address class=&quot;m-b-0 text-inverse f-s-12&quot;>   <strong>Twitter, Inc.</strong><br />   795 Folsom Ave, Suite 600<br />   San Francisco, CA 94107 <br />   P: (123) 456-7890</address>">4</a></td><td id="cal_18nl_5_10_2023"><a>5</a></td><td id="cal_18nl_6_10_2023"><a>6</a></td><td id="cal_18nl_7_10_2023" class="last event event_tooltip" style="background: rgb(48, 55, 62);"><a data-original-title="Bootstrap.com" href="http://www.getbootstrap.com" rel="tooltip">7</a></td></tr><tr><td id="cal_18nl_8_10_2023" class="first"><a>8</a></td><td id="cal_18nl_9_10_2023"><a>9</a></td><td id="cal_18nl_10_10_2023"><a>10</a></td><td id="cal_18nl_11_10_2023"><a>11</a></td><td id="cal_18nl_12_10_2023"><a>12</a></td><td id="cal_18nl_13_10_2023"><a>13</a></td><td id="cal_18nl_14_10_2023" class="last"><a>14</a></td></tr><tr><td id="cal_18nl_15_10_2023" class="first"><a>15</a></td><td id="cal_18nl_16_10_2023"><a>16</a></td><td id="cal_18nl_17_10_2023"><a>17</a></td><td id="cal_18nl_18_10_2023" class="event event_popover" style="background: rgb(48, 55, 62);"><a data-original-title="Popover with HTML Content" data-trigger="manual" class="manual_popover" rel="popover" data-content="Some contents here <div class=&quot;text-right&quot;><a href=&quot;http://www.google.com&quot;>view more >>></a></div>">18</a></td><td id="cal_18nl_19_10_2023"><a>19</a></td><td id="cal_18nl_20_10_2023"><a>20</a></td><td id="cal_18nl_21_10_2023" class="last"><a>21</a></td></tr><tr><td id="cal_18nl_22_10_2023" class="first"><a>22</a></td><td id="cal_18nl_23_10_2023"><a>23</a></td><td id="cal_18nl_24_10_2023"><a>24</a></td><td id="cal_18nl_25_10_2023"><a>25</a></td><td id="cal_18nl_26_10_2023"><a>26</a></td><td id="cal_18nl_27_10_2023"><a>27</a></td><td id="cal_18nl_28_10_2023" class="last event event_tooltip" style="background: rgb(48, 55, 62);"><a data-original-title="Source Admin Launched" href="http://www.seantheme.com/source-admin-v1.5/" rel="tooltip">28</a></td></tr><tr><td id="cal_18nl_29_10_2023" class="first"><a>29</a></td><td id="cal_18nl_30_10_2023"><a>30</a></td><td id="cal_18nl_31_10_2023"><a>31</a></td><td class="invalid"></td><td class="invalid"></td><td class="invalid"></td><td class="invalid last"></td></tr></table></div></div>
+</li>
+<li class="divider"></li>
+<li class="nav-header">Latest Post</li>
+<li>
+<ul class="nav-post">
+<li>
+<div class="image">
+<img src="../assets/img/latest_post_1.jpg" alt="">
+</div>
+<div class="info">
+<div class="title">Mauris ac condimentum erat. Curabitur porta pretium ultricies.</div>
+<div class="time">Today, 8.12am</div>
+</div>
+</li>
+<li>
+<div class="image">
+<img src="../assets/img/latest_post_2.jpg" alt="">
+</div>
+<div class="info">
+<div class="title">Cras pretium ipsum vel nulla laoreet malesuada sed at turpis.</div>
+<div class="time">Yesterday, 11.42pm</div>
+</div>
+</li>
+<li>
+<div class="image">
+<img src="../assets/img/latest_post_3.jpg" alt="">
+</div>
+<div class="info">
+<div class="title">Ut sit amet vulputate ante. Nunc quis convallis arcu.</div>
+<div class="time">Posted on 3 days ago</div>
+</div>
+</li>
+</ul>
+</li>
+<li class="divider"></li>
+</ul>
+</div>
+<div class="tab-pane" id="notifications">
+<ul class="nav">
+<li class="nav-header">Mailbox</li>
+<li>
+<ul class="notification-list">
+<li>
+<div class="media"><i class="fa fa-check"></i></div>
+<div class="info">
+<div class="title"><a href="javascript:;">PHP version updated</a></div>
+<div class="time">Yesterday, 6.06pm</div>
+<div class="desc">Donec tristique malesuada nibh quis lobortis. Quisque viverra faucibus hendrerit.</div>
+</div>
+</li>
+<li>
+<div class="media"><i class="fa fa-bug text-danger"></i></div>
+<div class="info">
+<div class="title"><a href="javascript:;">10 Unknown mysql query detected</a></div>
+<div class="time">Yesterday, 12.05am</div>
+<div class="desc">Integer fermentum arcu et dolor sodales, quis laoreet justo aliquam.</div>
+</div>
+</li>
+<li>
+<div class="media"><img src="../assets/img/user_2.jpg" alt=""></div>
+<div class="info">
+<div class="title"><a href="javascript:;">New email from David</a></div>
+<div class="time">Just now</div>
+<div class="desc">Nunc metus orci, lobortis eu luctus quis, dictum mollis ante.</div>
+</div>
+</li>
+<li>
+<div class="media"><img src="../assets/img/user_4.jpg" alt=""></div>
+<div class="info">
+<div class="title"><a href="javascript:;">New email from Terry</a></div>
+<div class="time">Today, 12.05am</div>
+<div class="desc">Integer fermentum arcu et dolor sodales, quis laoreet justo aliquam.</div>
+</div>
+</li>
+<li>
+<div class="media"><img src="../assets/img/user_3.jpg" alt=""></div>
+<div class="info">
+<div class="title"><a href="javascript:;">New email from Tom (2)</a></div>
+<div class="time">Yesterday, 5.23pm</div>
+<div class="desc">Integer fermentum arcu et dolor sodales, quis laoreet justo aliquam.</div>
+</div>
+</li>
+</ul>
+</li>
+<li class="divider"></li>
+<li class="nav-header">Activities Log</li>
+<li>
+<ul class="notification-list">
+<li>
+<div class="media"><i class="fa fa-cog"></i></div>
+<div class="info">
+<div class="title"><a href="javascript:;">Your scheduled post has been published</a></div>
+<div class="time">Just now</div>
+<div class="desc">Aenean lobortis libero libero, vitae imperdiet dolor dictum id.</div>
+</div>
+</li>
+<li>
+<div class="media"><i class="fa fa-shield-alt"></i></div>
+<div class="info">
+<div class="title"><a href="javascript:;">Turn on the firewall</a></div>
+<div class="time">Today, 7.08am</div>
+<div class="desc">Donec at augue in mi egestas luctus fermentum et ex.</div>
+</div>
+</li>
+<li>
+<div class="media"><i class="fa fa-user-plus"></i></div>
+<div class="info">
+<div class="title"><a href="javascript:;">Added 2 admin user</a></div>
+<div class="time">Today, 6.40am</div>
+<div class="desc">Quisque elementum urna placerat mi vestibulum lacinia.</div>
+</div>
+</li>
+</ul>
+</li>
+<li class="divider"></li>
+</ul>
+</div>
+</div>
+
+</div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 907px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+
+</div>
+<div class="sidebar-bg sidebar-right"></div>
+
+</div>
+
+
+<div class="theme-panel">
+<a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-tint"></i></a>
+<div class="theme-panel-content">
+<h5 class="m-t-0">Font Family</h5>
+<div class="row row-space-10">
+<div class="col-lg-12">
+<a href="#" class="btn btn-default btn-block btn-sm m-b-10 active" data-value="" data-src="" data-click="body-font-family">
+Default
+</a>
+</div>
+<div class="col-lg-6">
+<a href="#" class="btn btn-default btn-block btn-sm m-b-10" data-value="font-nunito" data-src="https://fonts.googleapis.com/css?family=Nunito:400,300,700" data-click="body-font-family">
+Nunito
+</a>
+</div>
+<div class="col-lg-6">
+<a href="#" class="btn btn-default btn-block btn-sm m-b-10" data-value="font-open-sans" data-src="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" data-click="body-font-family">
+Open Sans
+</a>
+</div>
+<div class="col-lg-6">
+<a href="#" class="btn btn-default btn-block btn-sm m-b-10" data-value="font-roboto" data-src="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" data-click="body-font-family">
+Roboto
+</a>
+</div>
+<div class="col-lg-6">
+<a href="#" class="btn btn-default btn-block btn-sm m-b-10" data-value="font-lato" data-src="https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900" data-click="body-font-family">
+Lato
+</a>
+</div>
+<div class="col-lg-12">
+<a href="#" class="btn btn-default btn-block btn-sm text-ellipsis" data-value="font-helvetica-arial" data-src="" data-click="body-font-family">
+Helvetica Neue, Helvetica , Arial
+</a>
+</div>
+</div>
+<div class="horizontal-divider"></div>
+<h5 class="m-t-0">Header Theme</h5>
+<ul class="theme-list clearfix">
+<li><a href="javascript:;" class="bg-inverse" data-value="navbar-inverse" data-click="header-theme-selector" data-toggle="tooltip" data-title="Default" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-grey" data-value="navbar-grey" data-click="header-theme-selector" data-toggle="tooltip" data-title="Grey" data-original-title="" title="">&nbsp;</a></li>
+<li class="active"><a href="javascript:;" class="bg-white" data-value="navbar-default" data-click="header-theme-selector" data-toggle="tooltip" data-title="Light" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-purple" data-value="navbar-purple" data-click="header-theme-selector" data-toggle="tooltip" data-title="Purple" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-primary" data-value="navbar-primary" data-click="header-theme-selector" data-toggle="tooltip" data-title="Primary" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-success" data-value="navbar-success" data-click="header-theme-selector" data-toggle="tooltip" data-title="Success" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-lime" data-value="navbar-lime" data-click="header-theme-selector" data-toggle="tooltip" data-title="Lime" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-warning" data-value="navbar-warning" data-click="header-theme-selector" data-toggle="tooltip" data-title="Warning" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-danger" data-value="navbar-danger" data-click="header-theme-selector" data-toggle="tooltip" data-title="Danger" data-original-title="" title="">&nbsp;</a></li>
+</ul>
+<div class="horizontal-divider"></div>
+<h5 class="m-t-0">Sidebar Highlight Color</h5>
+<ul class="theme-list clearfix">
+<li><a href="javascript:;" class="bg-inverse" data-value="sidebar-highlight-inverse" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Inverse" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-grey" data-value="sidebar-highlight-grey" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Grey" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-white" data-value="sidebar-highlight-light" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Light" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-purple" data-value="sidebar-highlight-purple" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Purple" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-primary" data-value="sidebar-highlight-primary" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Primary" data-original-title="" title="">&nbsp;</a></li>
+<li class="active"><a href="javascript:;" class="bg-success" data-value="" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Default" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-lime" data-value="sidebar-highlight-lime" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Lime" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-warning" data-value="sidebar-highlight-warning" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Warning" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-danger" data-value="sidebar-highlight-danger" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Danger" data-original-title="" title="">&nbsp;</a></li>
+</ul>
+<div class="horizontal-divider"></div>
+<h5 class="m-t-0">Sidebar Theme</h5>
+<ul class="theme-list clearfix">
+<li class="active"><a href="javascript:;" class="bg-inverse" data-value="" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Default" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-grey" data-value="sidebar-grey" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Grey" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-white" data-value="sidebar-light" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Light" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-purple" data-value="sidebar-purple" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Purple" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-primary" data-value="sidebar-primary" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Primary" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-success" data-value="sidebar-success" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Success" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-lime" data-value="sidebar-lime" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Lime" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-warning" data-value="sidebar-warning" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Warning" data-original-title="" title="">&nbsp;</a></li>
+<li><a href="javascript:;" class="bg-danger" data-value="sidebar-danger" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Danger" data-original-title="" title="">&nbsp;</a></li>
+</ul>
+</div>
+</div>
+
+
+<script src="jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="jquery-ui.min.js" type="text/javascript"></script>
+<script src="bootstrap.bundle.min.js" type="text/javascript"></script>
+<!--[if lt IE 9]>
+		<script src="../assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="../assets/crossbrowserjs/respond.min.js"></script>
+	<![endif]-->
+<script src="jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="jquery.cookie.js" type="text/javascript"></script>
+
+
+<script src="bootstrap_calendar.min.js" type="text/javascript"></script>
+<script src="Chart.min.js" type="text/javascript"></script>
+<script src="jquery.gritter.js" type="text/javascript"></script>
+<script src="bootstrap_calendar.min.js" type="text/javascript"></script>
+<script src="jquery.dataTables.js" type="text/javascript"></script>
+<script src="dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="dataTables.responsive.min.js" type="text/javascript"></script>
+<script src="jquery.sparkline.min.js" type="text/javascript"></script>
+<script src="demo.min.js" type="text/javascript"></script>
+<script src="page-index-v3.demo.min.js" type="text/javascript"></script>
+<script src="apps.min.js" type="text/javascript"></script>
+
+<!-- <script type="text/javascript">
+		$(document).ready(function() {
+		    App.init();
+		    Demo.init();
+		    PageDemo.init();
+		});
+	</script> -->
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-Y3Q0VGQKY3" type="text/javascript"></script>
+<script type="text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y3Q0VGQKY3');
 </script>
-  </head>
- <body cz-shortcut-listen="true">
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-      <symbol id="check2" viewBox="0 0 16 16">
-        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
-      </symbol>
-      <symbol id="circle-half" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"></path>
-      </symbol>
-      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
-        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"></path>
-      </symbol>
-      <symbol id="sun-fill" viewBox="0 0 16 16">
-        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
-      </symbol>
-    </svg>
-<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-  <symbol id="bootstrap" viewBox="0 0 118 94">
-    <title>Bootstrap</title>
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
-  </symbol>
-  <symbol id="home" viewBox="0 0 16 16">
-    <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"></path>
-  </symbol>
-  <symbol id="speedometer2" viewBox="0 0 16 16">
-    <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z"></path>
-    <path fill-rule="evenodd" d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z"></path>
-  </symbol>
-  <symbol id="table" viewBox="0 0 16 16">
-    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"></path>
-  </symbol>
-  <symbol id="people-circle" viewBox="0 0 16 16">
-    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
-    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
-  </symbol>
-  <symbol id="grid" viewBox="0 0 16 16">
-    <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"></path>
-  </symbol>
-</svg>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;817469ae18dc8084&quot;,&quot;version&quot;:&quot;2023.8.0&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;4db8c6ef997743fda032d4f73cfeff63&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
 
-<main class="d-flex flex-nowrap">
-  <h1 class="visually-hidden">Sidebars examples</h1>
+ <script type="text/javascript">
+//<canvas> 요소 선택
+ var canvas = document.getElementById("monthly-report-chart");
+ var ctx = canvas.getContext("2d");
 
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4"><img src="../../common/images/logo.png"></span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-          대쉬보드
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-          영화
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-          상영관
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-          회원관리
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-          게시판 관리
-        </a>
-      </li>
-    </ul>
-    <hr>
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="../../common/images/admin.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>admin</strong>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
-  </div>
+ // 데이터 정의 (예: 막대 그래프의 높이)
+ var data = [50, 80, 120, 160, 200];
 
-  <div class="b-example-divider b-example-vr"></div>
-</main>
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+ // 막대 그래프 그리기
+ var barWidth = 40; // 막대 폭
+ var spacing = 20; // 막대 간격
+ var startY = canvas.height; // 그래프 시작 위치
 
-    <script src="sidebars.js"></script>
+ for (var i = 0; i < data.length; i++) {
+     var barHeight = data[i];
+     var startX = (i * (barWidth + spacing)) + 20; // 20은 여백
 
+     ctx.fillStyle = "blue"; // 막대 색상
+     ctx.fillRect(startX, startY - barHeight, barWidth, barHeight);
+ }
+</script>
 </body>
 </html>
