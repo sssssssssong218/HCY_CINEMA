@@ -44,7 +44,7 @@
 <div class="container-fluid">
 
 <div class="navbar-header">
-<a href="index.html" class="navbar-brand"><img src="../assets/img/logo.png" class="logo" alt=""> Source Admin</a>
+<a href="index.html" class="navbar-brand"><img src="../../common/images/logo.png" class="logo" alt=""></a>
 <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
@@ -367,7 +367,82 @@
 </div>
 
 </div>
+<div class="col-lg-2">
+<div class="row">
+<div class="col-lg-12 col-lg-4 col-xs-6">
 
+<div class="widget widget-stat bg-inverse text-white">
+<!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
+<div class="widget-stat-number">13,492</div>
+<div class="widget-stat-text">Items Sold</div>
+</div>
+
+</div>
+<div class="col-lg-12 col-lg-4 col-xs-6">
+
+<div class="widget widget-stat bg-inverse text-white">
+<!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
+<div class="widget-stat-number">$139K<!--  <i class="fa fa-caret-up text-lime-light"></i> --></div>
+<div class="widget-stat-text">Revenue</div>
+</div>
+
+</div>
+<div class="col-lg-12 col-lg-4 col-xs-6">
+
+<div class="widget widget-stat bg-inverse text-white">
+<!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
+<div class="widget-stat-number">1.2m</div>
+<div class="widget-stat-text">Page Views</div>
+</div>
+
+</div>
+<div class="col-lg-12 col-lg-4 col-xs-6">
+
+<div class="widget widget-stat bg-inverse text-white">
+<!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
+<div class="widget-stat-number">135k <!-- <i class="fa fa-caret-down text-danger-light"></i> --></div>
+<div class="widget-stat-text">Visitors</div>
+</div>
+
+</div>
+<div class="col-lg-12 col-lg-4 col-xs-6">
+
+<div class="widget widget-stat bg-inverse text-white">
+<!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
+<div class="widget-stat-number">10.29%</div>
+<div class="widget-stat-text">Bounce Rate</div>
+</div>
+
+</div>
+<div class="col-lg-12 col-lg-4 col-xs-6">
+
+<div class="widget widget-stat bg-inverse text-white">
+<!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
+<div class="widget-stat-number">54.3k <!-- <i class="fa fa-caret-down text-danger-light"></i> --></div>
+<div class="widget-stat-text">New Visitors</div>
+</div>
+
+</div>
+<div class="col-lg-12 col-lg-4 col-xs-6">
+
+<div class="widget widget-stat bg-inverse text-white">
+<!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
+<div class="widget-stat-number">60.4k</div>
+<div class="widget-stat-text">Returned Visitors</div>
+</div>
+
+</div>
+<div class="col-lg-12 col-lg-4 col-xs-6">
+
+<div class="widget widget-stat bg-inverse text-white">
+<!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
+<div class="widget-stat-number">05:10 <!-- <i class="fa fa-caret-up text-lime-light"></i> --></div>
+<div class="widget-stat-text">Avg. Time on Site</div>
+</div>
+
+</div>
+</div>
+</div>
 
 
 
