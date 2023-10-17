@@ -25,7 +25,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
 }
 
 .login-wrapper > h2{
@@ -89,11 +89,11 @@ body{
 
 %>
     <div class="login-wrapper">
-        <h2><img src="common/images/logo.png"></h2>
+        <h2><img src="../../common/images/logo.png"></h2>
         <form method="post" action="서버의url" id="login-form">
-            <input type="text" name="userName" placeholder="Email"><br/>
+            <input type="text" name="userName" placeholder="ID"><br/>
             <input type="password" name="userPassword" placeholder="Password"><br/>
-            <label for="remember-check" style="width: 150px;">
+            <label for="remember-check" style="width: 150px; margin-bottom:10px;">
                 <input type="checkbox" id="remember-check">아이디 저장하기
             </label><br/>
             <input type="button" value="Login" id="btn" style="background-color:#FB4357;">
