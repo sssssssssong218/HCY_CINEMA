@@ -1,3 +1,11 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="javax.sql.DataSource"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="javax.naming.Context"%>
+<%@page import="main.MainDAO"%>
+<%@page import="main.MainTrailerVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@ page info="" %>
@@ -614,7 +622,8 @@
  -->
                     <!-- 메인 트레일러 -->
                     <%
-                    String mtName = 
+                    MainTrailerVO mtVO = MainDAO.getInstance().selectMainTrailer();
+                    pageContext.setAttribute("mtVO", mtVO);
                     %>
             <div id="ctl00_PlaceHolderContent_divMovieSelection_wrap" class="movieSelection_wrap">
                 <div class="contents">
@@ -622,7 +631,7 @@
                     <div class="video_wrap">
                         
                     <video autoplay="" muted="">
-                        <source src="https://192.168.10.145/HCY_CINEMA/1013_FlowerMoon_1080x608.mp4" type="video/mp4">
+                        <source src="https://192.168.10.145/HCY_CINEMA/common/trailer/${ mtVO.trailerName }" type="video/mp4">
                         이 브라우저는 Video 태그를 지원하지 않습니다. (Your browser does not support the video tag.)
                     </video>
                     
