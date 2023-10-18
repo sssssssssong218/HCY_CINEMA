@@ -1,4 +1,4 @@
-package memberinfo;
+package memberInfo;
 
 public class ManageMemberDAO {
 	private static ManageMemberDAO mmDAO;
