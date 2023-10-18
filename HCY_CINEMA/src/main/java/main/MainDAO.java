@@ -12,9 +12,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import org.eclipse.jdt.internal.compiler.ast.ParameterizedSingleTypeReference;
+import dbConnection.DBConnection;
 
-import DB.DbConn;
+
 
 public class MainDAO {
 private static MainDAO mnDAO;
@@ -28,9 +28,33 @@ private static MainDAO mnDAO;
 	return mnDAO;
 	}//getInstance
 	
-	public List<MainMovieVO> selectMainMovie(){
+	public List<MainMovieVO> selectMainMovie() throws NamingException, SQLException{
 		List<MainMovieVO> list = new ArrayList<MainMovieVO>();
-		//아직 안함
+		DBConnection db = DBConnection.getInstance();
+		
+		MainMovieVO mmVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+            con=db.getCon();
+			//쿼리문부터
+//			String spl = "SELECT MT.MOVIECODE, FILENAME, AD_MSG,(SELECT M.MNAME FROM MOVIE M WHERE MT.MOVIECODE = M.MOVIECODE) MNAME FROM MAINTRAILER MT";
+//			
+//			pstmt = con.prepareStatement(spl);
+//			rs = pstmt.executeQuery();
+//			
+//			if(rs.next()) {
+//			mmVO = new MainMovieVO();
+//			mmVO.setMovieCode(rs.getString("MOVIECODE"));
+//			mmVO.setTrailerName(rs.getString("FILENAME"));
+//			mmVO.setAdMsg(rs.getString("AD_MSG"));
+//			mmVO.setMovieName(rs.getString("MNAME"));
+//			}//if
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}//finally
+		
 		return list;
 	}//selectMainMovie
 	
@@ -41,18 +65,14 @@ private static MainDAO mnDAO;
 	}//selectMainStarRating
 	
 	public MainTrailerVO selectMainTrailer() throws SQLException, NamingException {
-		MainTrailerVO mtVO = new MainTrailerVO();
+		DBConnection db = DBConnection.getInstance();
+		
+		MainTrailerVO mtVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 		try {
-			
-			Context ctx = new InitialContext();
-            
-            DataSource ds=(DataSource)ctx.lookup("java:comp/env/jdbc/hcydb");
-            
-            con=ds.getConnection();
+            con=db.getCon();
 			
 			String spl = "SELECT MT.MOVIECODE, FILENAME, AD_MSG,(SELECT M.MNAME FROM MOVIE M WHERE MT.MOVIECODE = M.MOVIECODE) MNAME FROM MAINTRAILER MT";
 			
@@ -60,26 +80,16 @@ private static MainDAO mnDAO;
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-			mtVO.setMovieCode(Integer.toString(rs.getInt("MOVIECODE")));
+			mtVO = new MainTrailerVO();
+			mtVO.setMovieCode(rs.getString("MOVIECODE"));
 			mtVO.setTrailerName(rs.getString("FILENAME"));
 			mtVO.setAdMsg(rs.getString("AD_MSG"));
 			mtVO.setMovieName(rs.getString("MNAME"));
 			}//if
 		}finally {
-			if(con!=null) {con.close();}
-			if(pstmt!=null) {pstmt.close();}
-			if(rs!=null) {rs.close();}
+			db.dbClose(rs, pstmt, con);
 		}//finally
 		return mtVO;
 	}//selectMainTrailer
-	public static void main(String[] args) {
-		try {
-			System.out.println(getInstance().selectMainTrailer()); 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 }//class

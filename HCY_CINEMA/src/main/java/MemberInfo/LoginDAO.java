@@ -1,4 +1,4 @@
-package MemberInfo;
+package memberinfo;
 
 public class LoginDAO {
 	private static LoginDAO lDAO;

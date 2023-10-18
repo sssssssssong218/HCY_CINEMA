@@ -8,18 +8,18 @@
 <meta content="" name="description">
 <meta content="" name="author">
 
-<link href="../CSS/css" rel="stylesheet" id="fontFamilySrc">
-<link href="../CSS/jquery-ui.min.css" rel="stylesheet">
-<link href="../CSS/bootstrap.min.css" rel="stylesheet">
-<link href="../CSS/all.css" rel="stylesheet">
-<link href="../CSS/animate.min.css" rel="stylesheet">
-<link href="../CSS/style.min.css" rel="stylesheet">
+<link href="css" rel="stylesheet" id="fontFamilySrc">
+<link href="jquery-ui.min.css" rel="stylesheet">
+<link href="bootstrap.min.css" rel="stylesheet">
+<link href="all.css" rel="stylesheet">
+<link href="animate.min.css" rel="stylesheet">
+<link href="style.min.css" rel="stylesheet">
 
 
-<link href="../CSS/bootstrap_calendar.css" rel="stylesheet">
-<link href="../CSS/jquery.gritter.css" rel="stylesheet">
-<link href="../CSS/dataTables.bootstrap.min.css" rel="stylesheet">
-<link href="../CSS/responsive.bootstrap.min.css" rel="stylesheet">
+<link href="bootstrap_calendar.css" rel="stylesheet">
+<link href="jquery.gritter.css" rel="stylesheet">
+<link href="dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="responsive.bootstrap.min.css" rel="stylesheet">
 
 
 
@@ -45,7 +45,7 @@
 <div class="container-fluid">
 
 <div class="navbar-header">
-<a href="index.html" class="navbar-brand" style="line-height:0px"><img src="../../common/images/admin_logo.png"></a>
+<a href="index.html" class="navbar-brand"><img src="../../common/images/logo.png"></a>
 <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
@@ -76,7 +76,7 @@
 <div class="position">Front End Designer</div>
 </div>
 </li>
-<li class="nav-header">today work</li>
+<li class="nav-header">Navigation</li>
 <li class="active has-sub">
 <a href="javascript:;">
 <img class="fa fa-home" src="../../common/images/dashboard2.png">
@@ -142,7 +142,7 @@
 </ol>
 
 
-<h1 class="page-header">DashBoard <small>Movie DashBoard</small></h1>
+<h1 class="page-header">Dashboard v3 <small>header small text goes here...</small></h1>
 
 
 <div class="row">
