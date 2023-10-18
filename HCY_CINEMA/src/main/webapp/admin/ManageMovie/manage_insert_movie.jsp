@@ -504,23 +504,24 @@ to {
 <input type="text" class="form-control" placeholder="영화제목">
 </div>
 </div>
-<div class="form-group m-b-10" id="title">
-<label class="col-lg-3 col-form-label actor_label" id="label_actor">배우</label>
-<div class="col-lg-7 actor">
+<div class="form-group m-b-10" id="actor_title">
+<label class="col-lg-3 col-form-label actor_label">배우</label>
+<div class="col-lg-7 actor_div">
 <input type="text" class="form-control" placeholder="배우">
 </div>
-<input type="button" value="추가" id="btn" class="insertBtn">
+<input type="button" value="추가" id="actor_btn" class="insertBtn">
 </div>
-<div class="form-group m-b-10">
-<label class="col-lg-3 col-form-label">감독</label>
-<div class="col-lg-7">
+<div class="form-group m-b-10" id="director_title">
+<label class="col-lg-3 col-form-label director_label">감독</label>
+<div class="col-lg-7 director_div">
 <input class="form-control" type="text" placeholder="감독">
 </div>
+<input type="button" value="추가" id="director_btn" class="insertBtn">
 </div>
-<div class="form-group m-b-10">
-<label class="col-lg-3 col-form-label">장르</label>
-<div class="col-lg-7">
-<select class="form-control">
+<div class="form-group m-b-10" id="genre_title">
+<label class="col-lg-3 col-form-label genre_label">장르</label>
+<div class="col-lg-7 genre_div">
+<select class="form-control" id="genre_select">
 <option>코미디</option>
 <option>스릴러</option>
 <option>공포</option>
@@ -532,6 +533,7 @@ to {
 <option></option>
 </select>
 </div>
+<input type="button" value="추가" id="genre_btn" class="insertBtn">
 </div>
 <div class="form-group m-b-10">
 <label class="col-lg-3 col-form-label">국가</label>
@@ -540,22 +542,10 @@ to {
 <input type="radio" name="optionsRadios" value="외국">외국
 </div>
 </div>
-<div class="form-group m-b-10">
-<label class="col-lg-3 col-form-label">Multiple Selects</label>
-<div class="col-lg-7">
-<select class="form-control" multiple="">
-<option>1</option>
-<option>2</option>
-<option>3</option>
-<option>4</option>
-<option>5</option>
-</select>
-</div>
-</div>
-<div class="form-group">
+<div class="form-group" style="height:200px">
 <label class="col-lg-3 col-form-label">Textarea</label>
 <div class="col-lg-7">
-<textarea class="form-control" rows="3" placeholder="Textarea"></textarea>
+<textarea class="form-control" rows="3" placeholder="상세내용" style="height:150px"></textarea>
 </div>
 </div>
 </form>
@@ -563,13 +553,13 @@ to {
 
 
 <div class="col-lg-6">
-<h5 class="m-t-0">Checkboxes &amp; Radios</h5>
+<h5 class="m-t-0">영화 포스터 및 스틸컷 업로드</h5>
 <p>
 Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
 </p>
 <div class="checkbox">
 <label>
-<input type="checkbox" value="">
+<input type="file" value="">
 Option one is this and that—be sure to include why it's great
 </label>
 </div>
@@ -866,25 +856,76 @@ Quickly size labels and form controls within <code>.form-horizontal</code> by ad
 		}
 	 */
   
-		    var count=1;
-	 document.getElementById("btn").addEventListener("click", function() {
-		    // 템플릿 요소를 복제합니다.
-		    var template = document.querySelector(".actor");
-		    var container = document.getElementById("label_actor");
-            var lastLabel = container.lastElementChild;
-		   /*  var template4 = document.querySelector(".actor_label"); */
-		    var newItem = template.cloneNode(true);
-		   /*  var newItem4 = template4.cloneNode(true); */
-		    
-            var newLabel = lastLabel.cloneNode(true);
-            newLabel.textContent = "배우 " + count;
-            container.appendChild(newLabel);
-            labelCounter++;
-		    // 새로운 요소를 추가합니다.
-		   /*  document.getElementById("title").appendChild(newItem4); */
-		    document.getElementById("title").appendChild(newItem);
-		});
+	 var actor_Button = document.getElementById("actor_btn");
+     var actor_titleContainer = document.getElementById("actor_title");
 
+     var actor_counter = 1; // 초기 카운터 값
+
+     actor_Button.addEventListener("click", function() {
+         var actor_label = actor_titleContainer.querySelector(".actor_label");
+         var actor_Input = actor_titleContainer.querySelector(".actor_div");
+
+         // 라벨 복사
+         var actor_newLabel = actor_label.cloneNode(true);
+         actor_newLabel.textContent = "배우 " + actor_counter;
+         
+         // 입력 요소 복사
+         var actor_newInput = actor_Input.cloneNode(true);
+
+         // 복제한 라벨과 입력 요소를 추가
+         actor_titleContainer.appendChild(actor_newLabel);
+         actor_titleContainer.appendChild(actor_newInput);
+
+         actor_counter++; // 카운터 증가
+     });
+     var director_addButton = document.getElementById("director_btn");
+     var director_titleContainer = document.getElementById("director_title");
+
+     var director_counter = 1; // 초기 카운터 값
+
+     director_addButton.addEventListener("click", function() {
+         var director_label = director_titleContainer.querySelector(".director_label");
+         var director_Input = director_titleContainer.querySelector(".director_div");
+
+         // 라벨 복사
+         var director_newLabel = director_label.cloneNode(true);
+         director_newLabel.textContent = "감독 " + director_counter;
+         
+         // 입력 요소 복사
+         var director_newInput = director_Input.cloneNode(true);
+
+         // 복제한 라벨과 입력 요소를 추가
+         director_titleContainer.appendChild(director_newLabel);
+         director_titleContainer.appendChild(director_newInput);
+
+         director_counter++; // 카운터 증가
+     });
+     var genre_addButton = document.getElementById("genre_btn");
+     var genre_titleContainer = document.getElementById("genre_title");
+
+
+     genre_addButton.addEventListener("click", function() {
+         var genre_label = genre_titleContainer.querySelector(".genre_label");
+         var genre_Input = genre_titleContainer.querySelector(".genre_div");
+
+         // 라벨 복사
+         var genre_newLabel = genre_label.cloneNode(true);
+         
+         // 입력 요소 복사
+         var genre_newInput = genre_Input.cloneNode(true);
+
+         // 복제한 라벨과 입력 요소를 추가
+         genre_titleContainer.appendChild(genre_newLabel);
+         genre_titleContainer.appendChild(genre_newInput);
+
+     });
+     var genre_selectElement = document.getElementById("genre_select");
+     var genre_disableButton = document.getElementById("genre_btn");
+
+     genre_disableButton.addEventListener("click", function() {
+    	 genre_selectElement.disabled = true; // select 요소를 비활성화
+     });
+     
 	</script>
 	<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;817469ae18dc8084&quot;,&quot;version&quot;:&quot;2023.8.0&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;4db8c6ef997743fda032d4f73cfeff63&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
 
