@@ -1,4 +1,4 @@
-package memberinfo;
+package memberInfo;
 
 import java.util.Date;
 

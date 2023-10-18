@@ -1,4 +1,4 @@
-package memberinfo;
+package memberInfo;
 
 public class EditMemberInfoDAO {
 	private static EditMemberInfoDAO emiDAO;
