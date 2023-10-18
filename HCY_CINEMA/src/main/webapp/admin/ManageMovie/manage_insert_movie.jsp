@@ -82,6 +82,7 @@ to {
 	text-align: left;
 }
 </style>
+
 </head>
 <body class="  pace-done" cz-shortcut-listen="true">
 	<div class="pace  pace-inactive">
@@ -173,365 +174,7 @@ to {
 		<div class="sidebar-bg"></div>
 
 
-		<div id="content" class="content">
-
-			<ol class="breadcrumb pull-right">
-				<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-				<li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
-				<li class="breadcrumb-item active">Dashboard v3</li>
-			</ol>
-
-
-			<h1 class="page-header">
-				Movie <small>Movie Manger</small>
-			</h1>
-
-
-			<div class="row">
-
-				<div class="col-lg-10" style="width: 1600px; height: 800px">
-
-					<div class="radius-container m-b-30" style="width: 1600px; height: 800px">
-
-
-						<div class="panel pagination-inverse bg-white clearfix no-rounded-corner m-b-0" style="width: 1600px; height: 800px">
-
-							<div id="data-table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer" style="width: 1600px; height: 800px">
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="dataTables_length" id="data-table_length">
-											
-											
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div id="data-table_filter" class="dataTables_filter">
-											
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-sm-12"><table id="data-table" data-order="[[1,&quot;asc&quot;]]" class="table table-bordered table-hover dataTable no-footer dtr-inline collapsed" role="grid" aria-describedby="data-table_info" style="width: 1335px; height: 600px">
-											<thead>
-												<tr role="row">
-													<th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 256px;" aria-sort="ascending" aria-label="Orders: activate to sort column descending"><input type="checkbox">영화</th>
-<!-- 													<th class="width-100 sorting" tabindex="0"
-														aria-controls="data-table" rowspan="1" colspan="1"
-														style="width: 100px;"
-														aria-label="Month: activate to sort column ascending">영화</th> -->
-													<th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 150px;" aria-sort="ascending" aria-label="Orders: activate to sort column descending">상영상태</th>
-													<th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 150px;" aria-label="Earning: activate to sort column ascending">개봉일</th>
-													<th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 150px;" aria-label="Earning: activate to sort column ascending">종영일</th>
-													<th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 150px;" aria-label="Earning: activate to sort column ascending">예매</th>
-													<th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 150px;" aria-label="Earning: activate to sort column ascending">리뷰</th>
-													<th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 150px;" aria-label="Earning: activate to sort column ascending">평점</th>
-												<!-- 	<th data-sorting="disabled" class="sorting_disabled"
-														tabindex="0" aria-controls="data-table" rowspan="1"
-														colspan="1" style="width: 451px;"
-														aria-label=": activate to sort column descending"></th> -->
-													<!-- <th class="width-50 sorting_disabled"
-														data-sorting="disabled" tabindex="0"
-														aria-controls="data-table" rowspan="1" colspan="1"
-														style="width: 68px; display: none;"
-														aria-label=": activate to sort column descending"></th> -->
-												</tr>
-											</thead>
-											<tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-												<tr class="odd">
-													<td id="movie_title" tabindex="0" style="padding-left:20px"><input type="checkbox">May</td>
-													<td class="sorting_1">1,023 items sold</td>
-													<td>$10,230</td>
-													<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-													<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
-															View Details</a></td>
-												</tr>
-												<tr class="even">
-													<td tabindex="0"><input type="checkbox">November</td>
-													<td class="sorting_1">1,239 items sold</td>
-													<td>$12,390</td>
-													<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-													<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
-															View Details</a></td>
-												</tr>
-												<tr class="odd">
-													<td tabindex="0"><input type="checkbox">February</td>
-													<td class="sorting_1">1,392 items sold</td>
-													<td>$13,920</td>
-													<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-													<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
-															View Details</a></td>
-												</tr>
-												<tr class="even">
-													<td tabindex="0"><input type="checkbox">July</td>
-													<td class="sorting_1">1,499 items sold</td>
-													<td>$14,990</td>
-													<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-													<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
-															View Details</a></td>
-												</tr>
-												<tr class="odd">
-													<td tabindex="0"><input type="checkbox">January</td>
-													<td class="sorting_1">1,929 items sold</td>
-													<td>$19,290</td><td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-													<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
-															View Details</a></td>
-												</tr>
-												<tr class="even">
-													<td tabindex="0"><input type="checkbox">September</td>
-													<td class="sorting_1">433 items sold</td>
-													<td>$4,330</td><td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-													<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
-															View Details</a></td>
-												</tr>
-												<tr class="odd">
-													<td tabindex="0"><input type="checkbox">June</td>
-													<td class="sorting_1">502 items sold</td>
-													<td>$5,020</td>
-													<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-													<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
-															View Details</a></td>
-												</tr>
-												<tr class="even">
-													<td tabindex="0"><input type="checkbox">October</td>
-													<td class="sorting_1">581 items sold</td>
-													<td>$5,810</td>
-													<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-													<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
-															View Details</a></td>
-												</tr>
-												<tr class="odd">
-													<td tabindex="0"><input type="checkbox">August</td>
-													<td class="sorting_1">684 items sold</td>
-													<td>$6,840</td>
-													<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-													<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
-															View Details</a></td>
-												</tr>
-												<tr class="even">
-													<td tabindex="0"><input type="checkbox">April</td>
-													<td class="sorting_1">780 items sold</td>
-													<td>$7,800</td>
-													<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-														<td class="p-5"><!-- <div data-render="sparkline">
-															<canvas width="187" height="28"
-																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> --></td>
-													<td class="p-5" style="display: none;"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
-															View Details</a></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
+		
 
 		<div id="sidebar-right" class="sidebar sidebar-right">
 
@@ -832,6 +475,259 @@ to {
 			</div>
 
 		</div>
+		
+		<div id="content" class="content">
+
+<ol class="breadcrumb pull-right">
+<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+<li class="breadcrumb-item"><a href="javascript:;">Form Stuff</a></li>
+<li class="breadcrumb-item active">Form Elements</li>
+</ol>
+
+
+<h1 class="page-header">영화 추가</h1>
+
+
+<div class="section-container section-with-top-border p-b-10">
+
+<div class="row">
+
+<div class="col-lg-6">
+<h5 class="m-t-0">영화 정보</h5>
+<p>
+영화에 대한 정보를 입력해주세요.
+</p>
+<form class="form-horizontal">
+<div class="form-group m-b-10">
+<label class="col-lg-3 col-form-label">제목</label>
+<div class="col-lg-7">
+<input type="text" class="form-control" placeholder="영화제목">
+</div>
+</div>
+<div class="form-group m-b-10" id="title">
+<label class="col-lg-3 col-form-label actor_label" id="label_actor">배우</label>
+<div class="col-lg-7 actor">
+<input type="text" class="form-control" placeholder="배우">
+</div>
+<input type="button" value="추가" id="btn" class="insertBtn">
+</div>
+<div class="form-group m-b-10">
+<label class="col-lg-3 col-form-label">감독</label>
+<div class="col-lg-7">
+<input class="form-control" type="text" placeholder="감독">
+</div>
+</div>
+<div class="form-group m-b-10">
+<label class="col-lg-3 col-form-label">장르</label>
+<div class="col-lg-7">
+<select class="form-control">
+<option>코미디</option>
+<option>스릴러</option>
+<option>공포</option>
+<option>로맨스</option>
+<option>드라마</option>
+<option>액션</option>
+<option>SF</option>
+<option>애니매이션</option>
+<option></option>
+</select>
+</div>
+</div>
+<div class="form-group m-b-10">
+<label class="col-lg-3 col-form-label">국가</label>
+<div class="col-lg-7">
+<input type="radio" name="optionsRadios" value="국내" checked="checked">국내
+<input type="radio" name="optionsRadios" value="외국">외국
+</div>
+</div>
+<div class="form-group m-b-10">
+<label class="col-lg-3 col-form-label">Multiple Selects</label>
+<div class="col-lg-7">
+<select class="form-control" multiple="">
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label class="col-lg-3 col-form-label">Textarea</label>
+<div class="col-lg-7">
+<textarea class="form-control" rows="3" placeholder="Textarea"></textarea>
+</div>
+</div>
+</form>
+</div>
+
+
+<div class="col-lg-6">
+<h5 class="m-t-0">Checkboxes &amp; Radios</h5>
+<p>
+Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
+</p>
+<div class="checkbox">
+<label>
+<input type="checkbox" value="">
+Option one is this and that—be sure to include why it's great
+</label>
+</div>
+<div class="checkbox disabled m-b-25">
+<label>
+<input type="checkbox" value="" disabled="">
+Option two is disabled
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="optionsRadios" value="option1" checked="">
+Option one is this and that—be sure to include why it's great
+</label>
+</div>
+<div class="radio">
+<label>
+<input type="radio" name="optionsRadios" value="option2">
+Option two can be something else and selecting it will deselect option one
+</label>
+</div>
+<div class="radio disabled m-b-25">
+<label>
+<input type="radio" name="optionsRadios" value="option3" disabled="">
+Option three is disabled
+</label>
+</div>
+<h5 class="m-t-0">Inline Checkboxes &amp; Radios</h5>
+<div class="clearfix m-b-10">
+<label class="checkbox-inline">
+<input type="checkbox" value="option1"> 1
+</label>
+<label class="checkbox-inline">
+<input type="checkbox" value="option2"> 2
+</label>
+<label class="checkbox-inline">
+<input type="checkbox" value="option3"> 3
+</label>
+</div>
+<div class="clearfix m-b-25">
+<label class="radio-inline">
+<input type="radio" name="inlineRadioOptions" value="option1"> 1
+</label>
+<label class="radio-inline">
+<input type="radio" name="inlineRadioOptions" value="option2"> 2
+</label>
+<label class="radio-inline">
+<input type="radio" name="inlineRadioOptions" value="option3"> 3
+</label>
+</div>
+<h5 class="m-t-0">Checkboxes and radios without label text</h5>
+<p>
+Should you have no text within the <code>&lt;label&gt;</code>, the input is positioned as you'd expect.
+Currently only works on non-inline checkboxes and radios.
+</p>
+<div class="checkbox m-b-0 m-t-0">
+<label>
+<input type="checkbox" id="blankCheckbox" value="option1" checked="">
+</label>
+</div>
+<div class="radio m-b-15 m-t-0">
+<label>
+<input type="radio" name="blankRadio" id="blankRadio1" value="option1" checked="">
+</label>
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section-container section-with-top-border p-b-10">
+
+<div class="row">
+
+<div class="col-lg-6">
+<h5 class="m-t-0">Control sizing</h5>
+<p>
+Set heights using classes like <code>.form-control-lg</code>, and set widths using grid column classes like <code>.col-lg-*</code>.
+</p>
+<div class="row">
+<div class="col-lg-5">
+<div class="clearfix m-b-15">
+<input class="form-control form-control-lg" type="text" placeholder=".input-lg">
+<p></p>
+<input class="form-control" type="text" placeholder="Default input">
+<p></p>
+<input class="form-control form-control-sm" type="text" placeholder=".input-sm">
+</div>
+</div>
+<div class="col-lg-5">
+<div class="clearfix m-b-15">
+<select class="form-control form-control-lg">
+<option>.input-lg</option>
+</select>
+<p></p>
+<select class="form-control">
+<option>default input</option>
+</select>
+<p></p>
+<select class="form-control form-control-sm">
+<option>.input-sm</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="col-lg-6">
+<h5 class="m-t-0">Horizontal form group sizes</h5>
+<p>
+Quickly size labels and form controls within <code>.form-horizontal</code> by adding <code>.form-group-lg</code> or <code>.form-group-sm.</code>
+</p>
+<form class="form-horizontal">
+<div class="form-group form-group-lg m-b-10">
+<label class="col-lg-3 col-form-label">Large label</label>
+<div class="col-lg-7">
+<input class="form-control" type="text" placeholder="Large input">
+</div>
+</div>
+<div class="form-group m-b-10">
+<label class="col-lg-3 col-form-label">Default label</label>
+<div class="col-lg-7">
+<input class="form-control" type="text" placeholder="Default input">
+</div>
+</div>
+<div class="form-group form-group-sm">
+<label class="col-lg-3 col-form-label">Small label</label>
+<div class="col-lg-7">
+<input class="form-control" type="text" placeholder="Small input">
+</div>
+</div>
+</form>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+		
 		<div class="sidebar-bg sidebar-right"></div>
 
 	</div>
@@ -928,6 +824,7 @@ to {
 	<script src="demo.min.js" type="text/javascript"></script>
 	<script src="page-index-v3.demo.min.js" type="text/javascript"></script>
 	<script src="apps.min.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 	<!-- <script type="text/javascript">
 		$(document).ready(function() {
@@ -947,11 +844,9 @@ to {
 
 		gtag('config', 'G-Y3Q0VGQKY3');
 	</script>
-	<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;817469ae18dc8084&quot;,&quot;version&quot;:&quot;2023.8.0&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;4db8c6ef997743fda032d4f73cfeff63&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
-
 	<script type="text/javascript">
 		//<canvas> 요소 선택
-		var canvas = document.getElementById("monthly-report-chart");
+		/* var canvas = document.getElementById("monthly-report-chart");
 		var ctx = canvas.getContext("2d");
 
 		// 데이터 정의 (예: 막대 그래프의 높이)
@@ -969,6 +864,30 @@ to {
 			ctx.fillStyle = "blue"; // 막대 색상
 			ctx.fillRect(startX, startY - barHeight, barWidth, barHeight);
 		}
+	 */
+  
+		    var count=1;
+	 document.getElementById("btn").addEventListener("click", function() {
+		    // 템플릿 요소를 복제합니다.
+		    var template = document.querySelector(".actor");
+		    var container = document.getElementById("label_actor");
+            var lastLabel = container.lastElementChild;
+		   /*  var template4 = document.querySelector(".actor_label"); */
+		    var newItem = template.cloneNode(true);
+		   /*  var newItem4 = template4.cloneNode(true); */
+		    
+            var newLabel = lastLabel.cloneNode(true);
+            newLabel.textContent = "배우 " + count;
+            container.appendChild(newLabel);
+            labelCounter++;
+		    // 새로운 요소를 추가합니다.
+		   /*  document.getElementById("title").appendChild(newItem4); */
+		    document.getElementById("title").appendChild(newItem);
+		});
+
 	</script>
+	<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;817469ae18dc8084&quot;,&quot;version&quot;:&quot;2023.8.0&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;4db8c6ef997743fda032d4f73cfeff63&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+
+	
 
 </body></html>
