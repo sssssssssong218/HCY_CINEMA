@@ -475,17 +475,17 @@
 			
 
 <!-- 실컨텐츠 시작 -->
-<div class="wrap-login">
+<div class="wrap-login" style="padding-left: 20%">
     <div class="sect-login">
         <ul class="tab-menu-round">
             <li class="on">
                 <a href="http://192.168.10.145/HCY_CINEMA/user/login/login.jsp">로그인</a>
             </li>
             <li>
-                <a href="http://192.168.10.145/HCY_CINEMA/user/login/login.jsp">비회원 예매</a>
+                <a href="http://192.168.10.145/HCY_CINEMA/user/login/nonmemberLogin.jsp">비회원 예매</a>
             </li>
             <li>
-                <a href="http://192.168.10.145/HCY_CINEMA/user/login/login.jsp">비회원 예매확인</a>
+                <a href="http://192.168.10.145/HCY_CINEMA/user/myTicket/checkNonmember.jsp">비회원 예매확인</a>
             </li>
         </ul>
         <div class="box-login">
@@ -508,31 +508,8 @@
                 </div>
             </fieldset>
             </form>  
-			<div>
-				<a href="javascript:getNaverLoginURL();" class="btn_loginNaver"><img src="https://img.cgv.co.kr/image_gt/login/btn_loginNaver.jpg" alt="네이버 로그인"></a>
-			</div>
         </div>
     </div>    
-    <div class="sect-loginguide">
-        <div class="box-useguide">
-            <strong>CJ ONE 회원이 아니신가요?</strong>
-            <span>회원가입하시고 다양한 혜택을 누리세요!</span>
-            <strong>
-                <a title="새창" target="_blank" href="https://www.cjone.com/cjmweb/join.do?coopco_cd=7010&amp;brnd_cd=1000" class="round red"><span>CJ ONE 회원가입하기</span></a>
-            </strong>
-            <em>
-                
-            </em>
-            <em>
-                <a href="http://www.cjone.com/cjmweb/about-cjone.do" class="round black" target="_blank"><span>CJ ONE 멤버십이란?</span></a>
-            </em>
-        </div>
-    </div>
-    <div class="sect-loginad" style="background:#d2cbbe;">
-        <div>
-           <iframe src="https://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@Login_bigbanner" width="350" height="300" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Login_bigbanner" id="Login_bigbanner"></iframe>
-        </div>
-    </div>
 </div>
 <!-- 실컨텐츠 끝 --> 
 
@@ -647,43 +624,7 @@
     <!-- E Contaniner -->
     
     <!-- S Popup -->
-    <div class="com_pop_wrap">
-        <div class="com_pop_fog"></div>
-    </div>
-    <div class="pop_wrap">
-    <!-- S > [팝업] 지원 OS 업데이트 유도-->
-        <div id="pop_supportOS" class="popup" style="display:none">
-            <div class="pop_iexp_wrap" style="position:fixed; left:50%; top:50%; width:600px; margin:-165px 0 0 -300px; z-index:1000;">
-                <div class="pi_headline">
-                    <img src="https://img.cgv.co.kr/images/popup/1606_iexp/pop_iexp_headline2.jpg" alt="CGV 홈페이지는 고객님께서 사용중인 MS Windows XP에서 정상적인 서비스 이용이 어려울 수 있으며, OS업데이트를 권장합니다.">
-                </div>
-                <div class="down_app">
-                    <p><img src="https://img.cgv.co.kr/images/popup/1606_iexp/pop_iexp_downtxt.jpg" alt="OS 업데이트가 어려운 경우 모바일앱을 이용하세요!!!"></p>
-                    <a class="btn" href="https://itunes.apple.com/kr/app/id370441190?mt=8" target="_blank"><img src="https://img.cgv.co.kr/images/popup/1606_iexp/btn_down_ios.jpg" alt="Ios down"></a>
-                    <a class="btn" href="https://play.google.com/store/apps/details?id=com.cgv.android.movieapp" target="_blank"><img src="https://img.cgv.co.kr/images/popup/1606_iexp/btn_down_android.jpg" alt="Android down"></a>
-                </div>
-                <a class="btn_close">닫기</a>
-            </div>
-         </div>
-    <!-- S > [팝업] 지원 브라우저 다운로드 유도-->
-         <div id="pop_supportBrower" class="popup" style="display:none">
-            <div class="pop_iexp_wrap" style="position:fixed; left:50%; top:50%; width:600px; margin:-265px 0 0 -300px; z-index:1000;">
-                <div class="pi_headline">
-                    <img src="https://img.cgv.co.kr/images/popup/1606_iexp/pop_iexp_headline1.jpg" alt="CGV 홈페이지는 Internet Explorer 9이상에서 최적의 서비스 이용이 가능합니다. IE9 이하 브라우저에서 이용 시 정상적인 서비스 이용이 어려울 수 있으며, 브라우저 업그레이드 하시기를 권장합니다.">
-                </div>
-                <ul class="down_browser">
-                    <li><a href="https://www.microsoft.com/ko-kr/edge" target="_blank"><img src="https://img.cgv.co.kr/images/popup/1606_iexp/btn_down_ie.jpg" alt="Internet Explorer 다운받기"></a></li>
-                    <li><a href="https://www.google.com/chrome/browser/desktop/index.html" target="_blank"><img src="https://img.cgv.co.kr/images/popup/1606_iexp/btn_down_chrome.jpg" alt="Chrome 다운받기"></a></li>
-                </ul>
-                <div class="down_app">
-                    <p><img src="https://img.cgv.co.kr/images/popup/1606_iexp/pop_iexp_downtxt.jpg" alt="OS 업데이트가 어려운 경우 모바일앱을 이용하세요!"></p>
-                    <a class="btn" href="https://itunes.apple.com/kr/app/id370441190?mt=8" target="_blank"><img src="https://img.cgv.co.kr/images/popup/1606_iexp/btn_down_ios.jpg" alt="Ios down"></a>
-                    <a class="btn" href="https://play.google.com/store/apps/details?id=com.cgv.android.movieapp " target="_blank"><img src="https://img.cgv.co.kr/images/popup/1606_iexp/btn_down_android.jpg" alt="Android down"></a>
-                </div>
-                <a class="btn_close">닫기</a>
-            </div>
-        </div>
-	</div>
+
 
     <!-- E Popup -->
     
@@ -698,93 +639,7 @@
     <!-- E 예매하기 및 TOP Fixed 버튼 -->
 	
     <!-- S Footer -->
-    <footer>
-		<!-- footer_area (s) -->
-		
-<div id="BottomWrapper" class="sect-ad">
-    <iframe src="https://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@Bottom" width="100%" height="240" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Bottom" id="Bottom"></iframe>
-</div>
-<ul class="policy_list">
-    <li><a href="http://corp.cgv.co.kr/company/" target="_blank">회사소개</a></li>
-    <li><a href="http://corp.cgv.co.kr/company/sustainabilityStrategy/strategy.aspx" target="_blank">지속가능경영</a></li>
-    <li><a href="http://corp.cgv.co.kr/company/ir/financial/financial_list.aspx" target="_blank">IR</a></li>
-    <li><a href="http://corp.cgv.co.kr/company/recruit/step/default.aspx" target="_blank">채용정보</a></li>
-    <li><a href="http://corp.cgv.co.kr/company/advertize/ad_Default.aspx" target="_blank">광고/제휴/출점문의</a></li>
-    <li><a href="http://www.cgv.co.kr/rules/service.aspx">이용약관</a></li>
-    <li><a href="http://www.cgv.co.kr/rules/organized.aspx">편성기준</a></li>
-    <li><a href="http://www.cgv.co.kr/rules/privacy.aspx"><strong>개인정보처리방침</strong></a></li>
-    <li><a href="http://www.cgv.co.kr/rules/disclaimer.aspx">법적고지</a></li>
-    <li><a href="http://www.cgv.co.kr/rules/emreject.aspx">이메일주소무단수집거부</a></li>
-    <li><a href="http://corp.cgv.co.kr/company/ethicalManagement/ceoMessage.aspx" target="_blank">윤리경영</a></li>
-    <li><a href="/company/cyberAudit.aspx" class="empha-red">사이버감사실</a></li>
-</ul>
-<article class="company_info_wrap">
-    <section class="company_info">
-        <address>(04377)서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동)</address>
-        <dl class="company_info_list">
-            <dt>대표이사</dt>
-            <dd>허민회</dd>
-            <dt>사업자등록번호</dt>
-            <dd>104-81-45690</dd>
-            <dt>통신판매업신고번호</dt>
-            <dd>2017-서울용산-0662 <a href="#none" onclick="goFtc()" class="btn_goFtc">사업자정보확인</a><a></a></dd>
-        </dl>
-        <dl class="company_info_list">
-            <dt>호스팅사업자</dt>
-            <dd>CJ올리브네트웍스</dd>
-            <dt>개인정보보호 책임자</dt>
-            <dd>도형구</dd>
-            <dt>대표이메일</dt>
-            <dd>cjcgvmaster@cj.net</dd>
-            
-        </dl>
-        <p class="copyright">© CJ CGV. All Rights Reserved</p>
-    </section>
-    <section class="familysite_wrap">
-        <label for="familysite">CJ그룹 계열사 바로가기</label>
-        <select id="familysite">
-            <option value="" class="familysiteTitle">계열사 바로가기</option>
-            <optgroup label="CJ그룹">
-<option value="http://www.cj.net/">CJ주식회사</option>
-</optgroup><optgroup label="식품 &amp; 식품서비스">
-<option value="https://www.cj.co.kr/kr/index">CJ제일제당</option>
-<option value="https://www.cjfoodville.co.kr/main.asp">CJ푸드빌</option>
-<option value="http://www.cjfreshway.com/index.jsp">CJ프레시웨이</option>
-</optgroup><optgroup label="생명공학">
-<option value="https://www.cj.co.kr/kr/about/business/bio">CJ제일제당 BIO사업부문</option>
-<option value="https://www.cj.co.kr/kr/about/business/bio">CJ Feed&amp;Card</option>
-</optgroup><optgroup label="물류 &amp; 신유통">
-<option value="https://www.cjlogistics.com/ko/main">CJ대한통운</option>
-<option value="http://www.cjenc.co.kr/kr/Default.asp">CJ대한통운 건설부문</option>
-<option value="https://www.oliveyoung.co.kr/store/company/brandStory.do">CJ올리브영</option>
-<option value="https://www.cjolivenetworks.co.kr:449/">CJ올리브네트웍스</option>
-<option value="https://www.cjoshopping.com:9002/index.asp">CJ ENM 커머스부문</option>
-</optgroup><optgroup label="엔터테인먼트 &amp; 미디어">
-<option value="https://www.cjenm.com/ko/">CJ ENM 엔터테인먼트부문</option>
-<option value="http://corp.cgv.co.kr/">CJ CGV</option>
-</optgroup>
-
-        </select>
-        <a href="#none" class="btn_familysite" onclick="goFamilySite()">GO</a>
-    </section>
-</article>
-<script>
-    //footer GA Analytics 영역 LOG
-    $('.policy_list > li > a').on({
-        click: function (e) {
-            gaEventLog('PC_footer', this.text, '');
-        }
-    });
-</script>
-        <!-- footer_area (e) -->
-
-        <div class="adFloat" style="display:block">
-
-            <iframe src="//ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@Popicon" width="154" height="182" frameborder="0" scrolling="no" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" allowtransparency="true" id="ad_float1"></iframe>
-        </div>
-        <script type="text/javascript">            OpenAD();</script>
-        <!-- //Float Ad -->
-	</footer>
+    <jsp:include page="../include/footer.jsp"/>
 	<!-- E Footer -->
 
     <!-- Aside Banner :  -->

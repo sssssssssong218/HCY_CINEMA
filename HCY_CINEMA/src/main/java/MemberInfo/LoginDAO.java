@@ -3,8 +3,7 @@ package MemberInfo;
 public class LoginDAO {
 	private static LoginDAO lDAO;
 	
-	public LoginDAO() {
-		
+	private LoginDAO() {
 	}//constructor
 	
 	public static LoginDAO getInstance() {
@@ -14,4 +13,7 @@ public class LoginDAO {
 		
 		return lDAO;
 	}//getInstance
+	
+	public MemberVO 
+	
 }//class
