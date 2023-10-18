@@ -1855,20 +1855,66 @@
                 </div>
             </div>
 <!-- E > 무비차트 | 상영예정작 -->
+<!-- S > EVENT -->
+            <div id="ctl00_PlaceHolderContent_event_wrap" class="event_wrap">
+                <div class="contents">
+                <div class="event_title_wrap">
+                    <h3>EVENT</h3>
+                    <a href="/culture-event/event/defaultNew.aspx" id="btn_allView_Event" class="btn_allView">전체보기</a>
+                    <a href="#none" class="btn_eventControl active">playStop</a>
+                </div>
+                <div class="event_list_wrap">
+                    <div class="swiper event_list swiper-container-initialized swiper-container-horizontal">
+                    <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+                        
+                                 <div class="swiper-slide swiper-slide-active" style="width: 310.667px; margin-right: 24px;">
+                                    <a onclick="gaEventLog('PC_메인', '이벤트', '[그대들은 어떻게 살 것인가] IMAX 포스터');" href="/culture-event/event/detailViewUnited.aspx?seq=38648">
+                                        <div class="img_wrap"><img src="https://img.cgv.co.kr/WebApp/contents/eventV4/38648/16974188783680.jpg" alt="[그대들은 어떻게 살 것인가] IMAX 포스터" onerror="errorImage(this)"></div>
+                                        <strong>[그대들은 어떻게 살 것인가] IMAX 포스터</strong>
+                                        <span>2023.10.16~2023.10.31</span>
+                                    </a>
+                                </div>
+                            
+                                 <div class="swiper-slide swiper-slide-next" style="width: 310.667px; margin-right: 24px;">
+                                    <a onclick="gaEventLog('PC_메인', '이벤트', 'MOINTS X PRISM OF');" href="/culture-event/event/detailViewUnited.aspx?seq=38664">
+                                        <div class="img_wrap"><img src="https://img.cgv.co.kr/WebApp/contents/eventV4/38664/16975185251970.jpg" alt="MOINTS X PRISM OF" onerror="errorImage(this)"></div>
+                                        <strong>MOINTS X PRISM OF</strong>
+                                        <span>2023.10.17~2023.10.26</span>
+                                    </a>
+                                </div>
+                            
+                                 <div class="swiper-slide" style="width: 310.667px; margin-right: 24px;">
+                                    <a onclick="gaEventLog('PC_메인', '이벤트', '[문화가 있는 날]10주년 기념 이벤트');" href="/culture-event/event/detailViewUnited.aspx?seq=38629">
+                                        <div class="img_wrap"><img src="https://img.cgv.co.kr/WebApp/contents/eventV4/38629/16974471382880.png" alt="[문화가 있는 날]10주년 기념 이벤트" onerror="errorImage(this)"></div>
+                                        <strong>[문화가 있는 날]10주년 기념 이벤트</strong>
+                                        <span>2023.10.17~2023.10.29</span>
+                                    </a>
+                                </div>
+                            
+                       
+                        
+                    </div>
+                    <div class="swiper-button-next swiper-button-disabled" tabindex="0" role="button" aria-label="다음 슬라이드" aria-disabled="true"></div>
+                    <div class="swiper-button-prev swiper-button-disabled" tabindex="0" role="button" aria-label="이전 슬라이드" aria-disabled="true"></div>
+                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                </div>
+                </div>
+            </div>
+<!-- E > EVENT -->
 <!-- S > 특별관 -->
             <div class="specialHall_wrap">
                 <div class="contents">
                     <div class="specialHall_title_wrap">
                         <h3>특별관</h3>
-                        <a href="http://192.168.145/HCY_CINEMA/user/home/special.jsp" id="btn_allView_Special" class="btn_allView">전체보기</a>
+                        <a href="http://www.cgv.co.kr/theaters/special/defaultNew.aspx" id="btn_allView_Special" class="btn_allView">전체보기</a>
                     </div>
                     <div class="specialHall_content">
-                        <a href="http://192.168.145/HCY_CINEMA/user/home/suiteCinema.jsp" id="ctl00_PlaceHolderContent_specialHall_link" class="specialHall_link"><div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr//Front/Main/2021/1209/16390080561620.png" id="ctl00_PlaceHolderContent_specialHall_img" alt="SUITE CINEMA"></div></a>
+                        <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=7" id="ctl00_PlaceHolderContent_specialHall_link" class="specialHall_link"><div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr//Front/Main/2021/1209/16390080561620.png" id="ctl00_PlaceHolderContent_specialHall_img" alt="SUITE CINEMA"></div></a>
                         
                         <ul class="specialHall_list">
                             
                             <li class="active">
-                                <a href="http://192.168.145/HCY_CINEMA/user/home/suiteCinema.jsp">
+                                <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=7">
                                     <strong>SUITE CINEMA</strong>
                                     <div class="specialHall_hashTag_wrap">
                                         <span class="specialHall_hashTag">#호텔 컨셉의 프리미엄관</span>                                        
@@ -1877,7 +1923,7 @@
                             </li>
                             
                             <li>
-                                <a href="http://192.168.145/HCY_CINEMA/user/home/cineLivingRomm.jsp">
+                                <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=14">
                                     <strong>CINE &amp; LIVINGROOM</strong>
                                     <div class="specialHall_hashTag_wrap">
                                         <span class="specialHall_hashTag">#신개념 소셜 상영관</span>                                        
@@ -1886,7 +1932,7 @@
                             </li>
                             
                             <li>
-                                <a href="http://192.168.145/HCY_CINEMA/user/home/fourDX.jsp">
+                                <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=2">
                                     <strong>4DX</strong>
                                     <div class="specialHall_hashTag_wrap">
                                         <span class="specialHall_hashTag">#모션시트 #오감체험</span>                                        
@@ -1895,7 +1941,7 @@
                             </li>
                             
                             <li>
-                                <a href="http://192.168.145/HCY_CINEMA/user/home/cineDeChef.jsp">
+                                <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=8">
                                     <strong>CINE de CHEF</strong>
                                     <div class="specialHall_hashTag_wrap">
                                         <span class="specialHall_hashTag">#쉐프가 있는 영화관</span>                                        
@@ -1908,10 +1954,128 @@
                 </div>
             </div>
 <!-- E > 특별관 -->
+<!-- S > 기프트콘 노출 -->
+            <div class="giftcon_wrap">
+                <div class="contents">
+                    <ul class="giftcon_list_wrap">
+                        
+                        <li>
+                            <dl class="giftcon_list">
+                                <dt>패키지<a href="/culture-event/popcorn-store/store-category.aspx?CategoryIdx=1" alt="패키지" class="btn_more">더보기</a></dt>
+                               
+                                <dd>
+                                    <a href="/culture-event/popcorn-store/product-detail.aspx?GG_NO=100376">
+                                        <div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/16975025641170.jpg" alt="<화사한 그녀> 전용관람권 특가(~10/22)"></div>
+                                        <div class="giftcon_info_wrap">
+                                            <span>&lt;화사한 그녀&gt; 전용관람권 특가(~10/22)</span>
+                                            <strong>10,000원</strong>
+                                        </div>
+                                    </a>
+                                </dd>
+                            
+                                <dd>
+                                    <a href="/culture-event/popcorn-store/product-detail.aspx?GG_NO=100344">
+                                        <div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/16778218049340.jpg" alt="우리 패키지"></div>
+                                        <div class="giftcon_info_wrap">
+                                            <span>우리 패키지</span>
+                                            <strong>61,000원</strong>
+                                        </div>
+                                    </a>
+                                </dd>
+                            
+                                <dd>
+                                    <a href="/culture-event/popcorn-store/product-detail.aspx?GG_NO=100343">
+                                        <div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/16778214176450.jpg" alt="나랑 너 패키지"></div>
+                                        <div class="giftcon_info_wrap">
+                                            <span>나랑 너 패키지</span>
+                                            <strong>34,000원</strong>
+                                        </div>
+                                    </a>
+                                </dd>
+                               
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="giftcon_list">
+                                <dt>영화관람권<a href="/culture-event/popcorn-store/store-category.aspx?CategoryIdx=2" alt="영화관람권" class="btn_more">더보기</a></dt>
+                               
+                                <dd>
+                                    <a href="/culture-event/popcorn-store/product-detail.aspx?GG_NO=100026">
+                                        <div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/15458911951520.jpg" alt="CGV 골드클래스"></div>
+                                        <div class="giftcon_info_wrap">
+                                            <span>CGV 골드클래스</span>
+                                            <strong>40,000원</strong>
+                                        </div>
+                                    </a>
+                                </dd>
+                            
+                                <dd>
+                                    <a href="/culture-event/popcorn-store/product-detail.aspx?GG_NO=100341">
+                                        <div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/16777513183750.jpg" alt="CGV 영화관람권"></div>
+                                        <div class="giftcon_info_wrap">
+                                            <span>CGV 영화관람권</span>
+                                            <strong>13,000원</strong>
+                                        </div>
+                                    </a>
+                                </dd>
+                            
+                                <dd>
+                                    <a href="/culture-event/popcorn-store/product-detail.aspx?GG_NO=100255">
+                                        <div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/16105061088530.jpg" alt="4DX관람권"></div>
+                                        <div class="giftcon_info_wrap">
+                                            <span>4DX관람권</span>
+                                            <strong>19,000원</strong>
+                                        </div>
+                                    </a>
+                                </dd>
+                               
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="giftcon_list">
+                                <dt>기프트카드<a href="/culture-event/popcorn-store/store-category.aspx?CategoryIdx=3" alt="기프트카드" class="btn_more">더보기</a></dt>
+                               
+                                <dd>
+                                    <a href="/culture-event/popcorn-store/product-detail.aspx?GG_NO=100209">
+                                        <div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/15940283913270.jpg" alt="파코니야 여름을부탁해"></div>
+                                        <div class="giftcon_info_wrap">
+                                            <span>파코니야 여름을부탁해</span>
+                                            <strong>금액충전형</strong>
+                                        </div>
+                                    </a>
+                                </dd>
+                            
+                                <dd>
+                                    <a href="/culture-event/popcorn-store/product-detail.aspx?GG_NO=100208">
+                                        <div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/15936788537310.jpg" alt="파코니의 썸머파티"></div>
+                                        <div class="giftcon_info_wrap">
+                                            <span>파코니의 썸머파티</span>
+                                            <strong>금액충전형</strong>
+                                        </div>
+                                    </a>
+                                </dd>
+                            
+                                <dd>
+                                    <a href="/culture-event/popcorn-store/product-detail.aspx?GG_NO=100161">
+                                        <div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr/GiftStore/Product/Pc/List/15814124358590.jpg" alt="PACONNIE A형"></div>
+                                        <div class="giftcon_info_wrap">
+                                            <span>PACONNIE A형</span>
+                                            <strong>금액충전형</strong>
+                                        </div>
+                                    </a>
+                                </dd>
+                               
+                            </dl>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+<!-- E > 기프트콘 노출 -->
 <!-- S > 공지사항 & 고객센터 -->
             <div class="noticeClient_wrap">
                 <div class="contents">
-                    <div class="noticeClient_container" style="justify-content: center;float: none;height: 190px">
+                    <div class="noticeClient_container">
                         <div class="noticeClient_content">
                             
                             <div id="ctl00_PlaceHolderContent_notice_wrap" class="notice_wrap">
@@ -1931,16 +2095,21 @@
                                         <p>업무시간 외 자동응답 안내 가능합니다.</p>
                                     </span></dd>
                                 </dl>
-                                <!-- <div class="client_btn_wrap" id="client_btn_wrap" style="justify-content: center;">
+                                <div class="client_btn_wrap" id="client_btn_wrap">
                                     <a href="http://www.cgv.co.kr/support/faq/default.aspx">FAQ</a>
                                     <a href="http://www.cgv.co.kr/support/qna/default.aspx">1:1 문의</a>
-                                    <a href="http://www.cgv.co.kr/support/lost/default.aspx">분실물 문의</a>//
+                                    <!--<a href="http://www.cgv.co.kr/support/lost/default.aspx">분실물 문의</a>//-->
                                     <a href="http://www.cgv.co.kr/support/lease/default.aspx">대관/단체 문의</a>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
 
-                        
+                        <div class="qr_wrap">
+                            <strong>앱 다운로드</strong>
+                            <span>CGV앱에서 더 편리하게 이용하세요</span>
+                            <div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr/R2014/images/common/img_qrcode.gif" alt="QR CODE"></div>
+                            <p>QR코드를 스캔하고<br>앱설치 페이지로 바로 이동하세요</p>
+                        </div>
                     </div>
                     <div class="noticeClient_banner_wrap">
 
@@ -2290,7 +2459,7 @@
     <!-- S 예매하기 및 TOP Fixed 버튼 -->
     <div class="fixedBtn_wrap">
      
-        <a href="http://192.168.10.145/HCY_CINEMA/user/ticketing/mainTicketing.jsp" class="btn_fixedTicketing">예매하기</a>
+        <a href="/ticket/" class="btn_fixedTicketing">예매하기</a>
         
         <a href="#none" class="btn_gotoTop"><img src="https://img.cgv.co.kr/R2014/images/common/btn/gotoTop.png" alt="최상단으로 이동"></a>
     </div>
@@ -2305,32 +2474,67 @@
     <iframe src="https://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/main@Bottom" width="100%" height="240" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Bottom" id="Bottom"></iframe>
 </div>
 <ul class="policy_list">
-    <li><a href="http://192.168.10.145/HCY_CINEMA/user/home/conditions.jsp">이용약관</a></li>
-    <li><a href="http://192.168.10.145/HCY_CINEMA/user/home/processingPolicy.jsp"><strong>개인정보처리방침</strong></a></li>
-    <li><a href="http://192.168.10.145/HCY_CINEMA/user/home/legalNotice.jsp">법적고지</a></li>
-    <li><a href="http://192.168.10.145/HCY_CINEMA/user/home/refuseToCollectEmail.jsp">이메일주소무단수집거부</a></li>
+    <li><a href="http://corp.cgv.co.kr/company/" target="_blank">회사소개</a></li>
+    <li><a href="http://corp.cgv.co.kr/company/sustainabilityStrategy/strategy.aspx" target="_blank">지속가능경영</a></li>
+    <li><a href="http://corp.cgv.co.kr/company/ir/financial/financial_list.aspx" target="_blank">IR</a></li>
+    <li><a href="http://corp.cgv.co.kr/company/recruit/step/default.aspx" target="_blank">채용정보</a></li>
+    <li><a href="http://corp.cgv.co.kr/company/advertize/ad_Default.aspx" target="_blank">광고/제휴/출점문의</a></li>
+    <li><a href="http://www.cgv.co.kr/rules/service.aspx">이용약관</a></li>
+    <li><a href="http://www.cgv.co.kr/rules/organized.aspx">편성기준</a></li>
+    <li><a href="http://www.cgv.co.kr/rules/privacy.aspx"><strong>개인정보처리방침</strong></a></li>
+    <li><a href="http://www.cgv.co.kr/rules/disclaimer.aspx">법적고지</a></li>
+    <li><a href="http://www.cgv.co.kr/rules/emreject.aspx">이메일주소무단수집거부</a></li>
+    <li><a href="http://corp.cgv.co.kr/company/ethicalManagement/ceoMessage.aspx" target="_blank">윤리경영</a></li>
+    <li><a href="/company/cyberAudit.aspx" class="empha-red">사이버감사실</a></li>
 </ul>
 <article class="company_info_wrap">
     <section class="company_info">
-        <address>(06235)서울특별시 강남 구 테헤란로 132 8층(역삼동)</address>
+        <address>(04377)서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동)</address>
         <dl class="company_info_list">
             <dt>대표이사</dt>
-            <dd>홍찬영</dd>
+            <dd>허민회</dd>
             <dt>사업자등록번호</dt>
-            <dd>123-45-67890</dd>
+            <dd>104-81-45690</dd>
             <dt>통신판매업신고번호</dt>
-            <dd>2017-서울용산-0123 <a href="#none" onclick="goFtc()" class="btn_goFtc">사업자정보확인</a><a></a></dd>
+            <dd>2017-서울용산-0662 <a href="#none" onclick="goFtc()" class="btn_goFtc">사업자정보확인</a><a></a></dd>
         </dl>
         <dl class="company_info_list">
             <dt>호스팅사업자</dt>
-            <dd>HCY CINEMA</dd>
+            <dd>CJ올리브네트웍스</dd>
             <dt>개인정보보호 책임자</dt>
-            <dd>송지하</dd>
+            <dd>도형구</dd>
             <dt>대표이메일</dt>
-            <dd>hcycinemaster@hcycinema.com</dd>
+            <dd>cjcgvmaster@cj.net</dd>
             
         </dl>
-        <p class="copyright">© HCY CINEMA. All Rights Reserved</p>
+        <p class="copyright">© CJ CGV. All Rights Reserved</p>
+    </section>
+    <section class="familysite_wrap">
+        <label for="familysite">CJ그룹 계열사 바로가기</label>
+        <select id="familysite">
+            <option value="" class="familysiteTitle">계열사 바로가기</option>
+            <optgroup label="CJ그룹">
+<option value="http://www.cj.net/">CJ주식회사</option>
+</optgroup><optgroup label="식품 &amp; 식품서비스">
+<option value="https://www.cj.co.kr/kr/index">CJ제일제당</option>
+<option value="https://www.cjfoodville.co.kr/main.asp">CJ푸드빌</option>
+<option value="http://www.cjfreshway.com/index.jsp">CJ프레시웨이</option>
+</optgroup><optgroup label="생명공학">
+<option value="https://www.cj.co.kr/kr/about/business/bio">CJ제일제당 BIO사업부문</option>
+<option value="https://www.cj.co.kr/kr/about/business/bio">CJ Feed&amp;Card</option>
+</optgroup><optgroup label="물류 &amp; 신유통">
+<option value="https://www.cjlogistics.com/ko/main">CJ대한통운</option>
+<option value="http://www.cjenc.co.kr/kr/Default.asp">CJ대한통운 건설부문</option>
+<option value="https://www.oliveyoung.co.kr/store/company/brandStory.do">CJ올리브영</option>
+<option value="https://www.cjolivenetworks.co.kr:449/">CJ올리브네트웍스</option>
+<option value="https://www.cjoshopping.com:9002/index.asp">CJ ENM 커머스부문</option>
+</optgroup><optgroup label="엔터테인먼트 &amp; 미디어">
+<option value="https://www.cjenm.com/ko/">CJ ENM 엔터테인먼트부문</option>
+<option value="http://corp.cgv.co.kr/">CJ CGV</option>
+</optgroup>
+
+        </select>
+        <a href="#none" class="btn_familysite" onclick="goFamilySite()">GO</a>
     </section>
 </article>
 <script>

@@ -1,28 +1,32 @@
 package main;
 
+import java.sql.Date;
+
 public class MainMovieVO {
 private String movieCode;
 private String mName;
 private String ticketRate;
 private String movieRating;
-private String plot;
 private String movieFile;
+private Date releaseDate;
 private double starRating;
-
 
 
 public MainMovieVO() {
 }
-public MainMovieVO(String movieCode, String mName, String ticketRate, String movieRating, String plot, String movieFile,
-		double starRating) {
+
+public MainMovieVO(String movieCode, String mName, String ticketRate, String movieRating, String movieFile,
+		Date releaseDate, double starRating) {
+	super();
 	this.movieCode = movieCode;
 	this.mName = mName;
 	this.ticketRate = ticketRate;
 	this.movieRating = movieRating;
-	this.plot = plot;
 	this.movieFile = movieFile;
+	this.releaseDate = releaseDate;
 	this.starRating = starRating;
 }
+
 public String getMovieCode() {
 	return movieCode;
 }
@@ -47,12 +51,6 @@ public String getMovieRating() {
 public void setMovieRating(String movieRating) {
 	this.movieRating = movieRating;
 }
-public String getPlot() {
-	return plot;
-}
-public void setPlot(String plot) {
-	this.plot = plot;
-}
 public String getMovieFile() {
 	return movieFile;
 }
@@ -65,4 +63,13 @@ public double getStarRating() {
 public void setStarRating(double starRating) {
 	this.starRating = starRating;
 }
+
+public Date getReleaseDate() {
+	return releaseDate;
+}
+
+public void setReleaseDate(Date releaseDate) {
+	this.releaseDate = releaseDate;
+}
+
 }//class
