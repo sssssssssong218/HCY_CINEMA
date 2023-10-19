@@ -8,18 +8,18 @@
 <meta content="" name="description">
 <meta content="" name="author">
 
-<link href="css" rel="stylesheet" id="fontFamilySrc">
-<link href="jquery-ui.min.css" rel="stylesheet">
-<link href="bootstrap.min.css" rel="stylesheet">
-<link href="all.css" rel="stylesheet">
-<link href="animate.min.css" rel="stylesheet">
-<link href="style.min.css" rel="stylesheet">
+<link href="../CSS/css" rel="stylesheet" id="fontFamilySrc">
+<link href="../CSS/jquery-ui.min.css" rel="stylesheet">
+<link href="../CSS/bootstrap.min.css" rel="stylesheet">
+<link href="../CSS/all.css" rel="stylesheet">
+<link href="../CSS/animate.min.css" rel="stylesheet">
+<link href="../CSS/style.min.css" rel="stylesheet">
 
 
-<link href="bootstrap_calendar.css" rel="stylesheet">
-<link href="jquery.gritter.css" rel="stylesheet">
-<link href="dataTables.bootstrap.min.css" rel="stylesheet">
-<link href="responsive.bootstrap.min.css" rel="stylesheet">
+<link href="../CSS/bootstrap_calendar.css" rel="stylesheet">
+<link href="../CSS/jquery.gritter.css" rel="stylesheet">
+<link href="../CSS/dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="../CSS/responsive.bootstrap.min.css" rel="stylesheet">
 
 
 

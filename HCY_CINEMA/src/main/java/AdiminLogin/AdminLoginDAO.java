@@ -5,10 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.sql.DataSource;
+
+import dbConnection.DBConnection;
 
 public class AdminLoginDAO {
 	private static AdminLoginDAO aliDAO;
@@ -25,39 +24,33 @@ public class AdminLoginDAO {
 	}//getInstance
 	
 	public AdminVO selectAdminLogin(String id,String pass) throws SQLException, NamingException{
+		AdminVO aVO=null;
 		
-		Context ctx=null;
-		DataSource ds=null;
+		DBConnection db=DBConnection.getInstance();
+		
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		AdminVO aVO=null;
 		try {
-			ctx=new InitialContext();
-		
-		ds=(DataSource)ctx.lookup("java:comp/env/jdbc/dbcp");
-		
-		con=ds.getConnection();
-		
-		pstmt=con.prepareStatement("select id,password from administrator where id=? and password=?");
-	
-		pstmt.setString(1, id);
-		pstmt.setString(2, pass);
-		
-		rs=pstmt.executeQuery();
-		
-		while(rs.next()) {
+			
+			con=db.getCon();
+			
+			String sql="select * from administrator where id=?";
+
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
 			aVO=new AdminVO();
-			aVO.setId(id);
-			aVO.setPassword(pass);
-		}
-		
-		} finally {
-			pstmt.close();
-			con.close();
+			aVO.setId(rs.getString("id"));
+			aVO.setPassword(rs.getString("password"));
+			}
+		}finally {
+			db.dbClose(null, pstmt, con);
 		}
 		
 		return aVO;
-		
 	}
 }//class
