@@ -31,6 +31,7 @@ public class EditMemberInfoDAO {
 		try {
 			con = db.getCon();
 			String selectLogin = "";
+			
 		}finally {
 			db.dbClose(rs, pstmt, con);
 		}//finally
