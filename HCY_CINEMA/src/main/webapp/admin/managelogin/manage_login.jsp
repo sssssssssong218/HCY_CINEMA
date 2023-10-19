@@ -85,6 +85,7 @@ $(function(){
 	    if ($("#userName").val() === "" || $("#userPassword").val() === "") {
 	      alert("아이디 혹은 비밀번호를 입력해주세요!!");
 	    } else {
+	    	
 	       $("#login-form").submit(); 
 	   
 	    }
@@ -95,21 +96,21 @@ $(function(){
 <body>
 
 <%
-String id=request.getParameter("userName");
-String pass=request.getParameter("userPassword");
+	    	String id=request.getParameter("userName");
+	    	String pass=request.getParameter("userPassword");
 
-/* AdminVO aVO=null;
+	    	 AdminVO aVO=null;
 
-aVO=AdminLoginDAO.getInstance().selectAdminLogin(id, pass);
-if(!(aVO.getId()==null || aVO.getPassword()==null)){
-	response.sendRedirect("manage_dashboard.jsp");
-} */
+	    	aVO=AdminLoginDAO.getInstance().selectAdminLogin(id, pass);
+	    	if(!(aVO.getId()==null || aVO.getPassword()==null)){
+	    		response.sendRedirect("manage_dashboard.jsp");
+	    	} 
 
-if(id!=null){
-	response.sendRedirect("../ManageDashBoard/manage_dashboard.jsp");
-}
+	    	if(id!=null){
+	    		response.sendRedirect("../ManageDashBoard/manage_dashboard.jsp");
+	    	}
 
-%>
+	    	%>
     <div class="login-wrapper">
         <h2><img src="../../common/images/logo.png"></h2>
         <form method="post" id="login-form">

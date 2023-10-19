@@ -45,7 +45,7 @@
 <div class="container-fluid">
 
 <div class="navbar-header">
-<a href="index.html" class="navbar-brand"><img src="../../common/images/logo.png"></a>
+<a href="index.html" class="navbar-brand" style="padding:0px"><img src="../../common/images/admin_logo.png"></a>
 <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
