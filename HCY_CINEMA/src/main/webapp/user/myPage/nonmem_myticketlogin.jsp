@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page info="" %>
+<%@ page info="비회원 예매확인" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head>
     
@@ -14,13 +14,13 @@
     <meta name="keywords" content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
     <meta name="description" content="CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
     <meta property="og:site_name" content="영화 그 이상의 감동. CGV">
-    <meta id="ctl00_og_title" property="og:title" content="나의 예매내역 | 영화 그 이상의 감동. CGV">
+    <meta id="ctl00_og_title" property="og:title" content="비회원예매확인 < 회원서비스 | 영화 그 이상의 감동. CGV">
     
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
     <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
-    <title id="ctl00_headerTitle">나의 예매내역 | 영화 그 이상의 감동. CGV</title>
+    <title id="ctl00_headerTitle">비회원예매확인 &lt; 회원서비스 | 영화 그 이상의 감동. CGV</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
@@ -61,11 +61,6 @@
     <!-- 2020.05.07 감정지수/프리에그 프로젝트 추가 -->
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/preegg.css">
 
-     <!-- 2023.03.27 홈페이지 스토어 영역 內 배너 영역 미노출의 件 -->
-    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/giftstore/giftstore.js"></script>
-    <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/giftstore/commonstore.js"></script>
-    <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/giftstore/giftstore.css"> 
-
     <!-- 홈페이지 CSS 일원화로 인한 반영 20220721 -->
     <link rel="stylesheet" type="text/css" href="https://img.cgv.co.kr/resource_pc/css/cgv.min.css">
     <script type="text/javascript" src="https://img.cgv.co.kr/resource_pc/js/cgvUi.js"></script>
@@ -76,7 +71,7 @@
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
         //<![CDATA[
-        _TRK_CP = "/나의 예매내역";
+        _TRK_CP = "/회원서비스/비회원예매확인";
 
         app.config('staticDomain', 'https://img.cgv.co.kr/R2014/')
             .config('imageDomain', 'https://img.cgv.co.kr')
@@ -181,7 +176,7 @@
     
 
     
-<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script></head>
+<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script><script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script><meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"></head>
 <body class="" cz-shortcut-listen="true" style="">
 
 <div class="skipnaiv">
@@ -190,14 +185,16 @@
 <div id="cgvwrap">
     
     
-        
+    <div class="cgv-ad-wrap" id="cgv_main_ad">
+            
+    </div>    
 	
       <!-- S Header
         Description
         - class 'nav' 에 class 'active' 추가시 서브메뉴노출
         - class 'nav' 에 class 'fixed' 추가시 상단고정되며 스타일 변경됨
      -->
-	<div class="header">			
+<div class="header">			
             <!-- 서비스 메뉴 --> 
             <!-- 로그인시 메뉴 변경 필요 -->
 <div class="header_content">
@@ -455,326 +452,139 @@
             
             <!-- Contents Start -->
 			
-<div id="contents">
 
-
-<div class="cols-content">
-    <div class="col-aside">
-	    <h2>MY CGV 서브메뉴</h2>
-	    <div class="snb">
-	        <ul>
-	            
-	            <li class="on"><a href="/user/guest/reserve.aspx" title="현재 선택됨">예매확인/취소 <i></i></a></li>
-	        </ul>
-	        
-	    </div>
-	</div>
-	<div class="col-detail">
-	    <div class="tit-mycgv">
-	        <h3>예매확인/취소</h3>
-	    </div>
-        <div class="sect-mycgv-reserve">
-            <div class="box-polaroid">
-	            
-	            
-	        </div>
-        </div>
-        <!-- MY 예매내역 -->
-        <div class="cols-mycgv-booking">
-	        <div class="tit-mycgv">
-		        <h4>MY(비회원) 예매내역</h4>
-		        
-	        </div>
-	        <div class="info-log">
-		        비회원으로 예매시 상영일 기준 2일 간의 예매 내역만 조회하실 수 있습니다.
-	        </div>
-            
-		            <div class="lst-item">
-		                <div class="box-set-info">
-		    		        <div class="box-number">
-		    			        <em>예매번호</em>
-		    			        <strong>0013-<i>1019-5594-585</i></strong>
-		    		        </div>
-		    		        <div class="box-info">
-			        	        <div class="box-image">
-			        		        <a href="/movies/detail-view/?midx=87433">
-			            		        <span class="thumb-image"> 
-			                                <img src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000087/87433/87433_126.jpg" alt="그대들은 어떻게 살 것인가(자막) 포스터" onerror="errorImage(this)">
-			                                <span class="ico-grade All">
-                                                All
-                                            </span>
-			                            </span>
-			                        </a>
-			                    </div>
-			        	        <div class="box-contents">
-			        		        <dl>
-			        			        <dt>
-                                            <a href="/movies/detail-view/?midx=87433">그대들은 어떻게 살 것인가(자막)</a>
-                                            
-                                        </dt>
-			        			        <dd>
-                                            <em>관람극장</em> 
-                                            <strong>CGV 용산아이파크몰</strong> 
-                                            <a href="/theaters/?theaterCode=0013">[극장정보]</a>
-                                        </dd>
-			        			        <dd>
-                                            <em>관람일시</em>
-                                            <strong class="txt-red">
-                                                2023.10.25(수) 09:30
-                                            </strong>
-                                        </dd>
-			        			        <dd><em>상영관</em> <strong>13관</strong></dd>
-			        			        <dd><em>관람인원</em> <strong>  일반 1</strong></dd>
-			        			        <dd><em>관람좌석</em> <strong>F 13</strong></dd>
-			        			        <dd><em>매수</em> <strong>1매</strong></dd>
-			        		        </dl>
-			        	        </div>
-			        	        <div class="box-detail">
-			        		        <div class="account-info">
-			            		        <table summary="[영화제목] 예매 결제정보">
-			            			        <caption>결제정보</caption>
-			            			        <tfoot>
-			            				        <tr>
-			            					        <th scope="row">총 결제금액</th>
-			            					        <td><strong>10,000</strong> 원</td>
-			            				        </tr>
-			            			        </tfoot>
-			            			        <tbody>
-			            				        <tr>
-			            					        <th scope="row">결제 날짜</th>
-			            					        <td><strong>2023.10.19</strong></td>
-			            				        </tr>
-                                                
-			            				                <tr>
-			            					                <th scope="row">신용카드</th>
-			            					                <td><strong> 10,000</strong> 원</td>
-			            				                </tr>
-                                                    
-			            			        </tbody>
-			            		        </table>
-			        		        </div>
-			        	        </div>
-			                </div>
-			                <div class="set-btn">
-                                <input type="hidden" class="reserve-no" name="reserve-no" value="uGmTfGXTvG/WfANmsLeVtZ1qDKRAKUal6cCLJ9EjRHU=">
-                                <div class="col-print">      <button type="button" title="새창" data2="05102410" data="89B2BAFBS3SN6AIXNPRY" class="round black receipt"><span>영수증출력</span></button>    <button type="type" class="round black cancel"><span>예매취소</span></button></div>    
-                                
-	        		        </div>
-		                </div>
-	    	        </div>
-                
-            
-        </div>
-        <!-- TODAY BEST 무비차트 -->
-        
-        <!-- //TODAY BEST 무비차트 -->
-        
-		
-	    <!-- CGV 예매 관련 정책 안내 Box Type -->
-	    <div class="sect-box-descri">
-	        <h4>CGV 예매 관련 정책 안내</h4>
-	        <!-- Box Moudle -->
-	        <div class="box-polaroid">
-	            <div class="box-inner">
-	            	<ul>
-	            		<li>
-	            			<dl>
-	            				<dt>이용안내</dt>
-	            				<dd>
-	            					<ul>
-	            						<li>예매 변경은 불가능하며, 취소 후 재 예매를 하셔야만 합니다.</li>
-	            						<li>영수증은 상영 시간 전까지 마이페이지에서 출력하실 수 있습니다. 단, 신용카드로 예매하신 경우만 한합니다.</li>
-	            						<li>상영 시간 이후 관람하신 영화의 영수증 출력을 원하실 경우, 1234-5678로 문의 주시기 바랍니다.</li>
-	            						<li>취소하신 내역이 나타나지 않거나 궁금하신 사항이 있으시면, 고객센터로 문의해 주시기 바랍니다.</li>
-	            					</ul>
-	            				</dd>
-	            			</dl>
-	            		</li>
-	            		<li>
-	            			<dl>
-	            				<dt>티켓 교환방법</dt>
-	            		        <dd>
-	            			        <ul>
-	            				        <li>
-	            					        <p><strong>티켓판매기(ATM)에서 발권하실 경우</strong><br>예매번호 또는 고객인증번호 (법정생년월일 6자리 + 휴대폰번호 뒷 7~8자리)를 입력하시면 티켓을 편하게 발권하실 수 있습니다.</p>
-	            				        </li>
-	            				        <li>
-	            					        <p><strong>매표소에서 발권하실 경우</strong><br>티켓교환권을 출력하여 매표소에 방문하시면 티켓으로 교환하실 수 있습니다.<br>
-		            				        (티켓교환권 출력이 어려운 경우, 예매번호와 신분증을 지참하시면 매표소에서 티켓을 수령하실 수 있습니다.)</p>
-	            				        </li>
-	            			        </ul>
-	            		        </dd>
-	            	        </dl>
-	                    </li>
-	                    <li>
-	            	        <dl>
-	            		        <dt>예매 취소 안내</dt>
-	            		        <dd>
-	            			        <ul>
-                                
-                                        <li>
-                                            <p><strong>신용카드</strong><br> 결제 후 3일 이내 취소 시 승인 취소 가능, 3일 이후 매입 취소시 영업일 기준 3~5일 소요</p>
-                                        </li>
-                                        <li>
-                                            <p><strong>체크카드</strong><br>결제 후 3일 이내 취소 시 당일 카드사에서 환불처리. 3일 이후 매입 취소 시 카드사에 따라 3~10일 이내 카드사에서 환불</p>
-                                        </li>
-                                        <li>
-                                            <p><strong>휴대폰 결제</strong><br> 
-                                                결제 일자 기준 당월(1~말일)취소만 가능. 익월 취소 관련 문의는 HCY고객센터(1234-5678) 연락 요망<br>
-                                                예매취소 후 당일 환불이 원칙이나 현장 취소 시 경우에 따라 익일 처리 될 수 있음.
-                                        </p></li>
-                                        <li>
-                                            <p><strong>계좌이체</strong><br> 
-                                                1. 예매일 이후 7일 이내 취소 시<br>
-                                                - 자동 환불 은행: 취소 후 즉시 처리가능<br>
-                                                - 조흥, 신한, 외한, 한미, 우리, 우체국, 전북, 경남, 광주, 대구, 새마을, 제주<br>
-                                                - 우리은행의 경우 당일 취소분만 즉시 처리 가능<br>
-                                                - 수동 환불 은행: 농협(취소 후 2~3일 이내 입금), 부산/제일/우리(취소 후 3~5일 이내 입금)<br><br>
-
-                                                2. 예매 7일 이후~상영시간 30분 전 취소 시(단, 일부 당일 취소 불가 행사의 경우 전일 취소 시)<br>
-                                                - 환불은 환불 요청일로부터 7일 이상 소요됨<br><br>
-
-                                                ※ 기타 환불 관련 문의는 HCY고객센터 1234-5678로 연락바랍니다.
-                                            </p>
-                                        </li>
-	            			        </ul>
-	            		        </dd>
-	            	        </dl>
-	                    </li>
-
-	                    <li>
-	            	        <dl>
-	            		        <dt>환불 규정 안내</dt>
-	            		        <dd>
-	            			        <ul>
-	            				        <li>
-	            					        <p><strong>현장 취소를 하는 경우</strong><br>상영시간 이전까지만 가능하며, 상영시간 이후 취소나 환불은 되지 않습니다.</p>
-	            									
-	            				        </li>
-	            				        <li>
-	            					        <p>
-                                                <strong>홈페이지에서 예매 취소할 경우</strong><br>
-                                                부분 취소는 불가능합니다. (ex. 4장을 인터넷으로 예매한 경우 4장 모두 취소만 가능)<br>
-                                                홈페이지 예매 취소는 상영시간 20분전까지 가능합니다.
-                                                <br>
-                                                상영시간 이후 취소나 환불은 되지 않습니다</p>	            					
-	            				        </li>
-                                        <li>
-                                            <p>
-                                                <strong>모바일 앱/웹(m.hcy.co.kr)에서 예매 취소할 경우</strong><br>
-                                                부분 취소는 불가합니다.(ex. 4장을 인터넷으로 예매한 경우 4장 모두 취소만 가능)<br> 
-                                                모바일 앱/웹 예매 취소는 상영시간 15분전까지 가능합니다.<br>
-                                                 
-                                                상영시간 이후 취소나 환불은 되지 않습니다.
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <p><strong>단, 일부 행사의 경우 행사 당일 취소, 변경 불가 합니다.</strong></p>
-                                        </li>
-	            			        </ul>
-	            		        </dd>
-	            	        </dl>
-	                    </li>
-	                </ul>
+<!-- 실컨텐츠 시작 -->
+<div class="wrap-login">
+    <div class="sect-user">
+        <ul class="tab-menu-round">
+            <li>
+                <a href="/user/login/">로그인</a>
+            </li>
+            <li>
+                <a href="/user/guest/login-agreement.aspx">비회원 예매</a>
+            </li>
+            <li class="on">
+                <a href="/user/guest/login.aspx">비회원 예매확인</a>
+            </li>
+        </ul>
+        <h3>비회원 예매 확인</h3>
+        <p>비회원으로 예매하신 고객님은 개인정보(법정생년월일, 휴대폰 번호, 비밀번호(4자리)를 입력해 주세요.</p>
+        <div class="cols-enterform nomember">
+            <div class="col-simple">
+                <h4>비회원 예매확인</h4>
+                <div class="box-simple">
+                    <p class="disc-info">모든 항목은 필수 입력사항입니다.</p>
+                    <form id="form1" method="post" novalidate="novalidate" action="">
+                    <fieldset>
+                        <legend>비회원로그인 정보를 입력후 로그인 하실수 있습니다.</legend>
+                        <table cellpadding="0" cellspacing="0" summary="비회원예매확인/취소를 하기위해 정보를 입력하는 테이블 입니다">
+                            <caption>법정생년월일, 휴대폰번호, 비밀번호(4자리) 입력하는 테이블</caption>
+                            <colgroup>
+                                <col class="col01">
+                                <col class="col02">
+                            </colgroup>
+                            <tbody>
+                            <tr><!--20201207 woongseon ISMS 개인정보 부분 미흡 사항 개선 요청 추가-->
+                                <th scope="row" style="text-align:left"><label for="txtBirthday">법정생년월일<br><em>(8자리) </em></label></th>
+                                <td style="text-align:left"><input type="text" class="only-number" title="법정생년월일(8자리)" data-title="법정생년월일(8자리)" data-message="을 입력해주세요." name="txtBirthday" id="txtBirthday" digits="digits" length="8" maxlength="8" required="required"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="text-align:left">휴대폰번호</th>
+                                <td style="text-align:left">
+                                    <select title="휴대폰번호 앞자리" name="txtMobile1" id="txtMobile1">
+                                        <option value="010">010</option>
+                                        <option value="011">011</option>
+                                        <option value="016">016</option>
+                                        <option value="017">017</option>
+                                        <option value="018">018</option>
+                                        <option value="019">019</option>
+                                    </select>
+                                    -
+                                    <input type="text" class="only-number" style="width:85px;" title="휴대폰번호 중간자리" data-title="휴대폰번호 중간자리" data-message="를 입력해주세요." name="txtMobile2" id="txtMobile2" digits="digits" length="4" maxlength="4" required="required">
+                                    -
+                                    <input type="text" class="only-number" style="width:85px;" title="휴대폰번호 끝자리" data-title="휴대폰번호 끝자리" data-message="를 입력해주세요." name="txtMobile3" id="txtMobile3" digits="digits" length="4" maxlength="4" required="required">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="text-align:left"><label for="txtPassword">비밀번호(4자리)</label></th>
+                                <td style="text-align:left"><input type="password" class="only-number" title="비밀번호(4자리)" data-title="비밀번호(4자리)" data-message="를 입력해주세요." name="txtPassword" id="txtPassword" digits="digits" length="4" maxlength="4" required="required"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="box-btn">
+	                        <button type="submit" class="round inred" id="btn_submit"><span>비회원 예매확인</span></button>
+                        </div>
+                    </fieldset>
+                    </form>
                 </div>
-	        </div>
-	        <!-- //Box Moudle -->
-	    </div>
-	    <!-- //CGV 예매 관련 정책 안내 Box Type -->
-	</div>
+            </div>
+            
+        </div>
+    </div> 
+    <div class="sect-loginguide">
+        <dl class="box-operationguide">
+            <dt>비회원 <br>예매 시 <br>참고하세요!</dt>
+            <dd>1.  상기 정보 수집에 동의하지 않을 경우, 비회원 예매 서비스를 이용하실 수 없습니다. </dd>
+            <dd>2.  비회원 예매 시 청소년 관람불가 영화는 예매가 제한됩니다. </dd>
+            <dd>3.  비회원 에매 결제수단은 신용카드만 가능하며 모든 제휴상품권, 쿠폰, 영화예매권 등의 사용은 회원 예매 서비스 이용 시 가능합니다. </dd>
+            <dd>4.  모바일과 ARS에서는 취소가 불가능하며, 홈페이지를 이용하여 입력하신 로그인 정보로 취소 처리하실 수 있습니다.</dd>
+            <dd>5.  비회원 예매 및 비회원 예매 확인/취소 메뉴만 이용 가능합니다. 이 외에 커뮤니티, 댓글, 인정 등의 서비스는 회원 가입 후 이용 가능합니다.</dd>
+            <dd>6.  문의사항은 HCY 고객센터(1234-5678)로 문의해 주시기 바랍니다. <br>
+                - 운영시간 : 월~금 09:00 ~ 18:00 (이 외 시간은 자동 응답 안내 가능)</dd>
+        </dl>
+    </div>
 </div>
+<!-- 실컨텐츠 끝 -->
+
+<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/crypto.js"></script>
 <script type="text/javascript">
 //<![CDATA[
 
     (function ($) {
         $(function () {
 
-            //visualMotion.
-            var sliderOptions = { 'effect': 'none', 'auto': true };
-            $('#slider').visualMotion(sliderOptions);
+            var $frm = $('#form1');
+            $frm.validate({
+                submitHandler: function (form) {
+                    // 1. 비회원 예매갯수 조회
+                    var mobile = app.crypto.AESEncryptToBase64(($frm.find('#txtMobile1').val() + $frm.find('#txtMobile2').val() + $frm.find('#txtMobile3').val()));
 
-            $('.receipt').on('click', function () {
-                // 2023.07 영수증 출력 shopId 수정
-                var shopId = $(this).attr("data2");
-                var url = 'https://cjpay.cjsystems.co.kr/cjs/pg/adj/receipt.fo?SHOP_SYS_NO=&SHOP_ID=' + shopId + '&PAY_GRP_ID=0001&PG_CTRL_CD_P=' + $(this).attr("data");
-                var win = window.open(url, "receipt", "left=0,top=o,width=440,height=800,toolbar=no,scrollbars=no");
-                win.focus();
-            });
-
-            $('.hometicket').on('click', function () {
-               // var url = 'http://ticket.cgv.co.kr/CGV2011/RIA/home_ticket.aspx?booking_no=' + $(this).attr("data");
-                var url = 'http://ticket.cgv.co.kr/CGV2011/RIA/home_ticket.aspx?booking_no=' + $(this).attr("data") + '&isMember=N' + '&userPIN=' + "fFY%2bMXir%2bnGcU2mCggroEQ%3d%3d"; 
-                var win = window.open(url, "hometicket", "left=0,top=o,width=640,height=897,toolbar=no,scrollbars=no");
-                win.focus();
-            });
-
-            $('.cancel').on('click', function () {
-
-                if (!confirm('예매를 취소하시겠습니까?\n\n※ 인터넷 예매 취소는 상영시간 20분 전까지 가능하며, \n예매 가능은 상영시간 30분 전까지 가능합니다.'))
-                    return false;
-
-                CancelReserve($(this));
-            });
-
-            function CancelReserve(obj) {
-                var reserveNo = obj.parents('.set-btn').find('.reserve-no').val();
-
-                var url = '/common/ajax/user.aspx/CancelReserveByGuest';
-                var data = { 'reserveNo': reserveNo };
-                var callback = function (result) {
-                    obj.attr('disabled', false);
-                    $('.loading').remove();
-                    if (result == null || result["resultCode"] == null)
-                        return;
-
-                    var resultCode = result["resultCode"];
-                    var resultMessage = result["resultData"];
-
-
-                    switch (resultCode) {
-                        case "-9":
-                            alert('로그인 되어 있지 않습니다.\n확인 후 다시 진행해 주세요.');
-                            location.href = "./login.aspx";
-                            break;
-                        case "-8":
-                            alert('잘못된 경로로 접근하였습니다.\n확인 후 다시 진행해 주세요.');
-                            break;
-                        case "-1":
-                            alert('이미 취소되었거나 존재하지 않는 예매번호입니다.\n확인 후 다시 진행해 주세요.');
-                            break;
-                        case "-2":
-                            alert('예매취소 가능시간이 종료되었습니다.\n자세한 문의는 고객센터 1544-1122를 통하여 진행 가능합니다.');
-                            break;
-                        case "0":
-                            alert('취소처리가 실패하였습니다.\n(' + resultMessage + ')');
-                            break;
-                        case "1":
-                            if ($('.cols-mycgv-booking > .lst-item').length < 2) {
-                                obj.parents('.lst-item').remove();
-                                $('.cols-mycgv-booking .info-log').after('<div class="lst-item"><div class="box-set-info nodata">고객님의 최근 예매내역이 존재하지 않습니다.</div></div>');
+                    $.ajax({
+                        type: "POST",
+                        url: '/user/guest/login.aspx/GetReserveCount',
+                        data: "{'birthday':'" + app.crypto.AESEncryptToBase64($('#txtBirthday').val()) + "' , 'mobile':'" + mobile + "', 'pwd':'" + app.crypto.AESEncryptToBase64($('#txtPassword').val()) + "'}",
+                        contentType: "application/json; charset=utf-8",
+                        async: false,
+                        dataType: 'json',
+                        success: function (result) {
+                            switch (result.d.toString()) {
+                                case "0": // 복호화 에러 발생
+                                    break;
+                                case "2": // 예매내역 없음    
+                                    alert("입력하신 정보와 일치하는 예매내역이 없습니다.\r\n(최대5회 실패시 차단됩니다.)");
+                                    break;
+                                case "3":
+                                    alert("5회이상 실패되어 차단되었습니다."); 
+                                    break;
+                                case "1":
+                                    location.href = "/user/guest/reserve.aspx";
+                                    break;
+                                default:
+                                    //   alert('Error result Value : ' + result);                    
+                                    break;
                             }
-                            else {
-                                obj.parents('.lst-item').remove();
-                            }
-
-                            var options = { '$target': null, 'type': 'center', 'position': 'position', 'mask': true };
-                            app.htmlLoad2(options, app.config('html').reservation_cancel);
-
-                            break;
-                    }
-                };
-
-                app.loading().show({ 'target': obj.parents('.lst-item'), 'circleType': 'large' });
-                obj.attr('disabled', true);
-
-                app.ajax().set({ dataType: 'json', url: url, data: JSON.stringify(data), contentType: "application/json; charset=utf-8", successHandler: callback });
-            }
-
+                        },
+                        error: function (e) {
+                            alert(e.responseText);
+                        }
+                    });
+                }
+            });
         });
     })(jQuery);
-
 //]]>
 </script>
+
 
             
             <!--/ Contents End -->
@@ -825,7 +635,7 @@
     <!-- E Popup -->
     
     <!-- S 예매하기 및 TOP Fixed 버튼 -->
-    <div class="fixedBtn_wrap topBtn">
+    <div class="fixedBtn_wrap">
      
         <a href="/ticket/" class="btn_fixedTicketing">예매하기</a>
         
@@ -887,114 +697,9 @@
         <script type="text/javascript">            OpenAD();</script>
         <!-- //Float Ad -->
 	</footer>
-	<!-- E Footer -->
-
-    <!-- Aside Banner :  -->
-    <!--
-	<div id="ctl00_sect_person_right" class="sect-aside-banner" style="padding:0; margin:0; position:fixed; z-index:1;display:none">
-		<div class="aside-content-top">
-			<div class="aside-content-btm">
-				<a href="/theaters/"><img src="https://img.cgv.co.kr/R2014/images/common/btn/btn_person_theater.gif" alt="CGV THEATER" /></a>
-				<a href="/arthouse/"><img src="https://img.cgv.co.kr/R2014/images/common/btn/btn_person_arthouse.gif" alt="CGV arthouse" /></a>
-				<a href="/theaters/special/"><img src="https://img.cgv.co.kr/R2014/images/common/btn/btn_person_special.gif" alt="CGV SPECIAL" /></a>
-
-				<a href="/user/mycgv/reserve/" class="required-login" data-url="/user/mycgv/reserve/"><img src="https://img.cgv.co.kr/R2014/images/common/btn/btn_person_ticket.gif" alt="CGV TICKET INFO" /></a>
-				<a href="/discount/discountlist.aspx"><img src="https://img.cgv.co.kr/R2014/images/common/btn/btn_person_discount.gif" alt="CGV DISCOUNT INFO" /></a>
-			</div>
-		</div>
-		<div class="btn-top">
-            <a href="#" onclick="window.scrollTo(0,0);return false;"><span>최상단으로 이동</span></a>
-		</div>
-	</div>
-    //-->
-	<!-- //Aside Banner -->
-    
 </div>
 
 
-<script type="text/template" id="temp_popup_movie_player">
-<div class="popwrap">
-    <div class="sect-layerplayer">
-        <div class="cols-pop-player">
-            <h1 class="title" id="movie_player_popup_title"></h1>
-            <div class="col-pop-player">
-                <div class="warp-pop-player" style="position: relative;">
-                    <iframe id="ifrm_movie_player_popup" name="ifrm_movie_player_popup" src="about:blank" style="width:800px;height:450px;" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
-					
-					<div class="sect-replay" style="display:none" id="pop_player_relation_wrap">
-						<button class="btn-replay movie_player_inner_popup" type="button" data-gallery-idx="0" id="btn_movie_replay">다시보기</button>
-						<!-- 없어지는 영역 -->
-						<div class="wrap-relationmovie" id="pop_player_relation_item_wrap">
-							<strong class="title">관련영상</strong>
-							<ul id="pop_player_relation_movie">
-                                <li></li>
-                            </ul>
-						</div><!-- .wrap-relationmovie -->
-					</div><!-- .sect-replay -->
-					
-                </div><!-- .warp-pop-player -->
-                <div class="descri-trailer">
-                    <strong class="title">영상설명</strong>
-                    <textarea readonly="readonly" id="movie_player_popup_caption"></textarea>
-                </div>
-            </div><!-- .col-player -->
-            <div class="col-pop-playerinfo">
-                <div id="movie_player_popup_movie_info"></div>
-                <div class="sect-trailer">
-                    <strong class="title">신규영상</strong>
-                    <ul>
-                        
-                    </ul>
-                </div>
-            </div><!-- .col-playerinfo -->
-        </div><!-- .cols-player -->
-        <button type="button" class="btn-close">닫기</button>
-    </div>
-</div>
-</script>
-
-<script id="temp_popup_movie_player_movie_info" type="text/x-jquery-tmpl">
-<div class="box-image">
-    <a href="/movies/detail-view/?midx=${MovieIdx}" title="${Title} 상세보기 새창">
-        <span class="thumb-image">
-            <img src="${PosterImage.MiddleImage}" alt="${Title} 포스터" />
-            <span class="ico-grade ${MovieGrade.StyleClassName}">${MovieGrade.GradeText}</span>
-        </span>
-    </a>   
-</div>
-<div class="box-contents">
-    <a href="/movies/detail-view/?midx=${MovieIdx}" title="${Title} 상세보기 새창">
-        <strong class="title">${Title}</strong>
-    </a>
-    <span class="txt-info" style="margin-bottom:2px;">
-        <em class="genre">${GenreText}</em>
-        <span>
-            <i>${OpenDate}</i>
-            <strong>${OpenText}</strong>
-            {{if D_Day > 0}}
-                <em class="dday">D-${D_Day}</em>
-            {{/if}}
-        </span>
-    </span>
-{{if IsTicketing }}
-    <a class="link-reservation" href="/ticket/?MOVIE_CD=${CGVCode}&MOVIE_CD_GROUP=${CGVCode}">예매</a> 
-{{/if}}
-</div>
-</script>
-
-<script id="temp_popup_movie_player_relation_movie_item" type="text/x-jquery-tmpl">
-<li>
-    <div class="box-image">
-        <a href="#" title="${Title} 영상보기" class="movie_player_inner_popup" data-gallery-idx="${GalleryIdx}">
-            <span class="thumb-image">
-                <img src="${ImageUrl}" 
-                alt="${Title}_트레일러" />
-                <span class="ico-play">영상보기</span>
-            </span>
-        </a>
-    </div>
-</li>
-</script>
 
 <script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/crypto.js"></script>
 
@@ -1115,4 +820,4 @@
 <!-- End Google Tag Manager -->
 
 
-</div></body></html>
+</body></html>
