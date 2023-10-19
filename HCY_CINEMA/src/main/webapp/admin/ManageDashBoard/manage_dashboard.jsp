@@ -45,7 +45,7 @@
 <div class="container-fluid">
 
 <div class="navbar-header">
-<a href="index.html" class="navbar-brand" style="padding:0px"><img src="../../common/images/admin_logo.png"></a>
+<a href="index.html" class="navbar-brand" style="padding:-2px"><img src="../../common/images/admin_logo.png"></a>
 <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
@@ -153,7 +153,7 @@
 
 <div class="panel no-rounded-corner bg-inverse text-white wrapper m-b-0"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
 
-<div class="btn-group btn-group-xs pull-right">
+<!-- <div class="btn-group btn-group-xs pull-right">
 <a href="#" class="btn btn-white dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 <i class="fa fa-cog"></i> Settings <b class="caret text-muted"></b>
 </a>
@@ -162,7 +162,7 @@
 <li><a href="javascript:;">Last Month</a></li>
 <li><a href="javascript:;">Last Year</a></li>
 </ul>
-</div>
+</div> -->
 
 
 <h4 class="text-white m-t-0 m-b-10">
@@ -196,7 +196,7 @@
 
 
 <tr role="row" class="odd">
-<td tabindex="0">May</td>
+<td id="movie_title" tabindex="0" style="padding-left:20px">May</td>
 <td class="sorting_1">1,023 items sold</td>
 <td>$10,230</td>
 <td class="p-5"><div data-render="sparkline"><canvas width="187" height="28" style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas></div></td>

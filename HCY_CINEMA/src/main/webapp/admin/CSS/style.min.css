@@ -188,7 +188,7 @@ button,input,select,textarea {
 }
 
 .navbar-brand,.navbar-nav>li>a {
-    line-height: 56px
+    /*line-height: 56px*/
 }
 
 .spinner:before {
