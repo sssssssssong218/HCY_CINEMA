@@ -82,37 +82,23 @@ body{
 <script type="text/javascript">
 $(function(){
 	  $("#btn").click(function(){
-	    if ($("#userName").val() === "" || $("#userPassword").val() === "") {
-	      alert("아이디 혹은 비밀번호를 입력해주세요!!");
-	    } else {
-	       $("#login-form").submit(); 
-	   
-	    }
+		  var id=$("#userName").val();
+		  var pass=$("#userPassword").val();
+		  if(id===""||pass===""){
+			  alert("아이디 혹은 비밀번호를 입력해주세요!");
+		  }else{
+	   	$("#login-form").submit();
+		  }
 	  })
 });
 </script>
 </head>
 <body>
 
-<%
-String id=request.getParameter("userName");
-String pass=request.getParameter("userPassword");
 
-/* AdminVO aVO=null;
-
-aVO=AdminLoginDAO.getInstance().selectAdminLogin(id, pass);
-if(!(aVO.getId()==null || aVO.getPassword()==null)){
-	response.sendRedirect("manage_dashboard.jsp");
-} */
-
-if(id!=null){
-	response.sendRedirect("../ManageDashBoard/manage_dashboard.jsp");
-}
-
-%>
     <div class="login-wrapper">
         <h2><img src="../../common/images/logo.png"></h2>
-        <form method="post" id="login-form">
+        <form method="post" id="login-form" action="admin_login_check.jsp">
             <input type="text" name="userName" placeholder="ID" id="userName"><br/>
             <input type="password" name="userPassword" placeholder="Password" id="userPassword"><br/>
             <label for="remember-check" style="width: 150px; margin-bottom:10px;">
