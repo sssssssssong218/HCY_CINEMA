@@ -41,18 +41,22 @@ String rememberId = request.getParameter("remember-check");
 
 AdminVO aVO = AdminLoginDAO.getInstance().selectAdminLogin(id, pass);
 
-if (aVO != null && aVO.getId().equals(id) && aVO.getPassword() != null) {
+
+if (aVO.getId()!=null) {
+	if(aVO.getPassword().equals(pass)){
     response.sendRedirect("../ManageDashBoard/manage_dashboard.jsp");
+	} else{%>
+		alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+	    window.location.href = "manage_login.jsp";
+	<%}
 } else { %>
-  /*    alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
-    window.location.href = "manage_login.jsp";  */
+  	alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
+    window.location.href = "manage_login.jsp";
 <% } %>
 	});
-</script>
+	</script>
 </head>
 <body>
-session :<%= id %><br/>
-session : <%= pass %><br/>
-check : <%=rememberId %>
+ 
 </body>
 </html>

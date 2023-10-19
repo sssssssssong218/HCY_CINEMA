@@ -105,31 +105,60 @@ body {
 	            alert("아이디 혹은 비밀번호를 입력해주세요!");
 	        }
 	    })
-	        var userInputId = getCookie("id");
-            $("input[name='txtUserId']").val(userInputId);
+	        var userInputId = getCookie("name");
+            $("input[name='userName']").val(userInputId);
 
             if (userInputId != '') {
                 $("#remember-check").prop('checked', true);
                 $("#remember-check").attr('checked', true);
             }
 
-	    $("remember-check").change(function(){
+	    $("#remember-check").change(function(){
 	    	if($("#remember-check").is(":checked")){
-	    		if ($("input[name='txtUserId']").val() == '') {
+	    		if ($("input[name='userName']").val() == '') {
                     alert("아이디를 입력하세요.");
-                    $("#loginSet").prop('checked', false);
-                    $("#loginSet").attr('checked', false);                   
+                    $("#remember-check").prop('checked', false);
+                    $("#remember-check").attr('checked', false);                   
                     return false;
                 }
-
-                setCookie("id", $("#userName").val());
+				
+                setCookie("name", $("#userName").val(),7);
             }
             else {
-                setCookie("id", "");
-                $("input[name='txtUserId']").val('');
+                setCookie("name", "",-1);
+                $("input[name='userName']").val(''); 
+               
             }
         });
-	});
+	    function setCookie(cookieName, value, exdays) {
+
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var cookieValue = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
+            document.cookie = cookieName + "=" + cookieValue;
+        }
+
+        function deleteCookie(cookieName) {
+            var expireDate = new Date();
+
+            expireDate.setDate(expireDate.getDate() - expireDate.getDate());
+            document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+        }
+
+        function getCookie(cookieName) {
+            cookieName = cookieName + '=';
+            var cookieData = document.cookie;
+            var start = cookieData.indexOf(cookieName);
+            var cookieValue = '';
+            if (start != -1) {
+                start += cookieName.length;
+                var end = cookieData.indexOf(';', start);
+                if (end == -1) end = cookieData.length;
+                cookieValue = cookieData.substring(start, end);
+            }
+            return unescape(cookieValue);
+        }
+    });
 
 </script>
 </head>
