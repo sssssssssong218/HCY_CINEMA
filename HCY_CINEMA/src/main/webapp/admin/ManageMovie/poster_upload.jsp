@@ -1,7 +1,9 @@
-<%@page import="java.io.File"%>
-<%@page import="java.util.Enumeration"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@ page import="com.oreilly.servlet.MultipartRequest" %>
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.io.IOException" %>
+<%@ page import="java.io.InputStream" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,15 +16,15 @@
 	<% 
 		request.setCharacterEncoding("utf-8");
 	
-		String location = "E://dev//test_img2";
+		String location = "C:/Users/user/git/HCY_CINEMA/HCY_CINEMA/src/main/webapp/common/poster";
 		
-		  File uploadFolder = new File(location);
+		/*   File uploadFolder = new File(location);
 		    if (!uploadFolder.exists()) {
 		        uploadFolder.mkdir();
-		    }
-		
-		int maxSize = 1024 * 1024 * 5; // 키로바이트 * 메가바이트 * 기가바이트   
-		 
+		    } */
+		    
+		   
+		int maxSize = 1024 * 1024 * 50; // 키로바이트 * 메가바이트 * 기가바이트   
 		MultipartRequest multi = new MultipartRequest(request,
 							 						  location,
 													  maxSize,
@@ -49,16 +51,12 @@
 			length 					= multi.getFile(element).length(); 
 			
 		}
+	 		 String fileExtension = multi.getOriginalFileName(element).substring(multi.getOriginalFileName(element).lastIndexOf("."));
+		
+		    String newFileName = "my_custom_file_name" + fileExtension;
+		 File newFile = new File(location, newFileName);
+		    multi.getFile(element).renameTo(newFile);
 	
 	%>
-	
-	<p>사용자 이름 : <%=userName%></p>
-	<p>파라메타 이름 : <%=element%></p>
-	<p>서버에 업로드된 파일 이름 : <%=filesystemName%></p>
-	<p>유저가 업로드한 파일 이름 : <%=originalFileName%></p>
-	<p>파일 타입 : <%=contentType%></p>
-	<p>파일 크기 : <%=length%></p>
-
-
 </body>
 </html>

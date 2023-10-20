@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page info=""%>
@@ -543,7 +544,7 @@ to {
 </div>
 </div>
 <div class="form-group" style="height:200px">
-<label class="col-lg-3 col-form-label">Textarea</label>
+<label class="col-lg-3 col-form-label">상세정보</label>
 <div class="col-lg-7">
 <textarea class="form-control" rows="3" placeholder="상세내용" style="height:150px"></textarea>
 </div>
@@ -557,81 +558,266 @@ to {
 <p>
 Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
 </p>
-<form action="img_upload.jsp" method="post" enctype="multipart/form-data">
-<div>
+<form action="poster_upload.jsp" method="post" enctype="multipart/form-data">
+<div style="display:inline-block">
 	 	<fieldset>
 			<legend>파일 업로드</legend>
-			<p>파일명 : <input type="file" name="file"></p>
-			<p><input type="submit" value="upload"></p>	 	
+			<p>포스터 : <input type="file" name="file"></p>
+			<p><input type="submit" value="업로드" id="poster_btn"></p>	 	
 	 	</fieldset>
 	 </div>
-	 <div>
+	 <div style="display:inline-block">
+	 <img src="">
+	 </div>
+	 </form>
+<form action="still_img_upload.jsp" method="post" enctype="multipart/form-data">
+<div style="display:inline-block">
+	 	<fieldset>
+			<p>스틸컷 : <input type="file" name="file"></p>
+			<p><input type="submit" value="업로드" id="steal_btn"></p>	 	
+	 	</fieldset>
+	 </div>
+	 <div style="display:inline-block">
+	 <img src="">
+	 </div>
+	 </form>
+<form action="trailer_upload.jsp" method="post" enctype="multipart/form-data">
+<div style="display:inline-block">
+	 	<fieldset>
+			<p>트레일러 : <input type="file" name="file"></p>
+			<p><input type="submit" value="업로드" id="trailer_btn"></p>	 	
+	 	</fieldset>
+	 </div>
+	 <div style="display:inline-block">
 	 <img src="">
 	 </div>
 	 </form>
 	 
 <div class="checkbox disabled m-b-25">
-<label>
-<input type="checkbox" value="" disabled="">
-Option two is disabled
-</label>
+<h4>개봉기간 설정</h4>
+<select style="width:100px; height:30px; text-align:center; font-size: 20px;">
+
+<option>2022</option>
+
+<option selected="selected">2023</option>
+
+<option>2024</option>
+
+
+</select>
+<label style="padding:0px; font-size:20px;">/</label>
+<select style="width:60px; height:30px; text-align:center; font-size: 20px;">
+
+<option>1</option>
+
+<option>2</option>
+
+<option>3</option>
+
+<option>4</option>
+
+<option>5</option>
+
+<option>6</option>
+
+<option>7</option>
+
+<option>8</option>
+
+<option>9</option>
+
+<option selected="selected">10</option>
+
+<option>11</option>
+
+<option>12</option>
+
+
+</select>
+<label style="padding:0px; font-size:20px;">/</label>
+<select style="width:60px; height:30px; text-align:center; font-size: 20px;">
+
+<option>1</option>
+
+<option>2</option>
+
+<option>3</option>
+
+<option>4</option>
+
+<option>5</option>
+
+<option>6</option>
+
+<option>7</option>
+
+<option>8</option>
+
+<option>9</option>
+
+<option>10</option>
+
+<option>11</option>
+
+<option>12</option>
+
+<option>13</option>
+
+<option>14</option>
+
+<option>15</option>
+
+<option>16</option>
+
+<option>17</option>
+
+<option>18</option>
+
+<option>19</option>
+
+<option selected="selected">20</option>
+
+<option>21</option>
+
+<option>22</option>
+
+<option>23</option>
+
+<option>24</option>
+
+<option>25</option>
+
+<option>26</option>
+
+<option>27</option>
+
+<option>28</option>
+
+<option>29</option>
+
+<option>30</option>
+
+<option>31</option>
+
+
+</select>
+<label style="padding:0px; font-size:20px;">~</label>
+<select style="width:100px; height:30px; text-align:center; font-size: 20px;">
+
+<option>2023</option>
+
+<option selected="selected">2024</option>
+
+<option>2025</option>
+
+
+</select>
+<label style="padding:0px; font-size:20px;">/</label>
+<select style="width:60px; height:30px; text-align:center; font-size: 20px;">
+
+<option>1</option>
+
+<option>2</option>
+
+<option>3</option>
+
+<option>4</option>
+
+<option>5</option>
+
+<option>6</option>
+
+<option>7</option>
+
+<option>8</option>
+
+<option>9</option>
+
+<option selected="selected">10</option>
+
+<option>11</option>
+
+<option>12</option>
+
+
+</select>
+<label style="padding:0px; font-size:20px;">/</label>
+<select style="width:60px; height:30px; text-align:center; font-size: 20px;">
+
+<option>1</option>
+
+<option>2</option>
+
+<option>3</option>
+
+<option>4</option>
+
+<option>5</option>
+
+<option>6</option>
+
+<option>7</option>
+
+<option>8</option>
+
+<option>9</option>
+
+<option>10</option>
+
+<option>11</option>
+
+<option>12</option>
+
+<option>13</option>
+
+<option>14</option>
+
+<option>15</option>
+
+<option>16</option>
+
+<option>17</option>
+
+<option>18</option>
+
+<option>19</option>
+
+<option selected="selected">20</option>
+
+<option>21</option>
+
+<option>22</option>
+
+<option>23</option>
+
+<option>24</option>
+
+<option>25</option>
+
+<option>26</option>
+
+<option>27</option>
+
+<option>28</option>
+
+<option>29</option>
+
+<option>30</option>
+
+<option>31</option>
+
+
+</select>
 </div>
 <div class="radio">
-<label>
-<input type="radio" name="optionsRadios" value="option1" checked="">
-Option one is this and that—be sure to include why it's great
-</label>
+<h4>연령대 설정</h4>
+<input type="radio" id="all_view" name="ageGroup"><label style="font-size:15px">전체 관람</label><img src="../../common/images/all.png" style="padding-left:10px"><br>
+<input type="radio" id="age_12_view" name="ageGroup"><label style="font-size:15px">12세</label><img src="../../common/images/12age.png" style="padding-left:10px"><br>
+<input type="radio" id="age_15_view" name="ageGroup"><label style="font-size:15px">15세</label><img src="../../common/images/15age.png" style="padding-left:10px"><br>
+<input type="radio" id="age_18_view" name="ageGroup"><label style="font-size:15px">청소년 관람 불가</label><img src="../../common/images/18age.png" style="padding-left:10px"><br>
+<input type="radio" id="rs_view" name="ageGroup"><label style="font-size:15px">제한사영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
 </div>
-<div class="radio">
-<label>
-<input type="radio" name="optionsRadios" value="option2">
-Option two can be something else and selecting it will deselect option one
-</label>
-</div>
-<div class="radio disabled m-b-25">
-<label>
-<input type="radio" name="optionsRadios" value="option3" disabled="">
-Option three is disabled
-</label>
-</div>
-<h5 class="m-t-0">Inline Checkboxes &amp; Radios</h5>
-<div class="clearfix m-b-10">
-<label class="checkbox-inline">
-<input type="checkbox" value="option1"> 1
-</label>
-<label class="checkbox-inline">
-<input type="checkbox" value="option2"> 2
-</label>
-<label class="checkbox-inline">
-<input type="checkbox" value="option3"> 3
-</label>
-</div>
-<div class="clearfix m-b-25">
-<label class="radio-inline">
-<input type="radio" name="inlineRadioOptions" value="option1"> 1
-</label>
-<label class="radio-inline">
-<input type="radio" name="inlineRadioOptions" value="option2"> 2
-</label>
-<label class="radio-inline">
-<input type="radio" name="inlineRadioOptions" value="option3"> 3
-</label>
-</div>
-<h5 class="m-t-0">Checkboxes and radios without label text</h5>
-<p>
-Should you have no text within the <code>&lt;label&gt;</code>, the input is positioned as you'd expect.
-Currently only works on non-inline checkboxes and radios.
-</p>
-<div class="checkbox m-b-0 m-t-0">
-<label>
-<input type="checkbox" id="blankCheckbox" value="option1" checked="">
-</label>
-</div>
-<div class="radio m-b-15 m-t-0">
-<label>
-<input type="radio" name="blankRadio" id="blankRadio1" value="option1" checked="">
-</label>
-</div>
+
 </div>
 
 </div>
@@ -639,74 +825,7 @@ Currently only works on non-inline checkboxes and radios.
 </div>
 
 
-<div class="section-container section-with-top-border p-b-10">
 
-<div class="row">
-
-<div class="col-lg-6">
-<h5 class="m-t-0">Control sizing</h5>
-<p>
-Set heights using classes like <code>.form-control-lg</code>, and set widths using grid column classes like <code>.col-lg-*</code>.
-</p>
-<div class="row">
-<div class="col-lg-5">
-<div class="clearfix m-b-15">
-<input class="form-control form-control-lg" type="text" placeholder=".input-lg">
-<p></p>
-<input class="form-control" type="text" placeholder="Default input">
-<p></p>
-<input class="form-control form-control-sm" type="text" placeholder=".input-sm">
-</div>
-</div>
-<div class="col-lg-5">
-<div class="clearfix m-b-15">
-<select class="form-control form-control-lg">
-<option>.input-lg</option>
-</select>
-<p></p>
-<select class="form-control">
-<option>default input</option>
-</select>
-<p></p>
-<select class="form-control form-control-sm">
-<option>.input-sm</option>
-</select>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="col-lg-6">
-<h5 class="m-t-0">Horizontal form group sizes</h5>
-<p>
-Quickly size labels and form controls within <code>.form-horizontal</code> by adding <code>.form-group-lg</code> or <code>.form-group-sm.</code>
-</p>
-<form class="form-horizontal">
-<div class="form-group form-group-lg m-b-10">
-<label class="col-lg-3 col-form-label">Large label</label>
-<div class="col-lg-7">
-<input class="form-control" type="text" placeholder="Large input">
-</div>
-</div>
-<div class="form-group m-b-10">
-<label class="col-lg-3 col-form-label">Default label</label>
-<div class="col-lg-7">
-<input class="form-control" type="text" placeholder="Default input">
-</div>
-</div>
-<div class="form-group form-group-sm">
-<label class="col-lg-3 col-form-label">Small label</label>
-<div class="col-lg-7">
-<input class="form-control" type="text" placeholder="Small input">
-</div>
-</div>
-</form>
-</div>
-
-</div>
-
-</div>
 
 
 
@@ -932,6 +1051,8 @@ Quickly size labels and form controls within <code>.form-horizontal</code> by ad
      genre_disableButton.addEventListener("click", function() {
     	 genre_selectElement.disabled = true; // select 요소를 비활성화
      });
+     
+     
      
 	</script>
 	<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;817469ae18dc8084&quot;,&quot;version&quot;:&quot;2023.8.0&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;4db8c6ef997743fda032d4f73cfeff63&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
