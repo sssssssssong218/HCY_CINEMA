@@ -271,27 +271,32 @@ to {
 		<button type="button" class="btn btn-primary">저장</button>
 		<button type="button" class="btn btn-danger">취소</button>
 		<br>
-		<table>
-		<tr>
-			<th>좌석</th>
-			<th>고객 아이디</th>
-			<th>예매상태</th>
-		</tr>
 		
-		<tr>
-			<td>Q1</td>
-			<td>qwer</td>
-			<td>예매</td><button type="button" class="btn btn-outline-primary">예매취소</button>
-		</tr>
-		
-		<tr>
-			<td>Q1</td>
-			<td>qwer</td>
-			<td>미예매</td><button type="button" class="btn btn-outline-secondary" disabled="disabled">예매취소</button>
-		</tr>
-		
-		<tr>
-		</tr>
+		<table class="table" style="width:400px">
+			  <thead>
+			    <tr>
+			      <th scope="col">좌석</th>
+			      <th scope="col">고객 아이디</th>
+			      <th scope="col">예매 상태</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <td>A1</td>
+			      <td>Otto</td>
+			      <td>예매</td>
+			    </tr>
+			    <tr>
+			      <td>B2</td>
+			      <td>Thornton</td>
+			      <td>미예매</td>
+			    </tr>
+			    <tr>
+			      <td>M2</td>
+			      <td>the Bird</td>
+			      <td>예매</td>
+			    </tr>
+			  </tbody>
 		</table>
 		
 	</div>							
