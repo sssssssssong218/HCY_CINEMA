@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=1200, user-scalable=no">
 <meta http-equiv="imagetoolbar" content="no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>회원관리 1 페이지 </title>
+<title>공지사항 1페이지 </title>
 <!-- bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="https://www.ncyok.or.kr:443/theme/basic/css/default.css?ver=1697535328">
@@ -205,12 +205,13 @@ to {
 
 
 			<h1 class="page-header">
-				Manage Member <small>Manage Member</small>
+				Manage Board <small>Manage Board </small>
 			</h1>
 
 
 			<div class="row">
-		        <div id="container">
+
+		          <div id="container">
                         
              
             <!--div class="conTit_tt">
@@ -231,16 +232,11 @@ to {
 
     <div id="container_title">
  
-        <div class="conTit_tt">
-            <span>회원관리</span>
-						<span style="padding-left:30px;font-size:.9em;font-weight:normal;">
-
-						</span>
-
-        </div>
+        
         <div class="right_wrap">
                         				
         </div>
+        <div align="right"><button type="button" class="btn btn-dark">글 쓰기</button></div>
     </div>
     <script>
         $('.btn_print').on('click',function(){
@@ -249,7 +245,7 @@ to {
     </script>
 </div>            <!--  서브상단 이미지 및 로케이션 단 끝 -->
 						<!-- me_code : 105010-->
-<h2 id="container_title">회원관리<span class="sound_only"> 목록</span></h2>
+<h2 id="container_title">공지사항/뉴스<span class="sound_only"> 목록</span></h2>
 
 <!-- 게시판 목록 시작 { -->
 <div id="bo_list" style="width:100%">
@@ -276,7 +272,7 @@ to {
         <select name="sfl" id="sfl">
             <!--option value="wr_subject">제목</option>
             <option value="wr_content">내용</option-->
-            <option value="wr_subject||wr_content">이름</option>
+            <option value="wr_subject||wr_content">제목</option>
             
             <!--option value="mb_id,0">회원아이디(코)</option>
             <option value="wr_name,1">글쓴이</option>
@@ -310,135 +306,214 @@ to {
     <div class="tbl_head01 tbl_wrap">
         <table>
         <caption>자유게시판 목록</caption>
-        <colgroup><col class="colnum"><col class="coltit" style="width:150px"><col class="colname" style="width:250px"><col class="coldate" style="width:150px">
+        <colgroup><col class="colnum"><col class="colsec"><col class="coltit"><col class="colname" style="width:110px"><col class="coldate" style="width:110px"><col class="colhit" style="width:110px">
         </colgroup>
         <thead>
         <tr>
-            <th scope="col">회원번호</th>
-            <th scope="col">이름</th>
-            <th scope="col">아이디</th>
-            <th scope="col"><a href="/bbs/board.php?bo_table=5010&amp;sop=and&amp;sst=wr_datetime&amp;sod=desc&amp;sfl=&amp;stx=&amp;page=1">가입일</a></th>
+            <th scope="col">번호</th>
+            <th scope="col" style="width:250px">구분</th>
+            <th scope="col">제목</th>
+            <th scope="col"colspan="2">등록일<a href="/bbs/board.php?bo_table=5010&amp;sop=and&amp;sst=wr_datetime&amp;sod=desc&amp;sfl=&amp;stx=&amp;page=1"></a></th>
+            <th scope="col" style="width:150px">조회 수<a href="/bbs/board.php?bo_table=5010&amp;sop=and&amp;sst=wr_hit&amp;sod=desc&amp;sfl=&amp;stx=&amp;page=1"></a></th>
         </tr>
         </thead>
         <tbody style="text-align:center">
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(250, 250, 250);">
-            <td class="td_num">
-            <strong>2584</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">김동동</span></td>
-            <td class="td_mdm_id">hihi</td>
-            <td class="td_datetime">2023-10-10</td>
-            </tr>
-            
             <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
+            <strong>2584</strong></td>
+            <td class="td_num">
+            <strong>공지사항</strong></td>
+            <td class="td_subject">
+           <a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2745">
+                    ♠「K-청소년 디지털 역량 강화 캠프」고등부 프로그램 공지 ♠</a>
+			</td>
+            <td class="td_datetime"colspan="2">2023-10-10</td>
+            <td class="td_num">216</td>
+            </tr>
+             
+            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(250, 250, 250);">
+            <td class="td_num">
             <strong>2583</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">김나나</span></td>
-            <td class="td_id">abcd</td>
-            <td class="td_datetime">2023-10-05</td>
+            <td class="td_num">
+            <strong>공지사항</strong></td>
+            <td class="td_subject">
+            <a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2741">
+                    이번 주 상영관 점검 공지 </a>
+			</td>
+            <td class="td_datetime"colspan="2">2023-10-05</td>
+            <td class="td_num">79</td>
             </tr>
             
             <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
             <strong>2582</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">송송송</span></td>
-            <td class="td_id">song</td>
-            <td class="td_datetime">2023-10-04</td>
+            <td class="td_num">
+            <strong>공지사항</strong></td>
+            <td class="td_subject">
+            <a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2740">
+                    한국청소년단체협의회 회원단체 승격 신청 안내</a>
+
+            </td>
+            <td class="td_datetime"colspan="2">2023-10-04</td>
+            <td class="td_num">102</td>
             </tr>
             
             <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
             <strong>2581</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">송지하</span></td>
-            <td class="td_id">songsong2</td>
-            <td class="td_datetime">2023-09-26</td>
+            <td class="td_num">
+            <strong>공지사항</strong></td>
+            <td class="td_subject">
+            <a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2739">
+                    ♠ 뉴스레터 9월호 발간 ♠ </a>
+			</td>
+            <td class="td_datetime"colspan="2">2023-09-26</td>
+            <td class="td_num">150</td>
             </tr>
             
             <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
             <strong>2580</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">강다연</span></td>
-            <td class="td_id">swing</td>
-            <td class="td_datetime">2023-09-18</td>
+            <td class="td_num">
+            <strong>뉴스</strong></td>
+            <td class="td_subject">
+			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2738">
+                    ♠ 창립 58주년 기념 표창 후보자 추천 공고 ♠</a>
+			</td>
+            <td class="td_datetime"colspan="2">2023-09-18</td>
+            <td class="td_num">247</td>
             </tr>
             
             <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
             <strong>2579</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">박상준</span></td>
-            <td class="td_id">javano</td>
-            <td class="td_datetime">2023-09-12</td>
+            <td class="td_num">
+            <strong>뉴스</strong></td>
+            <td class="td_subject">
+			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2737">
+                    ♠ 글로벌 청소년 서밋 뉴스레터  9월호 발간 ♠</a>
+
+            </td>
+            <td class="td_datetime"colspan="2">2023-09-12</td>
+            <td class="td_num">251</td>
             </tr>
             
             <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
             <strong>2578</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">홍찬영</span></td>
-            <td class="td_id">htmlno</td>
-            <td class="td_datetime">2023-09-07</td>
+            <td class="td_num">
+            <strong>뉴스</strong></td>
+            <td class="td_subject">
+			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2734">
+                    ♠「K-청소년 디지털 역량 강화 캠프」참가자 모집(고등부) ♠</a>
+			</td>
+            <td class="td_datetime"colspan="2">2023-09-07</td>
+            <td class="td_num">12135</td>
             </tr>
             
             <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
             <strong>2577</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">김선경</span></td>
-            <td class="td_id">jdbcno</td>
-            <td class="td_datetime">2023-02-24</td>
+            <td class="td_num">
+            <strong>자주찾는 질문</strong></td>
+            <td class="td_subject">
+			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2689">
+                    ♠ 2023년도 청협 표창장, 상장, 후원명칭 안내 ♠ </a>
+			</td>
+            <td class="td_datetime"colspan="2">2023-02-24</td>
+            <td class="td_num">66459</td>
             </tr>
             
             <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
-            <strong>2576</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">서효민</span></td>
-            <td class="td_id">javascript</td>
-            <td class="td_datetime">2023-09-12</td>
+            <strong>2576 </strong> </td>
+            <td class="td_num">
+            <strong>자주찾는 질문</strong></td>
+            <td class="td_subject">
+			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2736">
+                    [여성가족부] 제19회 청소년푸른성장대상 수상 후보자 추천 공고                                    </a>
+			</td>
+            <td class="td_datetime"colspan="2">2023-09-12</td>
+            <td class="td_num">262</td>
             </tr>
             
             <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
-            <strong>2575</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">이승우</span></td>
-            <td class="td_id">byebye</td>
-            <td class="td_datetime">2023-09-01</td>
+            <strong>2575</strong> </td>
+            <td class="td_num">
+            <strong>자주찾는 질문</strong></td>
+            <td class="td_subject">
+			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2733">
+                    ♠ 뉴스레터 8월호 발간 ♠  </a>
+			</td>
+            <td class="td_datetime"colspan="2">2023-09-01</td>
+            <td class="td_num">13750</td>
             </tr>
             
             <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
-            <strong>2574</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">차준식</span></td>
-            <td class="td_id">where</td>
-            <td class="td_datetime">2023-08-07</td>
+            <strong>2574 </strong> </td>
+            <td class="td_num">
+            <strong>공지사항</strong></td>
+            <td class="td_subject">
+			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2732">
+                    ♠ 뉴스레터 7월호 발간 ♠ </a>
+			</td>
+            <td class="td_datetime"colspan="2">2023-08-07</td>
+            <td class="td_num">4008</td>
             </tr>
                                 
             <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
-            <strong>2573</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">이동원</span></td>
-            <td class="td_id">are</td>
-            <td class="td_datetime">2023-07-14</td>
+            <strong>2573</strong> </td>
+            <td class="td_num">
+            <strong>공지사항</strong></td>
+            <td class="td_subject">
+			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2731">
+                    ‘YOUTH BLISS CAMP 청소년(가족) 행복 캠프’ 모집                                    </a>
+			</td>
+            <td class="td_datetime"colspan="2">2023-07-14</td>
+            <td class="td_num">1538</td>
             </tr>
             
             <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
-            <strong>2572</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">임태균</span></td>
-            <td class="td_id">you</td>
-            <td class="td_datetime">2023-07-07</td>
+            <strong>2572</strong> </td>
+            <td class="td_num">
+            <strong>공지사항</strong></td>
+            <td class="td_subject">
+			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2730">
+                    '2023 글로벌 청소년 서밋' 2차 카드뉴스 이벤트 공개                                    </a>
+
+            </td>
+            <td class="td_datetime"colspan="2">2023-07-07</td>
+            <td class="td_num">491</td>
             </tr>
                                 
             <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
-            <strong>2571</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">정민교</span></td>
-            <td class="td_id">from</td>
-            <td class="td_datetime">2023-07-07</td>
+            <strong>2571</strong> </td>
+            <td class="td_num">
+            <strong>공지사항</strong></td>
+            <td class="td_subject">
+			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2729">
+                    ♣ '2023 글로벌 청소년 서밋'  글로벌 청소년 대화의 광장 참가자 …                                    </a>
+			</td>
+            <td class="td_datetime"colspan="2">2023-07-07</td>
+            <td class="td_num">523</td>
             </tr>
             
             <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
-            <strong>2570</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">곽우신</span></td>
-            <td class="td_id">okay</td>
-            <td class="td_datetime">2023-07-07</td>
+            <strong>2570</strong> </td>
+            <td class="td_num">
+            <strong>자주찾는 질문</strong></td>
+            <td class="td_subject">
+			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2728">
+                    '2023 글로벌 청소년 서밋' 1차 카드뉴스 이벤트 공개                                    </a>
+			</td>
+            <td class="td_datetime"colspan="2">2023-07-07</td>
+            <td class="td_num">393</td>
             </tr>
             
         </tbody>
@@ -473,7 +548,6 @@ to {
 <!-- } 게시판 목록 끝 -->
     </div>
 		</div>
-
 			</div>
 
 		</div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=1200, user-scalable=no">
 <meta http-equiv="imagetoolbar" content="no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>회원관리 1 페이지 </title>
+<title>자유게시판 - 글쓰기 </title>
 <!-- bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="https://www.ncyok.or.kr:443/theme/basic/css/default.css?ver=1697535328">
@@ -35,6 +35,10 @@
 <script src="https://www.ncyok.or.kr:443/js/common.js"></script>
 <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script>
 <script src="https://www.ncyok.or.kr:443/js/printThis.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <meta name="naver-site-verification" content="8e74a1f533fc95526c71b92c12475d0129bcdd32">
 <meta name="robots" content="index,follow">
 <meta name="author" content="www.ncyok.or.kr"> 
@@ -104,6 +108,27 @@ to {
 	text-align: left;
 }
 </style>
+<script type="text/javascript">
+$(function(){
+	$('#note').summernote({
+		toolbar: [
+		    // [groupName, [list of button]]
+		    ['style', ['bold', 'italic', 'underline', 'clear']],
+		    //['font', ['strikethrough', 'superscript', 'subscript']],
+		    ['fontsize', ['fontsize']],
+		    ['color', ['color']],
+		    ['para', ['ul', 'ol', 'paragraph']],
+		  //  ['height', ['height']]
+		    ['table', ['table']],
+		    ['insert', ['picture']]
+		  ],
+		  placeholder: '글을 작성해주세요',
+		  width:1000,
+		  height:300,
+		  lang:'ko-KR'
+	});
+});//ready
+</script>
 </head>
 <body class="  pace-done" cz-shortcut-listen="true">
 	<div class="pace  pace-inactive">
@@ -205,17 +230,17 @@ to {
 
 
 			<h1 class="page-header">
-				Manage Member <small>Manage Member</small>
+				Manage Board <small>Manage Board </small>
 			</h1>
 
 
 			<div class="row">
-		        <div id="container">
+        <div id="container">
                         
              
             <!--div class="conTit_tt">
                                                         <span>
-                        공지사항
+                        청소년 마당
                     </span>
                             </div-->
 
@@ -232,10 +257,8 @@ to {
     <div id="container_title">
  
         <div class="conTit_tt">
-            <span>회원관리</span>
-						<span style="padding-left:30px;font-size:.9em;font-weight:normal;">
-
-						</span>
+            <span>자유게시판 - 글쓰기</span>
+						
 
         </div>
         <div class="right_wrap">
@@ -248,232 +271,181 @@ to {
         })
     </script>
 </div>            <!--  서브상단 이미지 및 로케이션 단 끝 -->
-						<!-- me_code : 105010-->
-<h2 id="container_title">회원관리<span class="sound_only"> 목록</span></h2>
+						<!-- me_code : 105030--><!-- skin : basic -->
+<section id="bo_w">
+    
 
-<!-- 게시판 목록 시작 { -->
-<div id="bo_list" style="width:100%">
-
-
-
- <!-- 게시판 페이지 정보 및 버튼 시작 { -->
-<div class="bo_fx">
-
-    <!-- 게시판 카테고리 시작 { -->
-        <!-- } 게시판 카테고리 끝 -->
-
-
-
-<!-- 게시판 검색 시작 { -->
-    <fieldset id="bo_sch">
-        <legend>게시물 검색</legend>
-        <form name="fsearch" method="get">
-        <input type="hidden" name="bo_table" value="5010">
-        <input type="hidden" name="sca" value="">
-        <input type="hidden" name="sop" value="and">
-        <label for="sfl" class="sound_only">검색대상</label>
-        
-        <select name="sfl" id="sfl">
-            <!--option value="wr_subject">제목</option>
-            <option value="wr_content">내용</option-->
-            <option value="wr_subject||wr_content">이름</option>
-            
-            <!--option value="mb_id,0">회원아이디(코)</option>
-            <option value="wr_name,1">글쓴이</option>
-            <option value="wr_name,0">글쓴이(코)</option-->
-        </select>
-        <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-        <input type="text" name="stx" value="" required="" id="stx" class="frm_input required" size="15" maxlength="20" "="" placeholder="검색어를 입력해주세요">
-        <input type="submit" value="검색" class="btn_search">
-        </form>
-    </fieldset>
-<!-- } 게시판 검색 끝 -->
-    <!--div id="bo_list_total">
-        <span>Total 2,584건</span>
-        1 페이지
-    </div-->
-</div>
-<!-- } 게시판 페이지 정보 및 버튼 끝 -->
-
-
-    <form name="fboardlist" id="fboardlist" action="./board_list_update.php" onsubmit="return fboardlist_submit(this);" method="post">
-    <input type="hidden" name="bo_table" value="5010">
+    <!-- 게시물 작성/수정 시작 { -->
+    <form name="fwrite" id="fwrite" action="https://www.ncyok.or.kr:443/bbs/write_update.php" onsubmit="return fwrite_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off" style="width:100%">
+    <input type="hidden" name="uid" value="23101916055704">
+    <input type="hidden" name="w" value="">
+    <input type="hidden" name="bo_table" value="5025">
+    <input type="hidden" name="wr_id" value="0">
+    <input type="hidden" name="sca" value="">
     <input type="hidden" name="sfl" value="">
     <input type="hidden" name="stx" value="">
     <input type="hidden" name="spt" value="">
-    <input type="hidden" name="sca" value="">
-    <input type="hidden" name="sst" value="wr_datetime desc">
+    <input type="hidden" name="sst" value="">
     <input type="hidden" name="sod" value="">
-    <input type="hidden" name="page" value="1">
-    <input type="hidden" name="sw" value="">
-
-    <div class="tbl_head01 tbl_wrap">
+    <input type="hidden" name="page" value="">
+    <input type="hidden" value="html1" name="html">
+    <div class="tbl_frm01 tbl_wrap">
         <table>
-        <caption>자유게시판 목록</caption>
-        <colgroup><col class="colnum"><col class="coltit" style="width:150px"><col class="colname" style="width:250px"><col class="coldate" style="width:150px">
-        </colgroup>
-        <thead>
+        <tbody>
+        
         <tr>
-            <th scope="col">회원번호</th>
-            <th scope="col">이름</th>
-            <th scope="col">아이디</th>
-            <th scope="col"><a href="/bbs/board.php?bo_table=5010&amp;sop=and&amp;sst=wr_datetime&amp;sod=desc&amp;sfl=&amp;stx=&amp;page=1">가입일</a></th>
+            <th scope="row"><label for="wr_subject">구분<strong class="sound_only">필수</strong></label></th>
+            <td>
+                <div id="autosave_wrapper">
+                <select style="width:200px; height:30px; text-align:center">
+                <option>========구분========</option>
+                <option>예매</option>
+                <option>VIP</option>
+                <option>현금영수증</option>
+                <option>기타</option>
+                </select>
+                     <script src="https://www.ncyok.or.kr:443/js/autosave.js"></script>
+                    
+               </div>
+            </td>
         </tr>
-        </thead>
-        <tbody style="text-align:center">
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(250, 250, 250);">
-            <td class="td_num">
-            <strong>2584</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">김동동</span></td>
-            <td class="td_mdm_id">hihi</td>
-            <td class="td_datetime">2023-10-10</td>
-            </tr>
+        
+        
+        
+        
+
+ 
+        <tr>
+            <th scope="row"><label for="wr_subject">제목<strong class="sound_only">필수</strong></label></th>
+            <td>
+                <div id="autosave_wrapper">
+                    <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="frm_input required" size="80" maxlength="255">
+                                        <script src="https://www.ncyok.or.kr:443/js/autosave.js"></script>
+                    
+                    
+                                    </div>
+            </td>
+        </tr>
+
+        <tr>
+            <th scope="row"><label for="wr_content">내용<strong class="sound_only">필수</strong></label></th>
+            <td class="wr_content">
             
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2583</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">김나나</span></td>
-            <td class="td_id">abcd</td>
-            <td class="td_datetime">2023-10-05</td>
-            </tr>
-            
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2582</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">송송송</span></td>
-            <td class="td_id">song</td>
-            <td class="td_datetime">2023-10-04</td>
-            </tr>
-            
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2581</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">송지하</span></td>
-            <td class="td_id">songsong2</td>
-            <td class="td_datetime">2023-09-26</td>
-            </tr>
-            
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2580</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">강다연</span></td>
-            <td class="td_id">swing</td>
-            <td class="td_datetime">2023-09-18</td>
-            </tr>
-            
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2579</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">박상준</span></td>
-            <td class="td_id">javano</td>
-            <td class="td_datetime">2023-09-12</td>
-            </tr>
-            
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2578</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">홍찬영</span></td>
-            <td class="td_id">htmlno</td>
-            <td class="td_datetime">2023-09-07</td>
-            </tr>
-            
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2577</strong></td>
-            <td class="td_name sv_use"><span class="sv_member">김선경</span></td>
-            <td class="td_id">jdbcno</td>
-            <td class="td_datetime">2023-02-24</td>
-            </tr>
-            
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2576</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">서효민</span></td>
-            <td class="td_id">javascript</td>
-            <td class="td_datetime">2023-09-12</td>
-            </tr>
-            
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2575</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">이승우</span></td>
-            <td class="td_id">byebye</td>
-            <td class="td_datetime">2023-09-01</td>
-            </tr>
-            
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2574</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">차준식</span></td>
-            <td class="td_id">where</td>
-            <td class="td_datetime">2023-08-07</td>
-            </tr>
-                                
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2573</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">이동원</span></td>
-            <td class="td_id">are</td>
-            <td class="td_datetime">2023-07-14</td>
-            </tr>
-            
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2572</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">임태균</span></td>
-            <td class="td_id">you</td>
-            <td class="td_datetime">2023-07-07</td>
-            </tr>
-                                
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2571</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">정민교</span></td>
-            <td class="td_id">from</td>
-            <td class="td_datetime">2023-07-07</td>
-            </tr>
-            
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2570</strong>
-            </td><td class="td_name sv_use"><span class="sv_member">곽우신</span></td>
-            <td class="td_id">okay</td>
-            <td class="td_datetime">2023-07-07</td>
-            </tr>
-            
+		<div style="width: 500px">
+		<textarea class="inputBox" name="note" id="note"></textarea><br/>
+		</div>                                
+
+       		</td>
+        </tr>
+
+        
+
+		<tr>
+            <th scope="row">파일첨부 관련안내</th>
+            <td>
+                * 한 파일당 1MB (1,024kb) 이내 <br>
+				* 작성일 기준 3개월 뒤 관리자가 첨부파일을 삭제 할수 있습니다.
+				(서버 용량 문제로 인한 양해부탁드립니다.)
+
+            </td>
+        </tr>
+                <tr>
+            <th scope="row">파일 #1</th>
+            <td>
+                <input type="file" name="bf_file[]" title="파일첨부 1 : 용량 1,048,576 바이트 이하만 업로드 가능" class="frm_file frm_input">
+                                            </td>
+        </tr>
+                
+        
+
+        
         </tbody>
         </table>
     </div>
-
-        </form>
-</div>
-
-
-
-
-
-
-
-<!-- 페이지 -->
-<nav class="pg_wrap"><span class="pg"><span class="sound_only">열린</span><strong class="pg_current">1</strong><span class="sound_only">페이지</span>
-<a href="./board.php?bo_table=5010&amp;page=2" class="pg_page">2<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=3" class="pg_page">3<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=4" class="pg_page">4<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=5" class="pg_page">5<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=6" class="pg_page">6<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=7" class="pg_page">7<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=8" class="pg_page">8<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=9" class="pg_page">9<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=10" class="pg_page">10<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=11" class="pg_page pg_next">다음</a>
-<a href="./board.php?bo_table=5010&amp;page=173" class="pg_page pg_end">맨끝</a>
-</span></nav>
-
-
-<!-- } 게시판 목록 끝 -->
+    <div class="btn_confirm">
+        <input type="submit" value="작성완료" id="btn_submit" accesskey="s" class="btn_submit">
+        <a href="./board.php?bo_table=5025" class="btn_cancel">취소</a>
     </div>
-		</div>
+    </form>
 
+    <script>
+        function html_auto_br(obj)
+    {
+        if (obj.checked) {
+            result = confirm("자동 줄바꿈을 하시겠습니까?\n\n자동 줄바꿈은 게시물 내용중 줄바뀐 곳을<br>태그로 변환하는 기능입니다.");
+            if (result)
+                obj.value = "html2";
+            else
+                obj.value = "html1";
+        }
+        else
+            obj.value = "";
+    }
+
+    function fwrite_submit(f)
+    {
+        var wr_content_editor_data = oEditors.getById['wr_content'].getIR();
+oEditors.getById['wr_content'].exec('UPDATE_CONTENTS_FIELD', []);
+if(jQuery.inArray(document.getElementById('wr_content').value.toLowerCase().replace(/^\s*|\s*$/g, ''), ['&nbsp;','<p>&nbsp;</p>','<p><br></p>','<div><br></div>','<p></p>','<br>','']) != -1){document.getElementById('wr_content').value='';}
+if (!wr_content_editor_data || jQuery.inArray(wr_content_editor_data.toLowerCase(), ['&nbsp;','<p>&nbsp;</p>','<p><br></p>','<p></p>','<br>']) != -1) { alert("내용을 입력해 주십시오."); oEditors.getById['wr_content'].exec('FOCUS'); return false; }
+
+        var subject = "";
+        var content = "";
+        $.ajax({
+            url: g5_bbs_url+"/ajax.filter.php",
+            type: "POST",
+            data: {
+                "subject": f.wr_subject.value,
+                "content": f.wr_content.value
+            },
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function(data, textStatus) {
+                subject = data.subject;
+                content = data.content;
+            }
+        });
+
+        if (subject) {
+            alert("제목에 금지단어('"+subject+"')가 포함되어있습니다");
+            f.wr_subject.focus();
+            return false;
+        }
+
+        if (content) {
+            alert("내용에 금지단어('"+content+"')가 포함되어있습니다");
+            if (typeof(ed_wr_content) != "undefined")
+                ed_wr_content.returnFalse();
+            else
+                f.wr_content.focus();
+            return false;
+        }
+
+        if (document.getElementById("char_count")) {
+            if (char_min > 0 || char_max > 0) {
+                var cnt = parseInt(check_byte("wr_content", "char_count"));
+                if (char_min > 0 && char_min > cnt) {
+                    alert("내용은 "+char_min+"글자 이상 쓰셔야 합니다.");
+                    return false;
+                }
+                else if (char_max > 0 && char_max < cnt) {
+                    alert("내용은 "+char_max+"글자 이하로 쓰셔야 합니다.");
+                    return false;
+                }
+            }
+        }
+
+        
+        document.getElementById("btn_submit").disabled = "disabled";
+
+        return true;
+    }
+    </script>
+</section>
+<!-- } 게시물 작성/수정 끝 -->    </div>
+		</div>
+			
 			</div>
 
 		</div>
