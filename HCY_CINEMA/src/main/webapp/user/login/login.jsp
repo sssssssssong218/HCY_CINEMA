@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <jsp:include page="../include/loginHeader.jsp"></jsp:include>
 
 <body class="" style="" cz-shortcut-listen="true">
@@ -179,6 +179,17 @@
                 }, 400);
             }
         });
+        
+        $('#loginBtn').on('click', function () {
+            if ($("#txtUserId").val() == "" || $("#txtPassword").val() == "") {
+                alert("아이디와 비밀번호를 모두 입력해주세요!");
+                return
+            }//if
+            $("#id").val($("#txtUserId").val());
+            $("#password").val($("#txtPassword").val());
+            
+            $("#loginform").submit()
+        });
 
         //통합검색 상단 검색 버튼
         $('#btn_header_search').on('click', function () {
@@ -324,7 +335,7 @@
                 <div class="save-id"> <input type="checkbox" id="loginSet"><label for="save_id">아이디 저장</label></div>
 
               
-                <button type="submit" id="submit" title="로그인" ><span>로그인</span></button>
+                <input type="button" id="loginBtn" name="loginBtn" value="로그인"/><span>로그인</span>
                 <div class="login-option">
                     <a href="/user/login/find-account.aspx">아이디 찾기</a>
                     <a href="/user/login/find-pw.aspx?act=pw">비밀번호 찾기</a>
@@ -341,13 +352,17 @@
 	<input type="hidden" name="id" id="id">
 	<input type="hidden" name="password" id="password">
     <input type="hidden" name="id_save" id="id_save">
-	<input type="hidden" name="returnURL" value="https://www.cgv.co.kr/default.aspx">
+	<input type="hidden" name="returnURL" value="http://192.168.10.145/HCY_CINEMA/user/login/login.jsp">
 </form>
 <!-- //LogIn -->
 
 <script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/crypto.js"></script>
 <script type="text/javascript">
 //<![CDATA[
+	
+	
+	
+	
     (function ($) {
         $(function () {
 
@@ -358,13 +373,12 @@
                     var $loginFrm = $('#loginform');
 
 
+                    $loginFrm.find('#id').val($frm.find('#txtUserId').val());
+                    $loginFrm.find('#password').val($frm.find('#txtPassword').val());
                 	if($loginFrm.find('#id').val()=="" || $loginFrm.find('#password').val() == ""){
-                	alert("나냐")
-                		location="http://192.168.10.145/HCY_CINEMA/encryption/encryption.jsp?id=$frm.find('#txtUserId').val()&pass=$frm.find('#txtPassword').val()"
+					alert("아이디나 비밀번호를 입력해주세요!")					
+                    return false;
                 	}
-                    $loginFrm.find('#id').val(app.crypto.AESEncryptToBase64($frm.find('#txtUserId').val()));
-                    $loginFrm.find('#password').val(app.crypto.AESEncryptToBase64($frm.find('#txtPassword').val()));
-
                     $loginFrm.submit();
                     return false;
                 }

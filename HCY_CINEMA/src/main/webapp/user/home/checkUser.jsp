@@ -4,6 +4,11 @@
          <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
          <%
          session.setAttribute("login", false);
+         
+         String id= request.getParameter("id");
+         String pass= request.getParameter("password");
+         
+         
  		 %>
 <!DOCTYPE html>
 <html>
