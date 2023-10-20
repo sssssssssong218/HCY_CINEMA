@@ -557,12 +557,19 @@ to {
 <p>
 Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
 </p>
-<div class="checkbox">
-<label>
-<input type="file" value="">
-Option one is this and that—be sure to include why it's great
-</label>
-</div>
+<form action="img_upload.jsp" method="post" enctype="multipart/form-data">
+<div>
+	 	<fieldset>
+			<legend>파일 업로드</legend>
+			<p>파일명 : <input type="file" name="file"></p>
+			<p><input type="submit" value="upload"></p>	 	
+	 	</fieldset>
+	 </div>
+	 <div>
+	 <img src="">
+	 </div>
+	 </form>
+	 
 <div class="checkbox disabled m-b-25">
 <label>
 <input type="checkbox" value="" disabled="">
