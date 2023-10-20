@@ -557,7 +557,7 @@
 			                </div>
 			                <div class="set-btn">
                                 <input type="hidden" class="reserve-no" name="reserve-no" value="uGmTfGXTvG/WfANmsLeVtZ1qDKRAKUal6cCLJ9EjRHU=">
-                                <div class="col-print">      <button type="button" title="새창" data2="05102410" data="89B2BAFBS3SN6AIXNPRY" class="round black receipt"><span>영수증출력</span></button>    <button type="type" class="round black cancel"><span>예매취소</span></button></div>    
+                                <div class="col-print"><button type="type" class="round black cancel"><span>예매취소</span></button></div>    
                                 
 	        		        </div>
 		                </div>
@@ -572,7 +572,7 @@
 		
 	    <!-- CGV 예매 관련 정책 안내 Box Type -->
 	    <div class="sect-box-descri">
-	        <h4>CGV 예매 관련 정책 안내</h4>
+	        <h4>HCY 예매 관련 정책 안내</h4>
 	        <!-- Box Moudle -->
 	        <div class="box-polaroid">
 	            <div class="box-inner">

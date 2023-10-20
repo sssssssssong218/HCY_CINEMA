@@ -11,9 +11,6 @@
     <meta http-equiv="Cache-Control" content="No-Cache">
     <meta http-equiv="imagetoolbar" content="no">
     <meta name="viewport" content="width=1024">
-    <meta name="keywords" content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
-    <meta name="description" content="CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
-    <meta property="og:site_name" content="영화 그 이상의 감동. CGV">
     <meta id="ctl00_og_title" property="og:title" content="비회원예매확인 < 회원서비스 | 영화 그 이상의 감동. CGV">
     
     
@@ -456,7 +453,7 @@
 <!-- 실컨텐츠 시작 -->
 <div class="wrap-login">
     <div class="sect-user">
-        <ul class="tab-menu-round">
+        <ul class="tab-menu-round" >
             <li>
                 <a href="/user/login/">로그인</a>
             </li>
@@ -467,12 +464,12 @@
                 <a href="/user/guest/login.aspx">비회원 예매확인</a>
             </li>
         </ul>
-        <h3>비회원 예매 확인</h3>
-        <p>비회원으로 예매하신 고객님은 개인정보(법정생년월일, 휴대폰 번호, 비밀번호(4자리)를 입력해 주세요.</p>
+        <h3 style="margin-left:20%">비회원 예매 확인</h3>
+        <p style="margin-left:20%;">비회원으로 예매하신 고객님은 개인정보(법정생년월일, 휴대폰 번호, 비밀번호(4자리)를 입력해 주세요.</p>
         <div class="cols-enterform nomember">
-            <div class="col-simple">
+            <div class="col-simple" style="margin-left:25%;">
                 <h4>비회원 예매확인</h4>
-                <div class="box-simple">
+                <div class="box-simple" style="height: 350px">
                     <p class="disc-info">모든 항목은 필수 입력사항입니다.</p>
                     <form id="form1" method="post" novalidate="novalidate" action="">
                     <fieldset>
