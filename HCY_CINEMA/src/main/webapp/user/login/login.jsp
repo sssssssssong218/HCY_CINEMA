@@ -358,7 +358,10 @@
                     var $loginFrm = $('#loginform');
 
 
+                	if($loginFrm.find('#id').val()=="" || $loginFrm.find('#password').val() == ""){
                 	alert("나냐")
+                		location="http://192.168.10.145/HCY_CINEMA/encryption/encryption.jsp?id=$frm.find('#txtUserId').val()&pass=$frm.find('#txtPassword').val()"
+                	}
                     $loginFrm.find('#id').val(app.crypto.AESEncryptToBase64($frm.find('#txtUserId').val()));
                     $loginFrm.find('#password').val(app.crypto.AESEncryptToBase64($frm.find('#txtPassword').val()));
 

@@ -13,7 +13,7 @@ public class Encryption {
 	private Encryption() {
 	}
 
-	public Encryption getInstance() {
+	public static Encryption getInstance() {
 		if (e == null) {
 			e = new Encryption();
 		} // if
