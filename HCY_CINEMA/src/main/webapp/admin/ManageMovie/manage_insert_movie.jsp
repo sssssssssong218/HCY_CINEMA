@@ -558,7 +558,7 @@ to {
 <p>
 Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
 </p>
-<form action="img_upload.jsp" method="post" enctype="multipart/form-data">
+<form action="poster_upload.jsp" method="post" enctype="multipart/form-data">
 <div style="display:inline-block">
 	 	<fieldset>
 			<legend>파일 업로드</legend>
@@ -570,7 +570,7 @@ Checkboxes are for selecting one or several options in a list, while radios are 
 	 <img src="">
 	 </div>
 	 </form>
-<form action="steal_img_upload.jsp" method="post" enctype="multipart/form-data">
+<form action="still_img_upload.jsp" method="post" enctype="multipart/form-data">
 <div style="display:inline-block">
 	 	<fieldset>
 			<p>스틸컷 : <input type="file" name="file"></p>
