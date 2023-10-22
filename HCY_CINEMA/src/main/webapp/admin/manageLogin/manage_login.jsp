@@ -95,6 +95,7 @@ body {
 <script type="text/javascript">
 	$(function(){
 	    $("#btn").click(function(){
+	    	alert("엿먹어");
 	        var id = $("#userName").val();
 	        var pass = $("#userPassword").val();
 	    	

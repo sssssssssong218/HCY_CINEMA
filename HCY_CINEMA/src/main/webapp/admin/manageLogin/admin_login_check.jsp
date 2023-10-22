@@ -44,7 +44,7 @@ AdminVO aVO = AdminLoginDAO.getInstance().selectAdminLogin(id, pass);
 
 if (aVO.getId()!=null) {
 	if(aVO.getPassword().equals(pass)){
-    response.sendRedirect("../ManageDashBoard/manage_dashboard.jsp");
+    response.sendRedirect("../manageDashBoard/manage_dashboard.jsp");
 	} else{%>
 		alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
 	    window.location.href = "manage_login.jsp";
