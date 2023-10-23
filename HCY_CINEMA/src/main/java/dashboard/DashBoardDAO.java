@@ -35,8 +35,11 @@ public class DashBoardDAO {
 		PreparedStatement patmt=null;
 		ResultSet rs=null;
 		
+		
 		try {
 			con=db.getCon();
+			
+			String selectMovieCnt="";
 			
 		}finally {
 		db.dbClose(rs, patmt, con);
