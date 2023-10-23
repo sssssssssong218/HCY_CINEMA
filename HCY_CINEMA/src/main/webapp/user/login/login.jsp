@@ -69,7 +69,7 @@
     	var message = '<%= (String)session.getAttribute("msg") %>';
         if (message !== 'null' && message !== '') {
             alert(message);
-            alert("그건 좀;;");
+            <% session.removeAttribute("msg"); %>
         }//if
     	
         $('.nav_menu > li > h2 > a').on({
@@ -361,7 +361,7 @@
 <!-- 실컨텐츠 끝 --> 
 
 <!-- LogIn -->
-<form name="loginform" id="loginform" method="post" action="http://localhost/HCY_CINEMA/user/home/checkUser.jsp" novalidate="novalidate">
+<form name="loginform" id="loginform" method="post" action="http://localhost/HCY_CINEMA/user/home/checkUser.jsp">
 	<input type="hidden" name="id" id="id">
 	<input type="hidden" name="password" id="password">
     <input type="hidden" name="id_save" id="id_save">

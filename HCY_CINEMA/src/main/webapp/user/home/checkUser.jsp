@@ -39,6 +39,7 @@
         	 
          	session.setAttribute("msg", "로그인 정보가 맞지 않습니다.");
         	 response.sendRedirect(request.getParameter("returnURL"));
+        	 System.out.print("너냐");
         	 return;
          }//if
          	session.setAttribute("login", true);
