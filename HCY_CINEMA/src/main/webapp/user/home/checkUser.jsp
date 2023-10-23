@@ -21,7 +21,6 @@
     $(function(){
 
         })
-        
         <%
          session.setAttribute("login", false);
          
@@ -33,18 +32,20 @@
         	 return;}
          MemberVO mVO = new MemberVO();
    		 DataEncrypt de = new DataEncrypt("1120020301311126");
-         mVO.setId(de.encryption(id));
+         mVO.setId(id);
          mVO.setPassword(de.encryption(pass));
          mVO = LoginDAO.getInstance().selectLogin(mVO);
          if(mVO==null){
-        	 %>
-        	 alert("로그인 정보가 잘못되었습니다.")
-        	 <%
+        	 
+         	session.setAttribute("msg", "로그인 정보가 맞지 않습니다.");
         	 response.sendRedirect(request.getParameter("returnURL"));
+        	 return;
          }//if
          	session.setAttribute("login", true);
+         System.out.print(mVO);
         	response.sendRedirect("http://192.168.10.145/HCY_CINEMA/user/home/main.jsp");
  		 %>
+        
 </script>
 <head>
 <meta charset="UTF-8">

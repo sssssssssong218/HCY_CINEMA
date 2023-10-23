@@ -30,7 +30,7 @@ public MemberVO selectLogin(MemberVO mVO) throws SQLException {
 	try {
 		con = db.getCon();
 		
-		String selectLogin = "select, ID, MNAME, BIRTH, TEL, EMAIL, JOINDATE FROM MEMBER WHERE id=? and PASSWORD =?";
+		String selectLogin = "select ID, MNAME, BIRTH, TEL, EMAIL, JOINDATE FROM MEMBER WHERE id=? and PASSWORD =?";
 		
 		pstmt = con.prepareStatement(selectLogin);
 		pstmt.setString(1, mVO.getId());
@@ -44,6 +44,7 @@ public MemberVO selectLogin(MemberVO mVO) throws SQLException {
 			mVO.setTel(rs.getString("tel"));
 			mVO.setEmail(rs.getString("email"));
 			mVO.setJoindate(rs.getDate("joindate"));
+			System.out.println("도라이?");
 			
 			return mVO;
 		}//if

@@ -4,6 +4,7 @@
          <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <jsp:include page="../include/loginHeader.jsp"></jsp:include>
@@ -65,10 +66,21 @@
 			
 <script type="text/javascript">
     $(document).ready(function () {
+    	var message = '<%= (String)session.getAttribute("msg") %>';
+        if (message !== 'null' && message !== '') {
+            alert(message);
+            alert("그건 좀;;");
+        }//if
+    	
         $('.nav_menu > li > h2 > a').on({
             mouseenter: function (e) {
                 var target = e.target;
-                $(target).parents('.nav_menu').find('.nav_overMenu').slideDown(function () {
+                $(target).parents('.nav_menu').
+                
+                
+                
+                
+                find('.nav_overMenu').slideDown(function () {
                     $('.nav').addClass('active');
                 });
             },
@@ -252,6 +264,7 @@
     function setClickLog(title) {
         // eval("try{trk_clickTrace('EVT', '" + title + "')}catch(_e){}");
     }
+    
 
 </script>
 <div class="nav" style="left: 0px;">
