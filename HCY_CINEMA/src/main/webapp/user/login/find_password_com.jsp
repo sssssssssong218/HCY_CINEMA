@@ -74,16 +74,6 @@
     
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
-  $(function(){
-	  <%String check = request.getParameter("check"); %>
-	  if(<%="n".equals(check) %>){
-		  $("#txtUserId").val("<%=request.getParameter("id") %>")
-		  $("#txtUserTel").val("<%=request.getParameter("tel") %>")
-		  $("#txtUserEmail").val("<%=request.getParameter("email") %>")
-		  alert("해당 정보로 등록된 회원이 존재하지 않습니다.\n정보를 확인해 주십시오!")
-	  }//if
-  })//ready
-    
         //<![CDATA[
         _TRK_CP = "/회원서비스/로그인/비밀번호 변경";
 
@@ -234,36 +224,21 @@
                     </li>
                 </ul>
 
-                <h3>비밀번호 찾기</h3>
-                <p>
-                    비밀번호가 기억나지 않으세요? 원하시는 방법을 선택하여 비밀번호를 재설정하실 수 있습니다. <br>
-                    본인인증 시 제공되는 정보는 해당 인증기관에서 직접 수집 하며, 인증 이외의 용도로 이용 또는 저장하지 않습니다.    
-                </p>
+                <h3>비밀번호 재설정</h3>
 
         <!-- ******************************************** 수정된 부분 시작! ******************************************** -->
                         <div class="cols-enterform find_0826 find_pw_id">
                             <div class="col-confirm">
                                 <h4>비밀번호 재설정</h4>
                                 <div class="box-confirm">
-                                   <h5>비밀번호를 재설정할 아이디를 입력해주세요.</h5>
+                                   <h5><%=request.getParameter("id") %>님의 비밀번호 변경에 성공했습니다.<br> 다시 로그인 해주세요!</h5>
                                    <form id="form1" name="form1" method="post" novalidate="novalidate" action="">
-                                       <label for="txtUserId">아이디</label>
-                                       <input type="text" id="txtUserId" name="txtUserId"><br><br>
-                                       <label for="txtUserTel" style="margin-right: 8px">전화번호</label>
-                                       <input type="text" id="txtUserTel" name="txtUserTel"><br><br>
-                                       <label for="txtUserEmail">이메일</label>
-                                       <input type="text" id="txtUserEmail" name="txtUserEmail"><br><br>
-                                       <input type="button" id="btnSearch" class="btn btn-danger" value="조회" style="width: 70px"><br><br>
+                                       <a href="http://192.168.10.145/HCY_CINEMA/user/home/main.jsp"><img src="http://192.168.10.145/HCY_CINEMA/common/images/logo_main.png"></a>
                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-	                 <form action="http://192.168.10.146/HCY_CINEMA/user/login/check_mem.jsp" id="hidFrm" name="hidFrm"  method="post">
-	                 	<input type="hidden" id="id" name="id">
-	                 	<input type="hidden" id="tel" name="tel">
-	                 	<input type="hidden" id="email" name="email">
-	                 </form>
    <!-- ******************************************** 수정된 부분 끝! ******************************************** -->
     </div>    
     <div class="sect-loginguide">
@@ -288,28 +263,40 @@
 	
 	$(function(){
 		$("#btnSearch").click(function(){
-			if($("#txtUserId").val() == "" || $("#txtUserTel").val() == "" || $("#txtUserEmail").val() == ""){
-				alert("아이디, 전화번호, 이메일을 모두 입력해 주시기 바랍니다.")
-			}//if
-			if(!/^\d{3}-\d{4}-\d{4}$/.test($("#txtUserTel").val())){
-				alert("전화번호의 형식이 올바르지 않습니다.\n전화번호의 형식은 000-0000-0000 입니다")
-			}//if
-			if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($("#txtUserEmail").val())){
-				alert("이메일의 형식이 올바르지 않습니다.\n이메일의 형식은 XXXX@XXX.XXX")
-			}//if
 			
-			$("#id").val($("#txtUserId").val())
-			$("#tel").val($("#txtUserTel").val())
-			$("#email").val($("#txtUserEmail").val())
-			
-			$("#hidFrm").submit();
-			
-		})//btnSearch
-		
-		
+		})
 	})//ready
 	
 
+    (function ($) {
+        $(function () {
+
+            var $frm = $('#form1');
+
+            $frm.validate({
+                submitHandler: function (form) {
+
+                    var strUserID = $.trim($("#txtUserId").val());
+                    
+                    if (strUserID.length == 0) {
+                        alert("아이디를 입력해 주세요.");
+                        return false;
+                    }
+
+                    var $AccountFrm = $('#frmFindAccount');
+
+                    $AccountFrm.find('#userid').val(app.crypto.AESEncryptToBase64($frm.find('#txtUserId').val()));
+
+                    $AccountFrm.submit();
+                    return false;
+                }
+            });
+
+
+
+
+        });
+    })(jQuery);
 //]]>
 </script>
 

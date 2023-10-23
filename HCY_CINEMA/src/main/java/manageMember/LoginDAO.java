@@ -60,15 +60,60 @@ public String selectFindID(MemberVO mVO) {
 	return result;
 }//selectFindID
 
-public String selectFindPW(MemberVO mVO) {
-	String result = "";
+public boolean selectFindPW(MemberVO mVO) throws SQLException {
+	boolean flag = false;
+DBConnection db = DBConnection.getInstance();
 	
-	return result;
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		con = db.getCon();
+		
+		String updatePW = "SELECT ID FROM MEMBER WHERE ID = ? and TEL = ? and EMAIL = ?";
+		
+		pstmt = con.prepareStatement(updatePW);
+		
+		pstmt.setString(1, mVO.getId());
+		pstmt.setString(2, mVO.getTel());
+		pstmt.setString(3, mVO.getEmail());
+		
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			flag=true;
+		}//if
+	}finally {
+		db.dbClose(rs, pstmt, con);
+	}//finally
+	return flag;
 }//selectFindPW
 
-public boolean updatePW(MemberVO mVO) {
+public boolean updatePW(MemberVO mVO) throws SQLException {
 	boolean flag = false;
 	
+	DBConnection db = DBConnection.getInstance();
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	
+	try {
+		con = db.getCon();
+		
+		String updatePW = "UPDATE MEMBER set PASSWORD = ? where id = ?";
+		
+		pstmt = con.prepareStatement(updatePW);
+		
+		pstmt.setString(1, mVO.getPassword());
+		pstmt.setString(2, mVO.getId());
+		
+		if(pstmt.executeUpdate()==1) {
+			flag=true;
+		}//if
+	}finally {
+		db.dbClose(null, pstmt, con);
+	}//finally
 	return flag;
 }//updatePW
 

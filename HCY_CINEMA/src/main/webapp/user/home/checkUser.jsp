@@ -1,3 +1,4 @@
+<%@page import="encryption.Encryption"%>
 <%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
 <%@page import="manageMember.MemberVO"%>
@@ -32,10 +33,10 @@
          
          MemberVO mVO = new MemberVO();
          
-   		 DataEncrypt de = new DataEncrypt("1120020301311126");
+   		 Encryption ec = Encryption.getInstance();
    		 
          mVO.setId(id);
-         mVO.setPassword(de.encryption(pass));
+         mVO.setPassword(ec.directEncryption(pass));
          
          mVO = LoginDAO.getInstance().selectLogin(mVO);
          

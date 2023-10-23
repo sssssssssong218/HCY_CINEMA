@@ -4,10 +4,11 @@
          <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <jsp:include page="../include/loginHeader.jsp"></jsp:include>
+
 
 <body class="" style="" cz-shortcut-listen="true">
 
@@ -25,274 +26,6 @@
             <!-- 서비스 메뉴 --> 
             
 <jsp:include page="../include/headerContents.jsp"/>
-
-<script>
-    //GA Analytics TopMenu 영역 LOG
-    //빨강 CGV클릭
-    $('.header_content > .contents > h1 > a').on({
-        click: function (e) {
-            gaEventLog('PC_GNB', '홈', '');
-        }
-    });
-    //서비스 메뉴
-    $('.header_content > .contents > ul > li > a').on({
-        click: function (e) {
-            gaEventLog('PC_GNB', '서비스메뉴_'+this.text, '');
-        }
-    });
-
-   
-
-</script>
-            <!-- 서비스 메뉴 -->
-           
-			<!-- 서브 메뉴 -->
-			
-<script type="text/javascript">
-    $(document).ready(function () {
-    	
-    	<%String msg=request.getParameter("msgFlag"); 
-    	%>
-    	
-        if ( <%= "true".equals(msg) %>) {
-            alert("로그인 정보가 일치하지 않습니다.");
-        }//if
-    	
-        $('.nav_menu > li > h2 > a').on({
-            mouseenter: function (e) {
-                var target = e.target;
-                $(target).parents('.nav_menu').
-                
-                
-                find('.nav_overMenu').slideDown(function () {
-                    $('.nav').addClass('active');
-                });
-            },
-            click: function (e) {
-                var target = e.target;
-                if (!$('.nav').hasClass('active')) {
-                    $(this).trigger('mouseenter');
-                } else {
-                    $('.nav').trigger('mouseleave');
-                }
-            }
-        });
-
-        /********************************************************
-        //서브메뉴 구글 GA Analytics 로그 처리 - 2022.01.12 myilsan
-        ********************************************************/
-        //cgv화이트 메뉴클릭
-        $('.nav > .contents > h1 > a').on({
-             click: function (e) {
-                 gaEventLog('PC_GNB', '홈', '');
-            }
-        });
-
-        //주메뉴 클릭
-        $('.nav_menu > li > h2 > a').on({
-            click: function (e) {
-                gaEventLog('PC_GNB', '주메뉴_' + this.text, '');
-            }
-        });
-
-        //주메뉴 하위메뉴 클릭
-        $('.nav_overMenu > dd > h3 > a').on({
-            click: function (e) {
-                var target = e.target;
-                var parText = $(target).parents('.nav_overMenu').find('dt')[0].innerText;
-                gaEventLog('PC_GNB', parText + '_' + this.text, '');
-            }
-        });
-
-        //하위메뉴 최상위 클릭
-        $(".nav_overMenu > dt > h2 > a").on({
-            click: function (e) {
-                gaEventLog('PC_GNB',this.text + '_' + this.text, '');
-            }
-        });
-
-        //------------------end----------------------- [@,.o]>
-
-        $('.nav').on({
-            mouseleave: function (e) {
-                $(this).find('.nav_overMenu').slideUp(200, function () {
-                    $('.nav').removeClass('active');
-                });
-            }
-        });
-
-        $('.totalSearch_wrap input[type=text]').on({
-            focusin: function () {
-                $('.totalSearch_wrap').addClass("active");
-            }
-        });
-
-        $('.btn_totalSearchAutocomplete_close').on({
-            click: function () {
-                $('.totalSearch_wrap').removeClass("active");
-            },
-            focusout: function (e) {
-                //     $('.totalSearch_wrap').removeClass("active");
-
-            }
-        });
-
-        $(this).on({
-            scroll: function (e) {
-                /* S GNB fixed */
-                var headerOffsetT = $('.header').offset().top;
-                var headerOuterH = $('.header').outerHeight(true);
-                var fixedHeaderPosY = headerOffsetT + headerOuterH;
-                var scrollT = $(this).scrollTop();
-                var scrollL = $(this).scrollLeft();
-
-                if (scrollT >= fixedHeaderPosY) {
-                    $('.nav').addClass('fixed');
-                    $('.fixedBtn_wrap').addClass('topBtn');
-                } else {
-                    $('.nav').removeClass('fixed');
-                    $('.fixedBtn_wrap').removeClass('topBtn');
-                }
-
-                /* S > GNB fixed 좌우 스크롤
-                Description
-                - GNB가 fixed 되었을때 좌우 스크롤 되게 처리
-                */
-                if ($('.nav').hasClass('fixed')) {
-                    $('.nav').css({ 'left': -1 * scrollL })
-                } else {
-                    $('.nav').css({ 'left': 0 })
-                }
-                /* E > GNB fixed 좌우 스크롤 */
-                /* S GNB fixed */
-            }
-        });
-
-        $('.btn_gotoTop').on({
-            click: function () {
-                $('html, body').stop().animate({
-                    scrollTop: '0'
-                }, 400);
-            }
-        });
-        
-        $('#loginBtn').on('click', function () {
-            if ($("#txtUserId").val() == "" || $("#txtPassword").val() == "") {
-                alert("아이디와 비밀번호를 모두 입력해주세요!");
-                return
-            }//if
-            $("#id").val($("#txtUserId").val());
-            $("#password").val($("#txtPassword").val());
-            
-            $("#loginform").submit()
-        });
-
-        //통합검색 상단 검색 버튼
-        $('#btn_header_search').on('click', function () {
-
-           
-            if ($('#header_ad_keyword').val() != "")
-                goSearch($('#header_ad_keyword'));      //광고
-            else
-                goSearch($('#header_keyword'));
-
-            
-            return false;
-        });
-
-        //통합검색 검색어 입력창
-        $('#header_keyword').keyup(function (e) {
-            if (e.keyCode == 13) goSearch($('#header_keyword'));
-        });
-
-         //검색 입력창 클릭 시 광고값 reset
-        $('#header_keyword').on('click', function () {
-            $(this).attr('placeholder', '');
-            $('#header_ad_keyword').val('');
-        });
-
-    });
-
-    //통합검색
-    function goSearch($objKeyword) {
-
-        if ($objKeyword.val() == "") {
-            alert("검색어를 입력해 주세요");
-            $objKeyword.focus();
-            return false;
-        }
-
-        //GA 검색로그
-        gaEventLog('PC_GNB', '검색', $objKeyword.val());
-        location = "/search/?query=" + escape($objKeyword.val());
-    }
-
-   
-
-    //상단 키워드 광고 (S)
-    function AdSearchExt(txt, SearchText) {
-        $('#header_keyword').attr('placeholder', txt);
-        $('#header_ad_keyword').val(SearchText);
-    }
-
-    function hdIcoSet(left, sh) { }
-    //상단 키워드 광고 (E)
-
-    //상단광고닫기
-    function hideCgvTopAd() {
-        $(".cgv-ad-wrap").hide();
-        $('#wrap_main_notice').parent('div').css('top', 280);
-    }
-
-    //비즈스프링 클릭로그
-    function setClickLog(title) {
-        // eval("try{trk_clickTrace('EVT', '" + title + "')}catch(_e){}");
-    }
-    
-
-</script>
-<div class="nav" style="left: 0px;">
-    <div class="contents">
-        <h1><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1"><img src="http://192.168.10.145/HCY_CINEMA/common/images/logo_main_y.png" alt="CGV"></a></h1>
-        <ul class="nav_menu">
-            <li>
-                <h2><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp">영화</a></h2>
-                <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1">영화</a></h2></dt>
-                    <dd><h3><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp">무비차트</a></h3></dd>
-                </dl>
-            </li>
-            <li>
-                <h2><a href="http://192.168.10.145/HCY_CINEMA/user/movieSchedule/theater.jsp">극장</a></h2>
-                <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="http://192.168.10.145/HCY_CINEMA/user/movieSchedule/theater.jsp" tabindex="-1">극장</a></h2></dt>
-                    <dd><h3><a href="http://192.168.10.145/HCY_CINEMA/user/movieSchedule/theater.jsp">HCY 극장</a></h3></dd>
-                    <dd><h3><a href="http://192.168.10.145/HCY_CINEMA/user/home/special.jsp">특별관</a></h3></dd>
-                </dl>
-            </li>
-            <li>
-                <h2><a href="http://192.168.10.145/HCY_CINEMA/user/ticketing/mainTicketing.jsp"><strong>예매</strong></a></h2>
-                <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="http://192.168.10.145/HCY_CINEMA/user/ticketing/mainTicketing.jsp" tabindex="-1">예매</a></h2></dt>
-                    <dd><h3><a href="http://192.168.10.145/HCY_CINEMA/user/ticketing/mainTicketing.jsp">빠른예매</a></h3></dd>
-                    <dd><h3><a href="http://192.168.10.145/HCY_CINEMA/user/movieSchedule/ticketingSchedule.jsp">상영스케줄</a></h3></dd>
-                </dl>
-            </li>
-            <li>
-            </li>
-        </ul>
-        <div class="totalSearch_wrap">
-            <label for="totalSearch">
-                <input type="text" id="header_keyword" value="">
-                <input type="hidden" id="header_ad_keyword" name="header_ad_keyword">
-            </label>
-            <button type="button" class="btn_totalSearch" id="btn_header_search">검색</button>
-        </div>
-    </div>
-</div>
-            <!-- 서브 메뉴 -->			
-	</div>
-	<!-- E Header -->
 
 	<!-- Contaniner -->
 	<div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
@@ -331,11 +64,10 @@
                 </div>
                 <div class="save-id"> <input type="checkbox" id="loginSet"><label for="save_id">아이디 저장</label></div>
 
-              
-                <input type="button" id="loginBtn" name="loginBtn" value="로그인"/><span>로그인</span>
+                <input type="button" id="loginBtn" name="loginBtn" value="로그인" class="btn btn-danger" style="width: 215px;"/>
                 <div class="login-option">
-                    <a href="/user/login/find-account.aspx">아이디 찾기</a>
-                    <a href="/user/login/find-pw.aspx?act=pw">비밀번호 찾기</a>
+                    <a href="http://192.168.10.145/HCY_CINEMA/user/login/find_password.jsp">아이디 찾기</a>
+                    <a href="http://192.168.10.145/HCY_CINEMA/user/login/find_password.jsp">비밀번호 찾기</a>
                 </div>
             </fieldset>
             </form>  
@@ -349,7 +81,7 @@
 	<input type="hidden" name="id" id="id">
 	<input type="hidden" name="password" id="password">
     <input type="hidden" name="id_save" id="id_save">
-	<input type="hidden" name="returnURL" value="http://192.168.10.145/HCY_CINEMA/user/login/login.jsp">
+	<input type="hidden" name="returnURL" value="http://192.168.10.146/HCY_CINEMA/user/login/login.jsp">
 </form>
 <!-- //LogIn -->
 
@@ -357,7 +89,24 @@
 <script type="text/javascript">
 //<![CDATA[
 	
-	
+	$(function(){
+		<%String msg=request.getParameter("msgFlag"); 
+    	%>
+    	
+        if ( <%= "true".equals(msg) %>) {
+            alert("로그인 정보가 일치하지 않습니다.");
+        }//if
+        
+        $("#loginBtn").click(function(){
+        	 $('#id').val($('#txtUserId').val());
+             $('#password').val($('#txtPassword').val());
+        	if($('#id').val()=="" || $('#password').val() == ""){
+				alert("아이디나 비밀번호를 입력해주세요!")					
+                return false;
+            	}//if
+            	$("#loginform").submit();
+        })//loginBtn
+	})//ready
 	
 	
     (function ($) {
