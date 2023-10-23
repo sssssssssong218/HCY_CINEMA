@@ -17,10 +17,8 @@
 <style>
 
 </style>
-<script type="text/javascript">
-    $(function(){
 
-        })
+
         <%
          session.setAttribute("login", false);
          
@@ -29,25 +27,33 @@
          String pass= request.getParameter("password");
          if(id == null || pass == null){
         	 response.sendRedirect("http://192.168.10.145/HCY_CINEMA/common/images/police.jpg");
-        	 return;}
+        	 return;
+        }
+         
          MemberVO mVO = new MemberVO();
+         
    		 DataEncrypt de = new DataEncrypt("1120020301311126");
+   		 
          mVO.setId(id);
          mVO.setPassword(de.encryption(pass));
+         
          mVO = LoginDAO.getInstance().selectLogin(mVO);
-         if(mVO==null){
+         
+         if(mVO == null){
         	 
-         	session.setAttribute("msg", "로그인 정보가 맞지 않습니다.");
-        	 response.sendRedirect(request.getParameter("returnURL"));
-        	 System.out.print("너냐");
+        	 %> 
+        	 <script type="text/javascript">
+        	    $(function(){
+        		 location.href = "<%=request.getParameter("returnURL") %>?msgFlag=true";
+                })
+        	 </script>        	 
+			<% 
         	 return;
          }//if
          	session.setAttribute("login", true);
-         System.out.print(mVO);
         	response.sendRedirect("http://192.168.10.145/HCY_CINEMA/user/home/main.jsp");
  		 %>
         
-</script>
 <head>
 <meta charset="UTF-8">
 </head>
