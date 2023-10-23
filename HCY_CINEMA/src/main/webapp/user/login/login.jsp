@@ -68,6 +68,7 @@
     $(document).ready(function () {
     	alert("밍")
     	var message = '<%= (String)session.getAttribute("msg") %>';
+    	alert((String)session.getAttribute("msg"))
         if (message !== 'null' && message !== '') {
             alert(message);
             <% session.removeAttribute("msg"); %>
