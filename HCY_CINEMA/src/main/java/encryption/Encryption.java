@@ -50,4 +50,11 @@ public class Encryption {
 		return result;
 	}// encryption
 	
+	public static void main(String[] args) {
+		try {
+			System.out.println(Encryption.getInstance().directEncryption("test"));
+		} catch (UnsupportedEncodingException | GeneralSecurityException e) {
+			e.printStackTrace();
+		}
+	}
 }// class

@@ -24,23 +24,7 @@
 	<div class="header">			
             <!-- 서비스 메뉴 --> 
             
-<div class="header_content">
-    <div class="contents">
-        <h1 onclick=""><a href="http://192.168.10.145/HCY_CINEMA/user/home/main.jsp"><img src="http://192.168.10.145/HCY_CINEMA/common/images/logo_main.png" alt="HCY_CHINEMA"></a></h1>
-        <ul class="memberInfo_wrap">
-        <c:set var="login" value="로그아웃"/>
-        <c:if test="${sessionScope.login eq false}">
-        <c:set var="login" value="로그인"/>
-            </c:if>
-        <li><a href="http://192.168.10.145/HCY_CINEMA/user/login/login.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png" alt="${login}"><span><c:out value="${login}"/></span></a></li>
-        <c:if test="${sessionScope.login eq false}">
-            <li><a href="http://192.168.10.145/HCY_CINEMA/user/login/join.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
-            </c:if>
-            <li><a href="http://192.168.10.145/HCY_CINEMA/user/mypage/my_ticket.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png" alt="MY PAGE"><span>MY PAGE</span></a></li>
-            <li><a href="http://192.168.10.145/HCY_CINEMA/user/board/notice.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png" alt="고객센터"><span>고객센터</span></a></li>
-        </ul>
-    </div>
-</div>
+<jsp:include page="../include/headerContents.jsp"/>
 
 <script>
     //GA Analytics TopMenu 영역 LOG
@@ -66,18 +50,18 @@
 			
 <script type="text/javascript">
     $(document).ready(function () {
-    	var message = '<%= (String)session.getAttribute("msg") %>';
-        if (message !== 'null' && message !== '') {
-            alert(message);
-            alert("그건 좀;;");
+    	
+    	<%String msg=request.getParameter("msgFlag"); 
+    	%>
+    	
+        if ( <%= "true".equals(msg) %>) {
+            alert("로그인 정보가 일치하지 않습니다.");
         }//if
     	
         $('.nav_menu > li > h2 > a').on({
             mouseenter: function (e) {
                 var target = e.target;
                 $(target).parents('.nav_menu').
-                
-                
                 
                 
                 find('.nav_overMenu').slideDown(function () {
@@ -361,7 +345,7 @@
 <!-- 실컨텐츠 끝 --> 
 
 <!-- LogIn -->
-<form name="loginform" id="loginform" method="post" action="http://localhost/HCY_CINEMA/user/home/checkUser.jsp" novalidate="novalidate">
+<form name="loginform" id="loginform" method="post" action="http://localhost/HCY_CINEMA/user/home/checkUser.jsp">
 	<input type="hidden" name="id" id="id">
 	<input type="hidden" name="password" id="password">
     <input type="hidden" name="id_save" id="id_save">
