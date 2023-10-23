@@ -158,10 +158,10 @@ to {
 							</ul></li>
 						<li><a href="widgets.html"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
 						</a></li>
-						<li class="has-sub"><a href="javascript:;"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
+						<li class="has-sub"><a href="../manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
 								<span>회원관리</span>
 						</a></li>
-						<li class="has-sub"><a href="javascript:;"> <img class="fa fa-file" src="../../common/images/board_icon.png">
+						<li class="has-sub"><a href="../manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
 								<span>게시판 관리</span>
 						</a></li>
 				</ul></div>
@@ -219,7 +219,7 @@ to {
     <a class="nav-link active" aria-current="page" href="#">1관</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">2관</a>
+    <a class="nav-link" href="../manageScreen/manage_screen.jsp">2관</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">3관</a>
@@ -229,7 +229,7 @@ to {
   </li>
 </ul>
 <div>
-	<h2>&nbsp;&nbsp;상영스케쥴</h2>
+	<h2>&nbsp;&nbsp;상영스케줄</h2>
 	<h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;날짜 선택</h2>
 
    &nbsp;&nbsp;&nbsp;
@@ -247,11 +247,11 @@ to {
     <br>
 </div>									
     <div style="margin-left:20px" id="schedule">
-    <button type="button" class="btn btn-dark">10:00<br>스케쥴 없음</button>
-    <button type="button" class="btn btn-dark">13:00<br>30일</button>
-    <button type="button" class="btn btn-dark">16:00<br>크리에이터</button>
-    <button type="button" class="btn btn-dark">19:00<br>스케쥴 없음</button>
-    <button type="button" class="btn btn-dark">22:00<br>심야영화</button>
+    <button type="button" class="btn btn-dark" name="스케줄 없음">10:00<br>스케줄 없음</button>
+    <button type="button" class="btn btn-dark" name="30일">13:00<br>30일</button>
+    <button type="button" class="btn btn-dark" name="크리에이터">16:00<br>크리에이터</button>
+    <button type="button" class="btn btn-dark" name="스케줄 없음">19:00<br>스케줄 없음</button>
+    <button type="button" class="btn btn-dark" name="심야영화">22:00<br>심야영화</button>
 	</div>	
 	
 	<div id="no_shcedule" style="margin-left:20px">
@@ -268,11 +268,12 @@ to {
 	    
 	     <label for="exampleFormControlTextarea1" class="form-label"></label>
   		<br><textarea class="form-control" id="exampleFormControlTextarea1" rows="10" cols="50"></textarea><br>
-		<button type="button" class="btn btn-primary">저장</button>
+		<button type="button" class="btn btn-primary" >저장</button>
 		<button type="button" class="btn btn-danger">취소</button>
 		<br>
 		
-		<table class="table" style="width:400px">
+		
+		<table class="table" style="width:400px; text-align:center">
 			  <thead>
 			    <tr>
 			      <th scope="col">좌석</th>
@@ -280,21 +281,27 @@ to {
 			      <th scope="col">예매 상태</th>
 			    </tr>
 			  </thead>
-			  <tbody>
+			  <tbody style="text-align:center; ">
 			    <tr>
 			      <td>A1</td>
 			      <td>Otto</td>
-			      <td>예매</td>
+			      <td>예매
+			      <button type="button" class="btn btn-info" style="float:right">예매취소</button>
+			      </td>
 			    </tr>
 			    <tr>
 			      <td>B2</td>
 			      <td>Thornton</td>
-			      <td>미예매</td>
+			      <td>미예매
+			      <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+			      </td>
 			    </tr>
 			    <tr>
 			      <td>M2</td>
 			      <td>the Bird</td>
-			      <td>예매</td>
+			      <td>예매
+			      <button type="button" class="btn btn-info" style="float:right">예매취소</button>
+			      </td>
 			    </tr>
 			  </tbody>
 		</table>
