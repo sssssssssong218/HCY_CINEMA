@@ -143,8 +143,34 @@ public boolean updatePW(MemberVO mVO) throws SQLException {
 	return flag;
 }//updatePW
 
-public MemberVO selectCheckMember(MemberVO mVO) {
-	return mVO;
+public boolean selectCheckMember(MemberVO mVO) throws SQLException {
+	boolean flag = false;
+	
+	DBConnection db = DBConnection.getInstance();
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		con = db.getCon();
+		
+		String selectCheckMember = "SELECT ID FROM MEMBER WHERE ID = ? and TEL = ? and EMAIL = ?";
+		
+		pstmt = con.prepareStatement(selectCheckMember);
+		
+		pstmt.setString(1, mVO.getMname());
+		pstmt.setString(2, mVO.getBirth());
+		pstmt.setString(3, mVO.getTel());
+		
+		rs = pstmt.executeQuery();
+		
+		flag = rs.next();
+	}finally {
+		db.dbClose(rs, pstmt, con);
+	}//finally
+	
+	return flag;
 }//selectCheckID
 
 public boolean selectCheckID(String id) {

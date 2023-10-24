@@ -82,7 +82,7 @@
                 $("#btnMovie").addClass('active');
                 $("#btnReserMovie").removeClass('active');
             	/* 전체보기 버튼 */
-                $("#btn_allView_Movie").attr("href", "http://192.168.10.145/HCY_CHINEMA/movieInfo/movieChart");
+                $("#btn_allView_Movie").attr("href", "http://localhost/HCY_CHINEMA/movieInfo/movieChart");
             });
 			
         	/* 상영예정작 보기 */
@@ -94,7 +94,7 @@
                 $("#btnReserMovie").addClass('active');
                 $("#btnMovie").removeClass('active');
             	/* 전체보기 버튼 */
-                $("#btn_allView_Movie").attr("href", "http://192.168.10.145/HCY_CHINEMA/movieInfo/movieChart_Reser");
+                $("#btn_allView_Movie").attr("href", "http://localhost/HCY_CHINEMA/movieInfo/movieChart_Reser");
             });
 
         	/* 무비차트 슬와이퍼 */
@@ -390,14 +390,14 @@
                     <div class="video_wrap">
                         
                     <video autoplay="" muted="">
-                        <source src="https://192.168.10.145/HCY_CINEMA/common/trailer/${ mtVO.trailerName }" type="video/mp4">
+                        <source src="https://localhost/HCY_CINEMA/common/trailer/${ mtVO.trailerName }" type="video/mp4">
                         이 브라우저는 Video 태그를 지원하지 않습니다. (Your browser does not support the video tag.)
                     </video>
                     
                         <strong id="ctl00_PlaceHolderContent_AD_MOVIE_NM" class="movieSelection_title"><c:out value="${ mtVO.movieName }"/></strong>
                         <span id="ctl00_PlaceHolderContent_AD_DESCRIPTION_NM" class="movieSelection_txt"><c:out value="${ mtVO.adMsg }"/></span>
                         <div class="movieSelection_video_controller_wrap">
-                            <a href="https://192.168.10.145/HCY_CINEMA/user/movie.jsp${not empty mtVO ?'?mNum=mtVO.movieCode' : ''}" id="ctl00_PlaceHolderContent_AD_CLIP_DETAIL_URL" class="btn_movieSelection_detailView">상세보기</a>
+                            <a href="https://localhost/HCY_CINEMA/user/movie.jsp${not empty mtVO ?'?mNum=mtVO.movieCode' : ''}" id="ctl00_PlaceHolderContent_AD_CLIP_DETAIL_URL" class="btn_movieSelection_detailView">상세보기</a>
                             
                             <a href="#none" id="ctl00_PlaceHolderContent_playStop" class="btn_movieSelection_playStop">Stop</a>
                             <a href="#none" id="ctl00_PlaceHolderContent_soundOnOff" class="btn_movieSelection_soundOnOff">Sound On</a>
@@ -2050,7 +2050,7 @@
     <!-- S 예매하기 및 TOP Fixed 버튼 -->
     <div class="fixedBtn_wrap">
      
-        <a href="http://192.168.10.145/HCY_CINEMA/user/ticketing/mainTicketing.jsp" class="btn_fixedTicketing">예매하기</a>
+        <a href="http://localhost/HCY_CINEMA/user/ticketing/mainTicketing.jsp" class="btn_fixedTicketing">예매하기</a>
         
         <a href="#none" class="btn_gotoTop"><img src="https://img.cgv.co.kr/R2014/images/common/btn/gotoTop.png" alt="최상단으로 이동"></a>
     </div>

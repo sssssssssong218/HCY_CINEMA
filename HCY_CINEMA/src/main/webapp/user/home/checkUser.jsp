@@ -27,7 +27,7 @@
          String id= request.getParameter("id");
          String pass= request.getParameter("password");
          if(id == null || pass == null){
-        	 response.sendRedirect("http://192.168.10.145/HCY_CINEMA/common/images/police.jpg");
+        	 response.sendRedirect("http://localhost/HCY_CINEMA/common/images/police.jpg");
         	 return;
         }
          
@@ -52,7 +52,7 @@
         	 return;
          }//if
          	session.setAttribute("login", true);
-        	response.sendRedirect("http://192.168.10.145/HCY_CINEMA/user/home/main.jsp");
+        	response.sendRedirect("http://localhost/HCY_CINEMA/user/home/main.jsp");
  		 %>
         
 <head>

@@ -233,7 +233,7 @@
                                 <div class="box-confirm">
                                    <h5>회원님의 아이디는 <%=request.getParameter("id") %>입니다!<br> 저희 HCY를 이용해주셔서 감사합니다.</h5>
                                    <form id="form1" name="form1" method="post" novalidate="novalidate" action="">
-                                       <a href="http://192.168.10.145/HCY_CINEMA/user/home/main.jsp"><img src="http://192.168.10.145/HCY_CINEMA/common/images/logo_main.png"></a>
+                                       <a href="http://localhost/HCY_CINEMA/user/home/main.jsp"><img src="http://localhost/HCY_CINEMA/common/images/logo_main.png"></a>
                                    </form>
                                 </div>
                             </div>

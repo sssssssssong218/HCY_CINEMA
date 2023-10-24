@@ -9,10 +9,10 @@
     <iframe src="https://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/main@Bottom" width="100%" height="240" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Bottom" id="Bottom"></iframe>
 </div>
 <ul class="policy_list">
-    <li><a href="http://192.168.10.145/HCY_CINEMA/user/home/conditions.jsp">이용약관</a></li>
-    <li><a href="http://192.168.10.145/HCY_CINEMA/user/home/processingPolicy.jsp"><strong>개인정보처리방침</strong></a></li>
-    <li><a href="http://192.168.10.145/HCY_CINEMA/user/home/legalNotice.jsp">법적고지</a></li>
-    <li><a href="http://192.168.10.145/HCY_CINEMA/user/home/refuseToCollectEmail.jsp">이메일주소무단수집거부</a></li>
+    <li><a href="http://localhost/HCY_CINEMA/user/home/conditions.jsp">이용약관</a></li>
+    <li><a href="http://localhost/HCY_CINEMA/user/home/processingPolicy.jsp"><strong>개인정보처리방침</strong></a></li>
+    <li><a href="http://localhost/HCY_CINEMA/user/home/legalNotice.jsp">법적고지</a></li>
+    <li><a href="http://localhost/HCY_CINEMA/user/home/refuseToCollectEmail.jsp">이메일주소무단수집거부</a></li>
 </ul>
 <article class="company_info_wrap">
     <section class="company_info">

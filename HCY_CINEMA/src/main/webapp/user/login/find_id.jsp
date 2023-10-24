@@ -259,7 +259,7 @@
                             </div>
                         </div>
                     </div>
-	                 <form action="http://192.168.10.145/HCY_CINEMA/user/login/find_id_process.jsp" id="hidFrm" name="hidFrm"  method="post">
+	                 <form action="http://localhost/HCY_CINEMA/user/login/find_id_process.jsp" id="hidFrm" name="hidFrm"  method="post">
 	                 	<input type="hidden" id="name" name="name">
 	                 	<input type="hidden" id="birth" name="birth">
 	                 	<input type="hidden" id="tel" name="tel">

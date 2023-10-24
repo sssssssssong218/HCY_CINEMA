@@ -259,7 +259,7 @@
                             </div>
                         </div>
                     </div>
-	                 <form action="http://192.168.10.145/HCY_CINEMA/user/login/check_mem.jsp" id="hidFrm" name="hidFrm"  method="post">
+	                 <form action="http://localhost/HCY_CINEMA/user/login/check_mem.jsp" id="hidFrm" name="hidFrm"  method="post">
 	                 	<input type="hidden" id="id" name="id">
 	                 	<input type="hidden" id="tel" name="tel">
 	                 	<input type="hidden" id="email" name="email">

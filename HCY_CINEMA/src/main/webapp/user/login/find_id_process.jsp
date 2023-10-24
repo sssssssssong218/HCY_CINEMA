@@ -30,7 +30,7 @@
     	LoginDAO lDAO = LoginDAO.getInstance();
     	String id = lDAO.selectFindID(mVO);
     	if(!"".equals(id)){
-    		response.sendRedirect("http://192.168.10.145/HCY_CINEMA/user/login/find_id_com.jsp?id="+id);
+    		response.sendRedirect("http://localhost/HCY_CINEMA/user/login/find_id_com.jsp?id="+id);
     			return;
     	}//if
     	%>
@@ -45,7 +45,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<form action="http://192.168.10.145/HCY_CINEMA/user/login/find_id.jsp?check=n" id="hidFrm" name ="hidFrm" method="post">
+<form action="http://localhost/HCY_CINEMA/user/login/find_id.jsp?check=n" id="hidFrm" name ="hidFrm" method="post">
 	<input type="hidden" id="name" name="name">
 	<input type="hidden" id="birth" name="birth">
 	<input type="hidden" id="tel" name="tel">
