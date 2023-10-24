@@ -20,7 +20,7 @@
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
     <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
-    <title id="ctl00_headerTitle">회원정보 입력 &lt; 회원가입 | 영화 그 이상의 감동. HCY</title>
+    <title id="ctl00_headerTitle">비밀번호 변경 &lt; 로그인 | 영화 그 이상의 감동. CGV</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
@@ -74,17 +74,6 @@
     
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
-  $(function(){
-	  <%String check = request.getParameter("check"); %>
-	  if(<%="n".equals(check) %>){
-		  $("#txtUserName").val("<%=request.getParameter("name") %>")
-		  $("#txtUserBirth").val("<%=request.getParameter("birth") %>")
-		  $("#txtUserTel").val("<%=request.getParameter("tel") %>")
-		  alert("해당 정보로 등록된 회원이 이미 존재합니다.\n로그인을 진행해주세요!")
-		  location.href = "http://localhost/HCY_CINEMA/user/login/login.jsp";
-	  }//if
-  })//ready
-    
         //<![CDATA[
         _TRK_CP = "/회원서비스/로그인/비밀번호 변경";
 
@@ -226,37 +215,30 @@
 <!-- 실컨텐츠 시작 -->
 <div class="wrap-login">
             <div class="sect-user">
+                <ul class="tab-menu-round">
+                    <li class="on">
+                        <a href="/user/login/find-account.aspx">아이디 찾기</a>
+                    </li>
+                    <li >
+                        <a href="find_password.jsp">비밀번호 찾기</a>
+                    </li>
+                </ul>
 
-                <h3>회원가입</h3>
-                <p>
-                    회원가입 여부를 확인합니다.<br>
-                    회원가입 여부는 이름, 법정생년월일, 전화번호를 기준으로 확인합니다.  
-                </p>
+                <h3>아이디 찾기</h3>
 
         <!-- ******************************************** 수정된 부분 시작! ******************************************** -->
                         <div class="cols-enterform find_0826 find_pw_id">
                             <div class="col-confirm">
-                                <h4>회원가입 여부 확인</h4>
+                                <h4>아이디 찾기</h4>
                                 <div class="box-confirm">
-                                   <h5>회원 가입하실 고객님의 정보를 입력해주세요.</h5>
+                                   <h5>회원님의 아이디는 <%=request.getParameter("id") %>입니다!<br> 저희 HCY를 이용해주셔서 감사합니다.</h5>
                                    <form id="form1" name="form1" method="post" novalidate="novalidate" action="">
-                                       <label for="txtUserName" style="margin-right: 51px">이름</label>
-                                       <input type="text" id="txtUserName" name="txtUserName"><br><br>
-                                       <label for="txtUserBirth" style="margin-right: 8px">법정생년월일</label>
-                                       <input type="text" id="txtUserBirth" name="txtUserBirth" placeholder="ex) 19970101"><br><br>
-                                       <label for="txtUserTel" style="margin-right: 30px">전화번호</label>
-                                       <input type="text" id="txtUserTel" name="txtUserTel" placeholder="ex) 000-0000-0000"><br><br>
-                                       <input type="button" id="btnSearch" class="btn btn-danger" value="조회" style="width: 70px"><br><br>
+                                       <a href="http://localhost/HCY_CINEMA/user/home/main.jsp"><img src="http://localhost/HCY_CINEMA/common/images/logo_main.png"></a>
                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-	                 <form action="http://localhost/HCY_CINEMA/user/login/check_join.jsp" id="hidFrm" name="hidFrm"  method="post">
-	                 	<input type="hidden" id="name" name="name">
-	                 	<input type="hidden" id="birth" name="birth">
-	                 	<input type="hidden" id="tel" name="tel">
-	                 </form>
    <!-- ******************************************** 수정된 부분 끝! ******************************************** -->
     </div>    
     <div class="sect-loginguide">
@@ -279,30 +261,35 @@
 <script type="text/javascript">
 //<![CDATA[
 	
-	$(function(){
-		$("#btnSearch").click(function(){
-			if($("#txtUserName").val() == "" || $("#txtUserTel").val() == "" || $("#txtUserBirth").val() == ""){
-				alert("이름, 생년월일, 전화번호를 모두 입력해 주시기 바랍니다.")
-			}//if
-			if(!/^\d{3}-\d{4}-\d{4}$/.test($("#txtUserTel").val())){
-				alert("전화번호의 형식이 올바르지 않습니다.\n전화번호의 형식은 000-0000-0000 입니다")
-			}//if
-			if(!/^\d{8}$/.test($("#txtUserBirth").val())){
-				alert("생년월일의 형식이 올바르지 않습니다.\n생년월일은 19970101의 형식으로 작성해주세요")
-			}//if
-			
-			$("#name").val($("#txtUserName").val())
-			$("#birth").val($("#txtUserBirth").val())
-			$("#tel").val($("#txtUserTel").val())
-			
-			$("#hidFrm").submit();
-			
-		})//btnSearch
-		
-		
-	})//ready
-	
+    (function ($) {
+        $(function () {
 
+            var $frm = $('#form1');
+
+            $frm.validate({
+                submitHandler: function (form) {
+
+                    var strUserID = $.trim($("#txtUserId").val());
+                    
+                    if (strUserID.length == 0) {
+                        alert("아이디를 입력해 주세요.");
+                        return false;
+                    }
+
+                    var $AccountFrm = $('#frmFindAccount');
+
+                    $AccountFrm.find('#userid').val(app.crypto.AESEncryptToBase64($frm.find('#txtUserId').val()));
+
+                    $AccountFrm.submit();
+                    return false;
+                }
+            });
+
+
+
+
+        });
+    })(jQuery);
 //]]>
 </script>
 

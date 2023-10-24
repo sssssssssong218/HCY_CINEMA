@@ -233,7 +233,7 @@
                                 <div class="box-confirm">
                                    <h5><%=request.getParameter("id") %>님의 비밀번호 변경에 성공했습니다.<br> 다시 로그인 해주세요!</h5>
                                    <form id="form1" name="form1" method="post" novalidate="novalidate" action="">
-                                       <a href="http://192.168.10.145/HCY_CINEMA/user/home/main.jsp"><img src="http://192.168.10.145/HCY_CINEMA/common/images/logo_main.png"></a>
+                                       <a href="http://localhost/HCY_CINEMA/user/home/main.jsp"><img src="http://localhost/HCY_CINEMA/common/images/logo_main.png"></a>
                                    </form>
                                 </div>
                             </div>
@@ -261,11 +261,6 @@
 <script type="text/javascript">
 //<![CDATA[
 	
-	$(function(){
-		$("#btnSearch").click(function(){
-			
-		})
-	})//ready
 	
 
     (function ($) {

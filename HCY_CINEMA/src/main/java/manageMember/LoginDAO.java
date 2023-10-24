@@ -44,7 +44,6 @@ public MemberVO selectLogin(MemberVO mVO) throws SQLException {
 			mVO.setTel(rs.getString("tel"));
 			mVO.setEmail(rs.getString("email"));
 			mVO.setJoindate(rs.getDate("joindate"));
-			System.out.println("도라이?");
 			
 			return mVO;
 		}//if
@@ -54,8 +53,35 @@ public MemberVO selectLogin(MemberVO mVO) throws SQLException {
 	return null;
 }//selectLogin
 
-public String selectFindID(MemberVO mVO) {
+public String selectFindID(MemberVO mVO) throws SQLException {
 	String result = "";
+	
+	DBConnection db = DBConnection.getInstance();
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		con = db.getCon();
+		
+		String selectFindID = "SELECT ID FROM MEMBER WHERE MNAME = ? and BIRTH = ? and TEL = ?";
+		
+		pstmt = con.prepareStatement(selectFindID);
+		
+		pstmt.setString(1, mVO.getMname());
+		pstmt.setString(2, mVO.getBirth());
+		pstmt.setString(3, mVO.getTel());
+		
+		rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			result = rs.getString("id");
+		}//if
+		
+	}finally {
+		db.dbClose(rs, pstmt, con);
+	}//finally
 	
 	return result;
 }//selectFindID
@@ -117,8 +143,34 @@ public boolean updatePW(MemberVO mVO) throws SQLException {
 	return flag;
 }//updatePW
 
-public MemberVO selectCheckMember(MemberVO mVO) {
-	return mVO;
+public boolean selectCheckMember(MemberVO mVO) throws SQLException {
+	boolean flag = false;
+	
+	DBConnection db = DBConnection.getInstance();
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		con = db.getCon();
+		
+		String selectCheckMember = "SELECT ID FROM MEMBER WHERE mname = ? and birth = ? and tel = ?";
+		
+		pstmt = con.prepareStatement(selectCheckMember);
+		
+		pstmt.setString(1, mVO.getMname());
+		pstmt.setString(2, mVO.getBirth());
+		pstmt.setString(3, mVO.getTel());
+		
+		rs = pstmt.executeQuery();
+		
+		flag = rs.next();
+	}finally {
+		db.dbClose(rs, pstmt, con);
+	}//finally
+	
+	return flag;
 }//selectCheckID
 
 public boolean selectCheckID(String id) {

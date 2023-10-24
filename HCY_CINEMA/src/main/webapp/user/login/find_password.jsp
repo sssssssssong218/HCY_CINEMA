@@ -236,7 +236,7 @@
 
                 <h3>비밀번호 찾기</h3>
                 <p>
-                    비밀번호가 기억나지 않으세요? 원하시는 방법을 선택하여 비밀번호를 재설정하실 수 있습니다. <br>
+                    비밀번호가 기억나지 않으세요? 맴버 확인 후 비밀번호를 재설정하실 수 있습니다. <br>
                     본인인증 시 제공되는 정보는 해당 인증기관에서 직접 수집 하며, 인증 이외의 용도로 이용 또는 저장하지 않습니다.    
                 </p>
 
@@ -259,7 +259,7 @@
                             </div>
                         </div>
                     </div>
-	                 <form action="http://192.168.10.146/HCY_CINEMA/user/login/check_mem.jsp" id="hidFrm" name="hidFrm"  method="post">
+	                 <form action="http://localhost/HCY_CINEMA/user/login/check_mem.jsp" id="hidFrm" name="hidFrm"  method="post">
 	                 	<input type="hidden" id="id" name="id">
 	                 	<input type="hidden" id="tel" name="tel">
 	                 	<input type="hidden" id="email" name="email">

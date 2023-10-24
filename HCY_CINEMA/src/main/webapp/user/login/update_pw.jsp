@@ -33,7 +33,7 @@ if(lDAO.updatePW(mVO)){
 }//if
 %>
 alert("예상하지 못한 문제가 발생했습니다.")
-location.href="http://192.168.10.145/HCY_CINEMA/user/home/main.jsp"
+location.href="http://localhost/HCY_CINEMA/user/home/main.jsp"
         })
 </script>
 <head>

@@ -76,13 +76,10 @@
     <script type="text/javascript">
   $(function(){
 	  <%String check = request.getParameter("check"); %>
-	  if(<%="n".equals(check) %>){
-		  $("#txtUserName").val("<%=request.getParameter("name") %>")
-		  $("#txtUserBirth").val("<%=request.getParameter("birth") %>")
-		  $("#txtUserTel").val("<%=request.getParameter("tel") %>")
-		  alert("해당 정보로 등록된 회원이 이미 존재합니다.\n로그인을 진행해주세요!")
-		  location.href = "http://localhost/HCY_CINEMA/user/login/login.jsp";
-	  }//if
+      	$("#txtUserName").val("<%=request.getParameter("name") %>")
+		$("#txtUserTel").val("<%=request.getParameter("tel") %>")
+		$("#txtUserEmail").val("<%=request.getParameter("email") %>")
+		
   })//ready
     
         //<![CDATA[
@@ -229,33 +226,46 @@
 
                 <h3>회원가입</h3>
                 <p>
-                    회원가입 여부를 확인합니다.<br>
-                    회원가입 여부는 이름, 법정생년월일, 전화번호를 기준으로 확인합니다.  
+                    회원가입을 위한 정보를 입력합니다.<br>
+                    회원가입에 필요한 정보는 회원가입 이외의 용도로 사용될 수 없습니다.  
                 </p>
 
         <!-- ******************************************** 수정된 부분 시작! ******************************************** -->
                         <div class="cols-enterform find_0826 find_pw_id">
                             <div class="col-confirm">
-                                <h4>회원가입 여부 확인</h4>
+                                <h4>회원가입 정보 입력</h4>
                                 <div class="box-confirm">
                                    <h5>회원 가입하실 고객님의 정보를 입력해주세요.</h5>
                                    <form id="form1" name="form1" method="post" novalidate="novalidate" action="">
                                        <label for="txtUserName" style="margin-right: 51px">이름</label>
-                                       <input type="text" id="txtUserName" name="txtUserName"><br><br>
+                                       <input type="text" id="txtUserName" name="txtUserName" readonly="readonly"><br><br>
                                        <label for="txtUserBirth" style="margin-right: 8px">법정생년월일</label>
-                                       <input type="text" id="txtUserBirth" name="txtUserBirth" placeholder="ex) 19970101"><br><br>
+                                       <input type="text" id="txtUserBirth" name="txtUserBirth" readonly="readonly"><br><br>
                                        <label for="txtUserTel" style="margin-right: 30px">전화번호</label>
-                                       <input type="text" id="txtUserTel" name="txtUserTel" placeholder="ex) 000-0000-0000"><br><br>
-                                       <input type="button" id="btnSearch" class="btn btn-danger" value="조회" style="width: 70px"><br><br>
+                                       <input type="text" id="txtUserTel" name="txtUserTel" readonly="readonly"><br><br>
+                                       
+                                       <label for="txtUserId" style="margin-right: 40px;margin-left: 82px">아이디</label>
+                                       <input type="text" id="txtUserId" name="txtUserId" placeholder="아이디를 입력해주세요.">
+                                       <input type="button" id="btnCheckId" name="btnCheckId" class="btn btn-dark" value="중복확인" style="width: 70px;margin-left: 10px">  <br><br>
+                                       
+                                       <label for="txtUserPw" style="margin-right: 30px">비밀번호</label>
+                                       <input type="text" id="txtUserPw" name="txtUserPw" placeholder="비밀번호를 입력해주세요."><br><br>
+                                       <label for="txtUserPwCh" style="margin-right: 8px">비밀번호확인</label>
+                                       <input type="text" id="txtUserPwCh" name="txtUserPwCh" placeholder="비밀번호를 재입력해주세요."><br><br>
+                                       
+                                       <label for="txtUserEmail" style="margin-right: 30px">이메일</label>
+                                       <input type="text" id="txtUserEmail" name="txtUserEmail" placeholder="이메일을 입력해주세요."><br><br>
+                                       
+                                       <input type="button" id="btnSearch" class="btn btn-danger" value="회원가입" style="width: 70px"><br><br>
                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
 	                 <form action="http://localhost/HCY_CINEMA/user/login/check_join.jsp" id="hidFrm" name="hidFrm"  method="post">
-	                 	<input type="hidden" id="name" name="name">
-	                 	<input type="hidden" id="birth" name="birth">
+	                 	<input type="hidden" id="id" name="id">
 	                 	<input type="hidden" id="tel" name="tel">
+	                 	<input type="hidden" id="email" name="email">
 	                 </form>
    <!-- ******************************************** 수정된 부분 끝! ******************************************** -->
     </div>    
@@ -281,19 +291,19 @@
 	
 	$(function(){
 		$("#btnSearch").click(function(){
-			if($("#txtUserName").val() == "" || $("#txtUserTel").val() == "" || $("#txtUserBirth").val() == ""){
-				alert("이름, 생년월일, 전화번호를 모두 입력해 주시기 바랍니다.")
+			if($("#txtUserId").val() == "" || $("#txtUserTel").val() == "" || $("#txtUserEmail").val() == ""){
+				alert("아이디, 전화번호, 이메일을 모두 입력해 주시기 바랍니다.")
 			}//if
 			if(!/^\d{3}-\d{4}-\d{4}$/.test($("#txtUserTel").val())){
 				alert("전화번호의 형식이 올바르지 않습니다.\n전화번호의 형식은 000-0000-0000 입니다")
 			}//if
-			if(!/^\d{8}$/.test($("#txtUserBirth").val())){
-				alert("생년월일의 형식이 올바르지 않습니다.\n생년월일은 19970101의 형식으로 작성해주세요")
+			if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($("#txtUserEmail").val())){
+				alert("이메일의 형식이 올바르지 않습니다.\n이메일의 형식은 XXXX@XXX.XXX")
 			}//if
 			
-			$("#name").val($("#txtUserName").val())
-			$("#birth").val($("#txtUserBirth").val())
+			$("#id").val($("#txtUserId").val())
 			$("#tel").val($("#txtUserTel").val())
+			$("#email").val($("#txtUserEmail").val())
 			
 			$("#hidFrm").submit();
 			

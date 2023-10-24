@@ -43,13 +43,13 @@
     <div class="sect-login">
         <ul class="tab-menu-round">
             <li class="on">
-                <a href="http://192.168.10.145/HCY_CINEMA/user/login/login.jsp">로그인</a>
+                <a href="http://localhost/HCY_CINEMA/user/login/login.jsp">로그인</a>
             </li>
             <li>
-                <a href="http://192.168.10.145/HCY_CINEMA/user/login/nonmemberLogin.jsp">비회원 예매</a>
+                <a href="http://localhost/HCY_CINEMA/user/login/nonmemberLogin.jsp">비회원 예매</a>
             </li>
             <li>
-                <a href="http://192.168.10.145/HCY_CINEMA/user/myTicket/checkNonmember.jsp">비회원 예매확인</a>
+                <a href="http://localhost/HCY_CINEMA/user/myTicket/checkNonmember.jsp">비회원 예매확인</a>
             </li>
         </ul>
         <div class="box-login">
@@ -66,8 +66,8 @@
 
                 <input type="button" id="loginBtn" name="loginBtn" value="로그인" class="btn btn-danger" style="width: 215px;"/>
                 <div class="login-option">
-                    <a href="http://192.168.10.145/HCY_CINEMA/user/login/find_password.jsp">아이디 찾기</a>
-                    <a href="http://192.168.10.145/HCY_CINEMA/user/login/find_password.jsp">비밀번호 찾기</a>
+                    <a href="http://localhost/HCY_CINEMA/user/login/find_id.jsp">아이디 찾기</a>
+                    <a href="http://localhost/HCY_CINEMA/user/login/find_password.jsp">비밀번호 찾기</a>
                 </div>
             </fieldset>
             </form>  
@@ -81,7 +81,7 @@
 	<input type="hidden" name="id" id="id">
 	<input type="hidden" name="password" id="password">
     <input type="hidden" name="id_save" id="id_save">
-	<input type="hidden" name="returnURL" value="http://192.168.10.146/HCY_CINEMA/user/login/login.jsp">
+	<input type="hidden" name="returnURL" value="http://localhost/HCY_CINEMA/user/login/login.jsp">
 </form>
 <!-- //LogIn -->
 
