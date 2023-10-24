@@ -28,10 +28,9 @@ Encryption enc = Encryption.getInstance();
 mVO.setId(id);
 mVO.setTel(enc.encryption(tel));
 mVO.setEmail(enc.encryption(email));
-System.out.println(id+"/"+enc.encryption(tel)+"/"+enc.encryption(email));
 LoginDAO lDAO = LoginDAO.getInstance();
 if(lDAO.selectFindPW(mVO)){
-	response.sendRedirect("http://192.168.10.146/HCY_CINEMA/user/login/find_password_sub.jsp?id="+id);
+	response.sendRedirect("http://192.168.10.145/HCY_CINEMA/user/login/find_password_sub.jsp?id="+id);
 		return;
 }//if
 %>
@@ -46,7 +45,7 @@ $("#hidFrm").submit()
 <meta charset="UTF-8">
 </head>
 <body>
-<form action="http://192.168.10.146/HCY_CINEMA/user/login/find_password.jsp?check=n" id="hidFrm" name ="hidFrm" method="post">
+<form action="http://192.168.10.145/HCY_CINEMA/user/login/find_password.jsp?check=n" id="hidFrm" name ="hidFrm" method="post">
 	<input type="hidden" id="id" name="id">
 	<input type="hidden" id="tel" name="tel">
 	<input type="hidden" id="email" name="email">

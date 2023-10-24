@@ -66,7 +66,7 @@
 
                 <input type="button" id="loginBtn" name="loginBtn" value="로그인" class="btn btn-danger" style="width: 215px;"/>
                 <div class="login-option">
-                    <a href="http://192.168.10.145/HCY_CINEMA/user/login/find_password.jsp">아이디 찾기</a>
+                    <a href="http://192.168.10.145/HCY_CINEMA/user/login/find_id.jsp">아이디 찾기</a>
                     <a href="http://192.168.10.145/HCY_CINEMA/user/login/find_password.jsp">비밀번호 찾기</a>
                 </div>
             </fieldset>
@@ -81,7 +81,7 @@
 	<input type="hidden" name="id" id="id">
 	<input type="hidden" name="password" id="password">
     <input type="hidden" name="id_save" id="id_save">
-	<input type="hidden" name="returnURL" value="http://192.168.10.146/HCY_CINEMA/user/login/login.jsp">
+	<input type="hidden" name="returnURL" value="http://192.168.10.145/HCY_CINEMA/user/login/login.jsp">
 </form>
 <!-- //LogIn -->
 

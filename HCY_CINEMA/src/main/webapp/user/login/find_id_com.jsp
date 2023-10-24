@@ -216,22 +216,22 @@
 <div class="wrap-login">
             <div class="sect-user">
                 <ul class="tab-menu-round">
-                    <li>
+                    <li class="on">
                         <a href="/user/login/find-account.aspx">아이디 찾기</a>
                     </li>
-                    <li class="on">
+                    <li >
                         <a href="find_password.jsp">비밀번호 찾기</a>
                     </li>
                 </ul>
 
-                <h3>비밀번호 재설정</h3>
+                <h3>아이디 찾기</h3>
 
         <!-- ******************************************** 수정된 부분 시작! ******************************************** -->
                         <div class="cols-enterform find_0826 find_pw_id">
                             <div class="col-confirm">
-                                <h4>비밀번호 재설정</h4>
+                                <h4>아이디 찾기</h4>
                                 <div class="box-confirm">
-                                   <h5><%=request.getParameter("id") %>님의 비밀번호 변경에 성공했습니다.<br> 다시 로그인 해주세요!</h5>
+                                   <h5>회원님의 아이디는 <%=request.getParameter("id") %>입니다!<br> 저희 HCY를 이용해주셔서 감사합니다.</h5>
                                    <form id="form1" name="form1" method="post" novalidate="novalidate" action="">
                                        <a href="http://192.168.10.145/HCY_CINEMA/user/home/main.jsp"><img src="http://192.168.10.145/HCY_CINEMA/common/images/logo_main.png"></a>
                                    </form>
@@ -261,8 +261,6 @@
 <script type="text/javascript">
 //<![CDATA[
 	
-	
-
     (function ($) {
         $(function () {
 
