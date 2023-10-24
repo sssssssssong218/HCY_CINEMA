@@ -199,7 +199,7 @@
             <!-- 로그인시 메뉴 변경 필요 -->
 <div class="header_content">
     <div class="contents">
-        <h1 onclick=""><a href="http://192.168.10.145/HCY_CINEMA/user/home/main.jsp"><img src="http://192.168.10.145/HCY_CINEMA/common/images/re_mainlogo.png" alt="HCY_CHINEMA"></a></h1>
+        <h1 onclick=""><a href="http://192.168.10.145/HCY_CINEMA/user/home/main.jsp"><img src="http://192.168.10.145/HCY_CINEMA/common/images/logo_main.png" alt="HCY_CHINEMA"></a></h1>
         <ul class="memberInfo_wrap" style=" display: flex;list-style: none;padding: 0;">
         <c:set var="login" value="로그아웃"/>
         <% 
@@ -401,7 +401,7 @@
 
 <div class="nav" style="left: 0px;">
     <div class="contents">
-        <h1><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1"><img src="http://192.168.10.145/HCY_CINEMA/common/images/re_navilogo_wht.png" alt="CGV"></a></h1>
+        <h1><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1"><img src="http://192.168.10.145/HCY_CINEMA/common/images/logo_main_y.png" alt="CGV"></a></h1>
         <ul class="nav_menu">
             <li>
                 <h2><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp">영화</a></h2>

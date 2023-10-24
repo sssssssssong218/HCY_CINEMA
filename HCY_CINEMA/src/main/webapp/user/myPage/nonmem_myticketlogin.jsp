@@ -19,7 +19,7 @@
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
-    <link rel="shortcut icon" href="http://192.168.10.145/HCY_CINEMA/common/images/re_favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="http://192.168.10.145/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
     <title id="ctl00_headerTitle">비회원예매확인 &lt; 회원서비스 | 영화 그 이상의 감동. CGV</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://192.168.10.145img.cgv.co.kr/R2014/images/re_favicon.ico">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
@@ -199,7 +199,7 @@
             <!-- 로그인시 메뉴 변경 필요 -->
 <div class="header_content">
     <div class="contents">
-        <h1 onclick=""><a href="http://192.168.10.145/HCY_CINEMA/user/home/main.jsp"><img src="http://192.168.10.145/HCY_CINEMA/common/images/re_mainlogo.png" alt="HCY_CHINEMA"></a></h1>
+        <h1 onclick=""><a href="http://192.168.10.145/HCY_CINEMA/user/home/main.jsp"><img src="http://192.168.10.145/HCY_CINEMA/common/images/logo_main.png" alt="HCY_CHINEMA"></a></h1>
         <ul class="memberInfo_wrap" style=" display: flex;list-style: none;padding: 0;">
         <c:set var="login" value="로그아웃"/>
         <% 
@@ -401,7 +401,8 @@
 
 <div class="nav" style="left: 0px;">
     <div class="contents">
-        <h1><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1"><img src="http://192.168.10.145/HCY_CINEMA/common/images/re_navilogo_wht.png" alt="CGV"></a></h1>
+        <h1><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1"><img src="http://192.168.10.145/HCY_CINEMA/common/images/logo_main_y
+        .png" alt="CGV"></a></h1>
         <ul class="nav_menu">
             <li>
                 <h2><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp">영화</a></h2>
