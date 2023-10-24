@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dashboard.DashBoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!doctype html>
@@ -95,6 +98,9 @@
 <span>Bootstrap 4</span>
 </a>
 </li> -->
+
+
+
 <li class="has-sub">
 <a href="../ManageMovie/manage_movie.jsp">
 <img class="fa fa-inbox" src="../../common/images/movie_icon.png">
@@ -178,7 +184,11 @@
 
 <div class="panel pagination-inverse bg-white clearfix no-rounded-corner m-b-0">
 
-<div id="data-table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"><div class="dataTables_length" id="data-table_length"><label>Show <select name="data-table_length" aria-controls="data-table" class="form-control input-sm"><option value="10">10</option><option value="20">20</option><option value="-1">All</option></select> entries</label></div></div><div class="col-sm-6"><div id="data-table_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="data-table"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="data-table" data-order="[[1,&quot;asc&quot;]]" class="table table-bordered table-hover dataTable no-footer dtr-inline collapsed" role="grid" aria-describedby="data-table_info" style="width: 1335px;">
+
+<div id="data-table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+
+<div class="row">
+<div class="col-sm-6"><div class="dataTables_length" id="data-table_length"><label>Show <select name="data-table_length" aria-controls="data-table" class="form-control input-sm"><option value="10">10</option><option value="20">20</option><option value="-1">All</option></select> entries</label></div></div><div class="col-sm-6"><div id="data-table_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="data-table"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="data-table" data-order="[[1,&quot;asc&quot;]]" class="table table-bordered table-hover dataTable no-footer dtr-inline collapsed" role="grid" aria-describedby="data-table_info" style="width: 1335px;">
 <thead>
 <tr role="row"><th class="width-100 sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 100px;" aria-label="Month: activate to sort column ascending">Month</th><th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 256px;" aria-sort="ascending" aria-label="Orders: activate to sort column descending">Orders</th><th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 206px;" aria-label="Earning: activate to sort column ascending">Earning</th><th data-sorting="disabled" class="sorting_disabled" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 451px;" aria-label=": activate to sort column descending"></th><th class="width-50 sorting_disabled" data-sorting="disabled" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" style="width: 68px; display: none;" aria-label=": activate to sort column descending"></th></tr>
 </thead>
@@ -648,24 +658,56 @@ Helvetica Neue, Helvetica , Arial
 
  <script type="text/javascript">
 //<canvas> 요소 선택
- var canvas = document.getElementById("monthly-report-chart");
- var ctx = canvas.getContext("2d");
+var canvas = document.getElementById("monthly-report-chart");
+var ctx = canvas.getContext("2d");
+var data = [];
+var barWidth = 40; // 막대 폭
+var startX = 20; // 그래프 시작 위치
 
- // 데이터 정의 (예: 막대 그래프의 높이)
- var data = [50, 80, 120, 160, 200];
+<%
+DashBoardDAO dbDAO = DashBoardDAO.getInstance();
+List<String> list = new ArrayList<String>();
+list = dbDAO.selectMovieCntInfo();
 
- // 막대 그래프 그리기
- var barWidth = 40; // 막대 폭
- var spacing = 20; // 막대 간격
- var startY = canvas.height; // 그래프 시작 위치
 
- for (var i = 0; i < data.length; i++) {
-     var barHeight = data[i];
-     var startX = (i * (barWidth + spacing)) + 20; // 20은 여백
+for (int i = 0; i < list.size(); i += 2) {
+    String value1 = list.get(i);
+    String value2 = (i + 1 < list.size()) ? list.get(i + 1) : "";
 
-     ctx.fillStyle = "blue"; // 막대 색상
-     ctx.fillRect(startX, startY - barHeight, barWidth, barHeight);
- }
+%>
+    data.push([<%= value1 %>, <%= value2 %>]);
+<%
+}
+%>
+
+// 각 그래프 사이의 간격을 설정할 변수
+var spacing1 = 10; // 첫 번째 그래프와 두 번째 그래프 사이 간격
+var spacing2 = 50; // 두 번째 그래프와 세 번째 그래프 사이 간격
+var spacing3 = 30; // 세 번째 그래프와 나머지 간격
+
+// 막대 그래프 그리기
+for (var i = 0; i < data.length; i++) {
+    var value1 = data[i][0];
+    var value2 = data[i][1];
+
+    // 파란색 그래프 그리기 (첫 번째 그래프)
+    ctx.fillStyle = "blue";
+    ctx.fillRect(startX, canvas.height-30 - value1, barWidth, value1);
+
+    // 빨간색 그래프 그리기 (두 번째 그래프)
+    ctx.fillStyle = "red";
+    ctx.fillRect(startX + barWidth + spacing1, canvas.height-30 - value2, barWidth, value2);
+
+    // 다음 그래프의 시작 위치 갱신
+    startX += (2 * barWidth + spacing2);
+
+    // 두 번째 그래프 이후의 간격 조절
+    if (i < data.length - 2) {
+        startX += spacing3;
+    }
+}
+
 </script>
+
 </body>
 </html>

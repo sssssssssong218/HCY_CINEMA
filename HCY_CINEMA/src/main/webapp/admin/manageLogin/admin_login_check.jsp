@@ -1,3 +1,4 @@
+<%@page import="encryption.Encryption"%>
 <%@page import="AdiminLogin.AdminLoginDAO"%>
 <%@page import="AdiminLogin.AdminVO"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
@@ -41,9 +42,12 @@ String rememberId = request.getParameter("remember-check");
 
 AdminVO aVO = AdminLoginDAO.getInstance().selectAdminLogin(id, pass);
 
+Encryption ec=Encryption.getInstance();
+
+String chkPass=ec.directEncryption(pass);
 
 if (aVO.getId()!=null) {
-	if(aVO.getPassword().equals(pass)){
+	if(aVO.getPassword().equals(chkPass)){
     response.sendRedirect("../manageDashBoard/manage_dashboard.jsp");
 	} else{%>
 		alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
