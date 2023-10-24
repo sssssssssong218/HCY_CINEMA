@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page info="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% request.setCharacterEncoding("UTF-8"); %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -21,7 +20,7 @@
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
     <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
-    <title id="ctl00_headerTitle">회원정보 입력 &lt; 회원가입 | 영화 그 이상의 감동. HCY</title>
+    <title id="ctl00_headerTitle">비밀번호 변경 &lt; 로그인 | 영화 그 이상의 감동. CGV</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
@@ -75,12 +74,6 @@
     
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
-  $(function(){
-	 	$("#txtUserName").val("<%= request.getParameter("name") %>");
-		$("#txtUserBirth").val("<%=request.getParameter("birth") %>")
-		$("#txtUserTel").val("<%=request.getParameter("tel") %>")
-  })//ready
-    
         //<![CDATA[
         _TRK_CP = "/회원서비스/로그인/비밀번호 변경";
 
@@ -224,59 +217,20 @@
             <div class="sect-user">
 
                 <h3>회원가입</h3>
-                <p>
-                    회원가입을 위한 정보를 입력합니다.<br>
-                    회원가입에 필요한 정보는 회원가입 이외의 용도로 사용될 수 없습니다.  
-                </p>
 
         <!-- ******************************************** 수정된 부분 시작! ******************************************** -->
                         <div class="cols-enterform find_0826 find_pw_id">
                             <div class="col-confirm">
-                                <h4>회원가입 정보 입력</h4>
+                                <h4>회원가입 완료</h4>
                                 <div class="box-confirm">
-                                   <h5>회원 가입하실 고객님의 정보를 입력해주세요.</h5>
-                                   <form id="frm" name="frm" method="post" novalidate="novalidate" action="">
-                                       <label for="txtUserName" style="margin-right: 51px">이름</label>
-                                       <input type="text" id="txtUserName" name="txtUserName" readonly="readonly"><br><br>
-                                       
-                                       <label for="txtUserId" style="margin-right: 40px;margin-left: 82px">아이디</label>
-                                       <input type="text" id="txtUserId" name="txtUserId" placeholder="아이디를 입력해주세요.">
-                                       <input type="button" id="btnDup" name="btnDup" class="btn btn-dark" value="중복확인" style="width: 70px;margin-left: 10px"><br><br>
-                                       
-                                       <label for="txtUserPw" style="margin-right: 29px">비밀번호</label>
-                                       <input type="password" id="txtUserPw" name="txtUserPw" placeholder="비밀번호를 입력해주세요." style="width: 170px"><br>
-                                       <span style="font-size: 10;">*비밀번호는 영문, 숫자, 특수문자를 포함한 8자 이상이어야 합니다.</span><br><br>
-                                       <label for="txtUserPwCh" style="margin-right: 7px">비밀번호확인</label>
-                                       <input type="password" id="txtUserPwCh" name="txtUserPwCh" placeholder="비밀번호를 재입력해주세요." style="width: 170px"><br><br>
-                                       
-                                       <label for="txtUserBirth" style="margin-right: 8px">법정생년월일</label>
-                                       <input type="text" id="txtUserBirth" name="txtUserBirth" readonly="readonly"><br><br>
-                                       
-                                       <label for="txtUserTel" style="margin-right: 30px">전화번호</label>
-                                       <input type="text" id="txtUserTel" name="txtUserTel" readonly="readonly"><br><br>
-                                       
-                                       <label for="txtUserEmail" style="margin-right: 40px">이메일</label>
-                                       <input type="text" id="txtUserEmail" name="txtUserEmail" placeholder="ex) xxx@xxx.xxx"><br><br>
-                                       
-                                       <input type="button" id="btnJoin" class="btn btn-danger" value="회원가입" style="width: 70px"><br><br>
+                                   <h5>회원가입이 완료되었습니다.<br>로그인 해주세요!</h5>
+                                   <form id="form1" name="form1" method="post" novalidate="novalidate" action="">
+                                       <a href="http://localhost/HCY_CINEMA/user/home/main.jsp"><img src="http://localhost/HCY_CINEMA/common/images/logo_main.png"></a>
                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-	                 <form action="#" id="hidDupFrm" name="hidDupFrm"  method="post">
-	                 	<input type="hidden" id="idDupFlag" name="idDupFlag">
-	                 </form>
-	                 
-	                 <form action="http://localhost/HCY_CINEMA/user/login/insert_join.jsp" id="hidFrm" name="hidFrm"  method="post">
-	                 	<input type="hidden" id="name" name="name">
-	                 	<input type="hidden" id="id" name="id">
-	                 	<input type="hidden" id="pw" name="pw">
-	                 	<input type="hidden" id="birth" name="birth">
-	                 	<input type="hidden" id="tel" name="tel">
-	                 	<input type="hidden" id="email" name="email">
-	                 </form>
    <!-- ******************************************** 수정된 부분 끝! ******************************************** -->
     </div>    
     <div class="sect-loginguide">
@@ -291,7 +245,7 @@
 
 <!-- find id -->
 <form name="frmFindAccount" id="frmFindAccount" method="post" action="https://www.cgv.co.kr/user/login/find-pw-proc.aspx" novalidate="novalidate">   
-    <input type="hidden" id="userid" name="userid" value="0"> 
+    <input type="hidden" id="userid" name="userid"> 
 </form>
 <!-- //find id -->
 
@@ -299,64 +253,37 @@
 <script type="text/javascript">
 //<![CDATA[
 	
-	$(function(){
-		$("#btnDup").click(function(){
-			var id=$("#txtUserId").val();
-			window.open("http://localhost/HCY_CINEMA/user/login/id_dup.jsp?id="+id,"id_dup","width=512,height=313,top="
-		            +( window.screenY+150)+",left="+( window.screenX+200));	
-		})//btnCheckId
-		
-		$("#txtUserId").keydown(function(){
-            $("#idDupFlag").val('0')
-        })//txtUserId
-		
-		$("#btnJoin").click(function(){
-			
-			var inputs = [$("#txtUserId").val(),$("#txtUserEmail").val(),$("#txtUserPw").val(),$("#txtUserPwCh").val()];
-			
-			for(var i=0 ; i<inputs.length;i++){
-				var input = inputs[i];
-				if(input == ""){
-					alert("모든 정보를 입력해 주시기 바랍니다.");
-					return;
-				}//if
-			}//for
-			
-			if($("#idDupFlag").val() != "1"){
-				alert("아이디 중복체크를 먼저 진행해주세요!");
-				return;
-			}//if
-			
-			if($("#txtUserPw").val() != $("#txtUserPwCh").val() ){
-				alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.")
-				return;
-			}//if
-			
-			if(!/^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+]).{8,}$/.test($("#txtUserPw").val())){
-				alert("비밀번호는 다음의 조건을 충족해야 합니다.\n1.최소한 8자 이상의 길이여야 합니다.\n2.적어도 하나의 영어 소문자가 포함되어야 합니다.\n3.적어도 하나의 숫자가 포함되어야 합니다.\n4.적어도 하나의 특수 문자(!@#$%^&*()_+)가 포함되어야 합니다.")
-				return;
-			}//if
-			
-			if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($("#txtUserEmail").val())){
-				alert("이메일의 형식이 올바르지 않습니다.\n이메일의 형식은 XXXX@XXX.XXX")
-				return;
-			}//if
-
-			$("#name").val($("#txtUserName").val())
-			$("#id").val($("#txtUserId").val())
-			$("#pw").val($("#txtUserPw").val())
-			$("#birth").val($("#txtUserBirth").val())
-			$("#tel").val($("#txtUserTel").val())
-			$("#email").val($("#txtUserEmail").val())
-			
-			$("#hidFrm").submit();
-			
-		})//btnSearch
-		
-		
-	})//ready
 	
 
+    (function ($) {
+        $(function () {
+
+            var $frm = $('#form1');
+
+            $frm.validate({
+                submitHandler: function (form) {
+
+                    var strUserID = $.trim($("#txtUserId").val());
+                    
+                    if (strUserID.length == 0) {
+                        alert("아이디를 입력해 주세요.");
+                        return false;
+                    }
+
+                    var $AccountFrm = $('#frmFindAccount');
+
+                    $AccountFrm.find('#userid').val(app.crypto.AESEncryptToBase64($frm.find('#txtUserId').val()));
+
+                    $AccountFrm.submit();
+                    return false;
+                }
+            });
+
+
+
+
+        });
+    })(jQuery);
 //]]>
 </script>
 

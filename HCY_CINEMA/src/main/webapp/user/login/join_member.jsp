@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page info="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% response.setCharacterEncoding("UTF-8"); %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -239,7 +240,7 @@
                                 <h4>회원가입 여부 확인</h4>
                                 <div class="box-confirm">
                                    <h5>회원 가입하실 고객님의 정보를 입력해주세요.</h5>
-                                   <form id="form1" name="form1" method="post" novalidate="novalidate" action="">
+                                   <form id="frm" name="frm" method="post" novalidate="novalidate" action="">
                                        <label for="txtUserName" style="margin-right: 51px">이름</label>
                                        <input type="text" id="txtUserName" name="txtUserName"><br><br>
                                        <label for="txtUserBirth" style="margin-right: 8px">법정생년월일</label>

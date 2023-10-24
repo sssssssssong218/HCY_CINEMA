@@ -227,10 +227,10 @@
             <div class="sect-user">
                 <ul class="tab-menu-round">
                     <li>
-                        <a href="/user/login/find-account.aspx">아이디 찾기</a>
+                        <a href="http://localhost/HCY_CINEMA/user/login/find_id.jsp">아이디 찾기</a>
                     </li>
                     <li class="on">
-                        <a href="find_password.jsp">비밀번호 찾기</a>
+                        <a href="#">비밀번호 찾기</a>
                     </li>
                 </ul>
 
