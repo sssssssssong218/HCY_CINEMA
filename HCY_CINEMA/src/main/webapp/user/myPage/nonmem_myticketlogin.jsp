@@ -467,10 +467,10 @@
                 <a href="/user/guest/login.aspx">비회원 예매확인</a>
             </li>
         </ul>
-        <h3>비회원 예매 확인</h3>
-        <p>비회원으로 예매하신 고객님은 개인정보(법정생년월일, 휴대폰 번호, 비밀번호(4자리)를 입력해 주세요.</p>
+        <h3 style="margin-left:20%">비회원 예매 확인</h3>
+        <p style="margin-left:20%">비회원으로 예매하신 고객님은 개인정보(법정생년월일, 휴대폰 번호, 비밀번호(4자리)를 입력해 주세요.</p>
         <div class="cols-enterform nomember">
-            <div class="col-simple">
+            <div class="col-simple" style="margin-left:25%">
                 <h4>비회원 예매확인</h4>
                 <div class="box-simple">
                     <p class="disc-info">모든 항목은 필수 입력사항입니다.</p>
