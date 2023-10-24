@@ -1,3 +1,6 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.text.Format"%>
+<%@page import="java.util.stream.Collectors"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dashboard.DashBoardDAO"%>
@@ -48,7 +51,7 @@
 <div class="container-fluid">
 
 <div class="navbar-header">
-<a href="index.html" class="navbar-brand" style="padding:-2px"><img src="../../common/images/admin_logo.png"></a>
+<a href="index.html" class="navbar-brand" style="padding:-2px"><img src="http://localhost/HCY_CINEMA/common/images/admin_logo.png"></a>
 <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
@@ -67,11 +70,11 @@
 <ul class="nav">
 <li class="nav-user">
 <div class="image">
-<img src="../../common/images/admin.png" alt="">
+<img src="http://localhost/HCY_CINEMA/common/images/admin.png" alt="">
 </div>
 <div class="info">
 <div class="name dropdown">
-<a href="javascript:;" data-toggle="dropdown">admin <b class="caret"></b></a>
+<a href="javascript:;" data-toggle="dropdown"><%= session.getAttribute("userName") %> <b class="caret"></b></a>
 <ul class="dropdown-menu">
 <li><a href="javascript:;">Log Out</a></li>
 </ul>
@@ -82,7 +85,7 @@
 <li class="nav-header">Navigation</li>
 <li class="active has-sub">
 <a href="javascript:;">
-<img class="fa fa-home" src="../../common/images/dashboard2.png">
+<img class="fa fa-home" src="http://localhost/HCY_CINEMA/common/images/dashboard2.png">
 <span>Dashboard <!-- <span class="label label-theme m-l-3">NEW</span> --></span>
 </a>
 <!-- <ul class="sub-menu">
@@ -102,8 +105,8 @@
 
 
 <li class="has-sub">
-<a href="../ManageMovie/manage_movie.jsp">
-<img class="fa fa-inbox" src="../../common/images/movie_icon.png">
+<a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp">
+<img class="fa fa-inbox" src="http://localhost/HCY_CINEMA/common/images/movie_icon.png">
 <span>영화</span>
 </a>
 <ul class="sub-menu">
@@ -113,20 +116,20 @@
 </ul>
 </li>
 <li>
-<a href="widgets.html">
-<img class="fa fa-gem" src="../../common/images/cinema_icon.png">
+<a href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen.jsp">
+<img class="fa fa-gem" src="http://localhost/HCY_CINEMA/common/images/cinema_icon.png">
 <span>상영관</span>
 </a>
 </li>
 <li class="has-sub">
-<a href="javascript:;">
-<img class="fa fa-suitcase" src="../../common/images/member_icon.png">
+<a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_list.jsp">
+<img class="fa fa-suitcase" src="http://localhost/HCY_CINEMA/common/images/member_icon.png">
 <span>회원관리</span>
 </a>
 </li>
 <li class="has-sub">
-<a href="javascript:;">
-<img class="fa fa-file" src="../../common/images/board_icon.png">
+<a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp">
+<img class="fa fa-file" src="http://localhost/HCY_CINEMA/common/images/board_icon.png">
 <span>게시판 관리</span>
 </a>
 
@@ -273,14 +276,31 @@
 </div>
 
 </div>
+<%
+DecimalFormat df=new DecimalFormat("#,##0");
+DashBoardDAO dbDAO=DashBoardDAO.getInstance();
+int weekTicket=dbDAO.selectWeekTicketCnt();
+int[] ticketCnt = new int[3];
+ticketCnt=dbDAO.selectTicketCnt();
+int[] memberCnt=new int[2];
+memberCnt=dbDAO.selectMember();
+
+int reviewCnt=dbDAO.selectReviewCnt();
+int postCnt=dbDAO.selectPostCnt();
+%>
 <div class="col-lg-2">
 <div class="row">
 <div class="col-lg-12 col-lg-4 col-xs-6">
 
 <div class="widget widget-stat bg-inverse text-white">
 <!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
-<div class="widget-stat-number">13,492</div>
-<div class="widget-stat-text">Items Sold</div>
+<div class="widget-stat-number"><%= df.format(weekTicket) %></div>
+<div class="widget-stat-text">이번주 총 예매 수</div>
+</div>
+<div class="widget widget-stat bg-inverse text-white">
+<!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
+<div class="widget-stat-number"><%= df.format(ticketCnt[1]) %></div>
+<div class="widget-stat-text">지난 한달 예매 수</div>
 </div>
 
 </div>
@@ -288,8 +308,8 @@
 
 <div class="widget widget-stat bg-inverse text-white">
 <!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
-<div class="widget-stat-number">$139K<!--  <i class="fa fa-caret-up text-lime-light"></i> --></div>
-<div class="widget-stat-text">Revenue</div>
+<div class="widget-stat-number"><%= df.format(ticketCnt[0]) %><!--  <i class="fa fa-caret-up text-lime-light"></i> --></div>
+<div class="widget-stat-text">지난 한달 공석 수</div>
 </div>
 
 </div>
@@ -297,8 +317,8 @@
 
 <div class="widget widget-stat bg-inverse text-white">
 <!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
-<div class="widget-stat-number">1.2m</div>
-<div class="widget-stat-text">Page Views</div>
+<div class="widget-stat-number"><%= df.format(ticketCnt[2]) %></div>
+<div class="widget-stat-text">지난 한달 예매 취소 수</div>
 </div>
 
 </div>
@@ -306,8 +326,8 @@
 
 <div class="widget widget-stat bg-inverse text-white">
 <!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
-<div class="widget-stat-number">135k <!-- <i class="fa fa-caret-down text-danger-light"></i> --></div>
-<div class="widget-stat-text">Visitors</div>
+<div class="widget-stat-number"><%= df.format(memberCnt[0]) %> <!-- <i class="fa fa-caret-down text-danger-light"></i> --></div>
+<div class="widget-stat-text">가입한 회원 수</div>
 </div>
 
 </div>
@@ -315,8 +335,8 @@
 
 <div class="widget widget-stat bg-inverse text-white">
 <!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
-<div class="widget-stat-number">10.29%</div>
-<div class="widget-stat-text">Bounce Rate</div>
+<div class="widget-stat-number"><%= df.format(memberCnt[1]) %></div>
+<div class="widget-stat-text">탈퇴한 회원 수</div>
 </div>
 
 </div>
@@ -324,8 +344,8 @@
 
 <div class="widget widget-stat bg-inverse text-white">
 <!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
-<div class="widget-stat-number">54.3k <!-- <i class="fa fa-caret-down text-danger-light"></i> --></div>
-<div class="widget-stat-text">New Visitors</div>
+<div class="widget-stat-number"><%= df.format(reviewCnt) %> <!-- <i class="fa fa-caret-down text-danger-light"></i> --></div>
+<div class="widget-stat-text">새로운 리뷰 수</div>
 </div>
 
 </div>
@@ -333,8 +353,8 @@
 
 <div class="widget widget-stat bg-inverse text-white">
 <!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
-<div class="widget-stat-number">60.4k</div>
-<div class="widget-stat-text">Returned Visitors</div>
+<div class="widget-stat-number"><%= df.format(postCnt) %></div>
+<div class="widget-stat-text">새로운 개시글 수</div>
 </div>
 
 </div>
@@ -342,8 +362,8 @@
 
 <div class="widget widget-stat bg-inverse text-white">
 <!-- <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-redo"></i></a></div> -->
-<div class="widget-stat-number">05:10 <!-- <i class="fa fa-caret-up text-lime-light"></i> --></div>
-<div class="widget-stat-text">Avg. Time on Site</div>
+<div class="widget-stat-number"> <i id="currentTime"></i></div>
+<div class="widget-stat-text">현재 시간</div>
 </div>
 
 </div>
@@ -536,83 +556,6 @@ Sunday, May 31 st
 </div>
 
 
-<div class="theme-panel">
-<a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-tint"></i></a>
-<div class="theme-panel-content">
-<h5 class="m-t-0">Font Family</h5>
-<div class="row row-space-10">
-<div class="col-lg-12">
-<a href="#" class="btn btn-default btn-block btn-sm m-b-10 active" data-value="" data-src="" data-click="body-font-family">
-Default
-</a>
-</div>
-<div class="col-lg-6">
-<a href="#" class="btn btn-default btn-block btn-sm m-b-10" data-value="font-nunito" data-src="https://fonts.googleapis.com/css?family=Nunito:400,300,700" data-click="body-font-family">
-Nunito
-</a>
-</div>
-<div class="col-lg-6">
-<a href="#" class="btn btn-default btn-block btn-sm m-b-10" data-value="font-open-sans" data-src="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" data-click="body-font-family">
-Open Sans
-</a>
-</div>
-<div class="col-lg-6">
-<a href="#" class="btn btn-default btn-block btn-sm m-b-10" data-value="font-roboto" data-src="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" data-click="body-font-family">
-Roboto
-</a>
-</div>
-<div class="col-lg-6">
-<a href="#" class="btn btn-default btn-block btn-sm m-b-10" data-value="font-lato" data-src="https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900" data-click="body-font-family">
-Lato
-</a>
-</div>
-<div class="col-lg-12">
-<a href="#" class="btn btn-default btn-block btn-sm text-ellipsis" data-value="font-helvetica-arial" data-src="" data-click="body-font-family">
-Helvetica Neue, Helvetica , Arial
-</a>
-</div>
-</div>
-<div class="horizontal-divider"></div>
-<h5 class="m-t-0">Header Theme</h5>
-<ul class="theme-list clearfix">
-<li><a href="javascript:;" class="bg-inverse" data-value="navbar-inverse" data-click="header-theme-selector" data-toggle="tooltip" data-title="Default" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-grey" data-value="navbar-grey" data-click="header-theme-selector" data-toggle="tooltip" data-title="Grey" data-original-title="" title="">&nbsp;</a></li>
-<li class="active"><a href="javascript:;" class="bg-white" data-value="navbar-default" data-click="header-theme-selector" data-toggle="tooltip" data-title="Light" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-purple" data-value="navbar-purple" data-click="header-theme-selector" data-toggle="tooltip" data-title="Purple" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-primary" data-value="navbar-primary" data-click="header-theme-selector" data-toggle="tooltip" data-title="Primary" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-success" data-value="navbar-success" data-click="header-theme-selector" data-toggle="tooltip" data-title="Success" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-lime" data-value="navbar-lime" data-click="header-theme-selector" data-toggle="tooltip" data-title="Lime" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-warning" data-value="navbar-warning" data-click="header-theme-selector" data-toggle="tooltip" data-title="Warning" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-danger" data-value="navbar-danger" data-click="header-theme-selector" data-toggle="tooltip" data-title="Danger" data-original-title="" title="">&nbsp;</a></li>
-</ul>
-<div class="horizontal-divider"></div>
-<h5 class="m-t-0">Sidebar Highlight Color</h5>
-<ul class="theme-list clearfix">
-<li><a href="javascript:;" class="bg-inverse" data-value="sidebar-highlight-inverse" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Inverse" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-grey" data-value="sidebar-highlight-grey" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Grey" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-white" data-value="sidebar-highlight-light" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Light" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-purple" data-value="sidebar-highlight-purple" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Purple" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-primary" data-value="sidebar-highlight-primary" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Primary" data-original-title="" title="">&nbsp;</a></li>
-<li class="active"><a href="javascript:;" class="bg-success" data-value="" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Default" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-lime" data-value="sidebar-highlight-lime" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Lime" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-warning" data-value="sidebar-highlight-warning" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Warning" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-danger" data-value="sidebar-highlight-danger" data-click="sidebar-highlight-selector" data-toggle="tooltip" data-title="Danger" data-original-title="" title="">&nbsp;</a></li>
-</ul>
-<div class="horizontal-divider"></div>
-<h5 class="m-t-0">Sidebar Theme</h5>
-<ul class="theme-list clearfix">
-<li class="active"><a href="javascript:;" class="bg-inverse" data-value="" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Default" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-grey" data-value="sidebar-grey" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Grey" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-white" data-value="sidebar-light" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Light" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-purple" data-value="sidebar-purple" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Purple" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-primary" data-value="sidebar-primary" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Primary" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-success" data-value="sidebar-success" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Success" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-lime" data-value="sidebar-lime" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Lime" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-warning" data-value="sidebar-warning" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Warning" data-original-title="" title="">&nbsp;</a></li>
-<li><a href="javascript:;" class="bg-danger" data-value="sidebar-danger" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Danger" data-original-title="" title="">&nbsp;</a></li>
-</ul>
-</div>
-</div>
 
 
 <script src="jquery-3.3.1.min.js" type="text/javascript"></script>
@@ -660,53 +603,86 @@ Helvetica Neue, Helvetica , Arial
 //<canvas> 요소 선택
 var canvas = document.getElementById("monthly-report-chart");
 var ctx = canvas.getContext("2d");
-var data = [];
 var barWidth = 40; // 막대 폭
 var startX = 20; // 그래프 시작 위치
 
+// 간격 설정
+var spacing1 = 10; // 첫 번째 그래프와 두 번째 그래프 사이 간격
+var spacing2 = 180; // 두 번째 그래프와 세 번째 그래프 사이 간격
+var spacing3 = 10; // 세 번째 그래프와 나머지 간격
+
+ctx.font = "15px Arial"; // 글꼴 및 크기 설정
+ctx.fillStyle = "white"; // 텍스트 색상 설정
+
 <%
-DashBoardDAO dbDAO = DashBoardDAO.getInstance();
+dbDAO = DashBoardDAO.getInstance();
 List<String> list = new ArrayList<String>();
 list = dbDAO.selectMovieCntInfo();
 
-
-for (int i = 0; i < list.size(); i += 2) {
-    String value1 = list.get(i);
-    String value2 = (i + 1 < list.size()) ? list.get(i + 1) : "";
-
-%>
-    data.push([<%= value1 %>, <%= value2 %>]);
-<%
-}
+dbDAO.selectTicketCnt();
 %>
 
-// 각 그래프 사이의 간격을 설정할 변수
-var spacing1 = 10; // 첫 번째 그래프와 두 번째 그래프 사이 간격
-var spacing2 = 50; // 두 번째 그래프와 세 번째 그래프 사이 간격
-var spacing3 = 30; // 세 번째 그래프와 나머지 간격
+// 서버에서 데이터를 가져와서 JavaScript 변수로 변환
+var data = [
+    <% for (int i = 0; i < list.size(); i += 3) { %>
+        {
+            value1: <%= list.get(i) %>,
+            value2: <%= (i + 1 < list.size()) ? list.get(i + 1) : 0 %>,
+            text: "<%= list.get(i + 2) %>"
+        },
+    <% } %>
+];
 
-// 막대 그래프 그리기
+var totalWidth = data.length * (2 * barWidth + spacing1 + spacing2) - spacing1 - spacing2;
+var xOffset = (canvas.width - totalWidth) / 2;
+
 for (var i = 0; i < data.length; i++) {
-    var value1 = data[i][0];
-    var value2 = data[i][1];
+    var value1 = data[i].value1;
+    var value2 = data[i].value2;
+    var text = data[i].text;
 
-    // 파란색 그래프 그리기 (첫 번째 그래프)
+    // 파란색 그래프 그리기
     ctx.fillStyle = "blue";
-    ctx.fillRect(startX, canvas.height-30 - value1, barWidth, value1);
+    ctx.fillRect(xOffset, canvas.height - 60 - value1, barWidth, value1);
 
-    // 빨간색 그래프 그리기 (두 번째 그래프)
+    // 빨간색 그래프 그리기
     ctx.fillStyle = "red";
-    ctx.fillRect(startX + barWidth + spacing1, canvas.height-30 - value2, barWidth, value2);
+    ctx.fillRect(xOffset + barWidth + spacing1, canvas.height - 60 - value2, barWidth, value2);
 
-    // 다음 그래프의 시작 위치 갱신
-    startX += (2 * barWidth + spacing2);
+    // 텍스트의 폭을 측정
+    var textWidth = ctx.measureText(text).width;
 
-    // 두 번째 그래프 이후의 간격 조절
-    if (i < data.length - 2) {
-        startX += spacing3;
-    }
+    // 텍스트를 중앙에 맞추기
+    var textX = xOffset + barWidth + (barWidth - textWidth) / 2;
+    var textY = canvas.height - 10;
+
+    ctx.fillStyle = "white";
+    ctx.fillText(text, textX-10, textY);
+
+    xOffset += 2 * barWidth + spacing1 + spacing2;
+}
+// 현재 시간을 가져오는 함수
+function displayCurrentTime() {
+    var currentTimeElement = document.getElementById("currentTime");
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    
+    // 시간, 분, 초를 두 자리로 표시하기
+    if (hours < 10) hours = "0" + hours;
+    if (minutes < 10) minutes = "0" + minutes;
+    if (seconds < 10) seconds = "0" + seconds;
+
+    var currentTimeString = hours + ":" + minutes + ":" + seconds;
+    currentTimeElement.textContent = currentTimeString;
 }
 
+// 1초마다 현재 시간 업데이트
+setInterval(displayCurrentTime, 1000);
+
+// 페이지 로드 시 현재 시간 표시
+window.onload = displayCurrentTime;
 </script>
 
 </body>

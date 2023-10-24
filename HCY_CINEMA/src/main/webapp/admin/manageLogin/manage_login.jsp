@@ -168,7 +168,7 @@ body {
 		<h2>
 			<img src="../../common/images/logo.png">
 		</h2>
-		<form method="post" id="login-form" action="admin_login_check.jsp">
+		<form method="post" id="login-form" action="http://localhost/HCY_CINEMA/admin/manageLogin/admin_login_check.jsp">
 			<input type="text" name="userName" placeholder="ID" id="userName"
 				><br /> <input
 				type="password" name="userPassword" placeholder="Password"
