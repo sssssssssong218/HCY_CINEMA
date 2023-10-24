@@ -155,7 +155,7 @@ public boolean selectCheckMember(MemberVO mVO) throws SQLException {
 	try {
 		con = db.getCon();
 		
-		String selectCheckMember = "SELECT ID FROM MEMBER WHERE ID = ? and TEL = ? and EMAIL = ?";
+		String selectCheckMember = "SELECT ID FROM MEMBER WHERE mname = ? and birth = ? and tel = ?";
 		
 		pstmt = con.prepareStatement(selectCheckMember);
 		

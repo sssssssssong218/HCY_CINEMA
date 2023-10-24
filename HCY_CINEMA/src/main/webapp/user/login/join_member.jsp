@@ -20,7 +20,7 @@
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
     <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
-    <title id="ctl00_headerTitle">비밀번호 변경 &lt; 로그인 | 영화 그 이상의 감동. CGV</title>
+    <title id="ctl00_headerTitle">회원정보 입력 &lt; 회원가입 | 영화 그 이상의 감동. HCY</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
@@ -77,9 +77,9 @@
   $(function(){
 	  <%String check = request.getParameter("check"); %>
 	  if(<%="n".equals(check) %>){
-		  $("#txtUserId").val("<%=request.getParameter("id") %>")
+		  $("#txtUserName").val("<%=request.getParameter("name") %>")
+		  $("#txtUserBirth").val("<%=request.getParameter("birth") %>")
 		  $("#txtUserTel").val("<%=request.getParameter("tel") %>")
-		  $("#txtUserEmail").val("<%=request.getParameter("email") %>")
 		  alert("해당 정보로 등록된 회원이 이미 존재합니다.\n로그인을 진행해주세요!")
 		  location.href = "http://localhost/HCY_CINEMA/user/login/login.jsp";
 	  }//if
@@ -253,9 +253,9 @@
                         </div>
                     </div>
 	                 <form action="http://localhost/HCY_CINEMA/user/login/check_join.jsp" id="hidFrm" name="hidFrm"  method="post">
-	                 	<input type="hidden" id="id" name="id">
+	                 	<input type="hidden" id="name" name="name">
+	                 	<input type="hidden" id="birth" name="birth">
 	                 	<input type="hidden" id="tel" name="tel">
-	                 	<input type="hidden" id="email" name="email">
 	                 </form>
    <!-- ******************************************** 수정된 부분 끝! ******************************************** -->
     </div>    
@@ -281,19 +281,19 @@
 	
 	$(function(){
 		$("#btnSearch").click(function(){
-			if($("#txtUserId").val() == "" || $("#txtUserTel").val() == "" || $("#txtUserEmail").val() == ""){
-				alert("아이디, 전화번호, 이메일을 모두 입력해 주시기 바랍니다.")
+			if($("#txtUserName").val() == "" || $("#txtUserTel").val() == "" || $("#txtUserBirth").val() == ""){
+				alert("이름, 생년월일, 전화번호를 모두 입력해 주시기 바랍니다.")
 			}//if
 			if(!/^\d{3}-\d{4}-\d{4}$/.test($("#txtUserTel").val())){
 				alert("전화번호의 형식이 올바르지 않습니다.\n전화번호의 형식은 000-0000-0000 입니다")
 			}//if
-			if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($("#txtUserEmail").val())){
-				alert("이메일의 형식이 올바르지 않습니다.\n이메일의 형식은 XXXX@XXX.XXX")
+			if(!/^\d{8}$/.test($("#txtUserBirth").val())){
+				alert("생년월일의 형식이 올바르지 않습니다.\n생년월일은 19970101의 형식으로 작성해주세요")
 			}//if
 			
-			$("#id").val($("#txtUserId").val())
+			$("#name").val($("#txtUserName").val())
+			$("#birth").val($("#txtUserBirth").val())
 			$("#tel").val($("#txtUserTel").val())
-			$("#email").val($("#txtUserEmail").val())
 			
 			$("#hidFrm").submit();
 			

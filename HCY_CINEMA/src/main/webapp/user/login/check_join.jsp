@@ -31,16 +31,20 @@ mVO.setMname(enc.encryption(name));
 mVO.setBirth(birth);
 mVO.setTel(enc.encryption(tel));
 LoginDAO lDAO = LoginDAO.getInstance();
-
-if (!lDAO.selectCheckMember(mVO)) {
-	response.sendRedirect("http://192.168.10.145/HCY_CINEMA/user/login/join_member.jsp?check=n");
-	return;
-} //if
+System.out.println(enc.encryption(name));
+System.out.println(birth);
+System.out.println(enc.encryption(tel));
 %>
 	$("#name").val("<%=name %>")
 	$("#birth").val("<%=birth %>")
 	$("#tel").val("<%=tel %>")
-	
+
+ 	var flag=<%= lDAO.selectCheckMember(mVO) %>;
+ 	var url="join_member.jsp?check=n";
+	if( !flag ){
+		url="join_conditions.jsp";
+	}//end if
+	document.hidFrm.action="http://localhost/HCY_CINEMA/user/login/"+url;
 	$("#hidFrm").submit()
 })//ready
 </script>
@@ -48,7 +52,7 @@ if (!lDAO.selectCheckMember(mVO)) {
 <meta charset="UTF-8">
 </head>
 <body>
-	<form action="http://192.168.10.145/HCY_CINEMA/user/login/join_conditions.jsp" id="hidFrm" name="hidFrm" method="post">
+	<form id="hidFrm" name="hidFrm" method="post">
 		<input type="hidden" id="name" name="name">
 		<input type="hidden" id="birth" name="birth">
 		<input type="hidden" id="tel" name="tel">

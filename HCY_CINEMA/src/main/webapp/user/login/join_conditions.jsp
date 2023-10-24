@@ -20,7 +20,7 @@
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
     <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
-    <title id="ctl00_headerTitle">비밀번호 변경 &lt; 로그인 | 영화 그 이상의 감동. CGV</title>
+    <title id="ctl00_headerTitle">회원정보 입력 &lt; 회원가입 | 영화 그 이상의 감동. HCY</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
@@ -77,21 +77,13 @@
     
   $(function(){
 		$("#btnOk").click(function(){
-			$("#id").val("<%= request.getParameter("id")%>")
+			$("#name").val("<%= request.getParameter("name")%>")
+			$("#birth").val($("<%= request.getParameter("birth")%>")
 			$("#tel").val("<%= request.getParameter("tel")%>")
-			$("#email").val($("<%= request.getParameter("email")%>")
 			
 			$("#hidFrm").submit();
 		})//btnSearch
 		
-	  <%String check = request.getParameter("check");%>
-	  if(<%="n".equals(check) %>){
-		  $("#txtUserId").val("<%=request.getParameter("id") %>")
-		  $("#txtUserTel").val("<%=request.getParameter("tel") %>")
-		  $("#txtUserEmail").val("<%=request.getParameter("email") %>")
-		  alert("해당 정보로 등록된 회원이 이미 존재합니다.\n로그인을 진행해주세요!")
-		  location.href = "http://localhost/HCY_CINEMA/user/login/login.jsp";
-	  }//if
   })//ready
     
         //<![CDATA[
@@ -1386,9 +1378,9 @@
                    </div>
                     
 	                 <form action="http://localhost/HCY_CINEMA/user/login/join_member_detail.jsp" id="hidFrm" name="hidFrm"  method="post">
-	                 	<input type="hidden" id="id" name="id">
+	                 	<input type="hidden" id="name" name="name">
+	                 	<input type="hidden" id="birth" name="birth">
 	                 	<input type="hidden" id="tel" name="tel">
-	                 	<input type="hidden" id="email" name="email">
 	                 </form>
    <!-- ******************************************** 수정된 부분 끝! ******************************************** -->
     </div>    
