@@ -48,7 +48,8 @@ String chkPass=ec.directEncryption(pass);
 
 if (aVO.getId()!=null) {
 	if(aVO.getPassword().equals(chkPass)){
-    response.sendRedirect("../manageDashBoard/manage_dashboard.jsp");
+	session.setAttribute("userName", id);
+    response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp");
 	} else{%>
 		alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
 	    window.location.href = "manage_login.jsp";
