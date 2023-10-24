@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page info="" %>
+<%@ page info="비회원 예매확인 - 예매내역" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head>
     
@@ -16,9 +16,9 @@
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
-    <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://192.168.10.145/HCY_CINEMA/common/images/re_favicon.png" type="image/x-icon">
     <title id="ctl00_headerTitle">나의 예매내역 | 영화 그 이상의 감동. CGV</title>
-    <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="http://192.168.10.145/HCY_CINEMA/common/images/re_favicon.png">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/layout.css">
@@ -199,7 +199,7 @@
             <!-- 로그인시 메뉴 변경 필요 -->
 <div class="header_content">
     <div class="contents">
-        <h1 onclick=""><a href="http://192.168.10.145/HCY_CINEMA/user/home/main.jsp"><img src="http://192.168.10.145/HCY_CINEMA/common/images/logo_main.png" alt="HCY_CHINEMA"></a></h1>
+        <h1 onclick=""><a href="http://192.168.10.145/HCY_CINEMA/user/home/main.jsp"><img src="http://192.168.10.145/HCY_CINEMA/common/images/re_mainlogo.png" alt="HCY_CHINEMA"></a></h1>
         <ul class="memberInfo_wrap" style=" display: flex;list-style: none;padding: 0;">
         <c:set var="login" value="로그아웃"/>
         <% 
@@ -401,7 +401,7 @@
 
 <div class="nav" style="left: 0px;">
     <div class="contents">
-        <h1><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1"><img src="http://192.168.10.145/HCY_CINEMA/common/images/logo_main_y.png" alt="CGV"></a></h1>
+        <h1><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1"><img src="http://192.168.10.145/HCY_CINEMA/common/images/re_navilogo_wht.png" alt="CGV"></a></h1>
         <ul class="nav_menu">
             <li>
                 <h2><a href="http://192.168.10.145/HCY_CINEMA/user/movieInfo/movieChart.jsp">영화</a></h2>
@@ -466,6 +466,7 @@
 	        
 	    </div>
 	</div>
+	
 	<div class="col-detail">
 	    <div class="tit-mycgv">
 	        <h3>예매확인/취소</h3>
@@ -482,14 +483,12 @@
 		        <h4>MY(비회원) 예매내역</h4>
 		        
 	        </div>
-	        <div class="info-log">
-		        비회원으로 예매시 상영일 기준 2일 간의 예매 내역만 조회하실 수 있습니다.
-	        </div>
+	        
             
 		            <div class="lst-item">
 		                <div class="box-set-info">
 		    		        <div class="box-number">
-		    			        <em>예매번호</em>
+		    			        <em style="width:50px">예매번호</em>
 		    			        <strong>0013-<i>1019-5594-585</i></strong>
 		    		        </div>
 		    		        <div class="box-info">
@@ -510,20 +509,20 @@
                                             
                                         </dt>
 			        			        <dd>
-                                            <em>관람극장</em> 
+                                            <em style="width:50px">관람극장</em> 
                                             <strong>CGV 용산아이파크몰</strong> 
                                             <a href="/theaters/?theaterCode=0013">[극장정보]</a>
                                         </dd>
 			        			        <dd>
-                                            <em>관람일시</em>
+                                            <em style="width:50px">관람일시</em>
                                             <strong class="txt-red">
                                                 2023.10.25(수) 09:30
                                             </strong>
                                         </dd>
-			        			        <dd><em>상영관</em> <strong>13관</strong></dd>
-			        			        <dd><em>관람인원</em> <strong>  일반 1</strong></dd>
-			        			        <dd><em>관람좌석</em> <strong>F 13</strong></dd>
-			        			        <dd><em>매수</em> <strong>1매</strong></dd>
+			        			        <dd><em style="width:50px">상영관</em> <strong>13관</strong></dd>
+			        			        <dd><em style="width:50px">관람인원</em> <strong>  일반 1</strong></dd>
+			        			        <dd><em style="width:50px">관람좌석</em> <strong>F 13</strong></dd>
+			        			        <dd><em style="width:50px">매수</em> <strong>1매</strong></dd>
 			        		        </dl>
 			        	        </div>
 			        	        <div class="box-detail">
@@ -554,7 +553,7 @@
 			                </div>
 			                <div class="set-btn">
                                 <input type="hidden" class="reserve-no" name="reserve-no" value="uGmTfGXTvG/WfANmsLeVtZ1qDKRAKUal6cCLJ9EjRHU=">
-                                <div class="col-print">      <button type="button" title="새창" data2="05102410" data="89B2BAFBS3SN6AIXNPRY" class="round black receipt"><span>영수증출력</span></button>    <button type="type" class="round black cancel"><span>예매취소</span></button></div>    
+                                <div class="col-print">       <button type="type" class="round black cancel"><span>예매취소</span></button></div>    
                                 
 	        		        </div>
 		                </div>
