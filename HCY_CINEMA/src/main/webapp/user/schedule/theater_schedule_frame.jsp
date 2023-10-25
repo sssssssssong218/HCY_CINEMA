@@ -74,7 +74,7 @@
         <div class="sect-schedule">
             <div id="slider" class="slider">
                 
-                        <div class='item-wrap on'><ul class='item'>
+                        <div class='item-wrap on'><ul class='item' id="date">
                         
                         <%
                         StringBuilder sbDate = new StringBuilder();
@@ -126,7 +126,7 @@
                         %>
                         <li ${ target == temp?'class="on"':'' }>
                             <div class="day">
-                                <a href="?areacode=01&theatercode=0013&date=${ temp }&screencodes=&screenratingcode=&regioncode="
+                                <a href="?areacode=01&theatercode=0013&date=${ temp }&screencodes=&screenratingcode=&regioncode=#menu"
                                     ${ target == temp?'title="현재 선택"':'' }>
                                     <span>
                                        <c:out value="${month }"/>월</span> <em>

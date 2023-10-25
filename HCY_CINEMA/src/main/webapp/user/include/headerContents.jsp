@@ -226,9 +226,9 @@
                 </dl>
             </li>
             <li>
-                <h2><a href="http://localhost/HCY_CINEMA/user/ticketing/mainTicketing.jsp"><strong>예매</strong></a></h2>
+                <h2><a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp"><strong>예매</strong></a></h2>
                 <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="http://localhost/HCY_CINEMA/user/ticketing/mainTicketing.jsp" tabindex="-1">예매</a></h2></dt>
+                    <dt><h2><a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp" tabindex="-1">예매</a></h2></dt>
                     <dd><h3><a href="http://localhost/HCY_CINEMA/user/ticketing/mainTicketing.jsp">빠른예매</a></h3></dd>
                     <dd><h3><a href="http://localhost/HCY_CINEMA/user/movieSchedule/ticketingSchedule.jsp">상영스케줄</a></h3></dd>
                 </dl>
