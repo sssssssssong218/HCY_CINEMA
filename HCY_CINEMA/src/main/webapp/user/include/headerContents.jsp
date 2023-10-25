@@ -218,10 +218,10 @@
                 </dl>
             </li>
             <li>
-                <h2><a href="http://localhost/HCY_CINEMA/user/movieSchedule/theater.jsp">극장</a></h2>
+                <h2><a href="http://localhost/HCY_CINEMA/user/schedule/theater_schedule.jsp">극장</a></h2>
                 <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="http://localhost/HCY_CINEMA/user/movieSchedule/theater.jsp" tabindex="-1">극장</a></h2></dt>
-                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/movieSchedule/theater.jsp">HCY 극장</a></h3></dd>
+                    <dt><h2><a href="http://localhost/HCY_CINEMA/user/schedule/theater_schedule.jsp" tabindex="-1">극장</a></h2></dt>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/schedule/theater_schedule.jsp">HCY 극장</a></h3></dd>
                     <dd><h3><a href="http://localhost/HCY_CINEMA/user/home/special.jsp">특별관</a></h3></dd>
                 </dl>
             </li>
