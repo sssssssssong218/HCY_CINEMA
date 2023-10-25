@@ -14,4 +14,5 @@ public class DetailMovieDAO {
 		
 		return dmDAO;
 	}//getInstance
+	
 }//class

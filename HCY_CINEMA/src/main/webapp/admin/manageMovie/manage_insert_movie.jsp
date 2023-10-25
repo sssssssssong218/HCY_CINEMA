@@ -555,9 +555,8 @@ to {
 
 <div class="col-lg-6">
 <h5 class="m-t-0">영화 포스터 및 스틸컷 업로드</h5>
-<p>
-Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
-</p>
+<input type="button" value="저장" style="position: absolute;left:600px">
+<input type="button" value="취소" style="position: absolute;left:650px">
 <form action="poster_upload.jsp" method="post" enctype="multipart/form-data">
 <div style="display:inline-block">
 	 	<fieldset>
