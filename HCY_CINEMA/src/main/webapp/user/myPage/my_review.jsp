@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page info="내가 본 영화" %>
+<%@ page info="회원 예매확인 - 예매내역/예매취소" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head>
     
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -19,7 +20,7 @@
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
-    <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://192.168.10.145/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
     <title id="ctl00_headerTitle">내가 본 영화 &lt; 무비로그 | 영화 그 이상의 감동. CGV</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
@@ -528,18 +529,6 @@
 </div>    
 <div id="cgvwrap">
     
-    
-    <div class="cgv-ad-wrap" id="cgv_main_ad">
-        <div id="TopBarWrapper" class="sect-head-ad">
-            <div class="top_extend_ad_wrap">
-                <div class="adreduce" id="adReduce">                    
-                    <iframe src="//ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@TopBar_EX" width="100%" height="80" title="" frameborder="0" scrolling="no" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" name="TopBanner" id="TopBanner"></iframe>
-                </div> 
-                <div class="adextend" id="adExtend"></div>
-            </div><!-- //.top_extend_ad_wrap -->
-        </div>    
-    </div>    
-	
       <!-- S Header
         Description
         - class 'nav' 에 class 'active' 추가시 서브메뉴노출
@@ -547,34 +536,31 @@
      -->
 	<div class="header">			
             <!-- 서비스 메뉴 --> 
-            
+            <!-- 로그인시 메뉴 변경 필요 -->
 <div class="header_content">
     <div class="contents">
-        <h1 onclick=""><a href="/"><img src="https://img.cgv.co.kr/R2014/images/common/logo/logoRed.png" alt="CGV"></a><span>CULTUREPLEX</span></h1>
-        <ul class="memberInfo_wrap">
-            <!-- Advertisement -->
-            
-			<div class="ad-partner">
-                <a href="http://www.cgv.co.kr/culture-event/event/detailViewUnited.aspx?seq=31426&amp;menu=006">
-                    <img src="https://img.cgv.co.kr/WingBanner/2023/0208/16758461047540.png" alt="현대M포인트" onerror="this.onerror=null;javascript:;$('.ad-partner').hide();">
-                </a>					
-			</div>
-            
-            <!-- /Advertisement -->
-
-            
-            <li><a href="/user/login/logout.aspx" class="logout" title="로그아웃"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png" alt="로그아웃"><span>로그아웃</span></a></li>
-            
-            
-            <li><a href="/user/mycgv/"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png" alt="MY CGV"><span>MY CGV</span></a></li>
-            <li><a href="/support/default.aspx"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png" alt="고객센터"><span>고객센터</span></a></li>
+        <h1 onclick=""><a href="http://localhost/HCY_CINEMA/user/home/main.jsp"><img src="http://localhost/HCY_CINEMA/common/images/logo_main.png" alt="HCY_CHINEMA"></a></h1>
+        <ul class="memberInfo_wrap" style=" display: flex;list-style: none;padding: 0;">
+        <c:set var="login" value="로그아웃"/>
+        <% 
+        if(session.getAttribute("login") == null){
+        session.setAttribute("login", false); 
+        }//if%>
+        <c:if test="${sessionScope.login eq false}">
+        <c:set var="login" value="로그인"/>
+            </c:if>
+        <li><a href="http://192.168.10.146/HCY_CINEMA/user/login/login.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png" alt="${login}"><span><c:out value="${login}"/></span></a></li>
+        <c:if test="${sessionScope.login eq false}">
+            <li><a href="http://localhost/HCY_CINEMA/user/login/join.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
+            </c:if>
+            <li><a href="http://localhost/HCY_CINEMA/user/mypage/my_ticket.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png" alt="MY PAGE"><span>MY PAGE</span></a></li>
+            <li><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png" alt="고객센터"><span>고객센터</span></a></li>
         </ul>
     </div>
 </div>
-
 <script>
     //GA Analytics TopMenu 영역 LOG
-    //빨강 CGV클릭
+    //메인로고 클릭
     $('.header_content > .contents > h1 > a').on({
         click: function (e) {
             gaEventLog('PC_GNB', '홈', '');
@@ -593,7 +579,7 @@
             <!-- 서비스 메뉴 -->
            
 			<!-- 서브 메뉴 -->
-			
+			<!-- 네비게이션에 마우스 올라오면 메뉴 열림 -->
 <script type="text/javascript">
     $(document).ready(function () {
         $('.nav_menu > li > h2 > a').on({
@@ -748,133 +734,47 @@
 
         //GA 검색로그
         gaEventLog('PC_GNB', '검색', $objKeyword.val());
-        location = "/search/?query=" + escape($objKeyword.val());
+        location = "http://localhost/HCY_CHINEMA/user/search/search.jsp?query=" + escape($objKeyword.val());
     }
-
-   
-
-    //상단 키워드 광고 (S)
-    function AdSearchExt(txt, SearchText) {
-        $('#header_keyword').attr('placeholder', txt);
-        $('#header_ad_keyword').val(SearchText);
-    }
-
-    function hdIcoSet(left, sh) { }
-    //상단 키워드 광고 (E)
-
-    //상단광고닫기
-    function hideCgvTopAd() {
-        $(".cgv-ad-wrap").hide();
-        $('#wrap_main_notice').parent('div').css('top', 280);
-    }
-
-    //비즈스프링 클릭로그
-    function setClickLog(title) {
-        // eval("try{trk_clickTrace('EVT', '" + title + "')}catch(_e){}");
-    }
-
 </script>
+
+
 <div class="nav" style="left: 0px;">
     <div class="contents">
-        <h1><a href="/" tabindex="-1"><img src="https://img.cgv.co.kr/R2014/images/common/logo/logoWhite.png" alt="CGV"></a></h1>
+        <h1><a href="http://localhost/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1"><img src="http://localhost/HCY_CINEMA/common/images/logo_main_y.png" alt="CGV"></a></h1>
         <ul class="nav_menu">
             <li>
-                <h2><a href="/movies/?lt=1&amp;ft=0">영화</a></h2>
+                <h2><a href="http://localhost/HCY_CINEMA/user/movieInfo/movieChart.jsp">영화</a></h2>
                 <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="/movies/?lt=1&amp;ft=0" tabindex="-1">영화</a></h2></dt>
-                    <dd><h3><a href="/movies/?lt=1&amp;ft=0">무비차트</a></h3></dd>
-                    <dd><h3><a href="/arthouse/">아트하우스</a></h3></dd>
-                    <dd><h3><a href="/culture-event/event/detailViewUnited.aspx?seq=30717">ICECON</a></h3></dd>
+                    <dt><h2><a href="http://localhost/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1">영화</a></h2></dt>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/movieInfo/movieChart.jsp">무비차트</a></h3></dd>
                 </dl>
             </li>
             <li>
-                <h2><a href="/theaters/">극장</a></h2>
+                <h2><a href="http://localhost/HCY_CINEMA/user/movieSchedule/theater.jsp">극장</a></h2>
                 <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="/theaters/" tabindex="-1">극장</a></h2></dt>
-                    <dd><h3><a href="/theaters/">CGV 극장</a></h3></dd>
-                    <dd><h3><a href="/theaters/special/defaultNew.aspx">특별관</a></h3></dd>
+                    <dt><h2><a href="http://localhost/HCY_CINEMA/user/movieSchedule/theater.jsp" tabindex="-1">극장</a></h2></dt>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/movieSchedule/theater.jsp">HCY 극장</a></h3></dd>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/home/special.jsp">특별관</a></h3></dd>
                 </dl>
             </li>
             <li>
-                <h2><a href="/ticket/"><strong>예매</strong></a></h2>
+                <h2><a href="http://localhost/HCY_CINEMA/user/ticketing/mainTicketing.jsp"><strong>예매</strong></a></h2>
                 <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="/ticket/" tabindex="-1">예매</a></h2></dt>
-                    <dd><h3><a href="/ticket/">빠른예매</a></h3></dd>
-                    <dd><h3><a href="/reserve/show-times/">상영스케줄</a></h3></dd>
-                    <dd><h3><a href="/ticket/eng/newdefault.aspx">English Ticketing</a></h3></dd>
-                    <dd><h3><a href="/reserve/show-times/eng/">English Schedule</a></h3></dd>
+                    <dt><h2><a href="http://localhost/HCY_CINEMA/user/ticketing/mainTicketing.jsp" tabindex="-1">예매</a></h2></dt>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/ticketing/mainTicketing.jsp">빠른예매</a></h3></dd>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/movieSchedule/ticketingSchedule.jsp">상영스케줄</a></h3></dd>
                 </dl>
             </li>
             <li>
-                <h2><a href="/culture-event/popcorn-store/">스토어</a></h2>
-                <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="/culture-event/popcorn-store/" tabindex="-1">스토어</a></h2></dt>
-                    
-                            <dd><h3><a href="/culture-event/popcorn-store/store-category.aspx?CategoryIdx=1">패키지</a></h3></dd>
-                        
-                            <dd><h3><a href="/culture-event/popcorn-store/store-category.aspx?CategoryIdx=2">영화관람권</a></h3></dd>
-                        
-                            <dd><h3><a href="/culture-event/popcorn-store/store-category.aspx?CategoryIdx=3">기프트카드</a></h3></dd>
-                        
-                            <dd><h3><a href="/culture-event/popcorn-store/store-category.aspx?CategoryIdx=4">콤보</a></h3></dd>
-                        
-                            <dd><h3><a href="/culture-event/popcorn-store/store-category.aspx?CategoryIdx=5">팝콘</a></h3></dd>
-                        
-                            <dd><h3><a href="/culture-event/popcorn-store/store-category.aspx?CategoryIdx=6">음료</a></h3></dd>
-                        
-                            <dd><h3><a href="/culture-event/popcorn-store/store-category.aspx?CategoryIdx=7">스낵</a></h3></dd>
-                        
-                            <dd><h3><a href="/culture-event/popcorn-store/store-category.aspx?CategoryIdx=10">플레이존</a></h3></dd>
-                        
-                    <!-- 2023.05.15 씨네샵 URL 변경 요청 -->
-                    <dd><h3><a href="https://www.cineshop.co.kr" class="arrowR" target="_blank">씨네샵</a></h3></dd>
-                </dl>
-            </li>
-            <li>
-                <h2 onclick="gaEventLog('PC_GNB','주메뉴_이벤트','')"><a href="/culture-event/event/defaultNew.aspx">이벤트</a></h2>
-                <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="/culture-event/event/defaultNew.aspx?mCode=001" tabindex="-1">이벤트</a></h2></dt>
-                    <dd><h3><a href="/culture-event/event/defaultNew.aspx?mCode=001">SPECIAL</a></h3></dd>
-                    <dd><h3><a href="/culture-event/event/defaultNew.aspx?mCode=004">영화/예매</a></h3></dd>
-                    <dd><h3><a href="/culture-event/event/defaultNew.aspx?mCode=008">멤버십/CLUB</a></h3></dd>
-                    <dd><h3><a href="/culture-event/event/defaultNew.aspx?mCode=005">CGV 극장별</a></h3></dd>
-                    <dd><h3><a href="/culture-event/event/defaultNew.aspx?mCode=006">제휴할인</a></h3></dd>
-                    <dd><h3><a href="/user/mycgv/event/result_list.aspx">당첨자 발표</a></h3></dd>
-                    <dd><h3><a href="/culture-event/event/end-list.aspx">종료된 이벤트</a></h3></dd>
-                </dl>
-            </li>
-            <li>
-                <h2 onclick="gaEventLog('PC_GNB','주메뉴_해택','')"><a href="/discount/discountlist.aspx">혜택</a></h2>
-                <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="/discount/discountlist.aspx" tabindex="-1">혜택</a></h2></dt>
-                    <dd><h3><a href="/discount/discountlist.aspx">CGV 할인정보</a></h3></dd>
-                    <dd><h3><a href="https://www.cgv.co.kr/user/memberShip/ClubService.aspx">CLUB 서비스</a></h3></dd>
-                    <dd><h3><a href="/user/vip-lounge/">VIP 라운지</a></h3></dd>
-                </dl>
             </li>
         </ul>
         <div class="totalSearch_wrap">
             <label for="totalSearch">
-                <input type="text" id="header_keyword" value="" placeholder="오픈 더 도어">
-                <input type="hidden" id="header_ad_keyword" name="header_ad_keyword" value="오픈 더 도어">
+                <input type="text" id="header_keyword" value="">
+                <input type="hidden" id="header_ad_keyword" name="header_ad_keyword">
             </label>
             <button type="button" class="btn_totalSearch" id="btn_header_search">검색</button>
-            <iframe src="//ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/main@Search_txt" width="0" height="0" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen"></iframe>
-            <!--<div class="totalSearchAutocomplete_wrap">
-                <dl class="totalSearchAutocomplete_list">
-                    <dt>영화</dt>
-                    <dd><a href="#none"><strong>전지</strong>적 작가시점</a></dd>
-                    <dd><a href="#none">내언니 <strong>전지</strong>현과 나</a></dd>
-                    <dd><a href="#none">수호<strong>전지</strong> 영웅본색</a></dd>
-                </dl>
-                <dl class="totalSearchAutocomplete_list">
-                    <dt>인물</dt>
-                    <dd><a href="#none"><strong>전지</strong>현</a></dd>
-                    <dd><a href="#none"><strong>전지</strong>희</a></dd>
-                    <dd><a href="#none">이<strong>전지</strong></a></dd>
-                </dl>
-                <a href="#none" class="btn_totalSearchAutocomplete_close">닫기</a>
-            </div>//-->
         </div>
     </div>
 </div>
@@ -1017,7 +917,7 @@
 				                    </div>
                                     
 				                     
-				                    <button type="button" data="463340536" class="btn-del"><img src="https://img.cgv.co.kr/R2014/images/common/btn/btn_del.gif" alt="엘리멘탈(자막) 삭제"></button>
+				                    
 				                </div>
 			                </li>
                         
@@ -1053,7 +953,7 @@
 				                    </div>
                                     
 				                     
-				                    <button type="button" data="383706992" class="btn-del"><img src="https://img.cgv.co.kr/R2014/images/common/btn/btn_del.gif" alt="토이 스토리 4(자막) 삭제"></button>
+				                    
 				                </div>
 			                </li>
                         
@@ -1089,7 +989,7 @@
 				                    </div>
                                     
 				                     
-				                    <button type="button" data="379787668" class="btn-del"><img src="https://img.cgv.co.kr/R2014/images/common/btn/btn_del.gif" alt="그녀 삭제"></button>
+				                    
 				                </div>
 			                </li>
                         
@@ -1125,7 +1025,7 @@
 				                    </div>
                                     
 				                     
-				                    <button type="button" data="379703769" class="btn-del"><img src="https://img.cgv.co.kr/R2014/images/common/btn/btn_del.gif" alt="기생충 삭제"></button>
+				                    
 				                </div>
 			                </li>
                         
@@ -1161,7 +1061,7 @@
 				                    </div>
                                     
 				                     
-				                    <button type="button" data="359117730" class="btn-del"><img src="https://img.cgv.co.kr/R2014/images/common/btn/btn_del.gif" alt="보헤미안 랩소디(SCREENX 2D) 삭제"></button>
+				                    
 				                </div>
 			                </li>
                         

@@ -275,9 +275,151 @@
 <h4 class="hidden"> + [상영시간표]</h4>
             
 <!-- Showtimes Start -->
+<div class="cols-content">
 <div style="justify-content : center;display: flex;">
-<jsp:include page="theater_schedule_frame.jsp"/>
+        <!-- 상영시간표 UserControl -->
+        
+<div class="col-detail"> 
+	<div class="sect-theater-map">
+        <h4 class="hidden">HCY강남 위치안내</h4>
+        <a href="#mapjump" class="jump-map">지도 건너뛰기 <span class="hidden">극장 위치 정보를 위해 네이버 지도 API를 사용하였으나 접근성을 준수하지 못한 컨텐츠를 담고 있습니다. 이 요소를 원치 않으실 경우 이 링크를 선택하시기 바랍니다.</span></a>
+
+        <div class="map" id="map" style="display:none;"></div>
+        <dl class="near-cgv" id="theaters" style="display:none;">
+            
+            
+        </dl>
+    </div><!-- .sect-map-theater -->
+    <a href="#" id="mapjump" class="hidden">지도 건너뛰기 후 내용시작</a>
+    <div class="sect-theater-info">
+        <h4><span class="ico-bus">대중</span>교통안내</h4>
+        <div class="info-contents">
+            
+            <p># 지하철<br>
+- 2호선 강남역 11번 출구 도보 5분<br>
+- 9호선 신논현역 5번 출구 도보 5분<br>
+- 신분당선 신논현역 6번 출구 도보 3분<br>
+<br>
+# 버스<br>
+- 간선버스 : 140, 144, 145, 146, 360, 400, 402, 420, 421, 440, 441, 452, 470, 542, 640, 643, 741&nbsp;<br>
+&nbsp; 심야) N13, N31, N37, N75<br>
+- 지선버스 : 3412, 4312, 8146, 8541<br>
+- 광역버스 : 1005, 1100, 1101, 1151, 1241, 1311, 1311B, 1550, 1550-1, 1551, 1551B, 1552, 1560, 1570, 1700, 2000, 2000-1, 3008, 3030, 3100, 3401, 3600, 4403, 5001, 5001-1, 5002A, 5002B,&nbsp;5003A, 5003B,5006, 5100, 5200, 5300, 6001, 6002, 6002-1, 6004, 6427, 6600, 7007, 8001, 8502, 9004, 9202, 9303, 9400, 9404, 9408, 9409, 9500, 9501, 9600, 9700, 9711, 9800, 9802,&nbsp;G5100,G7426, M4403, M4434, M4448, M4449, M5422, M5438, M6427, M7412, P9201, 이음2<br>
+&nbsp; 심야) 1101N, 3100N<br>
+- 마을버스 : 서초03<br>
+- 공항버스 : 6009</p>
+        </div>
+    </div>
+    <div class="sect-theater-info">
+		<h4><span class="ico-parking">자가용</span>주차안내</h4>
+        <div class="info-contents">
+            
+            
+            <p># 주차정보<br>
+- 위치: 건물 지하2F ~ 지하4F<br>
+<br>
+# 주차요금<br>
+- HCY 영화 관람 시 주차 3시간 6,000원<br>
+<span style="color:blue">- 주차시간 (3시간) 초과 시 10분 당 1,000원<br>
+※ 발렛서비스 운영시간 : 오전 8시 이후 ~ 오후 20시</span></p>
+
+<p><span style="color:#0000cd">※ 발렛 무료 서비스는 영화 관람&nbsp;고객 한 함.&nbsp;&nbsp;(영화 미관람 시&nbsp;건물 주차장에서 별도 정산)</span><br>
+※ 20시 이후 입차 차량은 발렛서비스 이용이 제한될 수 있으며, 별도 운영되는 주차팀의 사정에 따라 변경될 수 있습니다.<br>
+<br>
+# 이용안내<br>
+- 주차공간이 협소하여 평일 오후/주말은 주차가 어렵습니다.<br>
+- 편리한 대중교통 이용을 이용하여 주시기 바랍니다.</p>
+
+            <!-- 사진 정보 -->
+            <p></p>
+        </div>
+    </div>
 </div>
+</div>
+<!--
+<script type="text/javascript" src="http://openapi.map.naver.com/openapi/v3/maps.js?clientId=HN6XLydtPjaWOHKDXlUV"></script>
+-->
+
+<script type="text/javascript">
+//<![CDATA[
+    (function ($) {
+        $(function () {
+            /*
+            var locationTheaterJsonData = [{"code":"0056","lat":"37.501528","lng":"127.026325","label":"CGV강남"},{"code":"0040","lat":"37.5245500","lng":"127.0289700","label":"CGV압구정"},{"code":"0107","lat":"37.5229008","lng":"127.0370514","label":"CGV청담씨네시티"}];
+
+            // TODO : 극장 위치 정보 공유 방식 결정되어야 함.
+            // Property 명 변경되면 js에서도 변경해야함.
+            // map init
+            var $theaterMap = $('#map'), instMap;
+            if ($theaterMap) {
+                instMap = $theaterMap.naverMap({
+                    'data': locationTheaterJsonData,   // 전체 극장 정보
+                    'code': '0056',    // 현재 극장 코드
+                    'w' : 800
+                });
+            }
+
+            // map point set.
+            $('#theaters a').on('click', function () {
+                if(instMap){
+                    instMap.move($(this).data('code'));
+                }
+                return false;
+            });
+			*/
+
+            $('#btn_roadmap').on('click', function () {
+                var locationTheaterCode = "0056";
+                var lat = "37.501528";
+                var lon = "127.026325";
+                var theaterName = "HCY강남";
+
+                var url = 'http://map.naver.com/?x=' + lon + '&y=' + lat + '&level=3&title=' + encodeURIComponent(theaterName);
+                if (locationTheaterCode === "0013")
+                    url = 'http://map.naver.com/?eX=308624&eY=547995&eText=' + encodeURIComponent(theaterName);
+
+                var windowPopup = window.open(url, "mapwin", "toolbar=1,location=1,directories=1,status=1,menubar=1,resizable=1,scrollbars=1");
+                windowPopup.focus();
+
+                return false;
+            });
+
+        });
+    })(jQuery);
+//]]>
+</script>
+        
+        
+        <div class="col-aside">
+            <div class="ad-partner01"> 
+            	<iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@M_Rectangle" width="160" height="300" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="M_Rectangle" id="M_Rectangle"></iframe>
+            </div>
+            <div class="ad-partner02">
+            	<iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@C_Rectangle" width="160" height="300" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="C_Rectangle" id="C_Rectangle"></iframe>
+            </div>
+        </div>
+    <!--    <div class="sect-sns">
+            <ul>                	
+                <li><a class="link-facebook" href="#" id="link_facebook">FaceBook</a></li>
+                <li><a class="link-twitter" href="#" id="link_twitter">Twitter</a></li>
+            </ul>
+            <div class="share">
+                <div id="fb-root"></div>
+                <script>
+                    (function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&appId=341385562539159&version=v2.0";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    } (document, 'script', 'facebook-jssdk'));
+                </script>
+                <div class="fb-like" style="z-index:2" data-href="http%3a%2f%2fwww.cgv.co.kr%2ftheaters%2fdefault.aspx%3fpage%3dlocation%26theaterCode%3d0056" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+            </div>  	
+        
+        </div>-->
+    </div>
+
 <!-- /Showtimes End -->
 
 </div>

@@ -16,9 +16,9 @@
         <c:if test="${sessionScope.login eq false}">
         <c:set var="login" value="로그인"/>
             </c:if>
-        <li><a href="http://192.168.10.146/HCY_CINEMA/user/login/login.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png" alt="${login}"><span><c:out value="${login}"/></span></a></li>
+        <li><a href="http://localhost/HCY_CINEMA/user/login/${login eq '로그인'?'login':'logout'}.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png" alt="${login}"><span><c:out value="${login}"/></span></a></li>
         <c:if test="${sessionScope.login eq false}">
-            <li><a href="http://localhost/HCY_CINEMA/user/login/join.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
+            <li><a href="http://localhost/HCY_CINEMA/user/login/join_member.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
             </c:if>
             <li><a href="http://localhost/HCY_CINEMA/user/mypage/my_ticket.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png" alt="MY PAGE"><span>MY PAGE</span></a></li>
             <li><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png" alt="고객센터"><span>고객센터</span></a></li>
@@ -218,10 +218,10 @@
                 </dl>
             </li>
             <li>
-                <h2><a href="http://localhost/HCY_CINEMA/user/movieSchedule/theater.jsp">극장</a></h2>
+                <h2><a href="http://localhost/HCY_CINEMA/user/schedule/theater_schedule.jsp">극장</a></h2>
                 <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="http://localhost/HCY_CINEMA/user/movieSchedule/theater.jsp" tabindex="-1">극장</a></h2></dt>
-                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/movieSchedule/theater.jsp">HCY 극장</a></h3></dd>
+                    <dt><h2><a href="http://localhost/HCY_CINEMA/user/schedule/theater_schedule.jsp" tabindex="-1">극장</a></h2></dt>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/schedule/theater_schedule.jsp">HCY 극장</a></h3></dd>
                     <dd><h3><a href="http://localhost/HCY_CINEMA/user/home/special.jsp">특별관</a></h3></dd>
                 </dl>
             </li>

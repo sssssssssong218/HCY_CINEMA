@@ -2,9 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page info="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% request.setCharacterEncoding("UTF-8"); %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Expires" content="-1">
@@ -15,13 +14,13 @@
     <meta name="keywords" content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
     <meta name="description" content="CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
     <meta property="og:site_name" content="영화 그 이상의 감동. CGV">
-    <meta id="ctl00_og_title" property="og:title" content="비밀번호 변경 < 로그인 | 영화 그 이상의 감동. CGV">
+    <meta id="ctl00_og_title" property="og:title" content="CGV강남 | 영화 그 이상의 감동. CGV">
     
     
-    <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
+    <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/Theater/Theater/2014/1211/CGVgangnam.jpg">
     <link rel="alternate" href="http://m.cgv.co.kr">
     <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
-    <title id="ctl00_headerTitle">회원정보 입력 &lt; 회원가입 | 영화 그 이상의 감동. HCY</title>
+    <title id="ctl00_headerTitle">HCY극장 &lt; 특별관</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
@@ -34,7 +33,7 @@
     <link rel="stylesheet" media="print" type="text/css" href="https://img.cgv.co.kr/R2014/css/print.css">    
     <link rel="stylesheet" type="text/css" href="https://img.cgv.co.kr/R2014/js/jquery.ui/smoothness/jquery-ui-1.10.4.custom.min.css">
     
-    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-SSGE1ZCJKG&amp;cx=c&amp;_slc=1"></script><script type="text/javascript" async="" src="http://www.googletagmanager.com/gtag/js?id=G-559DE9WSKZ&amp;l=dataLayer&amp;cx=c"></script><script type="text/javascript" async="" src="http://www.google-analytics.com/analytics.js"></script><script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-NNNFR3"></script><script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="/common/js/extraTheaters.js"></script>
+    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-SSGE1ZCJKG&amp;cx=c&amp;_slc=1"></script><script type="text/javascript" async="" src="http://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="http://www.googletagmanager.com/gtag/js?id=G-559DE9WSKZ&amp;l=dataLayer&amp;cx=c"></script><script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-NNNFR3"></script><script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="/common/js/extraTheaters.js"></script>
     <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/app.config.js"></script>
     <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.tmpl.min.js"></script>
@@ -73,16 +72,11 @@
 
     <!-- 각페이지 Header Start--> 
     
+
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
-  $(function(){
-	 	$("#txtUserName").val("<%= request.getParameter("name") %>");
-		$("#txtUserBirth").val("<%=request.getParameter("birth") %>")
-		$("#txtUserTel").val("<%=request.getParameter("tel") %>")
-  })//ready
-    
         //<![CDATA[
-        _TRK_CP = "/회원서비스/로그인/비밀번호 변경";
+        _TRK_CP = "/극장/CGV극장";
 
         app.config('staticDomain', 'https://img.cgv.co.kr/R2014/')
             .config('imageDomain', 'https://img.cgv.co.kr')
@@ -187,7 +181,7 @@
     
 
     
-<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script><script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script></head>
+<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script></head>
 <body class="" style="" cz-shortcut-listen="true">
 
 <div class="skipnaiv">
@@ -207,165 +201,44 @@
         </div>    
     </div>    
 	
-<jsp:include page="../include/headerContents.jsp"/>
+      <!-- S Header
+        Description
+        - class 'nav' 에 class 'active' 추가시 서브메뉴노출
+        - class 'nav' 에 class 'fixed' 추가시 상단고정되며 스타일 변경됨
+     -->
+	<c:import url="../include/headerContents.jsp"/>
+	<!-- E Header -->
+<style>
+#contaniner .contents{height: auto;}
+</style>
+<div id="contaniner">
+<!-- S > Contents Area -->
+    <article class="specialtheater_title">
+        <div class="contents">
+            <strong>CGV만의 특별함이 있는 영화관을 소개합니다.</strong>
+            <ul class="specialtheater_hash_list">
+                <li>#TECHNOLOGY</li><li>#PRESTIGE</li><li>#CONCEPT</li>
+                <!--<li>#Technologe</li>
+                <li>#Prestige</li>
+                <li>#Concept</li>-->
+            </ul>
+        </div>
+    </article>
+<!-- S 특별관 카테고리 및 소갬 문구
+    Description:
+    - 긴 이미지: 유형1, 짧은 이미지: 유형2
+    - 유형1은 li 태그에 'wide' 추가
+    - 총 갯수가 짝수인 경우 (유형 1 -> 유형2 -> 유형2 -> 유형1 -> 유형1 -> 유형2 -> 유형2 ...)
+    - 총 갯수가 혹수인 경우 (맨 마지막 3개만 유형2로 3개 노출)
 
-	<!-- Contaniner -->
-	<div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
-        
-
-		<!-- Contents Area -->
-		 <div id="contents" class="">
-        
+--> 
+    
+    <article class="specialtheater_category">  <div class="contents">      <h4 class="specialtheater_category_title_wrap">      <strong class="specialtheater_category_title">TECHNOLOGY</strong>      <span class="specialtheater_category_comment">진화된 3S(Screen, Sound, Seat) 기술로 컨텐츠 몰입도를 극대화하여 영화 관람에 최적화된 환경을 제공합니다.</span>  </h4><ul class="specialtheater_category_list"><li class="wide">    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=1">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844565213590.png" alt="궁극의 몰입감" onerror="errorImage(this)">        </div>        <strong>IMAX</strong>        <span>궁극의 몰입감</span>    </a></li><li>    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=2">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844565563790.png" alt="특별한 오감체험" onerror="errorImage(this)">        </div>        <strong>4DX</strong>        <span>특별한 오감체험</span>    </a></li><li>    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=17">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844578208900.png" alt="최대치의 공감각" onerror="errorImage(this)">        </div>        <strong>4DX SCREEN</strong>        <span>최대치의 공감각</span>    </a></li><li class="wide">    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=3">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844566032440.png" alt="3면 확장 스크린" onerror="errorImage(this)">        </div>        <strong>SCREENX</strong>        <span>3면 확장 스크린</span>    </a></li><li class="wide">    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=4">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844566818680.png" alt="진화된 스크린" onerror="errorImage(this)">        </div>        <strong>SPHEREX</strong>        <span>진화된 스크린</span>    </a></li><li>    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=16">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844577756460.png" alt="3D 입체음향" onerror="errorImage(this)">        </div>        <strong>SOUNDX</strong>        <span>3D 입체음향</span>    </a></li><li>    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=5">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844567163410.png" alt="초대형 스크린" onerror="errorImage(this)">        </div>        <strong>STARIUM</strong>        <span>초대형 스크린</span>    </a></li><li class="wide">    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=23">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16632369964330.jpg" alt="차세대 몰입형 사운드" onerror="errorImage(this)">        </div>        <strong>DOLBY ATMOS</strong>        <span>차세대 몰입형 사운드</span>    </a></li><!-- ul --></ul></div></article><article class="specialtheater_category">  <div class="contents">      <h4 class="specialtheater_category_title_wrap">      <strong class="specialtheater_category_title">PRESTIGE</strong>      <span class="specialtheater_category_comment">세련된 인테리어와 프리미엄 서비스로 진정한 품격을 느낄 수 있는  최고급 영화 관람 환경을 선사합니다.</span>  </h4><ul class="specialtheater_category_list"><li class="wide">    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=6">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844574293100.png" alt="박스형 프리미엄 상영관" onerror="errorImage(this)">        </div>        <strong>PRIVATE BOX</strong>        <span>박스형 프리미엄 상영관</span>    </a></li><li>    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=7">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844574556230.png" alt="호텔형 프리미엄 상영관" onerror="errorImage(this)">        </div>        <strong>SUITE CINEMA</strong>        <span>호텔형 프리미엄 상영관</span>    </a></li><li>    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=8">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844574779520.png" alt="쉐프가 있는 영화관" onerror="errorImage(this)">        </div>        <strong>CINE de CHEF</strong>        <span>쉐프가 있는 영화관</span>    </a></li><li class="wide">    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=9">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844575096390.png" alt="리클라이닝 침대 상영관" onerror="errorImage(this)">        </div>        <strong>TEMPUR CINEMA</strong>        <span>리클라이닝 침대 상영관</span>    </a></li><li>    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=10">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844575399980.png" alt="프리미엄 소파 상영관" onerror="errorImage(this)">        </div>        <strong>GOLD CLASS</strong>        <span>프리미엄 소파 상영관</span>    </a></li><li>    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=11">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844576881620.png" alt="대관형 프리미엄 상영관" onerror="errorImage(this)">        </div>        <strong>THE PRIVATE CINEMA</strong>        <span>대관형 프리미엄 상영관</span>    </a></li><li>    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=12">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844577116970.png" alt="리클라이너 상영관" onerror="errorImage(this)">        </div>        <strong>PREMIUM</strong>        <span>리클라이너 상영관</span>    </a></li><!-- ul --></ul></div></article><article class="specialtheater_category">  <div class="contents">      <h4 class="specialtheater_category_title_wrap">      <strong class="specialtheater_category_title">CONCEPT</strong>      <span class="specialtheater_category_comment">유니크한 테마로 구성된 컨셉 상영관으로 특별한 추억을 만들 수 있는  다양한 영화 관람 경험을 선물합니다.</span>  </h4><ul class="specialtheater_category_list"><li class="wide">    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=13">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844577273360.png" alt="자연 컨셉의 힐링 상영관" onerror="errorImage(this)">        </div>        <strong>CINE &amp; FORET</strong>        <span>자연 컨셉의 힐링 상영관</span>    </a></li><li>    <a href="http://www.cgv.co.kr/theaters/special/defaultDetailNew.aspx?idx=14">        <div class="img_wrap">            <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16554503371910.png" alt="신개념 소셜 상영관" onerror="errorImage(this)">        </div>        <strong>CINE &amp; LIVING ROOM</strong>        <span>신개념 소셜 상영관</span>    </a></li><!-- ul --></ul></div></article>
             
-            <!-- Contents Start -->
-			
-<!-- 실컨텐츠 시작 -->
-<div class="wrap-login">
-            <div class="sect-user">
-
-                <h3>회원가입</h3>
-                <p>
-                    회원가입을 위한 정보를 입력합니다.<br>
-                    회원가입에 필요한 정보는 회원가입 이외의 용도로 사용될 수 없습니다.  
-                </p>
-
-        <!-- ******************************************** 수정된 부분 시작! ******************************************** -->
-                        <div class="cols-enterform find_0826 find_pw_id">
-                            <div class="col-confirm">
-                                <h4>회원가입 정보 입력</h4>
-                                <div class="box-confirm">
-                                   <h5>회원 가입하실 고객님의 정보를 입력해주세요.</h5>
-                                   <form id="frm" name="frm" method="post" novalidate="novalidate" action="">
-                                       <label for="txtUserName" style="margin-right: 51px">이름</label>
-                                       <input type="text" id="txtUserName" name="txtUserName" readonly="readonly"><br><br>
-                                       
-                                       <label for="txtUserId" style="margin-right: 40px;margin-left: 82px">아이디</label>
-                                       <input type="text" id="txtUserId" name="txtUserId" placeholder="아이디를 입력해주세요.">
-                                       <input type="button" id="btnDup" name="btnDup" class="btn btn-dark" value="중복확인" style="width: 70px;margin-left: 10px"><br><br>
-                                       
-                                       <label for="txtUserPw" style="margin-right: 29px">비밀번호</label>
-                                       <input type="password" id="txtUserPw" name="txtUserPw" placeholder="비밀번호를 입력해주세요." style="width: 170px"><br>
-                                       <span style="font-size: 10;">*비밀번호는 영문, 숫자, 특수문자를 포함한 8자 이상이어야 합니다.</span><br><br>
-                                       <label for="txtUserPwCh" style="margin-right: 7px">비밀번호확인</label>
-                                       <input type="password" id="txtUserPwCh" name="txtUserPwCh" placeholder="비밀번호를 재입력해주세요." style="width: 170px"><br><br>
-                                       
-                                       <label for="txtUserBirth" style="margin-right: 8px">법정생년월일</label>
-                                       <input type="text" id="txtUserBirth" name="txtUserBirth" readonly="readonly"><br><br>
-                                       
-                                       <label for="txtUserTel" style="margin-right: 30px">전화번호</label>
-                                       <input type="text" id="txtUserTel" name="txtUserTel" readonly="readonly"><br><br>
-                                       
-                                       <label for="txtUserEmail" style="margin-right: 40px">이메일</label>
-                                       <input type="text" id="txtUserEmail" name="txtUserEmail" placeholder="ex) xxx@xxx.xxx"><br><br>
-                                       
-                                       <input type="button" id="btnJoin" class="btn btn-danger" value="회원가입" style="width: 70px"><br><br>
-                                   </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-	                 <form action="#" id="hidDupFrm" name="hidDupFrm"  method="post">
-	                 	<input type="hidden" id="idDupFlag" name="idDupFlag">
-	                 </form>
-	                 
-	                 <form action="http://localhost/HCY_CINEMA/user/login/insert_join.jsp" id="hidFrm" name="hidFrm"  method="post">
-	                 	<input type="hidden" id="name" name="name">
-	                 	<input type="hidden" id="id" name="id">
-	                 	<input type="hidden" id="pw" name="pw">
-	                 	<input type="hidden" id="birth" name="birth">
-	                 	<input type="hidden" id="tel" name="tel">
-	                 	<input type="hidden" id="email" name="email">
-	                 </form>
-   <!-- ******************************************** 수정된 부분 끝! ******************************************** -->
-    </div>    
-    <div class="sect-loginguide">
-        <dl class="box-operationguide">
-            <dt>이용문의</dt>
-            <dd>HCY 고객센터 : 4444-4444</dd>
-            <dd>상담 가능 시간 : 월~금 09:00~09:01 (이 외 시간은 자동 응답 안내 가능)</dd>
-        </dl>
-    </div>
+<!-- E 특별관 카테고리 및 소갬 문구 -->
+<!-- E > Contents Area -->
 </div>
-<!-- 실컨텐츠 끝 -->
 
-<!-- find id -->
-<form name="frmFindAccount" id="frmFindAccount" method="post" action="https://www.cgv.co.kr/user/login/find-pw-proc.aspx" novalidate="novalidate">   
-    <input type="hidden" id="userid" name="userid" value="0"> 
-</form>
-<!-- //find id -->
-
-<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/crypto.js"></script>
-<script type="text/javascript">
-//<![CDATA[
-	
-	$(function(){
-		$("#btnDup").click(function(){
-			var id=$("#txtUserId").val();
-			window.open("http://localhost/HCY_CINEMA/user/login/id_dup.jsp?id="+id,"id_dup","width=512,height=313,top="
-		            +( window.screenY+150)+",left="+( window.screenX+200));	
-		})//btnCheckId
-		
-		$("#txtUserId").keydown(function(){
-            $("#idDupFlag").val('0')
-        })//txtUserId
-		
-		$("#btnJoin").click(function(){
-			
-			var inputs = [$("#txtUserId").val(),$("#txtUserEmail").val(),$("#txtUserPw").val(),$("#txtUserPwCh").val()];
-			
-			for(var i=0 ; i<inputs.length;i++){
-				var input = inputs[i];
-				if(input == ""){
-					alert("모든 정보를 입력해 주시기 바랍니다.");
-					return;
-				}//if
-			}//for
-			
-			if($("#idDupFlag").val() != "1"){
-				alert("아이디 중복체크를 먼저 진행해주세요!");
-				return;
-			}//if
-			
-			if($("#txtUserPw").val() != $("#txtUserPwCh").val() ){
-				alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.")
-				return;
-			}//if
-			
-			if(!/^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+]).{8,}$/.test($("#txtUserPw").val())){
-				alert("비밀번호는 다음의 조건을 충족해야 합니다.\n1.최소한 8자 이상의 길이여야 합니다.\n2.적어도 하나의 영어 소문자가 포함되어야 합니다.\n3.적어도 하나의 숫자가 포함되어야 합니다.\n4.적어도 하나의 특수 문자(!@#$%^&*()_+)가 포함되어야 합니다.")
-				return;
-			}//if
-			
-			if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($("#txtUserEmail").val())){
-				alert("이메일의 형식이 올바르지 않습니다.\n이메일의 형식은 XXXX@XXX.XXX")
-				return;
-			}//if
-
-			$("#name").val($("#txtUserName").val())
-			$("#id").val($("#txtUserId").val())
-			$("#pw").val($("#txtUserPw").val())
-			$("#birth").val($("#txtUserBirth").val())
-			$("#tel").val($("#txtUserTel").val())
-			$("#email").val($("#txtUserEmail").val())
-			
-			$("#hidFrm").submit();
-			
-		})//btnSearch
-		
-		
-	})//ready
-	
-
-//]]>
-</script>
-
-            
-            <!--/ Contents End -->
-		 </div>
-		<!-- /Contents Area -->
-	</div>
-    <!-- E Contaniner -->
     
     <!-- S Popup -->
     <div class="com_pop_wrap">
@@ -409,7 +282,7 @@
     <!-- E Popup -->
     
     <!-- S 예매하기 및 TOP Fixed 버튼 -->
-    <div class="fixedBtn_wrap">
+    <div class="fixedBtn_wrap topBtn">
      
         <a href="/ticket/" class="btn_fixedTicketing">예매하기</a>
         
@@ -419,7 +292,7 @@
     <!-- E 예매하기 및 TOP Fixed 버튼 -->
 	
     <!-- S Footer -->
-<jsp:include page="../include/footer.jsp"/>
+    <jsp:include page="../include/footer.jsp"/>
 	<!-- E Footer -->
 
     <!-- Aside Banner :  -->
@@ -442,7 +315,7 @@
     //-->
 	<!-- //Aside Banner -->
     
-
+</div>
 
 
 <script type="text/template" id="temp_popup_movie_player">
@@ -656,3 +529,6 @@
 
 
 </body></html>
+
+</body>
+</html>

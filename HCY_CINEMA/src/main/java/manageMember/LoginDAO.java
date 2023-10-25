@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dbConnection.DBConnection;
+import oracle.security.crypto.core.EntropySource;
 
 public class LoginDAO {
 private static LoginDAO liDAO;
@@ -173,13 +174,58 @@ public boolean selectCheckMember(MemberVO mVO) throws SQLException {
 	return flag;
 }//selectCheckID
 
-public boolean selectCheckID(String id) {
+public boolean selectCheckID(String id) throws SQLException {
 	boolean flag = false;
+	
+	DBConnection db = DBConnection.getInstance();
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		con = db.getCon();
+		
+		String selectCheckId = "select id from MEMBER where ID = ?";
+		
+		pstmt = con.prepareStatement(selectCheckId);
+		
+		pstmt.setString(1, id);
+		
+		rs = pstmt.executeQuery();
+		
+			flag=rs.next();
+	}finally {
+		db.dbClose(rs, pstmt, con);
+	}//finally
 	
 	return flag;
 }//selectCheckID
 
-public void insertJoinMember(MemberVO mVO) {
+public void insertJoinMember(MemberVO mVO) throws SQLException {
+	DBConnection db =DBConnection.getInstance();
 	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	
+	try {
+		con = db.getCon();
+		
+		String insertJoinMember="INSERT INTO MEMBER(ID, PASSWORD, MNAME, BIRTH, TEL, EMAIL, STATUS) VALUES(?,?,?,?,?,?,'M')";
+		
+		pstmt = con.prepareStatement(insertJoinMember);
+		
+		pstmt.setString(1, mVO.getId());
+		pstmt.setString(2, mVO.getPassword());
+		pstmt.setString(3, mVO.getMname());
+		System.out.println(mVO.getMname());
+		pstmt.setString(4, mVO.getBirth());
+		pstmt.setString(5, mVO.getTel());
+		pstmt.setString(6, mVO.getEmail());
+		
+		pstmt.execute();
+	}finally {
+		db.dbClose(null, pstmt, con);
+	}//finally
 }//insertJoinMember
 }//class

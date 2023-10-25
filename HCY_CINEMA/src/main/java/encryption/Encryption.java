@@ -52,7 +52,7 @@ public class Encryption {
 	
 	public static void main(String[] args) {
 		try {
-			System.out.println(Encryption.getInstance().directEncryption("test"));
+			System.out.println(Encryption.getInstance().decryption("얍얍얍"));
 		} catch (UnsupportedEncodingException | GeneralSecurityException e) {
 			e.printStackTrace();
 		}
