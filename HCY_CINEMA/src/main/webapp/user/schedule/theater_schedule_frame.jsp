@@ -1,10 +1,15 @@
+<%@page import="theater.MovieVO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.sql.Date"%>
+<%@page import="theater.TheaterDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@ page info="" %>
          <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -51,7 +56,7 @@
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
     //<![CDATA[
-        app.config('staticDomain', 'https://img.cgv.co.kr/R2014/')
+        app.config('staticDomain', 'http://localhost/HCY_CINEMA/user/schedule/theater_schedule_frame.jsp')
             .config('imageDomain', 'https://img.cgv.co.kr')
             .config('isLogin', 'False');
     //]]>
@@ -70,213 +75,118 @@
             <div id="slider" class="slider">
                 
                         <div class='item-wrap on'><ul class='item'>
-                        <li class='on'>
+                        
+                        <%
+                        StringBuilder sbDate = new StringBuilder();
+                        
+                        StringBuilder currentDate = new StringBuilder();
+                       	Calendar cal = Calendar.getInstance();
+                       	currentDate.append(cal.get(Calendar.YEAR))
+                        	.append(cal.get(Calendar.MONTH)+1)
+                        	.append(cal.get(Calendar.DAY_OF_MONTH));
+                       	String[] days ={"일","월","화","수","목","금","토"};
+                       	
+                       	String day = null;
+                       	int year = cal.get(Calendar.YEAR);
+                       	int month = cal.get(Calendar.MONTH);
+                       	int date = cal.get(Calendar.DAY_OF_MONTH);
+                       	int maxDate = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+                        	
+                        if(request.getParameter("date") == null){
+                        	sbDate = currentDate;
+                        }else{
+                        	sbDate.append(request.getParameter("date"));
+                        }//else
+                        	
+                       	TheaterDAO tDAO = TheaterDAO.getInstance();
+                       	List<MovieVO> list = tDAO.selectTheaterSchedule(sbDate.toString());
+                       	
+                       	
+                       	pageContext.setAttribute("maxDate", maxDate);
+                       	pageContext.setAttribute("target", sbDate.toString());
+                       	
+                       	StringBuilder sbTemp = new StringBuilder();
+                       	
+                       	int dayNum = cal.get(Calendar.DAY_OF_WEEK);
+                       	
+                       	for(int i = 0;i<8;i++ ){
+                  		sbTemp.replace(0, sbTemp.length(), "");
+                       	sbTemp.append(year).append(month).append(date);
+                       	day = days[dayNum];
+                       	dayNum++;
+                       	if(dayNum > 6){
+                       		dayNum=0;
+                       	}//if
+                       	
+                       	pageContext.setAttribute("temp", sbTemp.toString());
+                       	pageContext.setAttribute("day", day);
+                       	pageContext.setAttribute("year", year);
+                       	pageContext.setAttribute("month", month);
+                       	pageContext.setAttribute("date", date);
+                        %>
+                        <li ${ target == temp?'class="on"':'' }>
                             <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231024&screencodes=&screenratingcode=&regioncode="
-                                    title='현재 선택'>
+                                <a href="?areacode=01&theatercode=0013&date=${ temp }&screencodes=&screenratingcode=&regioncode="
+                                    ${ target == temp?'title="현재 선택"':'' }>
                                     <span>
-                                        10월</span> <em>
-                                            화</em> <strong>
-                                                24</strong>
+                                       <c:out value="${month }"/>월</span> <em>
+                                            <c:out value="${day }"/></em> <strong>
+                                                <c:out value="${date }"/></strong>
                                 </a>
                             </div>
                         </li>
-                        
-                    
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231025&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        10월</span> <em>
-                                            수</em> <strong>
-                                                25</strong>
-                                </a>
-                            </div>
-                        </li>
-                        
-                    
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231026&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        10월</span> <em>
-                                            목</em> <strong>
-                                                26</strong>
-                                </a>
-                            </div>
-                        </li>
-                        
-                    
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231027&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        10월</span> <em>
-                                            금</em> <strong>
-                                                27</strong>
-                                </a>
-                            </div>
-                        </li>
-                        
-                    
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231028&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        10월</span> <em>
-                                            토</em> <strong>
-                                                28</strong>
-                                </a>
-                            </div>
-                        </li>
-                        
-                    
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231029&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        10월</span> <em>
-                                            일</em> <strong>
-                                                29</strong>
-                                </a>
-                            </div>
-                        </li>
-                        
-                    
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231030&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        10월</span> <em>
-                                            월</em> <strong>
-                                                30</strong>
-                                </a>
-                            </div>
-                        </li>
-                        
-                    
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231031&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        10월</span> <em>
-                                            화</em> <strong>
-                                                31</strong>
-                                </a>
-                            </div>
-                        </li>
+                        <%
+                       		date ++;
+                        if(date>maxDate){
+                        	date = 1;
+                        	month++;
+                        	if(month>12){
+                        		month = 1;
+                        		year ++;
+                        	}//if
+                        }//if
+                    }//for %>
                         </ul></div>
-                    
                         <div class='item-wrap on'><ul class='item'>
-                        <li >
+                    <%
+                	for(int i = 0;i<8;i++ ){
+                		sbTemp.replace(0, sbTemp.length(), "");
+                       	sbTemp.append(year).append(month).append(date);
+                       	day = days[dayNum];
+                       	dayNum++;
+                       	if(dayNum > 6){
+                       		dayNum=0;
+                       	}//if
+                       	
+                       	pageContext.setAttribute("temp", sbTemp.toString());
+                       	pageContext.setAttribute("day", day);
+                       	pageContext.setAttribute("year", year);
+                       	pageContext.setAttribute("month", month);
+                       	pageContext.setAttribute("date", date);
+                    %>
+                        <li ${ target == temp?'class="on"':'' }>
                             <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231101&screencodes=&screenratingcode=&regioncode="
-                                    >
+                                <a href="?areacode=01&theatercode=0013&date=${ temp }&screencodes=&screenratingcode=&regioncode="
+                                    ${ target == temp?'title="현재 선택"':'' }>
                                     <span>
-                                        11월</span> <em>
-                                            수</em> <strong>
-                                                01</strong>
+                                       <c:out value="${month }"/>월</span> <em>
+                                            <c:out value="${day }"/></em> <strong>
+                                                <c:out value="${date }"/></strong>
                                 </a>
                             </div>
                         </li>
-                        
+                        <%
+                       		date ++;
+                        if(date>maxDate){
+                        	date = 1;
+                        	month++;
+                        	if(month>12){
+                        		month = 1;
+                        		year ++;
+                        	}//if
+                        }//if
+                    }//for %>
                     
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231102&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        11월</span> <em>
-                                            목</em> <strong>
-                                                02</strong>
-                                </a>
-                            </div>
-                        </li>
-                        
-                    
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231103&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        11월</span> <em>
-                                            금</em> <strong>
-                                                03</strong>
-                                </a>
-                            </div>
-                        </li>
-                        
-                    
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231104&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        11월</span> <em>
-                                            토</em> <strong>
-                                                04</strong>
-                                </a>
-                            </div>
-                        </li>
-                        
-                    
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231105&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        11월</span> <em>
-                                            일</em> <strong>
-                                                05</strong>
-                                </a>
-                            </div>
-                        </li>
-                        
-                    
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231108&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        11월</span> <em>
-                                            수</em> <strong>
-                                                08</strong>
-                                </a>
-                            </div>
-                        </li>
-                        
-                    
-                        
-                        <li >
-                            <div class="day">
-                                <a href="./iframeTheater.aspx?areacode=01&theatercode=0013&date=20231110&screencodes=&screenratingcode=&regioncode="
-                                    >
-                                    <span>
-                                        11월</span> <em>
-                                            금</em> <strong>
-                                                10</strong>
-                                </a>
-                            </div>
-                        </li>
                         </ul></div>
                     
                 <button type="button" class="btn-prev">
@@ -285,12 +195,10 @@
                     다음 날자보기</button>
             </div>
         </div>
+        
+        
         <div class="sect-guide">
             <div class="descri-timezone">
-                <ul>
-                    <li><span class="early">모닝</span></li>
-                    <li><span class="midnight">심야</span></li>
-                </ul>
                 <p>
                     * 시간을 클릭하시면 빠른 예매를 하실 수 있습니다.</p>
             </div>
@@ -299,7 +207,6 @@
 
         <div class="sect-showtimes">
             <ul>
-                
                         <li>
                             <div class="col-times">
                                 <div class="info-movie">
@@ -350,6 +257,8 @@
                             
                             </div>
                         </li>
+                    
+                    
                     
                         <li>
                             <div class="col-times">
