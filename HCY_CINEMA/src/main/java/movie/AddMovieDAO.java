@@ -1,5 +1,11 @@
 package movie;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import dbConnection.DBConnection;
+
 public class AddMovieDAO {
 	private static AddMovieDAO amDAO;
 	
@@ -14,4 +20,19 @@ public class AddMovieDAO {
 		
 		return amDAO;
 	}//getInstance
+	
+	public void insertMovie(AddMovieVO amVO) throws SQLException {
+		DBConnection db=DBConnection.getInstance();
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			con=db.getCon();
+			
+			StringBuilder insertMovie=new StringBuilder();
+		}finally{
+			db.dbClose(null, pstmt, con);
+		}
+	}
 }
