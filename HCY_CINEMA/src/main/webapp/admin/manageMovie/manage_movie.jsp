@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page info=""%>
+
 <!doctype html>
 <html lang="en">
 <!--<![endif]-->
@@ -152,7 +153,7 @@ to {
 									</ul>
 								</div>
 								<div class="position">Front End Designer</div>
-							</div> 
+							</div>
 						</li>
 						<li class="nav-header">today work</li>
 						<li class="active has-sub"><a
@@ -253,6 +254,10 @@ to {
 														style="width: 256px;" aria-sort="ascending"
 														aria-label="Orders: activate to sort column descending"><input
 														type="checkbox">영화</th>
+													<th class="sorting_asc" tabindex="0"
+														aria-controls="data-table" rowspan="1" colspan="1"
+														style="width: 256px;" aria-sort="ascending"
+														aria-label="Orders: activate to sort column descending">영화제목</th>
 													<!-- 													<th class="width-100 sorting" tabindex="0"
 														aria-controls="data-table" rowspan="1" colspan="1"
 														style="width: 100px;"
@@ -290,24 +295,38 @@ to {
 											<tbody style="">
 
 												<%
-												ManageMovieMainDAO mmmDAO=ManageMovieMainDAO.getInstance();
-												List<ManageMovieVO> list=new ArrayList<ManageMovieVO>();
-												list=mmmDAO.selectMovie();
-												for(ManageMovieVO mmVO : list){
+												ManageMovieMainDAO mmmDAO = ManageMovieMainDAO.getInstance();
+												List<ManageMovieVO> list = new ArrayList<ManageMovieVO>();
+												list = mmmDAO.selectMovie();
+												for (ManageMovieVO mmVO : list) {
 												%>
-													
+
 												<tr class="odd">
-												<td id=<%= mmVO.getMname() %> tabindex="0"
-														style="padding-left: 20px;vertical-align: middle;"><input type="checkbox"><%= mmVO.getMname() %></td>
-														<td class="p-5" style="vertical-align: middle;"><%=mmVO.getStatus() %></td>
-														<td class="p-5" style="vertical-align: middle;"><%=mmVO.getReleaseDate() %></td>
-														<td class="p-5" style="vertical-align: middle;"><%=mmVO.getEndDate() %></td>
-														<td class="p-5" style="vertical-align: middle;"><%=mmVO.getTicketRate() %></td>
-														<td class="p-5" style="vertical-align: middle;"><%=mmVO.getReviewCnt() %></td>
-														<td class="p-5" style="vertical-align: middle;">5.0/ <%=mmVO.getStarRating() %></td>
+													<td id=<%=mmVO.getFileName()%> tabindex="0"
+														style="padding-left: 20px; vertical-align: middle;">
+														<div style="display: inline-block;">
+															<input type="checkbox">
+														</div>
+														<div style="display: inline-block;">
+															<img
+																src="http://localhost/HCY_CINEMA/common/poster/my_custom_file_name.jpg" style="width:200px;height:200px;">
+														</div>
+													</td>
+
+													<td class="p-5" style="vertical-align: middle;"><%=mmVO.getMname()%><br/>
+													<a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_detail_movie.jsp?movieCode=<%= mmVO.getMovieCode()%>">상세보기</a></td>
+													<td class="p-5" style="vertical-align: middle;"><%=mmVO.getStatus()%></td>
+													<td class="p-5" style="vertical-align: middle;"><%=mmVO.getReleaseDate()%></td>
+													<td class="p-5" style="vertical-align: middle;"><%=mmVO.getEndDate()%></td>
+													<td class="p-5" style="vertical-align: middle;"><%=mmVO.getTicketRate()%></td>
+													<td class="p-5" style="vertical-align: middle;"><%=mmVO.getReviewCnt()%></td>
+													<td class="p-5" style="vertical-align: middle;">5.0 /
+														<%=mmVO.getStarRating()%></td>
 												</tr>
-												
-												<%} %>
+
+												<%
+												}
+												%>
 												<!-- <tr class="odd">
 													<td id="movie_title" tabindex="0"
 														style="padding-left: 20px"><input type="checkbox">May</td>

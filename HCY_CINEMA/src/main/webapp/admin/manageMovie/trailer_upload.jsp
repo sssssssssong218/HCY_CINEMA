@@ -15,60 +15,54 @@
 <body>
 
 <%
-request.setCharacterEncoding("utf-8");
-
-String location = "C:/Users/user/git/HCY_CINEMA/HCY_CINEMA/src/main/webapp/common/trailer";
+File saveDir = new File("C:/Users/user/git/HCY_CINEMA/HCY_CINEMA/src/main/webapp/common/trailer_upload");
 int maxSize = 1024 * 1024 * 50; // 키로바이트 * 메가바이트 * 기가바이트
-MultipartRequest multi = new MultipartRequest(request, location, maxSize, "utf-8", new DefaultFileRenamePolicy());
+try {
+    MultipartRequest mr = new MultipartRequest(request, saveDir.getAbsolutePath(), maxSize, "UTF-8", new DefaultFileRenamePolicy());
 
-String userName = multi.getParameter("userName");
-
-Enumeration<?> files = multi.getFileNames();
-
-String element = "";
-String filesystemName = "";
-String originalFileName = "";
-String contentType = "";
-long length = 0;
-
-if (files.hasMoreElements()) {
-    element = (String) files.nextElement();
-    originalFileName = multi.getOriginalFileName(element);
-
-    String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
-    if (fileExtension.equalsIgnoreCase(".mp4")) {
-        // 허용되는 확장자인 경우에만 저장
-        filesystemName = multi.getFilesystemName(element);
-        contentType = multi.getContentType(element);
-        length = multi.getFile(element).length();
-        
-        String newFileName = "my_custom_file_name" + fileExtension;
-        File newFile = new File(location, newFileName);
-        multi.getFile(element).renameTo(newFile);
-    } else{
-    	File file=new File(location, originalFileName);
-    	if (file.exists()) {
-            boolean deleted = file.delete();
-            if (deleted) {
-                // 파일이 삭제되었을 때 실행할 코드
-        	%>
-        	<strong>업로드할 파일은 mp4형식이여야 합니다</strong><br/>
-        	<a href="javascript:history.back()">빡대가리심?</a>
-        	<%        
-            } else {
-                // 파일 삭제 실패 시 실행할 코드
-                %>
-                <strong>오류발생 관리자에게 문의하세요!!</strong><br/>
-        	<a href="javascript:history.back()">그런건 없고 다시하세요~</a>
-                <%
-            }
-        } else {
-%>
-            <strong>업로드중 오류 발생 다시 시도해주세요!</strong><br/>
-            <a href="javascript:history.back()">뒤로</a>
-<%
-        }
+    String newfile = mr.getFilesystemName("trailer_file");
+    String fileExtension = newfile.substring(newfile.lastIndexOf(".")); // 파일 확장자 추출
+    if(!(fileExtension.equals(".mp4"))){
+    	%>
+    	<strong>업로드 실패</strong>
+    	<% 
+    	return;
     }
+    String baseFileName = "0106"; // 기본 파일명
+    String newFileName = baseFileName + fileExtension;
+
+    File uploadedFile = new File(saveDir, newfile);
+    File renamedFile = new File(saveDir, newFileName);
+
+    int counter = 1;
+    // 파일명 중복 확인 및 숫자를 붙여가며 변경
+    while (renamedFile.exists()) {
+        newFileName = baseFileName + "_" + counter + fileExtension;
+        renamedFile = new File(saveDir, newFileName);
+        counter++;
+    }
+
+    boolean renamed = uploadedFile.renameTo(renamedFile);
+
+    String uploader = mr.getParameter("uploader");
+    String age = mr.getParameter("age");
+    String originfile = mr.getOriginalFileName("trailer_file");
+
+    if (renamed) {
+%>
+    <strong>업로드 성공</strong><br/>
+    업로더: <%= uploader %><br/>
+    나이: <%= age %><br/>
+    파일명: <%= newFileName %> (<%= originfile %>)<br/>
+<%
+    } else {
+%>
+    <strong>파일 이름 변경 실패</strong><br/>
+<%
+    }
+} catch (IOException ie) {
+    ie.printStackTrace();
+    out.println("파일 업로드 처리 중 문제 발생");
 }
 %>
 

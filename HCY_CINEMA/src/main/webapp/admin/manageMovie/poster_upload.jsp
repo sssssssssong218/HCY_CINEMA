@@ -13,50 +13,58 @@
 </head>
 <body>
 	
-	<% 
-		request.setCharacterEncoding("utf-8");
-	
-		String location = "C:/Users/user/git/HCY_CINEMA/HCY_CINEMA/src/main/webapp/common/poster";
-		
-		/*   File uploadFolder = new File(location);
-		    if (!uploadFolder.exists()) {
-		        uploadFolder.mkdir();
-		    } */
-		    
-		   
-		int maxSize = 1024 * 1024 * 50; // 키로바이트 * 메가바이트 * 기가바이트   
-		MultipartRequest multi = new MultipartRequest(request,
-							 						  location,
-													  maxSize,
-													  "utf-8",
-													  new DefaultFileRenamePolicy());
+<%
+File saveDir = new File("C:/Users/user/git/HCY_CINEMA/HCY_CINEMA/src/main/webapp/common/poster");
+int maxSize = 1024 * 1024 * 50; // 키로바이트 * 메가바이트 * 기가바이트
+try {
+    MultipartRequest mr = new MultipartRequest(request, saveDir.getAbsolutePath(), maxSize, "UTF-8", new DefaultFileRenamePolicy());
 
-		String userName = multi.getParameter("userName");
-		
-		Enumeration<?> files = multi.getFileNames(); // <input type="file">인 모든 파라메타를 반환
-				
-		String element = "";
-		String filesystemName = "";
-		String originalFileName = "";
-		String contentType = "";
-		long length = 0;		
-				
-		if (files.hasMoreElements()) { 
-			
-			element = (String)files.nextElement(); 
-			
-			filesystemName 			= multi.getFilesystemName(element); 
-			originalFileName 		= multi.getOriginalFileName(element); 
-			contentType 			= multi.getContentType(element);	
-			length 					= multi.getFile(element).length(); 
-			
-		}
-	 		 String fileExtension = multi.getOriginalFileName(element).substring(multi.getOriginalFileName(element).lastIndexOf("."));
-		
-		    String newFileName = "my_custom_file_name" + fileExtension;
-		 File newFile = new File(location, newFileName);
-		    multi.getFile(element).renameTo(newFile);
-	
-	%>
+    String newfile = mr.getFilesystemName("poster_file");
+    String fileExtension = newfile.substring(newfile.lastIndexOf(".")); // 파일 확장자 추출
+    if(!(fileExtension.equals(".jpg")||fileExtension.equals(".png"))){
+    	%>
+    	<strong>업로드 실패</strong>
+    	<% 
+    	return;
+    }
+    String baseFileName = "0106"; // 기본 파일명
+    String newFileName = baseFileName + fileExtension;
+
+    File uploadedFile = new File(saveDir, newfile);
+    File renamedFile = new File(saveDir, newFileName);
+
+    int counter = 1;
+    // 파일명 중복 확인 및 숫자를 붙여가며 변경
+    while (renamedFile.exists()) {
+        newFileName = baseFileName + "_" + counter + fileExtension;
+        renamedFile = new File(saveDir, newFileName);
+        counter++;
+    }
+
+    boolean renamed = uploadedFile.renameTo(renamedFile);
+
+    String uploader = mr.getParameter("uploader");
+    String age = mr.getParameter("age");
+    String originfile = mr.getOriginalFileName("poster_file");
+
+    if (renamed) {
+%>
+    <strong>업로드 성공</strong><br/>
+    업로더: <%= uploader %><br/>
+    나이: <%= age %><br/>
+    파일명: <%= newFileName %> (<%= originfile %>)<br/>
+<%
+    } else {
+%>
+    <strong>파일 이름 변경 실패</strong><br/>
+<%
+    }
+} catch (IOException ie) {
+    ie.printStackTrace();
+    out.println("파일 업로드 처리 중 문제 발생");
+}
+%>
+
+
 </body>
 </html>

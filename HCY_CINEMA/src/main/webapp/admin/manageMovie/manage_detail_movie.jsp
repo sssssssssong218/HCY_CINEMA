@@ -1,6 +1,9 @@
+<%@page import="movie.ManageMovieVO"%>
+<%@page import="movie.ManageMovieMainDAO"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%request.setCharacterEncoding("UTF-8"); %>
 <%@ page info=""%>
 <!doctype html>
 <html lang="en"><!--<![endif]--><head>
@@ -9,7 +12,16 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 <meta content="" name="description">
 <meta content="" name="author">
-
+<link rel="icon"
+	href="http://192.168.10.147/jsp_prj/common/main/favicon.png">
+<!-- bootStrap -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <link href="../CSS/css" rel="stylesheet" id="fontFamilySrc">
 <link href="../CSS/jquery-ui.min.css" rel="stylesheet">
 <link href="../CSS/bootstrap.min.css" rel="stylesheet">
@@ -31,6 +43,12 @@
 	    <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
 	<![endif]-->
 <style type="text/css">/* Chart.js */
+  #carouselExampleIndicators {
+    width: 800px; /* 원하는 가로 크기 */
+    height: 400px; /* 원하는 세로 크기 */
+  }
+
+
 @
 -webkit-keyframes chartjs-render-animation {
 	from {opacity: 0.99
@@ -485,6 +503,14 @@ to {
 <li class="breadcrumb-item active">Form Elements</li>
 </ol>
 
+<%
+
+ManageMovieMainDAO mmmDAO=ManageMovieMainDAO.getInstance();
+ManageMovieVO mmVO=new ManageMovieVO();
+String movieCode=request.getParameter("movieCode");
+mmVO=mmmDAO.selectSpecificMovieInfo(movieCode);
+%>
+
 
 <h1 class="page-header">영화 추가</h1>
 
@@ -498,11 +524,11 @@ to {
 <p>
 영화에 대한 정보를 입력해주세요.
 </p>
-<form class="form-horizontal" id="movie_info_frm">
+<form class="form-horizontal">
 <div class="form-group m-b-10">
 <label class="col-lg-3 col-form-label">제목</label>
 <div class="col-lg-7">
-<input type="text" class="form-control" placeholder="영화제목">
+<input type="text" class="form-control" placeholder="영화제목" value="<%= mmVO.getMname() %>">
 </div>
 </div>
 <div class="form-group m-b-10" id="actor_title">
@@ -546,23 +572,137 @@ to {
 <div class="form-group" style="height:200px">
 <label class="col-lg-3 col-form-label">상세정보</label>
 <div class="col-lg-7">
-<textarea class="form-control" rows="3" placeholder="상세내용" style="height:150px"></textarea>
+<textarea class="form-control" rows="3" placeholder="상세내용" style="height:150px" value=""><%= mmVO.getPlot()%></textarea>
 </div>
+</div>
+</form>
+</div>
+
+
+<div class="col-lg-6">
+<h5 class="m-t-0">영화 포스터 및 스틸컷 업로드</h5>
+<p>
+Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
+</p>
+<form action="poster_upload.jsp" method="post" enctype="multipart/form-data">
+<div style="display:inline-block">
+<div>
+	 	<fieldset>
+			<legend>파일 업로드</legend>
+			<p>포스터 : <input type="file" name="file"></p>
+			<p><input type="submit" value="업로드" id="poster_btn"></p>	 	
+	 	</fieldset>
+	 	<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="http://localhost/HCY_CINEMA/common/poster/my_custom_file_name.png" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+	</div>
+	
+</div>
+	 <div style="display:inline-block">
+	 <img src="">
+	 </div>
+	 </form>
+<form action="still_img_upload.jsp" method="post" enctype="multipart/form-data">
+<div style="display:inline-block">
+
+	 	<fieldset>
+			<p>스틸컷 : <input type="file" name="file"></p>
+			<p><input type="submit" value="업로드" id="steal_btn"></p>	 	
+	 	</fieldset>
+	 	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="http://localhost/HCY_CINEMA/common/trailer/20197361157049494400.jpg" class="d-block w-100" >
+    </div>
+    <div class="carousel-item">
+      <img src="http://localhost/HCY_CINEMA/common/trailer/20197361157049494400.jpg" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="http://localhost/HCY_CINEMA/common/trailer/admin_logo.png" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="http://localhost/HCY_CINEMA/common/stillCut/my_custom_file_name.png" class="d-block w-100" >
+    </div>
+    <div class="carousel-item">
+      <img src="http://localhost/HCY_CINEMA/common/poster/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7(1).png" class="d-block w-100">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+	 </div>
+	 <div style="display:inline-block">
+	 <img src="">
+	 </div>
+	 </form>
+<form action="trailer_upload.jsp" method="post" enctype="multipart/form-data">
+<div style="display:inline-block">
+	 	<fieldset>
+			<p>트레일러 : <input type="file" name="file"></p>
+			<p><input type="submit" value="업로드" id="trailer_btn"></p>	 	
+	 	</fieldset>
+	 </div>
+	 <div style="display:inline-block">
+	 <img src="">
+	 </div>
+	 </form>
+	 
 <div class="checkbox disabled m-b-25">
 <h4>개봉기간 설정</h4>
 <select style="width:100px; height:30px; text-align:center; font-size: 20px;">
 
-<%
-Calendar cal=Calendar.getInstance();
-int nowYear=cal.get(Calendar.YEAR)-1;
-for(int i=nowYear;i<nowYear+3;i++){
-%>
-<option value="<%= i %>"<%=  i==nowYear+1 ? "selected='selected'":""%> ><%=i%></option>
-<%} %>
+<option>2022</option>
+
+<option selected="selected">2023</option>
+
+<option>2024</option>
+
 
 </select>
 <label style="padding:0px; font-size:20px;">/</label>
 <select style="width:60px; height:30px; text-align:center; font-size: 20px;">
+
+<option>1</option>
+
+<option>2</option>
+
+<option>3</option>
+
+<option>4</option>
+
+<option>5</option>
+
+<option>6</option>
+
+<option>7</option>
+
+<option>8</option>
+
+<option>9</option>
+
+<option selected="selected">10</option>
+
+<option>11</option>
+
+<option>12</option>
+
 
 </select>
 <label style="padding:0px; font-size:20px;">/</label>
@@ -740,10 +880,7 @@ for(int i=nowYear;i<nowYear+3;i++){
 
 </select>
 </div>
-
-
-</div>
-<div class="radio" style="position:absolute;bottom:-160px">
+<div class="radio">
 <h4>연령대 설정</h4>
 <input type="radio" id="all_view" name="ageGroup"><label style="font-size:15px">전체 관람</label><img src="../../common/images/all.png" style="padding-left:10px"><br>
 <input type="radio" id="age_12_view" name="ageGroup"><label style="font-size:15px">12세</label><img src="../../common/images/12age.png" style="padding-left:10px"><br>
@@ -751,49 +888,6 @@ for(int i=nowYear;i<nowYear+3;i++){
 <input type="radio" id="age_18_view" name="ageGroup"><label style="font-size:15px">청소년 관람 불가</label><img src="../../common/images/18age.png" style="padding-left:10px"><br>
 <input type="radio" id="rs_view" name="ageGroup"><label style="font-size:15px">제한사영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
 </div>
-</form>
-</div>
-
-
-<div class="col-lg-6" >
-<h5 class="m-t-0">영화 포스터 및 스틸컷 업로드</h5>
-<input type="button" value="저장" style="position: absolute;left:600px" id="movie_save_btn">
-<input type="button" value="취소" style="position: absolute;left:650px">
-<form action="poster_upload.jsp" method="post" enctype="multipart/form-data">
-<div style="display:inline-block">
-	 	<fieldset>
-			<legend>파일 업로드</legend>
-			<p>포스터 : <input type="file" name="poster_file"></p>
-			<p><input type="submit" value="업로드" id="poster_btn"></p>	 	
-	 	</fieldset>
-	 </div>
-	 <div style="display:inline-block">
-	 <img src="">
-	 </div>
-	 </form>
-<form action="still_img_upload.jsp" method="post" enctype="multipart/form-data">
-<div style="display:inline-block">
-	 	<fieldset>
-			<p>스틸컷 : <input type="file" name="still_file"></p>
-			<p><input type="submit" value="업로드" id="steal_btn"></p>	 	
-	 	</fieldset>
-	 </div>
-	 <div style="display:inline-block">
-	 <img src="">
-	 </div>
-	 </form>
-<form action="trailer_upload.jsp" method="post" enctype="multipart/form-data">
-<div style="display:inline-block">
-	 	<fieldset>
-			<p>트레일러 : <input type="file" name="trailer_file"></p>
-			<p><input type="submit" value="업로드" id="trailer_btn"></p>	 	
-	 	</fieldset>
-	 </div>
-	 <div style="display:inline-block">
-	 <img src="">
-	 </div>
-	 </form>
-	 
 
 </div>
 
@@ -918,6 +1012,8 @@ for(int i=nowYear;i<nowYear+3;i++){
 	<script src="page-index-v3.demo.min.js" type="text/javascript"></script>
 	<script src="apps.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	
 
 	<!-- <script type="text/javascript">
 		$(document).ready(function() {
@@ -1028,11 +1124,7 @@ for(int i=nowYear;i<nowYear+3;i++){
      genre_disableButton.addEventListener("click", function() {
     	 genre_selectElement.disabled = true; // select 요소를 비활성화
      });
-     $(function(){
-    	 $("#movie_save_btn").click(function(){
-    		 
-    	 })
-     });
+     
      
      
 	</script>
