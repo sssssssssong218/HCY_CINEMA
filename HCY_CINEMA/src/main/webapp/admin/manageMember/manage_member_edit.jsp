@@ -15,7 +15,7 @@
 	pageContext.setAttribute("mVO", mVO);
 %> --%>
 
-<!doctype html>
+<!doctype html> 
 <html lang="en">
 <!--<![endif]-->
 
@@ -251,8 +251,6 @@
                                 </a></li>
                         </ul>
                     </div>
-                    <div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 197.948px;"></div>
-                    <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
                 </div>
 
             </div>
@@ -305,7 +303,6 @@
                             </div>
                         </div> <!--  서브상단 이미지 및 로케이션 단 끝 -->
                         <!-- me_code : 103010-->
-                        <script src="https://www.ncyok.or.kr:443/js/viewimageresize.js"></script>
 
                         <!-- 게시물 읽기 시작 { -->
 
@@ -343,10 +340,7 @@
                             <div class="formtit">회원 기본정보</div>
                             <div style="text-align:right">
 
-                                <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_edit.jsp" method="GET">
-                                    <input class="btn btn-secondary" type="submit" value="수정" id="modify">
-                                </form>
-
+							<!-- 변경된 회원정보 저장 -->
 
                             </div>
 
@@ -386,35 +380,35 @@
 			%>
                                         <tr>
                                             <th>이름</th>
-                                            <td style="text-align: center;"><%=name %></td>
+                                            <td style="text-align: center;"><input type="text"value="<%=name %>"></td>
                                         </tr>
                                         <tr>
                                             <th>아이디</th>
-                                            <td style="text-align: center;"><%=mVO.getId() %></td>
+                                            <td style="text-align: center;"><input type="text"value="<%=mVO.getId() %>"></td>
                                         </tr>
                                         <tr>
                                             <th>생년월일</th>
-                                            <td style="text-align: center;"><%= formattedBirthDate %></td>
+                                            <td style="text-align: center;"><input type="text"value="<%= formattedBirthDate %>"></td>
                                         </tr>
                                         <tr>
                                             <th>휴대전화</th>
-                                            <td style="text-align: center;"><%=tel %></td>
+                                            <td style="text-align: center;"><input type="text"value="<%=tel %>"></td>
                                         </tr>
                                         <tr>
                                             <th>이메일</th>
-                                            <td style="text-align: center;"><%=email %></td>
+                                            <td style="text-align: center;"><input type="text"value="<%=email %>"></td>
                                         </tr>
                                         <tr>
                                             <th>가입일</th>
-                                            <td style="text-align: center;"><%=mVO.getJoindate()%></td>
+                                            <td style="text-align: center;"><input type="text"value="<%=mVO.getJoindate()%>"></td>
                                         </tr>
                                         <%
-			}
-			%>
+											}
+											%>
                                     </tbody>
                                 </table>
                                 <div style="text-align:right">
-                                    <input class="btn btn-danger" type="submit" value="탈퇴" id="withdraw">
+                                    <input class="btn btn-success" type="submit" value="저장" id="save">
                                 </div>
 
                                 <!-- } 본문 내용 끝 -->
