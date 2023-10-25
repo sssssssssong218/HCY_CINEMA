@@ -1,3 +1,8 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="movie.ManageMovieVO"%>
+<%@page import="movie.ManageMovieMainDAO"%>
+<%@page import="board.ManageBoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page info=""%>
@@ -282,53 +287,61 @@ to {
 														aria-label=": activate to sort column descending"></th> -->
 												</tr>
 											</thead>
-											<tbody>
+											<tbody style="">
 
-
-
-
-
-
-
-
-
-
-
-
+												<%
+												ManageMovieMainDAO mmmDAO=ManageMovieMainDAO.getInstance();
+												List<ManageMovieVO> list=new ArrayList<ManageMovieVO>();
+												list=mmmDAO.selectMovie();
+												for(ManageMovieVO mmVO : list){
+												%>
+													
 												<tr class="odd">
+												<td id=<%= mmVO.getMname() %> tabindex="0"
+														style="padding-left: 20px;vertical-align: middle;"><input type="checkbox"><%= mmVO.getMname() %></td>
+														<td class="p-5" style="vertical-align: middle;"><%=mmVO.getStatus() %></td>
+														<td class="p-5" style="vertical-align: middle;"><%=mmVO.getReleaseDate() %></td>
+														<td class="p-5" style="vertical-align: middle;"><%=mmVO.getEndDate() %></td>
+														<td class="p-5" style="vertical-align: middle;"><%=mmVO.getTicketRate() %></td>
+														<td class="p-5" style="vertical-align: middle;"><%=mmVO.getReviewCnt() %></td>
+														<td class="p-5" style="vertical-align: middle;">5.0/ <%=mmVO.getStarRating() %></td>
+												</tr>
+												
+												<%} %>
+												<!-- <tr class="odd">
 													<td id="movie_title" tabindex="0"
 														style="padding-left: 20px"><input type="checkbox">May</td>
 													<td class="sorting_1">1,023 items sold</td>
 													<td>$10,230</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5" style="display: none;"><a href="#"
 														class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
@@ -339,34 +352,34 @@ to {
 													<td class="sorting_1">1,239 items sold</td>
 													<td>$12,390</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5" style="display: none;"><a href="#"
 														class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
@@ -377,34 +390,34 @@ to {
 													<td class="sorting_1">1,392 items sold</td>
 													<td>$13,920</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5" style="display: none;"><a href="#"
 														class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
@@ -415,34 +428,34 @@ to {
 													<td class="sorting_1">1,499 items sold</td>
 													<td>$14,990</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5" style="display: none;"><a href="#"
 														class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
@@ -453,34 +466,34 @@ to {
 													<td class="sorting_1">1,929 items sold</td>
 													<td>$19,290</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5" style="display: none;"><a href="#"
 														class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
@@ -491,34 +504,34 @@ to {
 													<td class="sorting_1">433 items sold</td>
 													<td>$4,330</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5" style="display: none;"><a href="#"
 														class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
@@ -529,34 +542,34 @@ to {
 													<td class="sorting_1">502 items sold</td>
 													<td>$5,020</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5" style="display: none;"><a href="#"
 														class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
@@ -567,34 +580,34 @@ to {
 													<td class="sorting_1">581 items sold</td>
 													<td>$5,810</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5" style="display: none;"><a href="#"
 														class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
@@ -605,34 +618,34 @@ to {
 													<td class="sorting_1">684 items sold</td>
 													<td>$6,840</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5" style="display: none;"><a href="#"
 														class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
@@ -643,39 +656,39 @@ to {
 													<td class="sorting_1">780 items sold</td>
 													<td>$7,800</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5">
-														<!-- <div data-render="sparkline">
+														<div data-render="sparkline">
 															<canvas width="187" height="28"
 																style="display: inline-block; width: 187.422px; height: 28px; vertical-align: top;"></canvas>
-														</div> -->
+														</div>
 													</td>
 													<td class="p-5" style="display: none;"><a href="#"
 														class="btn btn-default btn-sm"><i class="fa fa-cog"></i>
 															View Details</a></td>
-												</tr>
+												</tr> -->
 											</tbody>
 										</table>
 									</div>
@@ -1078,7 +1091,7 @@ to {
 
 	<script type="text/javascript">
 		//<canvas> 요소 선택
-		var canvas = document.getElementById("monthly-report-chart");
+		/* ar canvas = document.getElementById("monthly-report-chart");
 		var ctx = canvas.getContext("2d");
 
 		// 데이터 정의 (예: 막대 그래프의 높이)
@@ -1095,7 +1108,7 @@ to {
 
 			ctx.fillStyle = "blue"; // 막대 색상
 			ctx.fillRect(startX, startY - barHeight, barWidth, barHeight);
-		}
+		} */
 	</script>
 
 </body>
