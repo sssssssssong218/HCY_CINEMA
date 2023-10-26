@@ -38,7 +38,7 @@ private ManageMemberDAO() {
 		try {
 			con=db.getCon();
 			
-			String selectMemberList="select mname,id,joindate from member order by joindate desc";
+			String selectMemberList="select mname,id,joindate from member where status='M' order by joindate desc";
 			
 			pstmt=con.prepareStatement(selectMemberList);
 			
@@ -100,39 +100,6 @@ private ManageMemberDAO() {
 		return list;
 	}//selectMember
 
-	public boolean updateMemberInfo(MemberVO mVO) throws SQLException {
-		boolean flag=false;
-		
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		
-		DBConnection db=DBConnection.getInstance();
-		try {
-			con=db.getCon();
-			
-			String updateMemberInfo="update member set mname=?,id=?,email=?, tel=? where id=?";
-			
-			pstmt=con.prepareStatement(updateMemberInfo);
-			
-			pstmt.setString(1, mVO.getMname());
-			pstmt.setString(2, mVO.getId());
-			pstmt.setString(3, mVO.getEmail());
-			pstmt.setString(4, mVO.getTel());
-			pstmt.setString(5, mVO.getId());
-			
-			int rowUpdate=pstmt.executeUpdate();
-			
-			if(rowUpdate>0) {
-				flag=true;
-			}
-			
-		}finally {
-			db.dbClose(rs, pstmt, con);
-		}
-		
-		return flag;
-	}//updateMemberInfo
 	
 	public boolean updateMemberStatus(String id) throws SQLException {
 		boolean flag=false;
@@ -157,7 +124,6 @@ private ManageMemberDAO() {
 			if(rowUpdate>0) {
 				flag=true;
 			}
-			
 		}finally {
 			db.dbClose(rs, pstmt, con);
 		}

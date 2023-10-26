@@ -288,7 +288,10 @@
                                 <fieldset id="bo_sch">
                                     <legend>게시물 검색</legend>
                                     <form name="fsearch" method="get">
-                                        <input type="hidden" name="bo_table" value="5010"> <input type="hidden" name="sca" value=""> <input type="hidden" name="sop" value="and"> <label for="sfl" class="sound_only">검색대상</label>
+                                        <input type="hidden" name="bo_table" value="5010"> 
+                                        <input type="hidden" name="sca" value=""> 
+                                        <input type="hidden" name="sop" value="and">
+                                        <label for="sfl" class="sound_only">검색대상</label>
                                         <select name="sfl" id="sfl">
                                             <!--option value="wr_subject">제목</option>
             <option value="wr_content">내용</option-->
@@ -297,10 +300,13 @@
                                             <!--option value="mb_id,0">회원아이디(코)</option>
             <option value="wr_name,1">글쓴이</option>
             <option value="wr_name,0">글쓴이(코)</option-->
-                                        </select> <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label> <input type="text" name="stx" value="" required="" id="stx" class="frm_input required" size="15" maxlength="20" "=" placeholder=" 아이디를 입력해주세요">
+                                        </select> 
+                                        <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong>
+                                        </label> <input type="text" name="stx" value="<%= (request.getParameter("stx") != null) ? request.getParameter("stx") : "" %>" required="" id="stx" class="frm_input required" size="15" maxlength="20" "=" placeholder=" 아이디를 입력해주세요">
                                         <input type="submit" value="검색" class="btn_search">
                                     </form>
                                 </fieldset>
+                                
                                 <!-- } 게시판 검색 끝 -->
                                 <!--div id="bo_list_total">
         <span>Total 2,584건</span>
@@ -310,10 +316,6 @@
                             <!-- } 게시판 페이지 정보 및 버튼 끝 -->
 
 
-                            <form name="fboardlist" id="fboardlist" action="./board_list_update.php" onsubmit="return fboardlist_submit(this);" method="post">
-                                <input type="hidden" name="bo_table" value="5010"> <input type="hidden" name="sfl" value=""> <input type="hidden" name="stx" value=""> <input type="hidden" name="spt" value=""> <input type="hidden" name="sca" value="">
-                                <input type="hidden" name="sst" value="wr_datetime desc">
-                                <input type="hidden" name="sod" value=""> <input type="hidden" name="page" value="1"> <input type="hidden" name="sw" value="">
 
                                 <div class="tbl_head01 tbl_wrap">
 
@@ -330,31 +332,30 @@
                                             </tr>
                                         </thead>
                                         <tbody style="text-align: center">
-                                            <% int pageScale = 10; // 한 페이지에 표시할 레코드 수 %>
-                                            <% int currentPage = 1; // 기본값은 첫 번째 페이지 %>
+                                          <% int pageScale = 10; // 한 페이지에 표시할 레코드 수 
+                                             int currentPage = 1; // 기본값은 첫 번째 페이지 
 
-                                            <% List<MemberVO> list=ManageMemberDAO.getInstance().selectMemberList(); %>
+                                             List<MemberVO> list=ManageMemberDAO.getInstance().selectMemberList(); %>
 
                                             <%-- 전체 레코드 수 및 전체 페이지 수 계산 --%>
-                                            <% int totalRecords = list.size(); %>
-                                            <% int totalPages = (int) Math.ceil((double) totalRecords / pageScale); %>
-                                            <% String tempPage = request.getParameter("currentPage"); %>
-                                            <% if (tempPage != null && !tempPage.isEmpty()) { %>
-                                            <% currentPage = Integer.parseInt(tempPage); %>
-                                            <% } %>
+                                          <% int totalRecords = list.size(); 
+                                             int totalPages = (int) Math.ceil((double) totalRecords / pageScale); 
+                                             String tempPage = request.getParameter("currentPage"); 
+                                             if (tempPage != null && !tempPage.isEmpty()) { 
+                                             currentPage = Integer.parseInt(tempPage); 
+                                            } %>
 
                                             <%-- 현재 페이지에 표시할 레코드의 시작 및 끝 번호 계산 --%>
-                                            <% int startNum = (currentPage - 1) * pageScale; %>
-                                            <% int endNum = Math.min(startNum + pageScale, totalRecords); %>
+                                          <% int startNum = (currentPage - 1) * pageScale; 
+                                             int endNum = Math.min(startNum + pageScale, totalRecords); 
 
 
-
-                                            <% Encryption ec = Encryption.getInstance(); %>
-                                            <% String name = ""; %>
-                                            <% MemberVO mVO = null; %>
-                                            <% for (int i = startNum; i < endNum; i++) { %>
-                                            <% mVO = list.get(i); %>
-                                            <% name = ec.decryption(mVO.getMname()); %>
+                                             Encryption ec = Encryption.getInstance(); 
+                                             String name = ""; 
+                                             MemberVO mVO = null; 
+                                             for (int i = startNum; i < endNum; i++) { 
+                                             mVO = list.get(i); 
+                                             name = ec.decryption(mVO.getMname()); %>
                                             <tr>
                                                 <td><%= i + 1 %></td>
                                                 <td><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<%= mVO.getId() %>"><%= name %></a></td>
@@ -373,17 +374,38 @@
 
                                 </div>
 
-                            </form>
                         </div>
                         <!--페이지네이션  -->
                         <nav aria-label="Page navigation example" style="text-align:center">
                             <ul class="pagination">
 
-                                <li class="page-item"> <a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp?currentPage=1&dataFlag=1">Previous</a></li>
+								<% 
+								String current = request.getParameter("currentPage");
+								if(current!=null){
+								int pre = Integer.parseInt(current)-1;
+								pageContext.setAttribute("pre", pre);
+								if(pre!=0){
+								%>
+                                <li class="page-item"> <a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp?currentPage=${pre }&dataFlag=1">Previous</a></li>
+								<% }}//if%>
+								
                                 <% for(int i=1;i<totalPages+1;i++){%>
                                 <li class="page-item"> <a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp?currentPage=<%=i %>&dataFlag=1"><%=i %></a></li>
-                                <% }%>
-
+                                <% }//for
+                                
+								int next =0;
+						        if (current == null) {/* current가 null이면 1페이지니까 next2로 해줌 */
+						        	next = 2;
+						        }else{
+						        	next =  Integer.parseInt(current)+1;
+						        }//else
+						        if (!(next > totalPages)) {
+								pageContext.setAttribute("next", next);
+						        %>
+						        <li class="page-item"> <a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp?currentPage=${next }&dataFlag=1">Next</a></li>
+						        <%
+						            }//if
+						        %>
 
                             </ul>
                         </nav>

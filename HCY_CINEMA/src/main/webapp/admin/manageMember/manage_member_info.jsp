@@ -106,6 +106,7 @@
     <!--[if lt IE 9]>
 	    <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
 	<![endif]-->
+	
     <style type="text/css">
         /* Chart.js */
         @ -webkit-keyframes chartjs-render-animation {
@@ -184,7 +185,7 @@
                 <div class="container-fluid">
 
                     <div class="navbar-header">
-                        <a href="../ManageDashBoard/manage_dashboard.jsp" class="navbar-brand" style="line-height: 0px"><img src="../../common/images/admin_logo.png"></a>
+                        <a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp" class="navbar-brand" style="line-height: 0px"><img src="../../common/images/admin_logo.png"></a>
                         <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                             <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                         </button>
@@ -337,28 +338,7 @@
                                                                                 </ul>
             </div>
     <!-- } 게시물 상단 버튼 끝 -->
-
-
-                            <!-- 본문 내용 시작 { -->
-                            <div class="formtit">회원 기본정보</div>
-                            <div style="text-align:right">
-
-                                <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_edit.jsp" method="GET">
-                                    <input class="btn btn-secondary" type="submit" value="수정" id="modify">
-                                </form>
-
-
-                            </div>
-
-                            <div class="formtablewrap">
-                                <table width="100%" class="formtable" cellpadding="0" cellspacing="5">
-                                    <colgroup>
-                                        <col width="140px">
-                                        <col>
-                                    </colgroup>
-                                    <!-- 1이름 아이디 생년월일 1휴대전화 1이메일 가입일 -->
-                                    <tbody>
-                                        <%
+  <%
 			String memberId=request.getParameter("memberId");
 			
 			ManageMemberDAO mmDAO = ManageMemberDAO.getInstance();
@@ -384,6 +364,45 @@
 				Date birthDate=inputDateFormat.parse(birthDateStr);
 				String formattedBirthDate=outputDateFormat.format(birthDate);
 			%>
+			
+                            <!-- 본문 내용 시작 { -->
+                            <div class="formtit">회원 기본정보</div>
+                            <div style="text-align:right">
+
+                                <div style="text-align:right">
+                               <!--  <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_delete.jsp" method="POST"> -->
+                                	<input type="hidden" name="memberId" value="<%= mVO.getId() %>">
+                                    <input class="btn btn-danger" type="submit" value="탈퇴" id="withdraw" onclick="confirmDelete()">
+                                <!-- </form> -->
+                                </div>
+                               
+
+
+                            </div>
+                            
+                            <script>
+						    function confirmDelete() {
+						        var confirmDelete = confirm("회원을 정말 탈퇴시키겠습니까?");
+						        if (confirmDelete) {
+						            alert("회원정보가 성공적으로 삭제되었습니다.");
+						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_delete.jsp?memberId=<%= mVO.getId() %>"; //예를 선택한 경우 delete.jsp로 이동
+						        } else {
+						            alert("탈퇴 작업이 취소되었습니다.");
+						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<%= mVO.getId()%>"; 
+			
+						        }
+						    }
+							</script>
+
+                            <div class="formtablewrap">
+                                <table width="100%" class="formtable" cellpadding="0" cellspacing="5">
+                                    <colgroup>
+                                        <col width="140px">
+                                        <col>
+                                    </colgroup>
+                                    <!-- 1이름 아이디 생년월일 1휴대전화 1이메일 가입일 -->
+                                    <tbody>
+                                      
                                         <tr>
                                             <th>이름</th>
                                             <td style="text-align: center;"><%=name %></td>
@@ -409,13 +428,11 @@
                                             <td style="text-align: center;"><%=mVO.getJoindate()%></td>
                                         </tr>
                                         <%
-			}
-			%>
+										}
+										%>
                                     </tbody>
                                 </table>
-                                <div style="text-align:right">
-                                    <input class="btn btn-danger" type="submit" value="탈퇴" id="withdraw">
-                                </div>
+                                
 
                                 <!-- } 본문 내용 끝 -->
 
