@@ -392,7 +392,7 @@
                            시작 번호 : <%= startNum %><br>
                            끝 번호 : <%= endNum %><br> --%>
                            총 <%= totalCount %>명의 회원이 조회되었습니다.<br/><br/>
-                           
+                            
                            <%
                            try{
                               List<MemberVO> list=ManageMemberDAO.getInstance().selectMember(brVO);
