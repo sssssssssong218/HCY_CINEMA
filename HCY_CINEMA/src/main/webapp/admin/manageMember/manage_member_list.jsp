@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.lang.reflect.Array"%>
+<%@page import="manageMember.BoardRangeVO"%>
+<%@page import="java.sql.SQLException"%>
 <%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
 <%@page import="encryption.Encryption"%>
 <%@page import="board.ManageBoardDAO"%>
@@ -5,7 +9,7 @@
 <%@page import="java.util.List"%>
 <%@page import="manageMember.ManageMemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page info=""%>
 
@@ -52,20 +56,46 @@
     <script src="https://www.ncyok.or.kr:443/js/printThis.js"></script>
     <meta name="naver-site-verification" content="8e74a1f533fc95526c71b92c12475d0129bcdd32">
     <meta name="robots" content="index,follow">
-    <meta name="author" content="www.ncyok.or.kr">
-    <meta name="description" content="연구 및 연수활동, 정보지원활동, 국제교류활동, 대회협력활동, 청협사이버평생교육원">
-    <meta name="title" content="한국청소년단체협의회">
-    <meta name="og:title" content="한국청소년단체협의회">
-    <meta name="og:description" content="연구 및 연수활동, 정보지원활동, 국제교류활동, 대회협력활동, 청협사이버평생교육원">
     <meta property="og:image" content="/img/meta.jpg">
-    <link rel="canonical" href="https://ncyok.or.kr/index.php">
 
 
-    <script src="pace.min.js" type="text/javascript"></script>
 
     <!--[if lt IE 9]>
-	    <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
-	<![endif]-->
+       <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
+   <![endif]-->
+   <script type="text/javascript">
+   $(function(){
+      $("#searchbtn").click(function(){
+            chkNull();
+         });//click
+         
+         $("#keyword").keyup(function(evt){ //keydown은 값을 받을 수 없음
+            if( evt.which == 13 /*엔터는 13번*/){
+               chkNull();
+            }//end if
+         });//keyup
+   });//ready
+   function chkNull(){
+         var keyword = $("#keyword").val();
+         
+         if( keyword.trim() == "" ){
+            alert("검색 키워드를 입력해 주세요.")
+            return;
+         }//end if
+         
+         //글자수 제한
+         
+         //
+         $("#frmSearch").submit();
+         
+      }//chkNull
+      function memberDetail( id ){
+            
+            $( "#id" ).val( id );
+            $( "#hidFrm" ).submit();
+            
+         }//memberDetail
+   </script>
     <style type="text/css">
         /* Chart.js */
         @ -webkit-keyframes chartjs-render-animation {
@@ -124,7 +154,7 @@
     </style>
 </head>
 
-<body class="  pace-done" cz-shortcut-listen="true">
+<body class="pace-done" cz-shortcut-listen="true">
 
 
     <div class="pace  pace-inactive">
@@ -178,22 +208,22 @@
                         </li>
                         <li class="nav-header">today work</li>
                         <li class="active has-sub"><a href="../ManageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
-                                <span>회원관리
+                                <span>DashBoard
                                     <!-- <span class="label label-theme m-l-3">NEW</span> --></span>
                             </a>
                             <!-- <ul class="sub-menu">
-<li><a href="index.html">Dashboard v1</a></li>
-<li><a href="index_v2.html">Dashboard v2</a></li>
-<li class="active"><a href="index_v3.html">Dashboard v3</a></li>
-<li><a href="index_v4.html">Dashboard v4 <i class="fa fa-paper-plane text-theme m-l-3"></i></a></li>
-</ul> -->
-                        </li>
-                        <!-- <li>
-<a href="bootstrap_4.html">
-<div class="icon-img"><img src="../assets/img/bootstrap-4.png" alt=""></div>
-<span>Bootstrap 4</span>
-</a>
-</li> -->
+                     <li><a href="index.html">Dashboard v1</a></li>
+                     <li><a href="index_v2.html">Dashboard v2</a></li>
+                     <li class="active"><a href="index_v3.html">Dashboard v3</a></li>
+                     <li><a href="index_v4.html">Dashboard v4 <i class="fa fa-paper-plane text-theme m-l-3"></i></a></li>
+                     </ul> -->
+                                             </li>
+                                             <!-- <li>
+                     <a href="bootstrap_4.html">
+                     <div class="icon-img"><img src="../assets/img/bootstrap-4.png" alt=""></div>
+                     <span>Bootstrap 4</span>
+                     </a>
+                     </li> -->
                         <li class="has-sub"><a href="../ManageMovie/manage_movie.jsp">
                                 <img class="fa fa-inbox" src="../../common/images/movie_icon.png"> <span>영화</span>
                             </a>
@@ -287,31 +317,28 @@
                                 <!-- 게시판 검색 시작 { -->
                                 <fieldset id="bo_sch">
                                     <legend>게시물 검색</legend>
-                                    <form name="fsearch" method="get">
-                                        <input type="hidden" name="bo_table" value="5010"> 
-                                        <input type="hidden" name="sca" value=""> 
-                                        <input type="hidden" name="sop" value="and">
-                                        <label for="sfl" class="sound_only">검색대상</label>
-                                        <select name="sfl" id="sfl">
+                                    <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp" name="frmsearch" id="frmsearch" method="post" style="display: flex; align-items: center;">
+                            <label for="sfl" class="sound_only">검색대상</label>
+                            <select name="field" id="field">
                                             <!--option value="wr_subject">제목</option>
-            <option value="wr_content">내용</option-->
-                                            <option value="wr_subject||wr_content">아이디</option>
-
+                                    <option value="wr_content">내용</option-->
+                                    
+                                              <option value="1"${param.field eq '1'?" selected='selected'":"" }>아이디</option>
                                             <!--option value="mb_id,0">회원아이디(코)</option>
-            <option value="wr_name,1">글쓴이</option>
-            <option value="wr_name,0">글쓴이(코)</option-->
+                                    <option value="wr_name,1">글쓴이</option>
+                                    <option value="wr_name,0">글쓴이(코)</option-->
                                         </select> 
-                                        <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong>
-                                        </label> <input type="text" name="stx" value="<%= (request.getParameter("stx") != null) ? request.getParameter("stx") : "" %>" required="" id="stx" class="frm_input required" size="15" maxlength="20" "=" placeholder=" 아이디를 입력해주세요">
-                                        <input type="submit" value="검색" class="btn_search">
-                                    </form>
+                                       <input type="hidden" name="dataFlag" value="1"/>
+                                       <input type="text" name="keyword" id="keyword" class="inputBox" value="${param.keyword ne 'null'? param.keyword:'' }" required="" id="stx" class="frm_input required" size="15" maxlength="20" placeholder="아이디를 입력해주세요" style="flex: 1; height:42px">
+                              		   <input type="submit" value="검색" class="btn_search" style="margin-left: 10px;" id="searchbtn" name="search_btn" style="wdith:100px"> <!-- 입력란과 버튼을 구분하기 위해 마진 추가 -->
+                           			</form>
                                 </fieldset>
                                 
                                 <!-- } 게시판 검색 끝 -->
                                 <!--div id="bo_list_total">
-        <span>Total 2,584건</span>
-        1 페이지
-    </div-->
+                          <span>Total 2,584건</span>
+                          1 페이지
+                      </div-->
                             </div>
                             <!-- } 게시판 페이지 정보 및 버튼 끝 -->
 
@@ -319,25 +346,111 @@
 
                                 <div class="tbl_head01 tbl_wrap">
 
+                          <%
+                           ManageMemberDAO mmDAO=ManageMemberDAO.getInstance();
+                           BoardRangeVO brVO=new BoardRangeVO();
+                           
+                           String field=request.getParameter("field");
+                           String keyword=request.getParameter("keyword");
+                           
+                           brVO.setField(request.getParameter("field"));
+                           brVO.setKeyword(request.getParameter("keyword"));
+                           
+                           //1.총 레코드의 수 -> 검색키워드에 해당하는 총 레코드의 수
+                           //13개 나와야하는데 안 나옴
+                           int totalCount=mmDAO.totalCount(brVO);
+                           //2.한 화면에 보여줄 게시물의 수
+                           int pageScale=10;
+                           //3.총 페이지 수
+                           int totalPage=0;
+                           
+                           totalPage=(int)Math.ceil(totalCount/(double)pageScale);
+                           
+                           
+                           //현재페이지의 시작번호 구하기
+                           String tempPage=request.getParameter("currentPage");
+                           int currentPage=1;
+                           
+                           if(tempPage!=null){
+                              currentPage=Integer.parseInt(tempPage);
+                           }//end if
+                           
+                           int startNum=currentPage*pageScale-pageScale+1;
+                           pageContext.setAttribute("startNum", startNum);
+                           
+                           //끝번호
+                           int endNum=startNum+pageScale-1;
+                           
+                           brVO.setStartNum(startNum);
+                           brVO.setEndNum(endNum);
+                           %>
+                           
+                          <%--  총 레코드의 수 : <%= totalCount %>건<br>
+                           한 화면에 보여줄 게시물의 수 : <%= pageScale %>건<br>
+                           총 페이지 수 : <%= totalPage %>장<br>
+                           현재 페이지 번호  : <%= currentPage %><br>
+                           시작 번호 : <%= startNum %><br>
+                           끝 번호 : <%= endNum %><br> --%>
+                           총 <%= totalCount %>명의 회원이 조회되었습니다.<br/><br/>
+                           
+                           <%
+                           try{
+                              List<MemberVO> list=ManageMemberDAO.getInstance().selectMember(brVO);
+                              MemberVO mVO=null;
+                              List<MemberVO> memberList=new ArrayList<MemberVO>();
+                            	  Encryption ec = Encryption.getInstance(); 
+                                  for( int i=0; i<list.size(); i++){
+                                	  mVO=list.get(i);
+                                	  mVO.setMname(ec.decryption(mVO.getMname()));
+                                	  memberList.add(mVO) ; 
+                                  }//end for
+                                  
+                              pageContext.setAttribute("memberList", memberList);
+                           }catch(SQLException se){
+                              se.printStackTrace();
+                           }//end catch
+                           %>
+                        <form method="post" id="hidFrm">
+                        <input type="hidden" name="id" id="id"/>
+                        </form>
+                           <table>
+                               <thead>
+                                 <caption>회원관리 목록</caption>
+                                    <tr bgcolor="#E4ECEF" style="text-align:center">
+                                       <th scope="col" style="width: 250px">회원번호</th>
+                                       <th scope="col" style="width: 250px">이름</th>
+                                       <th scope="col" style="width: 250px">아이디</th>
+                                       <th scope="col" style="width: 250px">가입일</th>
+                                    </tr>
+                                   </thead>
+                                   <tbody>
+                                  <c:if test="${empty memberList }">
+                                  <tr>
+                                  <td colspan="4" style="text-align:center;">회원정보가 존재하지 않습니다.</td>
+                                 </tr>
+                                   </c:if>
+                               <c:forEach var="member" items="${ memberList }" varStatus="i">
+                               <tr style="text-align:center">
+                                  <td><c:out value="${ startNum + i.index }"/></td>
+                                  <td><c:out value="${ member.mname }"/></td>
+                                  <td><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<c:out value='${ member.id }'/>"><c:out value="${ member.id }"/></a></td>
 
-
-                                    <table>
-                                        <thead>
-                                            <caption>회원관리 목록</caption>
-                                            <tr bgcolor="#E4ECEF" style="text-align:center">
-                                                <th scope="col" style="width: 250px">회원번호</th>
-                                                <th scope="col" style="width: 250px">이름</th>
-                                                <th scope="col" style="width: 250px">아이디</th>
-                                                <th scope="col" style="width: 250px">가입일</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody style="text-align: center">
+                                  <td><fmt:formatDate value="${ member.joindate }" pattern="yyyy-MM-dd HH:mm" /><c:out value="${ member.joindate }"/></td>
+                               </tr>
+                               </c:forEach>
+                               </tbody>
+                              </table>
+                           <div style="text-align: center;">
+            
+                           
+                           </div>
+                                        <%-- <tbody style="text-align: center">
                                           <% int pageScale = 10; // 한 페이지에 표시할 레코드 수 
                                              int currentPage = 1; // 기본값은 첫 번째 페이지 
 
                                              List<MemberVO> list=ManageMemberDAO.getInstance().selectMemberList(); %>
 
-                                            <%-- 전체 레코드 수 및 전체 페이지 수 계산 --%>
+                                          전체 레코드 수 및 전체 페이지 수 계산
                                           <% int totalRecords = list.size(); 
                                              int totalPages = (int) Math.ceil((double) totalRecords / pageScale); 
                                              String tempPage = request.getParameter("currentPage"); 
@@ -345,15 +458,16 @@
                                              currentPage = Integer.parseInt(tempPage); 
                                             } %>
 
-                                            <%-- 현재 페이지에 표시할 레코드의 시작 및 끝 번호 계산 --%>
-                                          <% int startNum = (currentPage - 1) * pageScale; 
+                                            현재 페이지에 표시할 레코드의 시작 및 끝 번호 계산
+                                          <% int startNum = (currentPage-1) * pageScale; 
                                              int endNum = Math.min(startNum + pageScale, totalRecords); 
 
 
                                              Encryption ec = Encryption.getInstance(); 
                                              String name = ""; 
                                              MemberVO mVO = null; 
-                                             for (int i = startNum; i < endNum; i++) { 
+                                             if(request.getParameter("keyword")==null||"".equals(request.getParameter("keyword"))){
+                                             for (int i=startNum; i<endNum; i++) { 
                                              mVO = list.get(i); 
                                              name = ec.decryption(mVO.getMname()); %>
                                             <tr>
@@ -362,56 +476,73 @@
                                                 <td><%= mVO.getId() %></td>
                                                 <td><%= mVO.getJoindate() %></td>
                                             </tr>
-                                            <% } %>
-
-                                            <tr>
-
-                                        </tbody>
-                                    </table>
-
-
-
-
+                                            <% }
+                                             }else{
+                                                sVO.setStartNum(startNum);
+                                                sVO.setEndNum(endNum);
+                                                
+                                                for (int i=startNum; i<endNum+1; i++) { 
+                                                 mVO = search.get(i); 
+                                                name = ec.decryption(mVO.getMname());%>
+                                             <tr>
+                                                <td><%= i + 1 %></td>
+                                                <td><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<%= mVO.getId() %>"><%= name %></a></td>
+                                                <td><%= mVO.getId() %></td>
+                                                <td><%= mVO.getJoindate() %></td>
+                                            </tr>
+                                            <%} 
+                                            }%>
+                                        </tbody> --%>
                                 </div>
-
                         </div>
                         <!--페이지네이션  -->
                         <nav aria-label="Page navigation example" style="text-align:center">
-                            <ul class="pagination">
+                        <div style="text-align:center">
+                        <ul class="pagination">
+                           <li class="page-item">
+	                     <% for( int i=1; i<totalPage+1; i++ ){   %>
+	                      <a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp?currentPage=<%=i %>&keyword=${ param.keyword }&field=${param.field}"><%=i%></a> 
+	                     <%} //end for%> 
+	                   </li>
+	                  </ul>
+                            <%-- <ul class="pagination">
 
-								<% 
-								String current = request.getParameter("currentPage");
-								if(current!=null){
-								int pre = Integer.parseInt(current)-1;
-								pageContext.setAttribute("pre", pre);
-								if(pre!=0){
-								%>
-                                <li class="page-item"> <a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp?currentPage=${pre }&dataFlag=1">Previous</a></li>
-								<% }}//if%>
-								
+                        <% 
+                        String current = request.getParameter("currentPage");
+                        if(current!=null){
+                        int pre = Integer.parseInt(current)-1;
+                        pageContext.setAttribute("pre", pre);
+                        if(pre!=0){
+                        %>
+                                <li class="page-item">
+                                 <a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp?currentPage=${pre }&dataFlag=1">Previous</a>
+                                 </li>
+                        <% }}//if%>
+                        
                                 <% for(int i=1;i<totalPages+1;i++){%>
-                                <li class="page-item"> <a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp?currentPage=<%=i %>&dataFlag=1"><%=i %></a></li>
+                                <li class="page-item"> 
+                                <a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp?currentPage=<%=i %>&dataFlag=1&keyword=${ param.keyword }&field=${param.field}"><%=i %></a>
+                                </li>
                                 <% }//for
                                 
-								int next =0;
-						        if (current == null) {/* current가 null이면 1페이지니까 next2로 해줌 */
-						        	next = 2;
-						        }else{
-						        	next =  Integer.parseInt(current)+1;
-						        }//else
-						        if (!(next > totalPages)) {
-								pageContext.setAttribute("next", next);
-						        %>
-						        <li class="page-item"> <a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp?currentPage=${next }&dataFlag=1">Next</a></li>
-						        <%
-						            }//if
-						        %>
+                        int next =0;
+                          if (current == null) {/* current가 null이면 1페이지니까 next2로 해줌 */
+                             next = 2;
+                          }else{
+                             next =  Integer.parseInt(current)+1;
+                          }//else
+                          if (!(next > totalPages)) {
+                        pageContext.setAttribute("next", next);
+                          %>
+                          <li class="page-item"> 
+                          <a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp?currentPage=${next }&dataFlag=1">Next</a>
+                          </li>
+                          <%
+                              }//if
+                          %>
 
-                            </ul>
+                            </ul> --%>
                         </nav>
-
-
-
                         <!-- } 게시판 목록 끝 -->
                     </div>
 
@@ -420,15 +551,7 @@
             </div>
         </div>
 
-
-
     </div>
 
-
-
-
-
-
 </body>
-
 </html>
