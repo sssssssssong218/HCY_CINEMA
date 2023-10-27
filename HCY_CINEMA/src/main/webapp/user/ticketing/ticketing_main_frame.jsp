@@ -1,3 +1,7 @@
+<%@page import="ticketing.MovieVO"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.List"%>
+<%@page import="ticketing.TicketingDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
         <%@ page info="" %>
@@ -58,13 +62,134 @@ preselectSetting(
 );
 
 function ListClickListener(index){
+	//$(".placeholder.hidden").attr("class","placeholder")
 	var value = $("#"+index).data("value");
-	$("#u1").attr("class","")
-	$("#u2").attr("class","")
-	$("#u3").attr("class","")
-	$("#u"+index).attr("class","selected")
-	$("#screen").val(vlaue)
+	$("#2D").attr("class","")
+	$("#3D").attr("class","")
+	$("#IMAX").attr("class","")
+	$("#"+index).attr("class","selected")
+	$("#screenType").val(index)
+	
+	if(mListSelect == true){
+		$(".row movie_type").attr("style","display:block;")
+		$("#movie_type").html($("#screenList > .selected").attr("id"))
+	}//if
+	
+	$(".row.screen > .data").html(index+"관")
+	
+	if($("#date").val() != '' && $("#movie").val() != '' && $("#screenType").val() != '' ){
+		runAjax()
+	}//if
 }//ListClickListener
+
+
+var mListSelect = false;
+function mListClickListener(index , name, rate){
+	mListSelect = true;
+	$(".placeholder.hidden").attr("class","placeholder")
+	var value = $("#"+index).data("value");
+	$(".press.selected").attr("class","")
+	$("#"+index).attr("class","press selected")
+	$("#movie").val(index)
+	
+	$(".movie_poster").html('<img src="http://192.168.10.147/HCY_CINEMA/common/poster/'+index+'.jpg'+'" alt="영화 포스터">')
+	$(".info.movie > .placeholder").attr("style","display:none;")
+	
+	$(".row.movie_title.colspan2").attr("style","display:block;")
+	$(".data.letter-spacing-min.ellipsis-line2").html(name)
+	
+	$(".row movie_type").attr("style","display:block;")
+	$("#movie_type").html($("#screenlist > .selected").attr("id"))
+	
+	$(".row movie_rating").attr("style","display:block;")
+	$("#raing").text(rate=='AL'?'전체이용가':rate+'세')
+
+	if($("#date").val() != '' && $("#movie").val() != '' && $("#screenType").val() != '' ){
+		runAjax()
+	}//if
+}//ListClickListener
+
+function dListClickListener(index){
+	$(".placeholder.hidden").attr("class","placeholder")
+	var value = $("#"+index).data("value");
+	$(".day.day-sat.selected").attr("class","day")
+	$("#"+index).attr("class","day day-sat selected")
+	$("#date").val(index)
+	
+	var year = index.substring(0,4)
+	var month = index.substring(4,6)
+	var date = index.substring(6,8)
+	
+	$(".row.date > .data").html(year+'.'+month+'.'+date)
+	
+	if($("#date").val() != '' && $("#movie").val() != '' && $("#screenType").val() != '' ){
+		runAjax()
+	}//if
+}//ListClickListener
+
+function sTimeClickListener( snum,sdnum ){
+	$("#screen"+sdnum+" > .selected").attr("class","")
+	$("#screen"+sdnum+" > .moring.selected").attr("class","")
+	$("#schedule"+snum).attr("class","selected")
+	$("#tnb_step_btn_right").attr("class","btn-right on")
+}//sTimeClickListener
+function msTimeClickListener( snum,sdnum ){
+	$("#screen"+sdnum+" > .selected").attr("class","")
+	$("#schedule"+snum).attr("class","morning selected")
+	$("#tnb_step_btn_right").attr("class","btn-right on")
+}//sTimeClickListener
+
+var directJson = [];
+var tempJson = {};
+
+function runAjax(){
+	$("#infoTheater").attr("style","")
+	$("#screenList").html("");
+	$(".placeholder").attr("class","placeholder hidden")
+	var jsonSche = {"movie":$("#movie").val(),"screenType":$("#screenType").val(),"date":$("#date").val()};
+	$.ajax({
+		url : "http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_ajax.jsp",
+		type : "get",
+		data : jsonSche,
+		dataType : "json",
+		error:function( xhr ){
+			alert("예상치 못한 문제가 발생했습니다."+xhr.status)
+		},
+		success : function(data){
+			$.each(data,function(idx,element){	
+				var screenList = "";
+				screenList += '<div class="theater" screen_cd="'+element.screenCode+'" movie_cd="'+element.movieCode+'">';
+				screenList += '<span class="title">';
+				screenList += '<span class="name">'+element.screenCat+'</span>';
+				screenList += '<span class="floor">'+element.screenName+'</span>';
+				screenList += '<span class="seatcount">(총169석)</span>';
+				screenList += '</span>';
+				screenList += '<ul id="screen'+element.screenCode+'"></ul></div>';
+				
+				$("#screenList").append(screenList);
+				$.each(element.screenArr,function(i,jsonele){
+					tempJson = {"name":element.mname,"poster":,"type":,"rate":,"date":,"start":,"end":,"screen":,"seat":};
+					
+					var temp = "";
+					if(i==0){
+					temp += '<li data-index="0" data-remain_seat="'+jsonele.remain+'" play_start_tm="1340" screen_cd="'+element.screenCode+'" movie_cd="'+element.movieCode+'" play_num="2" class="'+(jsonele.flag?'morning':'disalbe')+'" id="schedule'+jsonele.scheduleCode+'">';
+					temp += '<a class="button" href="#" onclick="msTimeClickListener('+jsonele.scheduleCode+','+element.screenCode+');return false;">';
+					}else{
+					temp += '<li data-index="0" data-remain_seat="'+jsonele.remain+'" play_start_tm="1340" screen_cd="'+element.screenCode+'" movie_cd="'+element.movieCode+'" play_num="2" class="'+(jsonele.flag?'':'disalbe')+'" id="schedule'+jsonele.scheduleCode+'">';
+					temp += '<a class="button" href="#" onclick="sTimeClickListener('+jsonele.scheduleCode+','+element.screenCode+');return false;">';
+					}//else
+					temp += '<span class="time"><span>'+jsonele.time+'</span></span>';
+					temp += '<span class="count">'+(jsonele.flag?jsonele.remain+'석':'예매종료')+'</span>';
+					temp += '<div class="sreader">종료시간 : '+jsonele.endtime+'</div>';
+					temp += '</a>';
+					temp += '</li>';
+					
+					$("#screen"+element.screenCode).append(temp)
+				})//each
+			})//each
+		}//success
+	})//ajax
+}//runAjax
 
 function ticketRestart(){
 	location.reload();
@@ -74,7 +199,9 @@ function ticketRestart(){
 
 <body cz-shortcut-listen="true">
 <form action="" id="hidFrm" name="hidFrm">
-<input type="hidden" id="screen" name="screen">
+<input type="hidden" id="screenType" name="screenType" value="">
+<input type="hidden" id="movie" name="movie" value="">
+<input type="hidden" id="date" name="date" value="">
 </form>
 
 <a name="t"></a>
@@ -114,7 +241,17 @@ function ticketRestart(){
 							<div class="movie-select">
 								<div class="movie-list nano" id="movie_list">
 									<ul class="content scroll-y" onscroll="movieSectionScrollEvent();">
-									<%  %>
+									<% 
+										List<MovieVO> mList = TicketingDAO.getInstance().selectMovie();
+										for(MovieVO mVO :mList){
+											pageContext.setAttribute("moviecode", mVO.getMoviecode());
+											pageContext.setAttribute("mname", mVO.getMname());
+											pageContext.setAttribute("movieRating", mVO.getMovieRating());
+											%>
+											<li class="" data-index="${ moviecode }" movie_cd_group="20034026" movie_idx="87433" id="${ moviecode }"><a href="#" onclick="mListClickListener(${ moviecode },'${mname }','${ movieRating}'); return false;" title="${ mname }" alt="${ mname }"><i class="cgvIcon etc age${ movieRating == 'AL'?'all':movieRating } }">${ movieRating == 'AL'?'all':movieRating }</i><span class="text">${ mname }</span><span class="sreader"></span></a></li>
+											<%
+										}//for
+									%>
 									</ul>
 								</div>
 							</div>
@@ -142,10 +279,10 @@ function ticketRestart(){
 							<div class="theater-select">
 								<div class="theater-list">
 									<div class="area_theater_list nano" id="theater_area_list" style="text-align: center;">
-										<ul>
-											<li class="" id="u1" data-index="0" areaindex="1" theater_cd="0056" rating_cd="undefined" style="display: list-item;"><a href="#" onclick="ListClickListener(1);return false;" id="1" data-value="1">2D<span class="sreader"></span></a></li>
-											<li class="" id="u2" data-index="0" areaindex="1" theater_cd="0056" rating_cd="undefined" style="display: list-item;"><a href="#" onclick="ListClickListener(2);return false;" id="2" data-value="2">3D<span class="sreader"></span></a></li>
-											<li class="" id="u3" data-index="0" areaindex="1" theater_cd="0056" rating_cd="undefined" style="display: list-item;"><a href="#" onclick="ListClickListener(3);return false;" id="3" data-value="3">IMAX<span class="sreader"></span></a></li>
+										<ul id="screenlist">
+											<li class="" id="2D" data-title="2D" data-index="0" areaindex="1" theater_cd="0056" rating_cd="undefined" style="display: list-item;"><a href="#" onclick="ListClickListener('2D');return false;" id="1" data-value="2D">2D<span class="sreader"></span></a></li>
+											<li class="" id="3D" data-title="3D" data-index="0" areaindex="1" theater_cd="0056" rating_cd="undefined" style="display: list-item;"><a href="#" onclick="ListClickListener('3D');return false;" id="2" data-value="3D">3D<span class="sreader"></span></a></li>
+											<li class="" id="IMAX" data-title="IMAX" data-index="0" areaindex="1" theater_cd="0056" rating_cd="undefined" style="display: list-item;"><a href="#" onclick="ListClickListener('IMAX');return false;" id="3" data-value="IMAX">IMAX<span class="sreader"></span></a></li>
 										</ul>
 									</div>
 									<div class="theater-cgv-list nano" id="theater_cgv_list">
@@ -166,6 +303,71 @@ function ticketRestart(){
 							<div class="date-list nano" id="date_list">
 								<ul class="content scroll-y">
 								
+								 <%
+                        StringBuilder currentDate = new StringBuilder();
+                       	Calendar cal = Calendar.getInstance();
+                       	currentDate.append(cal.get(Calendar.YEAR))
+                        	.append(cal.get(Calendar.MONTH)+1)
+                        	.append(cal.get(Calendar.DAY_OF_MONTH));
+                       	String[] days ={"일","월","화","수","목","금","토"};
+                       	
+                       	String day = null;
+                       	int year = cal.get(Calendar.YEAR);
+                       	int month = cal.get(Calendar.MONTH)+1;
+                       	int date = cal.get(Calendar.DAY_OF_MONTH);
+                       	int maxDate = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+                        	
+                       	pageContext.setAttribute("maxDate", maxDate);
+                       	
+                       	StringBuilder sbTemp = new StringBuilder();
+                       	
+                       	int dayNum = cal.get(Calendar.DAY_OF_WEEK);
+                       	
+                       	pageContext.setAttribute("month", month);
+                       	pageContext.setAttribute("year", year);
+                       	for(int i = 0;i<16;i++ ){
+                  		sbTemp.replace(0, sbTemp.length(), "");
+                  		sbTemp.append(year);
+                  		if(month<10){
+                  			sbTemp.append("0");
+                  		}//if
+                  		sbTemp.append(month);
+                  		if(date<10){
+                  			sbTemp.append("0");
+                  		}//if
+                  		sbTemp.append(date);
+                       	day = days[dayNum];
+                       	dayNum++;
+                       	if(dayNum > 6){
+                       		dayNum=0;
+                       	}//if
+                       	
+                       	pageContext.setAttribute("temp", sbTemp.toString());
+                       	pageContext.setAttribute("day", day);
+                       	pageContext.setAttribute("date", date);
+                       	if(i==0){
+                        %>
+								<li class="month dimmed"><div><span class="year">${year }</span><span class="month">${month }</span><div></div></div></li>
+                        <% }//if%>
+								<li data-index="${i }" date="${temp }" class="day" id="${temp }"><a href="#" onclick="dListClickListener('${temp }'); return false;"><span class="dayweek">${ day }</span><span class="day">${date }</span><span class="sreader"></span></a></li>
+                        <%
+                       		date ++;
+                        if(date>maxDate){
+                        	date = 1;
+                        	month++;
+                       	pageContext.setAttribute("month", month);
+                        		%>
+								<li class="month dimmed"><div><span class="year">${year }</span><span class="month">${month }</span><div></div></div></li>
+                        		<%
+                        	if(month>12){
+                        		month = 1;
+                        		year ++;
+                       	pageContext.setAttribute("year", year);
+                        	}//if
+                        }//if
+                    }//for %>
+								
+								
 								</ul>
 							</div>
 						</div>
@@ -182,6 +384,17 @@ function ticketRestart(){
 								<span class="morning">모닝</span><span class="night">심야</span>
 							</div>
 							<div class="placeholder">영화, 극장, 날짜를 선택해주세요.</div>
+							<div class="time-list nano has-scrollbar">
+								<div class="content scroll-y" tabindex="-1" style="right: -17px;" id="screenList">
+									
+								</div>
+								<div class="pane pane-y" style="display: none; opacity: 1; visibility: visible;">
+									<div class="slider slider-y" style="height: 50px;"></div>
+								</div>
+								<div class="pane pane-x" style="display: none; opacity: 1; visibility: visible;">
+									<div class="slider slider-x" style="width: 50px;"></div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -720,27 +933,27 @@ function ticketRestart(){
 		</div>
 	</div>
 	
+	
 	<div id="ticket_tnb" class="tnb_container ">
 		<div class="tnb step1">
 			<!-- btn-left -->
 			<a class="btn-left" href="#" onclick="OnTnbLeftClick(); return false;" title="">이전단계로 이동</a>
 			<div class="info movie">
-				<span class="movie_poster"><img src="" alt="영화 포스터"></span>
+				<span class="movie_poster"></span>
 				<div class="row movie_title colspan2">
-					<span class="data letter-spacing-min ellipsis-line2"><a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/영화상세보기');" title="새창열기">영화정보 상세보기</a></span>
+					<span class="data letter-spacing-min ellipsis-line2"></span>
 				</div>
 				<div class="row movie_type">
-					<span class="data ellipsis-line1"></span>
+					<span class="data ellipsis-line1" id="movie_type"></span>
 				</div>
 				<div class="row movie_rating">
-					<span class="data"></span>
+					<span class="data" id="raing"></span>
 				</div>
 				<div class="placeholder" title="영화선택"></div>
 			</div>
 			<div class="info theater">
+			<div  style="display: none" id="infoTheater">
 				<div class="row name">
-					<span class="header">극장</span>
-					<span class="data letter-spacing-min ellipsis-line1"><a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/극장상세보기');" title="새창열기">극장정보 상세보기</a></span>
 				</div>
 				<div class="row date">
 					<span class="header">일시</span>
@@ -753,6 +966,7 @@ function ticketRestart(){
 				<div class="row number">
 					<span class="header">인원</span>
 					<span class="data"></span>
+				</div>
 				</div>
 				<div class="placeholder" title="극장선택"></div>
 			</div>

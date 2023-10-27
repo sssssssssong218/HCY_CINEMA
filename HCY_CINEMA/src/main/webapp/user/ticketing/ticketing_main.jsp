@@ -215,7 +215,7 @@
 
 		<!-- Contents Area -->
 
-    <iframe title="CGV 빠른예매" id="ticket_iframe" src="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame.jsp" scrolling="no" frameborder="0" width="100%" height="550px" style="width:100%; border:0 none;"></iframe>
+    <iframe title="CGV 빠른예매" id="ticket_iframe" src="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame.jsp" scrolling="no" frameborder="0" width="100%" height="750px" style="width:100%; border:0 none;"></iframe>
     
     <script type="text/javascript">
         //default.master  변경후 padding 처리
