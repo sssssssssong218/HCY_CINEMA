@@ -1,3 +1,5 @@
+<%@page import="movie.MovieFileVO"%>
+<%@page import="movie.AddMovieDAO"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@ page import="com.oreilly.servlet.MultipartRequest" %>
 <%@ page import="java.util.Enumeration" %>
@@ -14,6 +16,13 @@
 <body>
 	
 <%
+String mname=(String)session.getAttribute("mname");
+AddMovieDAO amDAO=AddMovieDAO.getInstance();
+String movieCode=amDAO.selectMovieCode(mname);
+
+
+
+
 File saveDir = new File("C:/Users/user/git/HCY_CINEMA/HCY_CINEMA/src/main/webapp/common/poster");
 int maxSize = 1024 * 1024 * 50; // 키로바이트 * 메가바이트 * 기가바이트
 try {
@@ -21,6 +30,9 @@ try {
 
     String newfile = mr.getFilesystemName("poster_file");
     String fileExtension = newfile.substring(newfile.lastIndexOf(".")); // 파일 확장자 추출
+    
+    
+    
     if(!(fileExtension.equals(".jpg")||fileExtension.equals(".png"))){
     	%>
     	<strong>업로드 실패</strong>
@@ -29,7 +41,11 @@ try {
     }
     String baseFileName = "0106"; // 기본 파일명
     String newFileName = baseFileName + fileExtension;
-
+    MovieFileVO mVO=new MovieFileVO();
+    mVO.setPosterFile(baseFileName);
+	
+    amDAO.insertMoviePosterFile(mVO, movieCode);
+    
     File uploadedFile = new File(saveDir, newfile);
     File renamedFile = new File(saveDir, newFileName);
 
@@ -64,7 +80,6 @@ try {
     out.println("파일 업로드 처리 중 문제 발생");
 }
 %>
-
 
 </body>
 </html>

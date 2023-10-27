@@ -488,7 +488,7 @@ to {
 
 <h1 class="page-header">영화 추가</h1>
 
-
+<!-- <form action="movie_info_insert.jsp" method="post" enctype="multipart/form-data" id="movie_info_all_frm"> -->
 <div class="section-container section-with-top-border p-b-10">
 
 <div class="row">
@@ -498,31 +498,32 @@ to {
 <p>
 영화에 대한 정보를 입력해주세요.
 </p>
-<form class="form-horizontal" id="movie_info_frm">
+<form class="form-horizontal" id="movie_info_frm" action="movie_info_insert.jsp" method="post" accept-charset="UTF-8">
 <div class="form-group m-b-10">
 <label class="col-lg-3 col-form-label">제목</label>
 <div class="col-lg-7">
-<input type="text" class="form-control" placeholder="영화제목">
+<input type="text" class="form-control" placeholder="영화제목" id="movie_name" name="movie_name">
 </div>
 </div>
 <div class="form-group m-b-10" id="actor_title">
 <label class="col-lg-3 col-form-label actor_label">배우</label>
 <div class="col-lg-7 actor_div">
-<input type="text" class="form-control" placeholder="배우">
+<input type="text" class="form-control" placeholder="배우" id="actor" name="actor">
 </div>
 <input type="button" value="추가" id="actor_btn" class="insertBtn">
 </div>
 <div class="form-group m-b-10" id="director_title">
 <label class="col-lg-3 col-form-label director_label">감독</label>
 <div class="col-lg-7 director_div">
-<input class="form-control" type="text" placeholder="감독">
+<input class="form-control" type="text" placeholder="감독" id="director" name="director">
 </div>
 <input type="button" value="추가" id="director_btn" class="insertBtn">
 </div>
+
 <div class="form-group m-b-10" id="genre_title">
 <label class="col-lg-3 col-form-label genre_label">장르</label>
 <div class="col-lg-7 genre_div">
-<select class="form-control" id="genre_select">
+<select class="form-control" id="genre_select" name="genre_select">
 <option>코미디</option>
 <option>스릴러</option>
 <option>공포</option>
@@ -531,26 +532,39 @@ to {
 <option>액션</option>
 <option>SF</option>
 <option>애니매이션</option>
-<option></option>
 </select>
 </div>
 <input type="button" value="추가" id="genre_btn" class="insertBtn">
 </div>
+<div class="form-group m-b-10" id="director_title">
+<label class="col-lg-3 col-form-label">상영시간</label>
+<div class="col-lg-7">
+<input class="form-control" type="text" placeholder="상영시간(분)" id="runningtime" name="runningtime">
+</div>
+</div>
 <div class="form-group m-b-10">
 <label class="col-lg-3 col-form-label">국가</label>
 <div class="col-lg-7">
-<input type="radio" name="optionsRadios" value="국내" checked="checked">국내
-<input type="radio" name="optionsRadios" value="외국">외국
+<input type="radio" name="country" id="domestic" value="국내" checked="checked">국내
+<input type="radio" name="country" id="foreign" value="외국">외국
+</div>
+</div>
+<div class="form-group m-b-10">
+<label class="col-lg-3 col-form-label">국가</label>
+<div class="col-lg-7">
+<input type="radio" name="status" id="ing" value="Y" checked="checked">상영중
+<input type="radio" name="status" id="ending" value="N">종영
+<input type="radio" name="status" id="willing" value="W">상영예정
 </div>
 </div>
 <div class="form-group" style="height:200px">
 <label class="col-lg-3 col-form-label">상세정보</label>
 <div class="col-lg-7">
-<textarea class="form-control" rows="3" placeholder="상세내용" style="height:150px"></textarea>
+<textarea  class="form-control" rows="3" placeholder="상세내용" style="height:150px" id="movie_info" name="movie_info"></textarea>
 </div>
 <div class="checkbox disabled m-b-25">
 <h4>개봉기간 설정</h4>
-<select style="width:100px; height:30px; text-align:center; font-size: 20px;">
+<select style="width:100px; height:30px; text-align:center; font-size: 20px;" id="year" name="year">
 
 <%
 Calendar cal=Calendar.getInstance();
@@ -562,194 +576,104 @@ for(int i=nowYear;i<nowYear+3;i++){
 
 </select>
 <label style="padding:0px; font-size:20px;">/</label>
-<select style="width:60px; height:30px; text-align:center; font-size: 20px;">
-
+<select style="width: 60px; height: 30px; text-align: center; font-size: 20px;" id="month" name="month" onchange="updateDays()">
+<%
+int nowMonth = cal.get(Calendar.MONTH) + 1;
+for(int i = 1; i < 13; i++) {
+%>
+<option value="<%= i %>"<%= i == nowMonth ? "selected='selected'" : "" %>><%= i %></option>
+<%
+} %>
 </select>
-<label style="padding:0px; font-size:20px;">/</label>
-<select style="width:60px; height:30px; text-align:center; font-size: 20px;">
-
-<option>1</option>
-
-<option>2</option>
-
-<option>3</option>
-
-<option>4</option>
-
-<option>5</option>
-
-<option>6</option>
-
-<option>7</option>
-
-<option>8</option>
-
-<option>9</option>
-
-<option>10</option>
-
-<option>11</option>
-
-<option>12</option>
-
-<option>13</option>
-
-<option>14</option>
-
-<option>15</option>
-
-<option>16</option>
-
-<option>17</option>
-
-<option>18</option>
-
-<option>19</option>
-
-<option selected="selected">20</option>
-
-<option>21</option>
-
-<option>22</option>
-
-<option>23</option>
-
-<option>24</option>
-
-<option>25</option>
-
-<option>26</option>
-
-<option>27</option>
-
-<option>28</option>
-
-<option>29</option>
-
-<option>30</option>
-
-<option>31</option>
-
-
+<label style="padding: 0px; font-size: 20px;">/</label>
+<select style="width: 60px; height: 30px; text-align: center; font-size: 20px;" id="date" name="date">
 </select>
+<script type="text/javascript">
+function updateDays() {
+    var monthSelect = document.getElementById("month");
+    var dateSelect = document.getElementById("date");
+    var selectedMonth = monthSelect.value;
+    
+    var year = new Date().getFullYear(); // 현재 연도를 가져옴
+    var daysInMonth = new Date(year, selectedMonth, 0).getDate();
+    
+    dateSelect.innerHTML = ""; // 일자 콤보박스 초기화
+    
+    for (var i = 1; i <= daysInMonth; i++) {
+        var option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        dateSelect.appendChild(option);
+    }
+}
+// 페이지가 로드될 때 초기화
+updateDays();
+//기본 선택을 오늘 날짜로 설정
+var today = new Date();
+document.getElementById("month").value = today.getMonth() + 1; // 월은 0부터 시작하므로 +1
+document.getElementById("date").value = today.getDate();
+</script>
 <label style="padding:0px; font-size:20px;">~</label>
-<select style="width:100px; height:30px; text-align:center; font-size: 20px;">
+<select style="width:100px; height:30px; text-align:center; font-size: 20px;" id="nextyear" name="nextyear">
 
-<option>2023</option>
-
-<option selected="selected">2024</option>
-
-<option>2025</option>
-
-
-</select>
-<label style="padding:0px; font-size:20px;">/</label>
-<select style="width:60px; height:30px; text-align:center; font-size: 20px;">
-
-<option>1</option>
-
-<option>2</option>
-
-<option>3</option>
-
-<option>4</option>
-
-<option>5</option>
-
-<option>6</option>
-
-<option>7</option>
-
-<option>8</option>
-
-<option>9</option>
-
-<option selected="selected">10</option>
-
-<option>11</option>
-
-<option>12</option>
-
+<%
+cal=Calendar.getInstance();
+int nextYear=cal.get(Calendar.YEAR);
+for(int i=nowYear;i<nowYear+3;i++){
+%>
+<option value="<%= i %>"<%=  i==nextYear+1 ? "selected='selected'":""%> ><%=i%></option>
+<%} %>
 
 </select>
 <label style="padding:0px; font-size:20px;">/</label>
-<select style="width:60px; height:30px; text-align:center; font-size: 20px;">
-
-<option>1</option>
-
-<option>2</option>
-
-<option>3</option>
-
-<option>4</option>
-
-<option>5</option>
-
-<option>6</option>
-
-<option>7</option>
-
-<option>8</option>
-
-<option>9</option>
-
-<option>10</option>
-
-<option>11</option>
-
-<option>12</option>
-
-<option>13</option>
-
-<option>14</option>
-
-<option>15</option>
-
-<option>16</option>
-
-<option>17</option>
-
-<option>18</option>
-
-<option>19</option>
-
-<option selected="selected">20</option>
-
-<option>21</option>
-
-<option>22</option>
-
-<option>23</option>
-
-<option>24</option>
-
-<option>25</option>
-
-<option>26</option>
-
-<option>27</option>
-
-<option>28</option>
-
-<option>29</option>
-
-<option>30</option>
-
-<option>31</option>
-
-
+<select style="width: 60px; height: 30px; text-align: center; font-size: 20px;" id="nextmonth" name="nextmonth"onchange="updateDays()">
+<%
+int nextMonth = cal.get(Calendar.MONTH) + 1;
+for(int i = 1; i < 13; i++) {
+%>
+<option value="<%= i %>"<%= i == nextMonth ? "selected='selected'" : "" %>><%= i %></option>
+<%
+} %>
 </select>
+<label style="padding:0px; font-size:20px;">/</label>
+<select style="width: 60px; height: 30px; text-align: center; font-size: 20px;" id="nextdate" name="nextdate">
+</select>
+<script type="text/javascript">
+function updateDays() {
+    var monthSelect = document.getElementById("nextmonth");
+    var dateSelect = document.getElementById("nextdate");
+    var selectedMonth = monthSelect.value;
+    
+    var year = new Date().getFullYear(); // 현재 연도를 가져옴
+    var daysInMonth = new Date(year, selectedMonth, 0).getDate();
+    
+    dateSelect.innerHTML = ""; // 일자 콤보박스 초기화
+    
+    for (var i = 1; i <= daysInMonth; i++) {
+        var option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        dateSelect.appendChild(option);
+    }
+}
+// 페이지가 로드될 때 초기화
+updateDays();
+//기본 선택을 오늘 날짜로 설정
+var today = new Date();
+document.getElementById("nextmonth").value = today.getMonth() + 1; // 월은 0부터 시작하므로 +1
+document.getElementById("nextdate").value = today.getDate();
+</script>
 </div>
 
 
 </div>
 <div class="radio" style="position:absolute;bottom:-160px">
 <h4>연령대 설정</h4>
-<input type="radio" id="all_view" name="ageGroup"><label style="font-size:15px">전체 관람</label><img src="../../common/images/all.png" style="padding-left:10px"><br>
-<input type="radio" id="age_12_view" name="ageGroup"><label style="font-size:15px">12세</label><img src="../../common/images/12age.png" style="padding-left:10px"><br>
-<input type="radio" id="age_15_view" name="ageGroup"><label style="font-size:15px">15세</label><img src="../../common/images/15age.png" style="padding-left:10px"><br>
-<input type="radio" id="age_18_view" name="ageGroup"><label style="font-size:15px">청소년 관람 불가</label><img src="../../common/images/18age.png" style="padding-left:10px"><br>
-<input type="radio" id="rs_view" name="ageGroup"><label style="font-size:15px">제한사영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="AL"><label style="font-size:15px">전체 관람</label><img src="../../common/images/all.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="12"><label style="font-size:15px">12세</label><img src="../../common/images/12age.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="15"><label style="font-size:15px">15세</label><img src="../../common/images/15age.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="18"><label style="font-size:15px">청소년 관람 불가</label><img src="../../common/images/18age.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="RS"><label style="font-size:15px">제한사영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
 </div>
 </form>
 </div>
@@ -759,7 +683,7 @@ for(int i=nowYear;i<nowYear+3;i++){
 <h5 class="m-t-0">영화 포스터 및 스틸컷 업로드</h5>
 <input type="button" value="저장" style="position: absolute;left:600px" id="movie_save_btn">
 <input type="button" value="취소" style="position: absolute;left:650px">
-<form action="poster_upload.jsp" method="post" enctype="multipart/form-data">
+<form action="poster_upload.jsp" method="post" enctype="multipart/form-data" id="poster_frm">
 <div style="display:inline-block">
 	 	<fieldset>
 			<legend>파일 업로드</legend>
@@ -771,7 +695,7 @@ for(int i=nowYear;i<nowYear+3;i++){
 	 <img src="">
 	 </div>
 	 </form>
-<form action="still_img_upload.jsp" method="post" enctype="multipart/form-data">
+<form action="still_img_upload.jsp" method="post" enctype="multipart/form-data" id="still_frm">
 <div style="display:inline-block">
 	 	<fieldset>
 			<p>스틸컷 : <input type="file" name="still_file"></p>
@@ -782,7 +706,7 @@ for(int i=nowYear;i<nowYear+3;i++){
 	 <img src="">
 	 </div>
 	 </form>
-<form action="trailer_upload.jsp" method="post" enctype="multipart/form-data">
+<form action="trailer_upload.jsp" method="post" enctype="multipart/form-data" id="trailer_frm">
 <div style="display:inline-block">
 	 	<fieldset>
 			<p>트레일러 : <input type="file" name="trailer_file"></p>
@@ -800,7 +724,7 @@ for(int i=nowYear;i<nowYear+3;i++){
 </div>
 
 </div>
-
+</form>
 
 
 
@@ -1029,8 +953,11 @@ for(int i=nowYear;i<nowYear+3;i++){
     	 genre_selectElement.disabled = true; // select 요소를 비활성화
      });
      $(function(){
-    	 $("#movie_save_btn").click(function(){
-    		 
+    		 $("#movie_save_btn").click(function(){
+    		 $("#movie_info_frm").submit();
+    	  	/*  $("#poster_frm").submit();
+    		 $("#still_frm").submit();
+    		 $("#trailer_frm").submit();   */
     	 })
      });
      

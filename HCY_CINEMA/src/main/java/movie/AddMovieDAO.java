@@ -27,7 +27,7 @@ public class AddMovieDAO {
 		
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		
+		System.out.println("--------------------");
 		try {
 			con=db.getCon();
 			
@@ -46,6 +46,7 @@ public class AddMovieDAO {
 			pstmt.setString(6, amVO.getStatus());
 			pstmt.setString(7, amVO.getMovieRating());
 			
+			pstmt.executeUpdate();
 			
 		}finally{
 			db.dbClose(null, pstmt, con);
@@ -89,7 +90,7 @@ public class AddMovieDAO {
 		
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		
+		System.out.println(movieCode+" / "+mVO.getPosterFile());
 		try {
 			con=db.getCon();
 			
@@ -101,6 +102,9 @@ public class AddMovieDAO {
 			pstmt=con.prepareStatement(insertMovie.toString());
 			pstmt.setString(1, movieCode);
 			pstmt.setString(2, mVO.getPosterFile());
+			
+			pstmt.executeUpdate();
+	
 		}finally{
 			db.dbClose(null, pstmt, con);
 		}
