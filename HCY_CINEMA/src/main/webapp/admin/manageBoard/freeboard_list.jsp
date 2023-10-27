@@ -135,7 +135,7 @@ to {
 		</div>
 
 
-		<div id="sidebar" class="sidebar">
+		<div id="sidebar" class="active sidebar">
 
 			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
 				<div data-scrollbar="true" data-height="100%" data-init="true" style="overflow: hidden; width: auto; height: 100%;">
@@ -156,7 +156,7 @@ to {
 							</div>
 						</li>
 						<li class="nav-header">today work</li>
-						<li class="active has-sub"><a href="../ManageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
+						<li class="has-sub"><a href="../ManageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
 								<span>Dashboard <!-- <span class="label label-theme m-l-3">NEW</span> --></span>
 						</a> <!-- <ul class="sub-menu">
 <li><a href="index.html">Dashboard v1</a></li>
@@ -183,7 +183,7 @@ to {
 						<li class="has-sub"><a href="managemember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
 								<span>회원관리</span>
 						</a></li>
-						<li class="has-sub"><a href="javascript:;"> <img class="fa fa-file" src="../../common/images/board_icon.png">
+						<li class="active has-sub"><a href="javascript:;"> <img class="fa fa-file" src="../../common/images/board_icon.png">
 								<span>게시판 관리</span>
 						</a></li>
 				</ul></div>
@@ -236,7 +236,7 @@ to {
         <div class="right_wrap">
                         				
         </div>
-        <div align="right"><button type="button" class="btn btn-dark">글 쓰기</button></div>
+        <!-- <div align="right"><button type="button" class="btn btn-dark" style="width:150px;height:50px">글 쓰기</button></div> -->
     </div>
     <script>
         $('.btn_print').on('click',function(){
@@ -246,14 +246,13 @@ to {
 </div>            <!--  서브상단 이미지 및 로케이션 단 끝 -->
 						<!-- me_code : 105010-->
 <h2 id="container_title">자유게시판<span class="sound_only"> 목록</span></h2>
-
 <!-- 게시판 목록 시작 { -->
 <div id="bo_list" style="width:100%">
 
 
 
  <!-- 게시판 페이지 정보 및 버튼 시작 { -->
-<div class="bo_fx">
+ <div class="bo_fx" style="width:50%; margin-left:500px "> 
 
     <!-- 게시판 카테고리 시작 { -->
         <!-- } 게시판 카테고리 끝 -->
@@ -289,6 +288,7 @@ to {
         1 페이지
     </div-->
 </div>
+<div align="right"><button type="button" class="btn btn-dark" style="width:150px;height:50px">글 쓰기</button></div><br>
 <!-- } 게시판 페이지 정보 및 버튼 끝 -->
 
 
@@ -304,18 +304,15 @@ to {
     <input type="hidden" name="sw" value="">
 
     <div class="tbl_head01 tbl_wrap">
-        <table>
-        <caption>자유게시판 목록</caption>
-        <colgroup><col class="colnum"><col class="colsec"><col class="coltit"><col class="colname" style="width:110px"><col class="coldate" style="width:110px"><col class="colhit" style="width:110px">
-        </colgroup>
+        <table style="text-align:center">
+       
         <thead>
-        <tr>
-            <th scope="col">번호</th>
-            <th scope="col" style="width:250px">구분</th>
-            <th scope="col">제목</th>
-            <th scope="col">아이디</th>
-            <th scope="col">등록일<a href="/bbs/board.php?bo_table=5010&amp;sop=and&amp;sst=wr_datetime&amp;sod=desc&amp;sfl=&amp;stx=&amp;page=1"></a></th>
-            <th scope="col" style="width:150px">조회 수<a href="/bbs/board.php?bo_table=5010&amp;sop=and&amp;sst=wr_hit&amp;sod=desc&amp;sfl=&amp;stx=&amp;page=1"></a></th>
+        <tr bgcolor="#E4ECEF" style="text-align:center">
+            <th scope="col" style="width: 200px">번호</th>
+            <th scope="col" style="width: 200px">아이디</th>
+            <th scope="col" style="width: 500px">제목</th>
+            <th scope="col" style="width: 200px">등록일</th>
+            <th scope="col" style="width: 200px">조회 수</th>
         </tr>
         </thead>
         <tbody style="text-align:center">
@@ -323,214 +320,15 @@ to {
             <td class="td_num">
             <strong>2584</strong></td>
             <td class="td_num">
-            <strong>예매</strong></td>
+            <strong>hihi</strong></td>
             <td class="td_subject">
            <a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2745">
                     ♠「K-청소년 디지털 역량 강화 캠프」고등부 프로그램 공지 ♠</a>
 			</td>
-            <td class="td_name sv_use"><span class="sv_member">hihi</span></td>
             <td class="td_datetime">2023-10-10</td>
             <td class="td_num">216</td>
             </tr>
             
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(250, 250, 250);">
-            <td class="td_num">
-            <strong>2583</strong></td>
-            <td class="td_num">
-            <strong>예매</strong></td>
-            <td class="td_subject">
-            <a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2741">
-                    이번 주 상영관 점검 공지 </a>
-			</td>
-            <td class="td_name sv_use"><span class="sv_member">abcd</span></td>
-            <td class="td_datetime">2023-10-05</td>
-            <td class="td_num">79</td>
-            </tr>
-            
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2582</strong></td>
-            <td class="td_num">
-            <strong>영화</strong></td>
-            <td class="td_subject">
-            <a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2740">
-                    한국청소년단체협의회 회원단체 승격 신청 안내</a>
-
-            </td>
-            <td class="td_name sv_use"><span class="sv_member">song</span></td>
-            <td class="td_datetime">2023-10-04</td>
-            <td class="td_num">102</td>
-            </tr>
-            
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2581</strong></td>
-            <td class="td_num">
-            <strong>영화</strong></td>
-            <td class="td_subject">
-            <a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2739">
-                    ♠ 뉴스레터 9월호 발간 ♠ </a>
-			</td>
-            <td class="td_name sv_use"><span class="sv_member">songsong2</span></td>
-            <td class="td_datetime">2023-09-26</td>
-            <td class="td_num">150</td>
-            </tr>
-            
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2580</strong></td>
-            <td class="td_num">
-            <strong>기타</strong></td>
-            <td class="td_subject">
-			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2738">
-                    ♠ 창립 58주년 기념 표창 후보자 추천 공고 ♠</a>
-			</td>
-            <td class="td_name sv_use"><span class="sv_member">swing</span></td>
-            <td class="td_datetime">2023-09-18</td>
-            <td class="td_num">247</td>
-            </tr>
-            
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2579</strong></td>
-            <td class="td_num">
-            <strong>기타</strong></td>
-            <td class="td_subject">
-			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2737">
-                    ♠ 글로벌 청소년 서밋 뉴스레터  9월호 발간 ♠</a>
-
-            </td>
-            <td class="td_name sv_use"><span class="sv_member">javano</span></td>
-            <td class="td_datetime">2023-09-12</td>
-            <td class="td_num">251</td>
-            </tr>
-            
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2578</strong></td>
-            <td class="td_num">
-            <strong>환불/취소</strong></td>
-            <td class="td_subject">
-			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2734">
-                    ♠「K-청소년 디지털 역량 강화 캠프」참가자 모집(고등부) ♠</a>
-			</td>
-            <td class="td_name sv_use"><span class="sv_member">htmlno</span></td>
-            <td class="td_datetime">2023-09-07</td>
-            <td class="td_num">12135</td>
-            </tr>
-            
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2577</strong></td>
-            <td class="td_num">
-            <strong>환불/취소</strong></td>
-            <td class="td_subject">
-			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2689">
-                    ♠ 2023년도 청협 표창장, 상장, 후원명칭 안내 ♠ </a>
-			</td>
-            <td class="td_name sv_use"><span class="sv_member">jdbcno</span></td>
-            <td class="td_datetime">2023-02-24</td>
-            <td class="td_num">66459</td>
-            </tr>
-            
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2576 </strong> </td>
-            <td class="td_num">
-            <strong>환불/취소</strong></td>
-            <td class="td_subject">
-			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2736">
-                    [여성가족부] 제19회 청소년푸른성장대상 수상 후보자 추천 공고                                    </a>
-			</td>
-            <td class="td_name sv_use"><span class="sv_member">javascript</span></td>
-            <td class="td_datetime">2023-09-12</td>
-            <td class="td_num">262</td>
-            </tr>
-            
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2575</strong> </td>
-            <td class="td_num">
-            <strong>기타</strong></td>
-            <td class="td_subject">
-			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2733">
-                    ♠ 뉴스레터 8월호 발간 ♠  </a>
-			</td>
-            <td class="td_name sv_use"><span class="sv_member">byebye</span></td>
-            <td class="td_datetime">2023-09-01</td>
-            <td class="td_num">13750</td>
-            </tr>
-            
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2574 </strong> </td>
-            <td class="td_num">
-            <strong>기타</strong></td>
-            <td class="td_subject">
-			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2732">
-                    ♠ 뉴스레터 7월호 발간 ♠ </a>
-			</td>
-            <td class="td_name sv_use"><span class="sv_member">where</span></td>
-            <td class="td_datetime">2023-08-07</td>
-            <td class="td_num">4008</td>
-            </tr>
-                                
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2573</strong> </td>
-            <td class="td_num">
-            <strong>기타</strong></td>
-            <td class="td_subject">
-			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2731">
-                    ‘YOUTH BLISS CAMP 청소년(가족) 행복 캠프’ 모집                                    </a>
-			</td>
-            <td class="td_name sv_use"><span class="sv_member">are</span></td>
-            <td class="td_datetime">2023-07-14</td>
-            <td class="td_num">1538</td>
-            </tr>
-            
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2572</strong> </td>
-            <td class="td_num">
-            <strong>예매</strong></td>
-            <td class="td_subject">
-			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2730">
-                    '2023 글로벌 청소년 서밋' 2차 카드뉴스 이벤트 공개                                    </a>
-
-            </td>
-            <td class="td_name sv_use"><span class="sv_member">you</span></td>
-            <td class="td_datetime">2023-07-07</td>
-            <td class="td_num">491</td>
-            </tr>
-                                
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2571</strong> </td>
-            <td class="td_num">
-            <strong>예매</strong></td>
-            <td class="td_subject">
-			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2729">
-                    ♣ '2023 글로벌 청소년 서밋'  글로벌 청소년 대화의 광장 참가자 …                                    </a>
-			</td>
-            <td class="td_name sv_use"><span class="sv_member">from</span></td>
-            <td class="td_datetime">2023-07-07</td>
-            <td class="td_num">523</td>
-            </tr>
-            
-            <tr class="" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
-            <td class="td_num">
-            <strong>2570</strong> </td>
-            <td class="td_num">
-            <strong>예매</strong></td>
-            <td class="td_subject">
-			<a href="https://www.ncyok.or.kr:443/bbs/board.php?bo_table=5010&amp;wr_id=2728">
-                    '2023 글로벌 청소년 서밋' 1차 카드뉴스 이벤트 공개                                    </a>
-			</td>
-            <td class="td_name sv_use"><span class="sv_member">okay</span></td>
-            <td class="td_datetime">2023-07-07</td>
-            <td class="td_num">393</td>
-            </tr>
             
         </tbody>
         </table>
@@ -546,19 +344,6 @@ to {
 
 
 <!-- 페이지 -->
-<nav class="pg_wrap"><span class="pg"><span class="sound_only">열린</span><strong class="pg_current">1</strong><span class="sound_only">페이지</span>
-<a href="./board.php?bo_table=5010&amp;page=2" class="pg_page">2<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=3" class="pg_page">3<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=4" class="pg_page">4<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=5" class="pg_page">5<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=6" class="pg_page">6<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=7" class="pg_page">7<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=8" class="pg_page">8<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=9" class="pg_page">9<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=10" class="pg_page">10<span class="sound_only">페이지</span></a>
-<a href="./board.php?bo_table=5010&amp;page=11" class="pg_page pg_next">다음</a>
-<a href="./board.php?bo_table=5010&amp;page=173" class="pg_page pg_end">맨끝</a>
-</span></nav>
 
 
 <!-- } 게시판 목록 끝 -->

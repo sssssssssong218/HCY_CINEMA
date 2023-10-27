@@ -207,7 +207,7 @@
                             </div>
                         </li>
                         <li class="nav-header">today work</li>
-                        <li class="active has-sub"><a href="../ManageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
+                        <li class="has-sub"><a href="../ManageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
                                 <span>DashBoard
                                     <!-- <span class="label label-theme m-l-3">NEW</span> --></span>
                             </a>
@@ -235,7 +235,7 @@
                         </li>
                         <li><a href="widgets.html"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
                             </a></li>
-                        <li class="has-sub"><a href="managemember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
+                        <li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
                                 <span>회원관리</span>
                             </a></li>
                         <li class="has-sub"><a href="javascript:;"> <img class="fa fa-file" src="../../common/images/board_icon.png">
@@ -344,7 +344,6 @@
 
 
 
-                                <div class="tbl_head01 tbl_wrap">
 
                           <%
                            ManageMemberDAO mmDAO=ManageMemberDAO.getInstance();
@@ -392,7 +391,7 @@
                            시작 번호 : <%= startNum %><br>
                            끝 번호 : <%= endNum %><br> --%>
                            총 <%= totalCount %>명의 회원이 조회되었습니다.<br/><br/>
-                            
+                            <div class="tbl_head01 tbl_wrap">
                            <%
                            try{
                               List<MemberVO> list=ManageMemberDAO.getInstance().selectMember(brVO);
@@ -416,7 +415,7 @@
                            <table>
                                <thead>
                                  <caption>회원관리 목록</caption>
-                                    <tr bgcolor="#E4ECEF" style="text-align:center">
+                                    <tr bgcolor="#E4ECEF" style="text-align:center" >
                                        <th scope="col" style="width: 250px">회원번호</th>
                                        <th scope="col" style="width: 250px">이름</th>
                                        <th scope="col" style="width: 250px">아이디</th>
@@ -440,6 +439,7 @@
                                </c:forEach>
                                </tbody>
                               </table>
+                             </div>
                            <div style="text-align: center;">
             
                            

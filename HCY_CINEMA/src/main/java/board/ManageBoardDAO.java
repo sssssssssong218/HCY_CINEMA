@@ -15,4 +15,6 @@ public class ManageBoardDAO {
 		return mbDAO;
 	}//getInstance
 	
+	
+	
 }//class
