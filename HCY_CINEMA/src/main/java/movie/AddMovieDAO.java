@@ -66,9 +66,10 @@ public class AddMovieDAO {
 			
 			StringBuilder insertMovie=new StringBuilder();
 			insertMovie
-			.append("	select moviecode	")
-			.append("	from movie			")
-			.append("	where mname=?		");
+			.append("	select moviecode																	")
+			.append("	from movie																			")
+			.append("	where mname=?																		")
+			.append("	and to_char(input_date,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')		");
 		
 			pstmt=con.prepareStatement(insertMovie.toString());
 			

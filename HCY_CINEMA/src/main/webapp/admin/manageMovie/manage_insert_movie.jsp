@@ -488,7 +488,7 @@ to {
 
 <h1 class="page-header">영화 추가</h1>
 
-<!-- <form action="movie_info_insert.jsp" method="post" enctype="multipart/form-data" id="movie_info_all_frm"> -->
+<form class="form-horizontal" accept-charset="UTF-8" action="movie_info_insert.jsp" method="post" enctype="multipart/form-data" id="movie_info_all_frm">
 <div class="section-container section-with-top-border p-b-10">
 
 <div class="row">
@@ -498,7 +498,6 @@ to {
 <p>
 영화에 대한 정보를 입력해주세요.
 </p>
-<form class="form-horizontal" id="movie_info_frm" action="movie_info_insert.jsp" method="post" accept-charset="UTF-8">
 <div class="form-group m-b-10">
 <label class="col-lg-3 col-form-label">제목</label>
 <div class="col-lg-7">
@@ -524,14 +523,14 @@ to {
 <label class="col-lg-3 col-form-label genre_label">장르</label>
 <div class="col-lg-7 genre_div">
 <select class="form-control" id="genre_select" name="genre_select">
-<option>코미디</option>
-<option>스릴러</option>
-<option>공포</option>
-<option>로맨스</option>
-<option>드라마</option>
-<option>액션</option>
-<option>SF</option>
-<option>애니매이션</option>
+<option value="코미디">코미디</option>
+<option value="스릴러">스릴러</option>
+<option value="공포">공포</option>
+<option value="로맨스">로맨스</option>
+<option value="드라마">드라마</option>
+<option value="액션">액션</option>
+<option value="SF">SF</option>
+<option value="애니메이션">애니매이션</option>
 </select>
 </div>
 <input type="button" value="추가" id="genre_btn" class="insertBtn">
@@ -675,7 +674,6 @@ document.getElementById("nextdate").value = today.getDate();
 <input type="radio" id="ageGroup" name="ageGroup" value="18"><label style="font-size:15px">청소년 관람 불가</label><img src="../../common/images/18age.png" style="padding-left:10px"><br>
 <input type="radio" id="ageGroup" name="ageGroup" value="RS"><label style="font-size:15px">제한사영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
 </div>
-</form>
 </div>
 
 
@@ -683,7 +681,6 @@ document.getElementById("nextdate").value = today.getDate();
 <h5 class="m-t-0">영화 포스터 및 스틸컷 업로드</h5>
 <input type="button" value="저장" style="position: absolute;left:600px" id="movie_save_btn">
 <input type="button" value="취소" style="position: absolute;left:650px">
-<form action="poster_upload.jsp" method="post" enctype="multipart/form-data" id="poster_frm">
 <div style="display:inline-block">
 	 	<fieldset>
 			<legend>파일 업로드</legend>
@@ -694,8 +691,6 @@ document.getElementById("nextdate").value = today.getDate();
 	 <div style="display:inline-block">
 	 <img src="">
 	 </div>
-	 </form>
-<form action="still_img_upload.jsp" method="post" enctype="multipart/form-data" id="still_frm">
 <div style="display:inline-block">
 	 	<fieldset>
 			<p>스틸컷 : <input type="file" name="still_file"></p>
@@ -705,8 +700,6 @@ document.getElementById("nextdate").value = today.getDate();
 	 <div style="display:inline-block">
 	 <img src="">
 	 </div>
-	 </form>
-<form action="trailer_upload.jsp" method="post" enctype="multipart/form-data" id="trailer_frm">
 <div style="display:inline-block">
 	 	<fieldset>
 			<p>트레일러 : <input type="file" name="trailer_file"></p>
@@ -716,7 +709,6 @@ document.getElementById("nextdate").value = today.getDate();
 	 <div style="display:inline-block">
 	 <img src="">
 	 </div>
-	 </form>
 	 
 
 </div>
@@ -954,10 +946,7 @@ document.getElementById("nextdate").value = today.getDate();
      });
      $(function(){
     		 $("#movie_save_btn").click(function(){
-    		 $("#movie_info_frm").submit();
-    	  	/*  $("#poster_frm").submit();
-    		 $("#still_frm").submit();
-    		 $("#trailer_frm").submit();   */
+    		 $("#movie_info_all_frm").submit();
     	 })
      });
      
