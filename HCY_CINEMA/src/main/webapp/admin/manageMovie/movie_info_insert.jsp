@@ -101,7 +101,23 @@ try {
 				renamedFile = new File(saveDir, newFileName);
 				counter++;
 			}
+			  boolean renamed = uploadedFile.renameTo(renamedFile);
 
+			    String uploader = mr.getParameter("uploader");
+			    String originfile = mr.getOriginalFileName("poster_file");
+
+			    if (renamed) {
+			%>
+			    <strong>업로드 성공</strong><br/>
+			    업로더: <%= uploader %><br/>
+			    나이: <%= age %><br/>
+			    파일명: <%= newFileName %> (<%= originfile %>)<br/>
+			<%
+			    } else {
+			%>
+			    <strong>파일 이름 변경 실패</strong><br/>
+			<%
+			    }
 		} catch (IOException ie) {
 			ie.printStackTrace();
 			out.println("파일 업로드 처리 중 문제 발생");
