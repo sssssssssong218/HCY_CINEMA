@@ -156,7 +156,7 @@ to {
 							</div>
 						</li>
 						<li class="nav-header">today work</li>
-						<li class="active has-sub"><a
+						<li class="has-sub"><a
 							href="../ManageDashBoard/manage_dashboard.jsp"> <img
 								class="fa fa-home" src="../../common/images/dashboard2.png">
 								<span>Dashboard <!-- <span class="label label-theme m-l-3">NEW</span> --></span>
@@ -172,15 +172,11 @@ to {
 <span>Bootstrap 4</span>
 </a>
 </li> -->
-						<li class="has-sub"><a href="../ManageMovie/manage_movie.jsp">
+						<li class="active has-sub"><a href="../ManageMovie/manage_movie.jsp">
 								<img class="fa fa-inbox"
 								src="../../common/images/movie_icon.png"> <span>영화</span>
 						</a>
-							<ul class="sub-menu">
-								<li><a href="email_inbox.html">Inbox</a></li>
-								<li><a href="email_compose.html">Compose</a></li>
-								<li><a href="email_detail.html">Detail</a></li>
-							</ul></li>
+							
 						<li><a href="widgets.html"> <img class="fa fa-gem"
 								src="../../common/images/cinema_icon.png"> <span>상영관</span>
 						</a></li>

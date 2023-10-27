@@ -37,15 +37,24 @@
 <body>
 		 <%AddMovieDAO amDAO = AddMovieDAO.getInstance();
 AddMovieVO amVO = new AddMovieVO();
-
+String hide="";
+String hide1="";
 try {
 	File saveDir = new File("C:/Users/user/git/HCY_CINEMA/HCY_CINEMA/src/main/webapp/common/poster");
 	int maxSize = 1024 * 1024 * 50; // 키로바이트 * 메가바이트 * 기가바이트
 	MultipartRequest mr = new MultipartRequest(request, saveDir.getAbsolutePath(), maxSize, "UTF-8",
 			new DefaultFileRenamePolicy());
-
-	String posterfile = mr.getFilesystemName("poster_file");
+	hide=mr.getParameter("still_hide");
+} catch (IOException ie) {
+	ie.printStackTrace();
+	out.println("파일 업로드 처리 중 문제 발생");
+}%>
+	<%-- String posterfile = mr.getFilesystemName("poster_file");
 	String posterfileExtension = posterfile.substring(posterfile.lastIndexOf(".")); // 파일 확장자 추출
+	String stillfile = mr.getFilesystemName("still_file");
+	String stillfileExtension = stillfile.substring(stillfile.lastIndexOf(".")); // 파일 확장자 추출
+	String trailerfile = mr.getFilesystemName("trailer_file");
+	String trailerfileExtension = trailerfile.substring(trailerfile.lastIndexOf(".")); // 파일 확장자 추출
 	String mname = mr.getParameter("movie_name");
 	String actor = mr.getParameter("actor");
 	String director = mr.getParameter("director");
@@ -55,14 +64,11 @@ try {
 	String runningtime = mr.getParameter("runningtime");
 	String age = mr.getParameter("ageGroup");
 	String status = mr.getParameter("status");
-
 	String releasedate = mr.getParameter("year") + "-" + mr.getParameter("month") + "-"
 			+ mr.getParameter("date");
 	String enddate = mr.getParameter("nextyear") + "-" + mr.getParameter("nextmonth") + "-"
 			+ mr.getParameter("nextdate");
-
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
 /* 	mname = new String(mname.getBytes("8859_1"), "UTF-8");
 	country = new String(country.getBytes("8859_1"), "UTF-8");
 	plot = new String(plot.getBytes("8859_1"), "UTF-8");
@@ -71,47 +77,46 @@ try {
 	enddate = new String(enddate.getBytes("8859_1"), "UTF-8");
 	age = new String(age.getBytes("8859_1"), "UTF-8");
 	status = new String(status.getBytes("8859_1"), "UTF-8"); */
-
 	Date date = sdf.parse(releasedate);
 	Date date1 = sdf.parse(enddate);
 	java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 	java.sql.Date sqlDate1 = new java.sql.Date(date1.getTime());
-
 	amDAO.insertMovie(new AddMovieVO(mname, sqlDate, sqlDate1, plot, Integer.parseInt(runningtime), age, status));
 	String movieCode = amDAO.selectMovieCode(mname);
 	
-	if (!(posterfileExtension.equals(".jpg") || posterfileExtension.equals(".png"))) {%>
+	if (!(posterfileExtension.equals(".jpg") || posterfileExtension.equals(".png")
+			||stillfileExtension.equals(".jpg")||stillfileExtension.equals(".png")
+			||trailerfileExtension.equals(".mp4"))) {%>
 		    	<strong>업로드 실패</strong>
 		    	<%return;
 			}
 			String baseFileName = movieCode; // 기본 파일명
-			String newFileName = baseFileName + posterfileExtension;
+			String posternewFileName = baseFileName + posterfileExtension;
+			String stillnewFileName = baseFileName + stillfileExtension;
+			String trailernewFileName = baseFileName + trailerfileExtension;
 			MovieFileVO mVO = new MovieFileVO();
-			mVO.setPosterFile(newFileName);
-
+			mVO.setPosterFile(posternewFileName);
+			/* mVO.setStillFile(stillnewFileName); */
+			/* mVO.setTrailerFile(trailernewFileName); */
 			amDAO.insertMoviePosterFile(mVO, movieCode);
-
 			File uploadedFile = new File(saveDir, posterfile);
-			File renamedFile = new File(saveDir, newFileName);
-
+			File renamedFile = new File(saveDir, posternewFileName);
 			int counter = 1;
 			// 파일명 중복 확인 및 숫자를 붙여가며 변경
 			while (renamedFile.exists()) {
-				newFileName = baseFileName + "_" + counter + posterfileExtension;
-				renamedFile = new File(saveDir, newFileName);
+				posternewFileName = baseFileName + "_" + counter + posterfileExtension;
+				renamedFile = new File(saveDir, posternewFileName);
 				counter++;
 			}
 			  boolean renamed = uploadedFile.renameTo(renamedFile);
-
 			    String uploader = mr.getParameter("uploader");
 			    String originfile = mr.getOriginalFileName("poster_file");
-
 			    if (renamed) {
 			%>
 			    <strong>업로드 성공</strong><br/>
-			    업로더: <%= uploader %><br/>
-			    나이: <%= age %><br/>
-			    파일명: <%= newFileName %> (<%= originfile %>)<br/>
+			    업로더: <%= stillnewFileName %><br/>
+			    나이: <%= stillnewFileName %><br/>
+			    파일명: <%= posternewFileName %> (<%= originfile %>)<br/>
 			<%
 			    } else {
 			%>
@@ -121,6 +126,7 @@ try {
 		} catch (IOException ie) {
 			ie.printStackTrace();
 			out.println("파일 업로드 처리 중 문제 발생");
-		}%>
+		}%> --%>
+		<%= hide %>
 </body>
 </html>

@@ -685,7 +685,7 @@ document.getElementById("nextdate").value = today.getDate();
 	 	<fieldset>
 			<legend>파일 업로드</legend>
 			<p>포스터 : <input type="file" name="poster_file"></p>
-			<p><input type="submit" value="업로드" id="poster_btn"></p>	 	
+			<p><input type="hidden" value="" id="poster_hide" name="poster_hide"></p>	 	
 	 	</fieldset>
 	 </div>
 	 <div style="display:inline-block">
@@ -693,8 +693,8 @@ document.getElementById("nextdate").value = today.getDate();
 	 </div>
 <div style="display:inline-block">
 	 	<fieldset>
-			<p>스틸컷 : <input type="file" name="still_file"></p>
-			<p><input type="submit" value="업로드" id="steal_btn"></p>	 	
+			<p>스틸컷 : <input type="file" id="still_file" name="still_file" multiple="multiple"></p>
+			<p><input type="hidden" value="" id="still_hide" name="still_hide"></p>	 	
 	 	</fieldset>
 	 </div>
 	 <div style="display:inline-block">
@@ -703,7 +703,7 @@ document.getElementById("nextdate").value = today.getDate();
 <div style="display:inline-block">
 	 	<fieldset>
 			<p>트레일러 : <input type="file" name="trailer_file"></p>
-			<p><input type="submit" value="업로드" id="trailer_btn"></p>	 	
+			<p><input type="hidden" value="" id="trailer_hide" name="trailer_hide"></p>	 	
 	 	</fieldset>
 	 </div>
 	 <div style="display:inline-block">
@@ -946,7 +946,15 @@ document.getElementById("nextdate").value = today.getDate();
      });
      $(function(){
     		 $("#movie_save_btn").click(function(){
-    		 $("#movie_info_all_frm").submit();
+    			 var files=$('#still_file')[0].files;
+    	          var fileName="";
+    	          for(var i= 0; i<files.length; i++){
+    	              fileName+=files[i].name;
+    	              $("#still_hide").val(fileName);
+    	    			 
+    	          } 
+    	     		 $("#movie_info_all_frm").submit();
+    	        
     	 })
      });
      
