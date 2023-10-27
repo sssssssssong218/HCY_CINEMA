@@ -27,7 +27,7 @@ public class AddMovieDAO {
 		
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		
+		System.out.println("--------------------");
 		try {
 			con=db.getCon();
 			
@@ -46,6 +46,7 @@ public class AddMovieDAO {
 			pstmt.setString(6, amVO.getStatus());
 			pstmt.setString(7, amVO.getMovieRating());
 			
+			pstmt.executeUpdate();
 			
 		}finally{
 			db.dbClose(null, pstmt, con);
@@ -65,9 +66,10 @@ public class AddMovieDAO {
 			
 			StringBuilder insertMovie=new StringBuilder();
 			insertMovie
-			.append("	select moviecode	")
-			.append("	from movie			")
-			.append("	where mname=?		");
+			.append("	select moviecode																	")
+			.append("	from movie																			")
+			.append("	where mname=?																		")
+			.append("	and to_char(input_date,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')		");
 		
 			pstmt=con.prepareStatement(insertMovie.toString());
 			
@@ -89,7 +91,7 @@ public class AddMovieDAO {
 		
 		Connection con=null;
 		PreparedStatement pstmt=null;
-		
+		System.out.println(movieCode+" / "+mVO.getPosterFile());
 		try {
 			con=db.getCon();
 			
@@ -101,6 +103,9 @@ public class AddMovieDAO {
 			pstmt=con.prepareStatement(insertMovie.toString());
 			pstmt.setString(1, movieCode);
 			pstmt.setString(2, mVO.getPosterFile());
+			
+			pstmt.executeUpdate();
+	
 		}finally{
 			db.dbClose(null, pstmt, con);
 		}
