@@ -216,7 +216,7 @@
                                 </div>
                             </li>
                             <li class="nav-header">today work</li>
-                            <li class="active has-sub"><a href="../ManageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
+                            <li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
                                     <span>Dashboard
                                         <!-- <span class="label label-theme m-l-3">NEW</span> --></span>
                                 </a>
@@ -244,10 +244,10 @@
                             </li>
                             <li><a href="widgets.html"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
                                 </a></li>
-                            <li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
+                            <li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
                                     <span>회원관리</span>
                                 </a></li>
-                            <li class="has-sub"><a href="javascript:;"> <img class="fa fa-file" src="../../common/images/board_icon.png">
+                            <li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
                                     <span>게시판 관리</span>
                                 </a></li>
                         </ul>

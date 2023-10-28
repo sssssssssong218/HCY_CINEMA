@@ -48,7 +48,7 @@ private ManageMemberDAO() {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				mVO=new MemberVO();
-				mVO.setMname(rs.getString("mname"));
+				mVO.setMname(rs.getString("mname")); 
 				mVO.setId(rs.getString("id"));
 				mVO.setJoindate(rs.getDate("joindate"));
 				list.add(mVO);

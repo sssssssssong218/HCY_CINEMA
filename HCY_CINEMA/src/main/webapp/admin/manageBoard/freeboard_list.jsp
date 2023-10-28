@@ -1,6 +1,13 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="manageMember.BoardRangeVO"%>
+<%@page import="board.BoardVO"%>
+<%@page import="java.util.List"%>
+<%@page import="board.ManageBoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page info=""%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en"><!--<![endif]--><head>
 <meta charset="utf-8">
@@ -105,7 +112,8 @@ to {
 }
 </style>
 </head>
-<body class="  pace-done" cz-shortcut-listen="true">
+
+<body class="pace-done" cz-shortcut-listen="true">
 	<div class="pace  pace-inactive">
 		<div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
 			<div class="pace-progress-inner"></div>
@@ -125,7 +133,7 @@ to {
 			<div class="container-fluid">
 
 				<div class="navbar-header">
-					<a href="../ManageDashBoard/manage_dashboard.jsp" class="navbar-brand" style="line-height: 0px"><img src="../../common/images/admin_logo.png"></a>
+					<a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp" class="navbar-brand" style="line-height: 0px"><img src="../../common/images/admin_logo.png"></a>
 					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 						<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
@@ -156,7 +164,7 @@ to {
 							</div>
 						</li>
 						<li class="nav-header">today work</li>
-						<li class="has-sub"><a href="../ManageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
+						<li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
 								<span>Dashboard <!-- <span class="label label-theme m-l-3">NEW</span> --></span>
 						</a> <!-- <ul class="sub-menu">
 <li><a href="index.html">Dashboard v1</a></li>
@@ -170,7 +178,7 @@ to {
 <span>Bootstrap 4</span>
 </a>
 </li> -->
-						<li class="has-sub"><a href="../ManageMovie/manage_movie.jsp">
+						<li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp">
 								<img class="fa fa-inbox" src="../../common/images/movie_icon.png"> <span>영화</span>
 						</a>
 							<ul class="sub-menu">
@@ -180,10 +188,10 @@ to {
 							</ul></li>
 						<li><a href="widgets.html"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
 						</a></li>
-						<li class="has-sub"><a href="managemember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
+						<li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
 								<span>회원관리</span>
 						</a></li>
-						<li class="active has-sub"><a href="javascript:;"> <img class="fa fa-file" src="../../common/images/board_icon.png">
+						<li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
 								<span>게시판 관리</span>
 						</a></li>
 				</ul></div>
@@ -199,7 +207,7 @@ to {
 
 			<ol class="breadcrumb pull-right">
 				<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-				<li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
+				<li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp">게시판</a></li>
 				<li class="breadcrumb-item active">Dashboard v3</li>
 			</ol>
 
@@ -261,25 +269,23 @@ to {
 
 <!-- 게시판 검색 시작 { -->
     <fieldset id="bo_sch">
-        <legend>게시물 검색</legend>
-        <form name="fsearch" method="get">
-        <input type="hidden" name="bo_table" value="5010">
-        <input type="hidden" name="sca" value="">
-        <input type="hidden" name="sop" value="and">
+        <legend>자유게시판 관리</legend>
+        <form name="fsearch" method="get" style="display: flex; align-items: center;">
         <label for="sfl" class="sound_only">검색대상</label>
         
-        <select name="sfl" id="sfl">
+        <select name="field" id="field">
             <!--option value="wr_subject">제목</option>
             <option value="wr_content">내용</option-->
-            <option value="wr_subject||wr_content">제목</option>
+            <option value="1"${param.field eq '1'?" selected='selected'":"" }>아이디</option>
+            <option value="2"${param.field eq '2'?" selected='selected'":"" }>제목</option>
             
             <!--option value="mb_id,0">회원아이디(코)</option>
             <option value="wr_name,1">글쓴이</option>
             <option value="wr_name,0">글쓴이(코)</option-->
         </select>
         <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-        <input type="text" name="stx" value="" required="" id="stx" class="frm_input required" size="15" maxlength="20" "="" placeholder="검색어를 입력해주세요">
-        <input type="submit" value="검색" class="btn_search">
+        <input type="text" name="keyword" value="" required="" id="keyword" class="frm_input required" size="15" maxlength="20" "="" placeholder="검색어를 입력해주세요" style="flex: 1; height:42px">
+        <input type="submit" value="검색" class="btn_search" style="margin-left: 10px;">
         </form>
     </fieldset>
 <!-- } 게시판 검색 끝 -->
@@ -305,10 +311,59 @@ to {
 
     <div class="tbl_head01 tbl_wrap">
         <table style="text-align:center">
+       <%
+       ManageBoardDAO mbDAO=ManageBoardDAO.getInstance();
+       BoardRangeVO brVO=new BoardRangeVO();
        
+       String field=request.getParameter("field");
+       String keyword=request.getParameter("keyword");
+       
+       brVO.setField(request.getParameter("field"));
+       brVO.setKeyword(request.getParameter("keyword"));
+       
+       //총 레코드 수
+       int totalCount= mbDAO.totalCount(brVO);
+       
+       //한 화면에 보여줄 게시물의 수
+       int pageScale=10;
+       
+       //총 페이지 수
+       int totalPage=0;
+       totalPage=(int)Math.ceil(totalCount/(double)pageScale);
+       
+       //현재페이지의 시작번호
+       String tempPage=request.getParameter("currentPage");
+       int currentPage=1;
+       
+       if(tempPage!=null){
+    	   currentPage=Integer.parseInt(tempPage);
+       }//end if
+       
+       //시작번호
+       int startNum=currentPage*pageScale-pageScale+1;
+       pageContext.setAttribute("startNum", startNum);
+       
+       //끝번호
+       int endNum=startNum+pageScale-1;
+       
+       brVO.setStartNum(startNum);
+       brVO.setEndNum(endNum);
+       %>
+
+       총<%= totalCount %>개의 게시글이 조회되었습니다.<br/><br/>
+       
+       <%
+       try{
+       List<BoardVO> list=ManageBoardDAO.getInstance().selectBoard(brVO);
+       out.println(list);
+       pageContext.setAttribute("boardList", list);
+       }catch(SQLException se){
+    	   se.printStackTrace();
+       }
+       %>
         <thead>
         <tr bgcolor="#E4ECEF" style="text-align:center">
-            <th scope="col" style="width: 200px">번호</th>
+            <th scope="col" style="width: 200px">게시글 번호</th>
             <th scope="col" style="width: 200px">아이디</th>
             <th scope="col" style="width: 500px">제목</th>
             <th scope="col" style="width: 200px">등록일</th>
@@ -316,7 +371,22 @@ to {
         </tr>
         </thead>
         <tbody style="text-align:center">
-            <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
+        <c:if test="${empty boardList }">
+        <tr>
+        	<td colspan="5" style="text-align:center">게시글이 존재하지 않습니다</td>
+        </tr>
+        </c:if>
+        <c:forEach var="board" items="${boardList }" varStatus="i">
+        <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
+        	<td><c:out value="${board.postNum}"/></td>
+        	<td><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_info.jsp?boardId=<c:out value='${ board.id }'/>"><c:out value="${ board.id }"/></a></td>
+       		<td><c:out value="${board.title }"/></td>
+       		<td><c:out value="${board.inputDate }"/></td>
+       		<td><c:out value="${board.viewCount }"/></td>
+        </tr>
+        </c:forEach>
+        
+            <!-- <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
             <strong>2584</strong></td>
             <td class="td_num">
@@ -327,12 +397,12 @@ to {
 			</td>
             <td class="td_datetime">2023-10-10</td>
             <td class="td_num">216</td>
-            </tr>
+            </tr> -->
             
             
         </tbody>
         </table>
-    </div>
+   		 </div>
 
         </form>
 </div>

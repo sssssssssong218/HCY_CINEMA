@@ -176,7 +176,7 @@
             <div class="container-fluid">
 
                 <div class="navbar-header">
-                    <a href="../ManageDashBoard/manage_dashboard.jsp" class="navbar-brand" style="line-height: 0px"><img src="../../common/images/admin_logo.png"></a>
+                    <a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp" class="navbar-brand" style="line-height: 0px"><img src="../../common/images/admin_logo.png"></a>
                     <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                         <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                     </button>
@@ -207,7 +207,7 @@
                             </div>
                         </li>
                         <li class="nav-header">today work</li>
-                        <li class="has-sub"><a href="../ManageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
+                        <li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
                                 <span>DashBoard
                                     <!-- <span class="label label-theme m-l-3">NEW</span> --></span>
                             </a>
@@ -225,7 +225,7 @@
                      </a>
                      </li> -->
                         <li class="has-sub"><a href="../ManageMovie/manage_movie.jsp">
-                                <img class="fa fa-inbox" src="../../common/images/movie_icon.png"> <span>영화</span>
+                                <img class="fa fa-inbox" src="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp"> <span>영화</span>
                             </a>
                             <ul class="sub-menu">
                                 <li><a href="email_inbox.html">Inbox</a></li>
@@ -238,7 +238,7 @@
                         <li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
                                 <span>회원관리</span>
                             </a></li>
-                        <li class="has-sub"><a href="javascript:;"> <img class="fa fa-file" src="../../common/images/board_icon.png">
+                        <li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
                                 <span>게시판 관리</span>
                             </a></li>
                     </ul>
@@ -316,8 +316,8 @@
 
                                 <!-- 게시판 검색 시작 { -->
                                 <fieldset id="bo_sch">
-                                    <legend>게시물 검색</legend>
-                                    <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp" name="frmsearch" id="frmsearch" method="post" style="display: flex; align-items: center;">
+                                    <legend>회원관리</legend>
+                                    <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp" name="frmsearch" id="frmsearch" method="get" style="display: flex; align-items: center;">
                             <label for="sfl" class="sound_only">검색대상</label>
                             <select name="field" id="field">
                                             <!--option value="wr_subject">제목</option>
@@ -329,7 +329,7 @@
                                     <option value="wr_name,0">글쓴이(코)</option-->
                                         </select> 
                                        <input type="hidden" name="dataFlag" value="1"/>
-                                       <input type="text" name="keyword" id="keyword" class="inputBox" value="${param.keyword ne 'null'? param.keyword:'' }" required="" id="stx" class="frm_input required" size="15" maxlength="20" placeholder="아이디를 입력해주세요" style="flex: 1; height:42px">
+                                       <input type="text"  class="frm_input required" name="keyword" id="keyword" class="inputBox" value="${param.keyword ne 'null'? param.keyword:'' }" required=""  class="frm_input required" size="15" maxlength="20" placeholder="아이디를 입력해주세요" style="flex: 1; height:42px">
                               		   <input type="submit" value="검색" class="btn_search" style="margin-left: 10px;" id="searchbtn" name="search_btn" style="wdith:100px"> <!-- 입력란과 버튼을 구분하기 위해 마진 추가 -->
                            			</form>
                                 </fieldset>
@@ -427,7 +427,7 @@
                                   <tr>
                                   <td colspan="4" style="text-align:center;">회원정보가 존재하지 않습니다.</td>
                                  </tr>
-                                   </c:if>
+                                 </c:if>
                                <c:forEach var="member" items="${ memberList }" varStatus="i">
                                <tr style="text-align:center">
                                   <td><c:out value="${ startNum + i.index }"/></td>
