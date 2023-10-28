@@ -425,7 +425,7 @@
                                    <tbody>
                                   <c:if test="${empty memberList }">
                                   <tr>
-                                  <td colspan="4" style="text-align:center;">회원정보가 존재하지 않습니다.</td>
+                                  <td colspan="4" style="text-align:center;"><strong><font size="5">회원정보가 존재하지 않습니다.</font></strong></td>
                                  </tr>
                                  </c:if>
                                <c:forEach var="member" items="${ memberList }" varStatus="i">

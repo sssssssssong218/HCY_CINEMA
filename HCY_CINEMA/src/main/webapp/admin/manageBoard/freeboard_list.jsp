@@ -355,7 +355,6 @@ to {
        <%
        try{
        List<BoardVO> list=ManageBoardDAO.getInstance().selectBoard(brVO);
-       out.println(list);
        pageContext.setAttribute("boardList", list);
        }catch(SQLException se){
     	   se.printStackTrace();
@@ -373,7 +372,7 @@ to {
         <tbody style="text-align:center">
         <c:if test="${empty boardList }">
         <tr>
-        	<td colspan="5" style="text-align:center">게시글이 존재하지 않습니다</td>
+        	<td colspan="5" style="text-align:center"><strong><font size="5">게시글이 존재하지 않습니다</font></strong></td>
         </tr>
         </c:if>
         <c:forEach var="board" items="${boardList }" varStatus="i">
