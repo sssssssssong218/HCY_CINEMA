@@ -5,13 +5,13 @@ import java.util.List;
 public class MovieFileVO {
 	private String posterFile;
 	private List<String> stillFile;
-	private List<String> trailerFile;
+	private String trailerFile;
 	
 	public MovieFileVO() {
 		
 	}//constructor
 
-	public MovieFileVO(String posterFile, List<String> stillFile, List<String> trailerFile) {
+	public MovieFileVO(String posterFile, List<String> stillFile, String trailerFile) {
 		super();
 		this.posterFile = posterFile;
 		this.stillFile = stillFile;
@@ -27,7 +27,7 @@ public class MovieFileVO {
 		return stillFile;
 	}
 
-	public List<String> getTrailerFile() {
+	public String getTrailerFile() {
 		return trailerFile;
 	}
 
@@ -40,7 +40,7 @@ public class MovieFileVO {
 		this.stillFile = stillFile;
 	}
 
-	public void setTrailerFile(List<String> trailerFile) {
+	public void setTrailerFile(String trailerFile) {
 		this.trailerFile = trailerFile;
 	}
 	

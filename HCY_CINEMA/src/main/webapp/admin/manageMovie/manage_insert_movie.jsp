@@ -949,10 +949,10 @@ document.getElementById("nextdate").value = today.getDate();
     			 var files=$('#still_file')[0].files;
     	          var fileName="";
     	          for(var i= 0; i<files.length; i++){
-    	              fileName+=files[i].name;
-    	              $("#still_hide").val(fileName);
+    	              fileName+=files[i].name+"/";
     	    			 
     	          } 
+    	              $("#still_hide").val(fileName);
     	     		 $("#movie_info_all_frm").submit();
     	        
     	 })

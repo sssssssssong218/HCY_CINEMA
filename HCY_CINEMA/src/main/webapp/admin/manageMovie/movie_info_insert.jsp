@@ -1,3 +1,9 @@
+<%@page import="java.nio.file.Paths"%>
+<%@page import="java.nio.file.Path"%>
+<%@page import="java.nio.file.StandardCopyOption"%>
+<%@page import="java.nio.file.Files"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="java.io.IOException"%>
 <%@page import="movie.MovieFileVO"%>
@@ -29,104 +35,149 @@
 <style>
 </style>
 <script type="text/javascript">
-	$(function(){
-	
-});
+	$(function() {
+
+	});
 </script>
 </head>
 <body>
-		 <%AddMovieDAO amDAO = AddMovieDAO.getInstance();
+<%
+AddMovieDAO amDAO = AddMovieDAO.getInstance();
 AddMovieVO amVO = new AddMovieVO();
-String hide="";
-String hide1="";
+String hide = "";
+String[] hideArr = null;
+List<String> list = new ArrayList<String>();
 try {
-	File saveDir = new File("C:/Users/user/git/HCY_CINEMA/HCY_CINEMA/src/main/webapp/common/poster");
-	int maxSize = 1024 * 1024 * 50; // 키로바이트 * 메가바이트 * 기가바이트
-	MultipartRequest mr = new MultipartRequest(request, saveDir.getAbsolutePath(), maxSize, "UTF-8",
-			new DefaultFileRenamePolicy());
-	hide=mr.getParameter("still_hide");
+    File saveDir = new File("C:/Users/user/git/HCY_CINEMA/HCY_CINEMA/src/main/webapp/common/poster");
+    int maxSize = 1024 * 1024 * 50; // 키로바이트 * 메가바이트 * 기가바이트
+    MultipartRequest mr = new MultipartRequest(request, saveDir.getAbsolutePath(), maxSize, "UTF-8", new DefaultFileRenamePolicy());
+    
+    hide = mr.getParameter("still_hide");
+    hideArr = hide.split("/");
+    for (String still : hideArr) {
+        list.add(still);
+    }
+
+    String posterfile = mr.getFilesystemName("poster_file");
+    String posterfileExtension = posterfile.substring(posterfile.lastIndexOf(".")); // 포스터 파일 확장자 추출
+    String trailerfile = mr.getFilesystemName("trailer_file");
+    String trailerfileExtension = trailerfile.substring(trailerfile.lastIndexOf(".")); // 트레일러 파일 확장자 추출
+    String mname = mr.getParameter("movie_name");
+    String actor = mr.getParameter("actor");
+    String director = mr.getParameter("director");
+    String genre = mr.getParameter("genre_select");
+    String country = mr.getParameter("country");
+    String plot = mr.getParameter("movie_info");
+    String runningtime = mr.getParameter("runningtime");
+    String age = mr.getParameter("ageGroup");
+    String status = mr.getParameter("status");
+    String releasedate = mr.getParameter("year") + "-" + mr.getParameter("month") + "-" + mr.getParameter("date");
+    String enddate = mr.getParameter("nextyear") + "-" + mr.getParameter("nextmonth") + "-" + mr.getParameter("nextdate");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+    Date date = sdf.parse(releasedate);
+    Date date1 = sdf.parse(enddate);
+    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+    java.sql.Date sqlDate1 = new java.sql.Date(date1.getTime());
+    amDAO.insertMovie(new AddMovieVO(mname, sqlDate, sqlDate1, plot, Integer.parseInt(runningtime), age, status));
+    String movieCode = amDAO.selectMovieCode(mname);
+
+    if (!(posterfileExtension.equals(".jpg") || posterfileExtension.equals(".png") || trailerfileExtension.equals(".mp4"))) {
+%>
+    <strong>업로드 실패: 올바른 파일 확장자를 사용하세요</strong>
+<%
+        return;
+    }
+
+    String baseFileName = movieCode; // 기본 파일명
+    String posternewFileName = baseFileName + "_P" + posterfileExtension;
+    String trailernewFileName = baseFileName + "_T" + trailerfileExtension;
+
+    // 포스터 파일 이름 중복 확인 및 숫자를 붙여가며 변경
+    int counter = 1;
+    while (new File(saveDir, posternewFileName).exists()) {
+        posternewFileName = baseFileName + "_P" + counter + posterfileExtension;
+        counter++;
+    }
+
+    // 트레일러 파일 이름 중복 확인 및 숫자를 붙여가며 변경
+    counter = 1;
+    while (new File(saveDir, trailernewFileName).exists()) {
+        trailernewFileName = baseFileName + "_T" + counter + trailerfileExtension;
+        counter++;
+    }
+
+    // 포스터 파일을 복사하여 새 이름으로 저장
+    File uploadedPosterFile = new File(saveDir, posterfile);
+    File renamedPosterFile = new File(saveDir, posternewFileName);
+    if (uploadedPosterFile.renameTo(renamedPosterFile)) {
+        // 성공적으로 복사되었으면 포스터 파일 이름 업데이트
+        posterfile = posternewFileName;
+    } else {
+    %>
+    <strong>포스터 파일 이름 변경 실패</strong>
+    <%
+        return;
+    }
+
+    // 트레일러 파일을 복사하여 새 이름으로 저장
+    File uploadedTrailerFile = new File(saveDir, trailerfile);
+    File renamedTrailerFile = new File(saveDir, trailernewFileName);
+    if (uploadedTrailerFile.renameTo(renamedTrailerFile)) {
+        // 성공적으로 복사되었으면 트레일러 파일 이름 업데이트
+        trailerfile = trailernewFileName;
+    } else {
+    %>
+    <strong>트레일러 파일 이름 변경 실패</strong>
+    <%
+        return;
+    }
+
+    // stillfile 이름 변경 및 저장
+    for (int i = 0; i < list.size(); i++) {
+        String stillfile = list.get(i);
+        String stillfileExtension = stillfile.substring(stillfile.lastIndexOf("."));
+        String stillnewFileName = baseFileName + "_S" + (i + 1) + stillfileExtension;
+
+        File uploadStillFile = new File(saveDir, stillfile);
+        File renamedStillFile = new File(saveDir, stillnewFileName);
+
+        // 파일을 복사하여 새 이름으로 저장
+        if (uploadStillFile.renameTo(renamedStillFile)) {
+            // 성공적으로 복사되었으면 리스트에 업데이트
+            list.set(i, stillnewFileName);
+        } else {
+        %>
+        <strong>Still 파일 이름 변경 실패</strong>
+        <%
+            return;
+        }
+    }
+
+    MovieFileVO mVO = new MovieFileVO();
+    mVO.setPosterFile(posterfile);
+    mVO.setStillFile(list);
+    mVO.setTrailerFile(trailerfile);
+    
+    amDAO.insertMoviePosterFile(mVO, movieCode);
+    
+
+    if (amDAO.insertMoviePosterFile(mVO, movieCode)) {
+    	amDAO.insertMovieStillFile(mVO, movieCode);
+        amDAO.insertMainTrailer(mVO, movieCode);
+%>
+    <strong>업로드 성공</strong>
+<%
+    } else {
+%>
+    <strong>데이터베이스에 업로드 실패</strong>
+<%
+    }
 } catch (IOException ie) {
-	ie.printStackTrace();
-	out.println("파일 업로드 처리 중 문제 발생");
-}%>
-	<%-- String posterfile = mr.getFilesystemName("poster_file");
-	String posterfileExtension = posterfile.substring(posterfile.lastIndexOf(".")); // 파일 확장자 추출
-	String stillfile = mr.getFilesystemName("still_file");
-	String stillfileExtension = stillfile.substring(stillfile.lastIndexOf(".")); // 파일 확장자 추출
-	String trailerfile = mr.getFilesystemName("trailer_file");
-	String trailerfileExtension = trailerfile.substring(trailerfile.lastIndexOf(".")); // 파일 확장자 추출
-	String mname = mr.getParameter("movie_name");
-	String actor = mr.getParameter("actor");
-	String director = mr.getParameter("director");
-	String genre = mr.getParameter("genre_select");
-	String country = mr.getParameter("country");
-	String plot = mr.getParameter("movie_info");
-	String runningtime = mr.getParameter("runningtime");
-	String age = mr.getParameter("ageGroup");
-	String status = mr.getParameter("status");
-	String releasedate = mr.getParameter("year") + "-" + mr.getParameter("month") + "-"
-			+ mr.getParameter("date");
-	String enddate = mr.getParameter("nextyear") + "-" + mr.getParameter("nextmonth") + "-"
-			+ mr.getParameter("nextdate");
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-/* 	mname = new String(mname.getBytes("8859_1"), "UTF-8");
-	country = new String(country.getBytes("8859_1"), "UTF-8");
-	plot = new String(plot.getBytes("8859_1"), "UTF-8");
-	runningtime = new String(runningtime.getBytes("8859_1"), "UTF-8");
-	releasedate = new String(releasedate.getBytes("8859_1"), "UTF-8");
-	enddate = new String(enddate.getBytes("8859_1"), "UTF-8");
-	age = new String(age.getBytes("8859_1"), "UTF-8");
-	status = new String(status.getBytes("8859_1"), "UTF-8"); */
-	Date date = sdf.parse(releasedate);
-	Date date1 = sdf.parse(enddate);
-	java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	java.sql.Date sqlDate1 = new java.sql.Date(date1.getTime());
-	amDAO.insertMovie(new AddMovieVO(mname, sqlDate, sqlDate1, plot, Integer.parseInt(runningtime), age, status));
-	String movieCode = amDAO.selectMovieCode(mname);
-	
-	if (!(posterfileExtension.equals(".jpg") || posterfileExtension.equals(".png")
-			||stillfileExtension.equals(".jpg")||stillfileExtension.equals(".png")
-			||trailerfileExtension.equals(".mp4"))) {%>
-		    	<strong>업로드 실패</strong>
-		    	<%return;
-			}
-			String baseFileName = movieCode; // 기본 파일명
-			String posternewFileName = baseFileName + posterfileExtension;
-			String stillnewFileName = baseFileName + stillfileExtension;
-			String trailernewFileName = baseFileName + trailerfileExtension;
-			MovieFileVO mVO = new MovieFileVO();
-			mVO.setPosterFile(posternewFileName);
-			/* mVO.setStillFile(stillnewFileName); */
-			/* mVO.setTrailerFile(trailernewFileName); */
-			amDAO.insertMoviePosterFile(mVO, movieCode);
-			File uploadedFile = new File(saveDir, posterfile);
-			File renamedFile = new File(saveDir, posternewFileName);
-			int counter = 1;
-			// 파일명 중복 확인 및 숫자를 붙여가며 변경
-			while (renamedFile.exists()) {
-				posternewFileName = baseFileName + "_" + counter + posterfileExtension;
-				renamedFile = new File(saveDir, posternewFileName);
-				counter++;
-			}
-			  boolean renamed = uploadedFile.renameTo(renamedFile);
-			    String uploader = mr.getParameter("uploader");
-			    String originfile = mr.getOriginalFileName("poster_file");
-			    if (renamed) {
-			%>
-			    <strong>업로드 성공</strong><br/>
-			    업로더: <%= stillnewFileName %><br/>
-			    나이: <%= stillnewFileName %><br/>
-			    파일명: <%= posternewFileName %> (<%= originfile %>)<br/>
-			<%
-			    } else {
-			%>
-			    <strong>파일 이름 변경 실패</strong><br/>
-			<%
-			    }
-		} catch (IOException ie) {
-			ie.printStackTrace();
-			out.println("파일 업로드 처리 중 문제 발생");
-		}%> --%>
-		<%= hide %>
+    ie.printStackTrace();
+    out.println("파일 업로드 처리 중 문제 발생");
+}
+%>
+
 </body>
 </html>
