@@ -6,16 +6,17 @@ public class MovieInfoVO {
 	private List<String> director;
 	private List<String> actor;
 	private List<String> genre;
-	
+	private List<String> extra;
 	public MovieInfoVO() {
 		
 	}//constructor
 
-	public MovieInfoVO(List<String> director, List<String> actor, List<String> genre) {
+	public MovieInfoVO(List<String> director, List<String> actor, List<String> genre,List<String> extra) {
 		super();
 		this.director = director;
 		this.actor = actor;
 		this.genre = genre;
+		this.extra = extra;
 	}//constructor
 
 	//getter
@@ -42,6 +43,14 @@ public class MovieInfoVO {
 
 	public void setGenre(List<String> genre) {
 		this.genre = genre;
+	}
+
+	public List<String> getExtra() {
+		return extra;
+	}
+
+	public void setExtra(List<String> extra) {
+		this.extra = extra;
 	}
 	
 	

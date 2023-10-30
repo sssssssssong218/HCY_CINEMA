@@ -43,13 +43,14 @@ public class ManageMovieMainDAO {
 			
 			StringBuilder selectMovie=new StringBuilder();
 			selectMovie
-			.append("	select m.moviecode,m.mname,m.releasedate,m.enddate,m.plot,m.status,f.filename,a.total_review,b.average,c.total_ticket			")
-			.append("	from 	 movie m,(select count(*) total_review,moviecode from review group by moviecode) a,moviefile f,							")
-			.append("	(select round((sum_star/cnt),1) average, r.moviecode																			")
-			.append("	from (select sum(star_rating) sum_star,count(moviecode) cnt,moviecode															")
-			.append("	from review group by moviecode) r) b,																							")
-			.append("	(select count(*) total_ticket, MOVIECODE from ticketing group by moviecode) c													")
-			.append("	where m.moviecode=f.moviecode(+) and m.moviecode=a.moviecode(+) and m.moviecode=b.moviecode(+) and m.moviecode=c.moviecode(+)	");
+			.append("	SELECT m.moviecode, m.mname, m.releasedate, m.enddate, m.plot, m.status, f.filename, a.total_review, b.average, c.total_ticket		")
+			.append("	FROM movie m																														")
+			.append("	LEFT JOIN (SELECT moviecode, count(*) as total_review FROM review GROUP BY moviecode) a ON m.moviecode = a.moviecode				")
+			.append("	LEFT JOIN moviefile f ON m.moviecode = f.moviecode AND f.filename LIKE '%\\_P%' ESCAPE '\\'											")
+			.append("	LEFT JOIN (SELECT round((sum_star/cnt), 1) as average, r.moviecode																	")
+			.append("	FROM (SELECT sum(star_rating) as sum_star, count(moviecode) as cnt, moviecode														")
+			.append("	FROM review GROUP BY moviecode) r) b ON m.moviecode = b.moviecode																	")
+			.append("	LEFT JOIN (SELECT count(*) as total_ticket, moviecode FROM ticketing GROUP BY moviecode) c ON m.moviecode = c.moviecode				");
 			
 			pstmt=con.prepareStatement(selectMovie.toString());
 			

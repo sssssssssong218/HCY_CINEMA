@@ -1,3 +1,5 @@
+<%@page import="movie.MovieInfoVO"%>
+<%@page import="movie.DetailMovieDAO"%>
 <%@page import="java.nio.file.Paths"%>
 <%@page import="java.nio.file.Path"%>
 <%@page import="java.nio.file.StandardCopyOption"%>
@@ -55,9 +57,27 @@ try {
     hide = mr.getParameter("still_hide");
     hideArr = hide.split("/");
     for (String still : hideArr) {
+    	if(still.substring(still.lastIndexOf(".")).equals(".jpg")||still.substring(still.lastIndexOf(".")).equals(".png")){
         list.add(still);
+    	}
     }
-
+	List<String> actor_list=new ArrayList<String>();
+	List<String> extra_list=new ArrayList<String>();
+	List<String> director_list=new ArrayList<String>();
+	List<String> genre_list=new ArrayList<String>();
+	MovieInfoVO miVO=new MovieInfoVO();
+	for(int i=0;i<Integer.parseInt(mr.getParameter("actor_hide"));i++){
+		 actor_list.add(mr.getParameter("actor_"+i));
+	}
+	for(int i=0;i<Integer.parseInt(mr.getParameter("extra_hide"));i++){
+		 actor_list.add(mr.getParameter("extra_"+i));
+	}
+	for(int i=0;i<Integer.parseInt(mr.getParameter("director_hide"));i++){
+		director_list.add(mr.getParameter("director_"+i));
+	}
+	for(int i=0;i<Integer.parseInt(mr.getParameter("genre_hide"));i++){
+		genre_list.add(mr.getParameter("genre_select_"+i));
+	}
     String posterfile = mr.getFilesystemName("poster_file");
     String posterfileExtension = posterfile.substring(posterfile.lastIndexOf(".")); // 포스터 파일 확장자 추출
     String trailerfile = mr.getFilesystemName("trailer_file");
@@ -79,9 +99,18 @@ try {
     Date date1 = sdf.parse(enddate);
     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
     java.sql.Date sqlDate1 = new java.sql.Date(date1.getTime());
-    amDAO.insertMovie(new AddMovieVO(mname, sqlDate, sqlDate1, plot, Integer.parseInt(runningtime), age, status));
+     amDAO.insertMovie(new AddMovieVO(mname, sqlDate, sqlDate1, plot, Integer.parseInt(runningtime), age, status));
     String movieCode = amDAO.selectMovieCode(mname);
+	DetailMovieDAO dmDAO=DetailMovieDAO.getInstance(); 
 
+	 miVO.setActor(actor_list);
+	 miVO.setActor(extra_list);
+	miVO.setDirector(director_list);
+	miVO.setGenre(genre_list);
+	dmDAO.insertActorInfo(miVO, movieCode);
+	dmDAO.insertDirectorInfo(miVO, movieCode);
+	dmDAO.insertGenreInfo(miVO, movieCode);
+	dmDAO.insertExtraInfo(miVO, movieCode);
     if (!(posterfileExtension.equals(".jpg") || posterfileExtension.equals(".png") || trailerfileExtension.equals(".mp4"))) {
 %>
     <strong>업로드 실패: 올바른 파일 확장자를 사용하세요</strong>
@@ -115,7 +144,8 @@ try {
         posterfile = posternewFileName;
     } else {
     %>
-    <strong>포스터 파일 이름 변경 실패</strong>
+    <strong>파일업로드 중 오류발생</strong><br/>
+        <a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_insert_movie.jsp">뒤로가기</a>
     <%
         return;
     }
@@ -128,7 +158,8 @@ try {
         trailerfile = trailernewFileName;
     } else {
     %>
-    <strong>트레일러 파일 이름 변경 실패</strong>
+  <strong>파일업로드 중 오류발생</strong><br/>
+        <a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_insert_movie.jsp">뒤로가기</a>
     <%
         return;
     }
@@ -148,7 +179,8 @@ try {
             list.set(i, stillnewFileName);
         } else {
         %>
-        <strong>Still 파일 이름 변경 실패</strong>
+        <strong>파일업로드 중 오류발생</strong><br/>
+        <a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_insert_movie.jsp">뒤로가기</a>
         <%
             return;
         }
@@ -159,14 +191,14 @@ try {
     mVO.setStillFile(list);
     mVO.setTrailerFile(trailerfile);
     
-    amDAO.insertMoviePosterFile(mVO, movieCode);
     
 
     if (amDAO.insertMoviePosterFile(mVO, movieCode)) {
     	amDAO.insertMovieStillFile(mVO, movieCode);
         amDAO.insertMainTrailer(mVO, movieCode);
 %>
-    <strong>업로드 성공</strong>
+    <strong>업로드 성공</strong><br/>
+    
 <%
     } else {
 %>
@@ -176,6 +208,13 @@ try {
 } catch (IOException ie) {
     ie.printStackTrace();
     out.println("파일 업로드 처리 중 문제 발생");
+}catch(NumberFormatException nfe){
+	nfe.printStackTrace();
+	%>
+	상영시간은 숫자로만 입력이 가능합니다.<br/>
+	뒤로가시려면 <a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_insert_movie.jsp">여기</a>를 클릭해주세요
+	
+	<%
 }
 %>
 

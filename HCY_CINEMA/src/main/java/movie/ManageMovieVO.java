@@ -13,13 +13,15 @@ public class ManageMovieVO {
 	private String status;
 	private int reviewCnt;
 	private String fileName;
-	
+	private int runningtime;
+	private String movieRatting;
 	public ManageMovieVO() {
 		
 	}//constructor
 
 	public ManageMovieVO(String movieCode, String mname, double starRating, int ticketRate, Date releaseDate,
-			Date endDate, String plot, String status, int reviewCnt, String fileName) {
+			Date endDate, String plot, String status, int reviewCnt, String fileName,
+			int runningtime,String movieRatting) {
 		super();
 		this.movieCode = movieCode;
 		this.mname = mname;
@@ -31,7 +33,25 @@ public class ManageMovieVO {
 		this.status = status;
 		this.reviewCnt = reviewCnt;
 		this.fileName = fileName;
+		this.runningtime = runningtime;
+		this.movieRatting = movieRatting;
 	}//constructor
+
+	public String getMovieRatting() {
+		return movieRatting;
+	}
+
+	public void setMovieRatting(String movieRatting) {
+		this.movieRatting = movieRatting;
+	}
+
+	public int getRunningtime() {
+		return runningtime;
+	}
+
+	public void setRunningtime(int runningtime) {
+		this.runningtime = runningtime;
+	}
 
 	//getter
 	public String getMovieCode() {

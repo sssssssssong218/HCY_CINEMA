@@ -1,9 +1,8 @@
 <%@page import="movie.ManageMovieVO"%>
-<%@page import="movie.ManageMovieMainDAO"%>
+<%@page import="movie.DetailMovieDAO"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%request.setCharacterEncoding("UTF-8"); %>
 <%@ page info=""%>
 <!doctype html>
 <html lang="en"><!--<![endif]--><head>
@@ -12,16 +11,7 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 <meta content="" name="description">
 <meta content="" name="author">
-<link rel="icon"
-	href="http://192.168.10.147/jsp_prj/common/main/favicon.png">
-<!-- bootStrap -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
 <link href="../CSS/css" rel="stylesheet" id="fontFamilySrc">
 <link href="../CSS/jquery-ui.min.css" rel="stylesheet">
 <link href="../CSS/bootstrap.min.css" rel="stylesheet">
@@ -43,12 +33,6 @@
 	    <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
 	<![endif]-->
 <style type="text/css">/* Chart.js */
-  #carouselExampleIndicators {
-    width: 800px; /* 원하는 가로 크기 */
-    height: 400px; /* 원하는 세로 크기 */
-  }
-
-
 @
 -webkit-keyframes chartjs-render-animation {
 	from {opacity: 0.99
@@ -502,19 +486,15 @@ to {
 <li class="breadcrumb-item"><a href="javascript:;">Form Stuff</a></li>
 <li class="breadcrumb-item active">Form Elements</li>
 </ol>
-
 <%
-
-ManageMovieMainDAO mmmDAO=ManageMovieMainDAO.getInstance();
-ManageMovieVO mmVO=new ManageMovieVO();
 String movieCode=request.getParameter("movieCode");
-mmVO=mmmDAO.selectSpecificMovieInfo(movieCode);
+DetailMovieDAO dmDAO=DetailMovieDAO.getInstance();
+ManageMovieVO mmVO=dmDAO.selectSpecificMovieInfo(movieCode);
 %>
-
 
 <h1 class="page-header">영화 추가</h1>
 
-
+<form class="form-horizontal" accept-charset="UTF-8" action="movie_info_insert.jsp" method="post" enctype="multipart/form-data" id="movie_info_all_frm">
 <div class="section-container section-with-top-border p-b-10">
 
 <div class="row">
@@ -524,377 +504,236 @@ mmVO=mmmDAO.selectSpecificMovieInfo(movieCode);
 <p>
 영화에 대한 정보를 입력해주세요.
 </p>
-<form class="form-horizontal">
 <div class="form-group m-b-10">
 <label class="col-lg-3 col-form-label">제목</label>
 <div class="col-lg-7">
-<input type="text" class="form-control" placeholder="영화제목" value="<%= mmVO.getMname() %>">
+<input type="text" class="form-control" id="movie_name" name="movie_name" value="<%=mmVO.getMname()%>">
 </div>
 </div>
 <div class="form-group m-b-10" id="actor_title">
-<label class="col-lg-3 col-form-label actor_label">배우</label>
+<label class="col-lg-3 col-form-label actor_label">주연</label>
 <div class="col-lg-7 actor_div">
-<input type="text" class="form-control" placeholder="배우">
+<input type="text" class="form-control actor_input" placeholder="주연" id="actor_0" name="actor_0">
 </div>
+<input type="hidden" name="actor_hide" id="actor_hide">
 <input type="button" value="추가" id="actor_btn" class="insertBtn">
+</div>
+<div class="form-group m-b-10" id="extra_title">
+<label class="col-lg-3 col-form-label extra_label">조연</label>
+<div class="col-lg-7 extra_div">
+<input type="text" class="form-control extra_input" placeholder="조연" id="extra_0" name="extra_0">
+</div>
+<input type="hidden" name="extra_hide" id="extra_hide">
+<input type="button" value="추가" id="extra_btn" class="insertBtn">
 </div>
 <div class="form-group m-b-10" id="director_title">
 <label class="col-lg-3 col-form-label director_label">감독</label>
 <div class="col-lg-7 director_div">
-<input class="form-control" type="text" placeholder="감독">
+<input class="form-control director_input" type="text" placeholder="감독" id="director_0" name="director_0">
 </div>
+<input type="hidden" name="director_hide" id="director_hide">
 <input type="button" value="추가" id="director_btn" class="insertBtn">
 </div>
+
 <div class="form-group m-b-10" id="genre_title">
 <label class="col-lg-3 col-form-label genre_label">장르</label>
 <div class="col-lg-7 genre_div">
-<select class="form-control" id="genre_select">
-<option>코미디</option>
-<option>스릴러</option>
-<option>공포</option>
-<option>로맨스</option>
-<option>드라마</option>
-<option>액션</option>
-<option>SF</option>
-<option>애니매이션</option>
-<option></option>
+<select class="form-control genre_select" id="genre_select_0" name="genre_select_0">
+<option value="코미디">코미디</option>
+<option value="스릴러">스릴러</option>
+<option value="공포">공포</option>
+<option value="로맨스">로맨스</option>
+<option value="드라마">드라마</option>
+<option value="액션">액션</option>
+<option value="SF">SF</option>
+<option value="애니메이션">애니매이션</option>
 </select>
 </div>
+<input type="hidden" name="genre_hide" id="genre_hide">
 <input type="button" value="추가" id="genre_btn" class="insertBtn">
+</div>
+<div class="form-group m-b-10" id="director_title">
+<label class="col-lg-3 col-form-label">상영시간</label>
+<div class="col-lg-7">
+<input class="form-control" type="text" placeholder="상영시간(분)" id="runningtime" name="runningtime">
+</div>
 </div>
 <div class="form-group m-b-10">
 <label class="col-lg-3 col-form-label">국가</label>
 <div class="col-lg-7">
-<input type="radio" name="optionsRadios" value="국내" checked="checked">국내
-<input type="radio" name="optionsRadios" value="외국">외국
+<input type="radio" name="country" id="domestic" value="국내" checked="checked">국내
+<input type="radio" name="country" id="foreign" value="외국">외국
+</div>
+</div>
+<div class="form-group m-b-10">
+<label class="col-lg-3 col-form-label">국가</label>
+<div class="col-lg-7">
+<input type="radio" name="status" id="ing" value="Y" checked="checked">상영중
+<input type="radio" name="status" id="ending" value="N">종영
+<input type="radio" name="status" id="willing" value="W">상영예정
 </div>
 </div>
 <div class="form-group" style="height:200px">
 <label class="col-lg-3 col-form-label">상세정보</label>
 <div class="col-lg-7">
-<textarea class="form-control" rows="3" placeholder="상세내용" style="height:150px" value=""><%= mmVO.getPlot()%></textarea>
+<textarea  class="form-control" rows="3" placeholder="상세내용" style="height:150px" id="movie_info" name="movie_info"></textarea>
 </div>
-</div>
-</form>
-</div>
-
-
-<div class="col-lg-6">
-<h5 class="m-t-0">영화 포스터 및 스틸컷 업로드</h5>
-<p>
-Checkboxes are for selecting one or several options in a list, while radios are for selecting one option from many.
-</p>
-<form action="poster_upload.jsp" method="post" enctype="multipart/form-data">
-<div style="display:inline-block">
-<div>
-	 	<fieldset>
-			<legend>파일 업로드</legend>
-			<p>포스터 : <input type="file" name="file"></p>
-			<p><input type="submit" value="업로드" id="poster_btn"></p>	 	
-	 	</fieldset>
-	 	<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="http://localhost/HCY_CINEMA/common/poster/my_custom_file_name.png" class="d-block w-100" alt="...">
-    </div>
-  </div>
-</div>
-	</div>
-	
-</div>
-	 <div style="display:inline-block">
-	 <img src="">
-	 </div>
-	 </form>
-<form action="still_img_upload.jsp" method="post" enctype="multipart/form-data">
-<div style="display:inline-block">
-
-	 	<fieldset>
-			<p>스틸컷 : <input type="file" name="file"></p>
-			<p><input type="submit" value="업로드" id="steal_btn"></p>	 	
-	 	</fieldset>
-	 	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="http://localhost/HCY_CINEMA/common/trailer/20197361157049494400.jpg" class="d-block w-100" >
-    </div>
-    <div class="carousel-item">
-      <img src="http://localhost/HCY_CINEMA/common/trailer/20197361157049494400.jpg" class="d-block w-100">
-    </div>
-    <div class="carousel-item">
-      <img src="http://localhost/HCY_CINEMA/common/trailer/admin_logo.png" class="d-block w-100">
-    </div>
-    <div class="carousel-item">
-      <img src="http://localhost/HCY_CINEMA/common/stillCut/my_custom_file_name.png" class="d-block w-100" >
-    </div>
-    <div class="carousel-item">
-      <img src="http://localhost/HCY_CINEMA/common/poster/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7(1).png" class="d-block w-100">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-	 </div>
-	 <div style="display:inline-block">
-	 <img src="">
-	 </div>
-	 </form>
-<form action="trailer_upload.jsp" method="post" enctype="multipart/form-data">
-<div style="display:inline-block">
-	 	<fieldset>
-			<p>트레일러 : <input type="file" name="file"></p>
-			<p><input type="submit" value="업로드" id="trailer_btn"></p>	 	
-	 	</fieldset>
-	 </div>
-	 <div style="display:inline-block">
-	 <img src="">
-	 </div>
-	 </form>
-	 
 <div class="checkbox disabled m-b-25">
 <h4>개봉기간 설정</h4>
-<select style="width:100px; height:30px; text-align:center; font-size: 20px;">
+<select style="width:100px; height:30px; text-align:center; font-size: 20px;" id="year" name="year">
 
-<option>2022</option>
-
-<option selected="selected">2023</option>
-
-<option>2024</option>
-
-
-</select>
-<label style="padding:0px; font-size:20px;">/</label>
-<select style="width:60px; height:30px; text-align:center; font-size: 20px;">
-
-<option>1</option>
-
-<option>2</option>
-
-<option>3</option>
-
-<option>4</option>
-
-<option>5</option>
-
-<option>6</option>
-
-<option>7</option>
-
-<option>8</option>
-
-<option>9</option>
-
-<option selected="selected">10</option>
-
-<option>11</option>
-
-<option>12</option>
-
+<%
+Calendar cal=Calendar.getInstance();
+int nowYear=cal.get(Calendar.YEAR)-1;
+for(int i=nowYear;i<nowYear+3;i++){
+%>
+<option value="<%= i %>"<%=  i==nowYear+1 ? "selected='selected'":""%> ><%=i%></option>
+<%} %>
 
 </select>
 <label style="padding:0px; font-size:20px;">/</label>
-<select style="width:60px; height:30px; text-align:center; font-size: 20px;">
-
-<option>1</option>
-
-<option>2</option>
-
-<option>3</option>
-
-<option>4</option>
-
-<option>5</option>
-
-<option>6</option>
-
-<option>7</option>
-
-<option>8</option>
-
-<option>9</option>
-
-<option>10</option>
-
-<option>11</option>
-
-<option>12</option>
-
-<option>13</option>
-
-<option>14</option>
-
-<option>15</option>
-
-<option>16</option>
-
-<option>17</option>
-
-<option>18</option>
-
-<option>19</option>
-
-<option selected="selected">20</option>
-
-<option>21</option>
-
-<option>22</option>
-
-<option>23</option>
-
-<option>24</option>
-
-<option>25</option>
-
-<option>26</option>
-
-<option>27</option>
-
-<option>28</option>
-
-<option>29</option>
-
-<option>30</option>
-
-<option>31</option>
-
-
+<select style="width: 60px; height: 30px; text-align: center; font-size: 20px;" id="month" name="month" onchange="updateDays()">
+<%
+int nowMonth = cal.get(Calendar.MONTH) + 1;
+for(int i = 1; i < 13; i++) {
+%>
+<option value="<%= i %>"<%= i == nowMonth ? "selected='selected'" : "" %>><%= i %></option>
+<%
+} %>
 </select>
+<label style="padding: 0px; font-size: 20px;">/</label>
+<select style="width: 60px; height: 30px; text-align: center; font-size: 20px;" id="date" name="date">
+</select>
+<script type="text/javascript">
+function updateDays() {
+    var monthSelect = document.getElementById("month");
+    var dateSelect = document.getElementById("date");
+    var selectedMonth = monthSelect.value;
+    
+    var year = new Date().getFullYear(); // 현재 연도를 가져옴
+    var daysInMonth = new Date(year, selectedMonth, 0).getDate();
+    
+    dateSelect.innerHTML = ""; // 일자 콤보박스 초기화
+    
+    for (var i = 1; i <= daysInMonth; i++) {
+        var option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        dateSelect.appendChild(option);
+    }
+}
+// 페이지가 로드될 때 초기화
+updateDays();
+//기본 선택을 오늘 날짜로 설정
+var today = new Date();
+document.getElementById("month").value = today.getMonth() + 1; // 월은 0부터 시작하므로 +1
+document.getElementById("date").value = today.getDate();
+</script>
 <label style="padding:0px; font-size:20px;">~</label>
-<select style="width:100px; height:30px; text-align:center; font-size: 20px;">
+<select style="width:100px; height:30px; text-align:center; font-size: 20px;" id="nextyear" name="nextyear">
 
-<option>2023</option>
-
-<option selected="selected">2024</option>
-
-<option>2025</option>
-
-
-</select>
-<label style="padding:0px; font-size:20px;">/</label>
-<select style="width:60px; height:30px; text-align:center; font-size: 20px;">
-
-<option>1</option>
-
-<option>2</option>
-
-<option>3</option>
-
-<option>4</option>
-
-<option>5</option>
-
-<option>6</option>
-
-<option>7</option>
-
-<option>8</option>
-
-<option>9</option>
-
-<option selected="selected">10</option>
-
-<option>11</option>
-
-<option>12</option>
-
+<%
+cal=Calendar.getInstance();
+int nextYear=cal.get(Calendar.YEAR);
+for(int i=nowYear;i<nowYear+3;i++){
+%>
+<option value="<%= i %>"<%=  i==nextYear+1 ? "selected='selected'":""%> ><%=i%></option>
+<%} %>
 
 </select>
 <label style="padding:0px; font-size:20px;">/</label>
-<select style="width:60px; height:30px; text-align:center; font-size: 20px;">
-
-<option>1</option>
-
-<option>2</option>
-
-<option>3</option>
-
-<option>4</option>
-
-<option>5</option>
-
-<option>6</option>
-
-<option>7</option>
-
-<option>8</option>
-
-<option>9</option>
-
-<option>10</option>
-
-<option>11</option>
-
-<option>12</option>
-
-<option>13</option>
-
-<option>14</option>
-
-<option>15</option>
-
-<option>16</option>
-
-<option>17</option>
-
-<option>18</option>
-
-<option>19</option>
-
-<option selected="selected">20</option>
-
-<option>21</option>
-
-<option>22</option>
-
-<option>23</option>
-
-<option>24</option>
-
-<option>25</option>
-
-<option>26</option>
-
-<option>27</option>
-
-<option>28</option>
-
-<option>29</option>
-
-<option>30</option>
-
-<option>31</option>
-
-
+<select style="width: 60px; height: 30px; text-align: center; font-size: 20px;" id="nextmonth" name="nextmonth"onchange="updateDays()">
+<%
+int nextMonth = cal.get(Calendar.MONTH) + 1;
+for(int i = 1; i < 13; i++) {
+%>
+<option value="<%= i %>"<%= i == nextMonth ? "selected='selected'" : "" %>><%= i %></option>
+<%
+} %>
 </select>
+<label style="padding:0px; font-size:20px;">/</label>
+<select style="width: 60px; height: 30px; text-align: center; font-size: 20px;" id="nextdate" name="nextdate">
+</select>
+<script type="text/javascript">
+function updateDays() {
+    var monthSelect = document.getElementById("nextmonth");
+    var dateSelect = document.getElementById("nextdate");
+    var selectedMonth = monthSelect.value;
+    
+    var year = new Date().getFullYear(); // 현재 연도를 가져옴
+    var daysInMonth = new Date(year, selectedMonth, 0).getDate();
+    
+    dateSelect.innerHTML = ""; // 일자 콤보박스 초기화
+    
+    for (var i = 1; i <= daysInMonth; i++) {
+        var option = document.createElement("option");
+        option.value = i;
+        option.text = i;
+        dateSelect.appendChild(option);
+    }
+}
+// 페이지가 로드될 때 초기화
+updateDays();
+//기본 선택을 오늘 날짜로 설정
+var today = new Date();
+document.getElementById("nextmonth").value = today.getMonth() + 1; // 월은 0부터 시작하므로 +1
+document.getElementById("nextdate").value = today.getDate();
+</script>
 </div>
-<div class="radio">
+
+
+</div>
+<div class="radio" style="position:absolute;bottom:-160px">
 <h4>연령대 설정</h4>
-<input type="radio" id="all_view" name="ageGroup"><label style="font-size:15px">전체 관람</label><img src="../../common/images/all.png" style="padding-left:10px"><br>
-<input type="radio" id="age_12_view" name="ageGroup"><label style="font-size:15px">12세</label><img src="../../common/images/12age.png" style="padding-left:10px"><br>
-<input type="radio" id="age_15_view" name="ageGroup"><label style="font-size:15px">15세</label><img src="../../common/images/15age.png" style="padding-left:10px"><br>
-<input type="radio" id="age_18_view" name="ageGroup"><label style="font-size:15px">청소년 관람 불가</label><img src="../../common/images/18age.png" style="padding-left:10px"><br>
-<input type="radio" id="rs_view" name="ageGroup"><label style="font-size:15px">제한사영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="AL"><label style="font-size:15px">전체 관람</label><img src="../../common/images/all.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="12"><label style="font-size:15px">12세</label><img src="../../common/images/12age.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="15"><label style="font-size:15px">15세</label><img src="../../common/images/15age.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="18"><label style="font-size:15px">청소년 관람 불가</label><img src="../../common/images/18age.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="RS"><label style="font-size:15px">제한사영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
 </div>
+</div>
+
+
+<div class="col-lg-6" >
+<h5 class="m-t-0">영화 포스터 및 스틸컷 업로드</h5>
+<input type="button" value="저장" style="position: absolute;left:600px" id="movie_save_btn">
+<input type="button" value="취소" style="position: absolute;left:650px">
+<div style="display:inline-block">
+	 	<fieldset>
+			<legend>파일 업로드</legend>
+			<p>포스터 : <input type="file" name="poster_file"></p>
+			<p><input type="hidden" value="" id="poster_hide" name="poster_hide"></p>	 	
+	 	</fieldset>
+	 </div>
+	 <div style="display:inline-block">
+	 <img src="">
+	 </div>
+<div style="display:inline-block">
+	 	<fieldset>
+			<p>스틸컷 : <input type="file" id="still_file" name="still_file" multiple="multiple"></p>
+			<p><input type="hidden" value="" id="still_hide" name="still_hide"></p>	 	
+	 	</fieldset>
+	 </div>
+	 <div style="display:inline-block">
+	 <img src="">
+	 </div>
+<div style="display:inline-block">
+	 	<fieldset>
+			<p>트레일러 : <input type="file" name="trailer_file"></p>
+			<p><input type="hidden" value="" id="trailer_hide" name="trailer_hide"></p>	 	
+	 	</fieldset>
+	 </div>
+	 <div style="display:inline-block">
+	 <img src="">
+	 </div>
+	 
 
 </div>
 
 </div>
 
 </div>
-
+</form>
 
 
 
@@ -1012,8 +851,6 @@ Checkboxes are for selecting one or several options in a list, while radios are 
 	<script src="page-index-v3.demo.min.js" type="text/javascript"></script>
 	<script src="apps.min.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-	
 
 	<!-- <script type="text/javascript">
 		$(document).ready(function() {
@@ -1059,24 +896,63 @@ Checkboxes are for selecting one or several options in a list, while radios are 
      var actor_titleContainer = document.getElementById("actor_title");
 
      var actor_counter = 1; // 초기 카운터 값
+     
 
      actor_Button.addEventListener("click", function() {
          var actor_label = actor_titleContainer.querySelector(".actor_label");
-         var actor_Input = actor_titleContainer.querySelector(".actor_div");
+         var actor = actor_titleContainer.querySelector(".actor_input");
+
 
          // 라벨 복사
          var actor_newLabel = actor_label.cloneNode(true);
-         actor_newLabel.textContent = "배우 " + actor_counter;
+         actor_newLabel.textContent = "주연 " + actor_counter;
          
          // 입력 요소 복사
-         var actor_newInput = actor_Input.cloneNode(true);
-
+       
+         var actor_newInput = actor.cloneNode(true);
+         actor_newInput.name = "actor_" + actor_counter;
+         actor_newInput.id = "actor_" + actor_counter;
+         actor_newInput.style.position = "relative";
+         actor_newInput.style.left="15px";
+         actor_newInput.style.width = "450px";
          // 복제한 라벨과 입력 요소를 추가
          actor_titleContainer.appendChild(actor_newLabel);
          actor_titleContainer.appendChild(actor_newInput);
 
          actor_counter++; // 카운터 증가
      });
+	 var extra_Button = document.getElementById("extra_btn");
+     var extra_titleContainer = document.getElementById("extra_title");
+
+     var extra_counter = 1; // 초기 카운터 값
+     
+
+     extra_Button.addEventListener("click", function() {
+         var extra_label = extra_titleContainer.querySelector(".extra_label");
+         var extra = extra_titleContainer.querySelector(".extra_input");
+
+
+         // 라벨 복사
+         var extra_newLabel = extra_label.cloneNode(true);
+         extra_newLabel.textContent = "조연 " + extra_counter;
+         
+         // 입력 요소 복사
+       
+         var extra_newInput = extra.cloneNode(true);
+         extra_newInput.name = "extra_" + extra_counter;
+         extra_newInput.id = "extra_" + extra_counter;
+         extra_newInput.style.position = "relative";
+         extra_newInput.style.left="15px";
+         extra_newInput.style.width = "450px";
+         // 복제한 라벨과 입력 요소를 추가
+         extra_titleContainer.appendChild(extra_newLabel);
+         extra_titleContainer.appendChild(extra_newInput);
+
+         extra_counter++; // 카운터 증가
+     });
+     
+     
+     
      var director_addButton = document.getElementById("director_btn");
      var director_titleContainer = document.getElementById("director_title");
 
@@ -1084,7 +960,7 @@ Checkboxes are for selecting one or several options in a list, while radios are 
 
      director_addButton.addEventListener("click", function() {
          var director_label = director_titleContainer.querySelector(".director_label");
-         var director_Input = director_titleContainer.querySelector(".director_div");
+         var director_Input = director_titleContainer.querySelector(".director_input");
 
          // 라벨 복사
          var director_newLabel = director_label.cloneNode(true);
@@ -1092,7 +968,12 @@ Checkboxes are for selecting one or several options in a list, while radios are 
          
          // 입력 요소 복사
          var director_newInput = director_Input.cloneNode(true);
-
+         director_newInput.name = "director_" + director_counter;
+         director_newInput.id = "director_" + director_counter;
+         director_newInput.style.position = "relative";
+         director_newInput.style.left="15px";
+         director_newInput.style.width = "450px";
+		
          // 복제한 라벨과 입력 요소를 추가
          director_titleContainer.appendChild(director_newLabel);
          director_titleContainer.appendChild(director_newInput);
@@ -1102,29 +983,51 @@ Checkboxes are for selecting one or several options in a list, while radios are 
      var genre_addButton = document.getElementById("genre_btn");
      var genre_titleContainer = document.getElementById("genre_title");
 
+     var genre_counter=1;
 
      genre_addButton.addEventListener("click", function() {
          var genre_label = genre_titleContainer.querySelector(".genre_label");
-         var genre_Input = genre_titleContainer.querySelector(".genre_div");
+         var genre_Input = genre_titleContainer.querySelector(".genre_select");
 
          // 라벨 복사
          var genre_newLabel = genre_label.cloneNode(true);
          
          // 입력 요소 복사
          var genre_newInput = genre_Input.cloneNode(true);
+         genre_newInput.name = "genre_select_" + genre_counter;
+         genre_newInput.id = "genre_select_" + genre_counter;
+         genre_newInput.style.position = "relative";
+         genre_newInput.style.left="15px";
+         genre_newInput.style.width = "450px";
 
          // 복제한 라벨과 입력 요소를 추가
          genre_titleContainer.appendChild(genre_newLabel);
          genre_titleContainer.appendChild(genre_newInput);
+         
+         genre_counter++;
 
      });
      var genre_selectElement = document.getElementById("genre_select");
-     var genre_disableButton = document.getElementById("genre_btn");
-
-     genre_disableButton.addEventListener("click", function() {
+    /*  genre_disableButton.addEventListener("click", function() {
     	 genre_selectElement.disabled = true; // select 요소를 비활성화
+     }); */
+     $(function(){
+    		 $("#movie_save_btn").click(function(){
+    			 var files=$('#still_file')[0].files;
+    	          var fileName="";
+    	          for(var i= 0; i<files.length; i++){
+    	              fileName+=files[i].name+"/";
+    	    			 
+    	          } 
+    	          $("#actor_hide").val(actor_counter);
+    	          $("#extra_hide").val(extra_counter);
+    	          $("#director_hide").val(director_counter);
+    	          $("#genre_hide").val(genre_counter);
+    	              $("#still_hide").val(fileName);
+    	     		 $("#movie_info_all_frm").submit();
+    	        
+    	 })
      });
-     
      
      
 	</script>

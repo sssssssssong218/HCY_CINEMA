@@ -505,24 +505,34 @@ to {
 </div>
 </div>
 <div class="form-group m-b-10" id="actor_title">
-<label class="col-lg-3 col-form-label actor_label">배우</label>
+<label class="col-lg-3 col-form-label actor_label">주연</label>
 <div class="col-lg-7 actor_div">
-<input type="text" class="form-control" placeholder="배우" id="actor" name="actor">
+<input type="text" class="form-control actor_input" placeholder="주연" id="actor_0" name="actor_0">
 </div>
+<input type="hidden" name="actor_hide" id="actor_hide">
 <input type="button" value="추가" id="actor_btn" class="insertBtn">
+</div>
+<div class="form-group m-b-10" id="extra_title">
+<label class="col-lg-3 col-form-label extra_label">조연</label>
+<div class="col-lg-7 extra_div">
+<input type="text" class="form-control extra_input" placeholder="조연" id="extra_0" name="extra_0">
+</div>
+<input type="hidden" name="extra_hide" id="extra_hide">
+<input type="button" value="추가" id="extra_btn" class="insertBtn">
 </div>
 <div class="form-group m-b-10" id="director_title">
 <label class="col-lg-3 col-form-label director_label">감독</label>
 <div class="col-lg-7 director_div">
-<input class="form-control" type="text" placeholder="감독" id="director" name="director">
+<input class="form-control director_input" type="text" placeholder="감독" id="director_0" name="director_0">
 </div>
+<input type="hidden" name="director_hide" id="director_hide">
 <input type="button" value="추가" id="director_btn" class="insertBtn">
 </div>
 
 <div class="form-group m-b-10" id="genre_title">
 <label class="col-lg-3 col-form-label genre_label">장르</label>
 <div class="col-lg-7 genre_div">
-<select class="form-control" id="genre_select" name="genre_select">
+<select class="form-control genre_select" id="genre_select_0" name="genre_select_0">
 <option value="코미디">코미디</option>
 <option value="스릴러">스릴러</option>
 <option value="공포">공포</option>
@@ -533,6 +543,7 @@ to {
 <option value="애니메이션">애니매이션</option>
 </select>
 </div>
+<input type="hidden" name="genre_hide" id="genre_hide">
 <input type="button" value="추가" id="genre_btn" class="insertBtn">
 </div>
 <div class="form-group m-b-10" id="director_title">
@@ -879,24 +890,63 @@ document.getElementById("nextdate").value = today.getDate();
      var actor_titleContainer = document.getElementById("actor_title");
 
      var actor_counter = 1; // 초기 카운터 값
+     
 
      actor_Button.addEventListener("click", function() {
          var actor_label = actor_titleContainer.querySelector(".actor_label");
-         var actor_Input = actor_titleContainer.querySelector(".actor_div");
+         var actor = actor_titleContainer.querySelector(".actor_input");
+
 
          // 라벨 복사
          var actor_newLabel = actor_label.cloneNode(true);
-         actor_newLabel.textContent = "배우 " + actor_counter;
+         actor_newLabel.textContent = "주연 " + actor_counter;
          
          // 입력 요소 복사
-         var actor_newInput = actor_Input.cloneNode(true);
-
+       
+         var actor_newInput = actor.cloneNode(true);
+         actor_newInput.name = "actor_" + actor_counter;
+         actor_newInput.id = "actor_" + actor_counter;
+         actor_newInput.style.position = "relative";
+         actor_newInput.style.left="15px";
+         actor_newInput.style.width = "450px";
          // 복제한 라벨과 입력 요소를 추가
          actor_titleContainer.appendChild(actor_newLabel);
          actor_titleContainer.appendChild(actor_newInput);
 
          actor_counter++; // 카운터 증가
      });
+	 var extra_Button = document.getElementById("extra_btn");
+     var extra_titleContainer = document.getElementById("extra_title");
+
+     var extra_counter = 1; // 초기 카운터 값
+     
+
+     extra_Button.addEventListener("click", function() {
+         var extra_label = extra_titleContainer.querySelector(".extra_label");
+         var extra = extra_titleContainer.querySelector(".extra_input");
+
+
+         // 라벨 복사
+         var extra_newLabel = extra_label.cloneNode(true);
+         extra_newLabel.textContent = "조연 " + extra_counter;
+         
+         // 입력 요소 복사
+       
+         var extra_newInput = extra.cloneNode(true);
+         extra_newInput.name = "extra_" + extra_counter;
+         extra_newInput.id = "extra_" + extra_counter;
+         extra_newInput.style.position = "relative";
+         extra_newInput.style.left="15px";
+         extra_newInput.style.width = "450px";
+         // 복제한 라벨과 입력 요소를 추가
+         extra_titleContainer.appendChild(extra_newLabel);
+         extra_titleContainer.appendChild(extra_newInput);
+
+         extra_counter++; // 카운터 증가
+     });
+     
+     
+     
      var director_addButton = document.getElementById("director_btn");
      var director_titleContainer = document.getElementById("director_title");
 
@@ -904,7 +954,7 @@ document.getElementById("nextdate").value = today.getDate();
 
      director_addButton.addEventListener("click", function() {
          var director_label = director_titleContainer.querySelector(".director_label");
-         var director_Input = director_titleContainer.querySelector(".director_div");
+         var director_Input = director_titleContainer.querySelector(".director_input");
 
          // 라벨 복사
          var director_newLabel = director_label.cloneNode(true);
@@ -912,7 +962,12 @@ document.getElementById("nextdate").value = today.getDate();
          
          // 입력 요소 복사
          var director_newInput = director_Input.cloneNode(true);
-
+         director_newInput.name = "director_" + director_counter;
+         director_newInput.id = "director_" + director_counter;
+         director_newInput.style.position = "relative";
+         director_newInput.style.left="15px";
+         director_newInput.style.width = "450px";
+		
          // 복제한 라벨과 입력 요소를 추가
          director_titleContainer.appendChild(director_newLabel);
          director_titleContainer.appendChild(director_newInput);
@@ -922,28 +977,34 @@ document.getElementById("nextdate").value = today.getDate();
      var genre_addButton = document.getElementById("genre_btn");
      var genre_titleContainer = document.getElementById("genre_title");
 
+     var genre_counter=1;
 
      genre_addButton.addEventListener("click", function() {
          var genre_label = genre_titleContainer.querySelector(".genre_label");
-         var genre_Input = genre_titleContainer.querySelector(".genre_div");
+         var genre_Input = genre_titleContainer.querySelector(".genre_select");
 
          // 라벨 복사
          var genre_newLabel = genre_label.cloneNode(true);
          
          // 입력 요소 복사
          var genre_newInput = genre_Input.cloneNode(true);
+         genre_newInput.name = "genre_select_" + genre_counter;
+         genre_newInput.id = "genre_select_" + genre_counter;
+         genre_newInput.style.position = "relative";
+         genre_newInput.style.left="15px";
+         genre_newInput.style.width = "450px";
 
          // 복제한 라벨과 입력 요소를 추가
          genre_titleContainer.appendChild(genre_newLabel);
          genre_titleContainer.appendChild(genre_newInput);
+         
+         genre_counter++;
 
      });
      var genre_selectElement = document.getElementById("genre_select");
-     var genre_disableButton = document.getElementById("genre_btn");
-
-     genre_disableButton.addEventListener("click", function() {
+    /*  genre_disableButton.addEventListener("click", function() {
     	 genre_selectElement.disabled = true; // select 요소를 비활성화
-     });
+     }); */
      $(function(){
     		 $("#movie_save_btn").click(function(){
     			 var files=$('#still_file')[0].files;
@@ -952,6 +1013,10 @@ document.getElementById("nextdate").value = today.getDate();
     	              fileName+=files[i].name+"/";
     	    			 
     	          } 
+    	          $("#actor_hide").val(actor_counter);
+    	          $("#extra_hide").val(extra_counter);
+    	          $("#director_hide").val(director_counter);
+    	          $("#genre_hide").val(genre_counter);
     	              $("#still_hide").val(fileName);
     	     		 $("#movie_info_all_frm").submit();
     	        

@@ -216,19 +216,19 @@ to {
 
 			<div class="row">
 
-				<div class="col-lg-10" style="width: 1600px; height: 800px">
+				<div class="col-lg-10" >
 
 					<div class="radius-container m-b-30"
-						style="width: 1600px; height: 800px">
+						>
 
 
 						<div
 							class="panel pagination-inverse bg-white clearfix no-rounded-corner m-b-0"
-							style="width: 1600px; height: 800px">
+							>
 
 							<div id="data-table_wrapper"
 								class="dataTables_wrapper form-inline dt-bootstrap no-footer"
-								style="width: 1600px; height: 800px">
+								>
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="dataTables_length" id="data-table_length"></div>
@@ -298,14 +298,14 @@ to {
 												%>
 
 												<tr class="odd">
-													<td id=<%=mmVO.getFileName()%> tabindex="0"
+													<td id=<%=mmVO.getMname()%> tabindex="0"
 														style="padding-left: 20px; vertical-align: middle;">
 														<div style="display: inline-block;">
 															<input type="checkbox">
 														</div>
 														<div style="display: inline-block;">
 															<img
-																src="http://localhost/HCY_CINEMA/common/poster/my_custom_file_name.jpg" style="width:200px;height:200px;">
+																src="http://localhost/HCY_CINEMA/common/poster/<%= mmVO.getFileName() %>" style="width:200px;height:200px;">
 														</div>
 													</td>
 
@@ -715,7 +715,9 @@ to {
 					</div>
 
 				</div>
-
+				<form action="http://localhost/HCY_CINEMA/admin/manageMovie/manage_insert_movie.jsp" id="plusmovie" name="plusmovie">
+	<input type="button" id="plus_btn" name="plus_btn" style="height:50px" value="영화 추가">
+			</form>
 			</div>
 
 		</div>
@@ -1064,7 +1066,7 @@ to {
 	<![endif]-->
 	<script src="jquery.slimscroll.min.js" type="text/javascript"></script>
 	<script src="jquery.cookie.js" type="text/javascript"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 	<script src="bootstrap_calendar.min.js" type="text/javascript"></script>
 	<script src="Chart.min.js" type="text/javascript"></script>
@@ -1097,6 +1099,8 @@ to {
 		gtag('js', new Date());
 
 		gtag('config', 'G-Y3Q0VGQKY3');
+		
+	
 	</script>
 	<script defer=""
 		src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854"
@@ -1124,6 +1128,11 @@ to {
 			ctx.fillStyle = "blue"; // 막대 색상
 			ctx.fillRect(startX, startY - barHeight, barWidth, barHeight);
 		} */
+		$(function(){
+			$("#plus_btn").click(function(){
+				$("#plusmovie").submit();
+			})
+		})
 	</script>
 
 </body>
