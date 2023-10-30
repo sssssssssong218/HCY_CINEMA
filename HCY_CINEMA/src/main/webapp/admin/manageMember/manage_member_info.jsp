@@ -69,7 +69,7 @@
     <script src="https://www.ncyok.or.kr:443/js/jquery-1.8.3.min.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/jquery.menu.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/common.js"></script>
-    <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script>
+<!--     <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script> -->
     <script src="https://www.ncyok.or.kr:443/js/printThis.js"></script>
     <meta name="naver-site-verification" content="8e74a1f533fc95526c71b92c12475d0129bcdd32">
     <meta name="robots" content="index,follow">
@@ -85,7 +85,7 @@
     <script src="https://www.ncyok.or.kr:443/js/jquery-1.8.3.min.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/jquery.menu.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/common.js"></script>
-    <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script>
+   <!--  <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script> -->
     <script src="https://www.ncyok.or.kr:443/js/printThis.js"></script>
     <meta name="naver-site-verification" content="8e74a1f533fc95526c71b92c12475d0129bcdd32">
     <meta name="robots" content="index,follow">
@@ -346,6 +346,7 @@
 			String memberId=request.getParameter("memberId");
 			
 			ManageMemberDAO mmDAO = ManageMemberDAO.getInstance();
+			MemberVO mVO=null;
 			List<MemberVO> list=mmDAO.selectMember(memberId);
 			
 			Encryption ec=Encryption.getInstance();
@@ -354,7 +355,6 @@
 			String tel="";
 			String email="";
 			
-			MemberVO mVO=null;
 			SimpleDateFormat inputDateFormat=new SimpleDateFormat("yyyyMMdd");
 			SimpleDateFormat outputDateFormat=new SimpleDateFormat("yyyy-MM-dd");
 			
@@ -375,7 +375,7 @@
 
                                 <div style="text-align:right">
                                <!--  <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_delete.jsp" method="POST"> -->
-                                	<input type="hidden" name="memberId" value="<%= mVO.getId() %>">
+                                	<input type="hidden" name="memberId" value="<%= mVO.getId() %>"> 
                                     <input class="btn btn-danger" type="submit" value="탈퇴" id="withdraw" onclick="confirmDelete()">
                                     <input class="btn btn-primary" type="submit" value="수정" id="modify" onclick="confirmModify()">
                                 
@@ -387,6 +387,7 @@
                             </div>
                             
                             <script>
+                            
 						    function confirmDelete() {
 						        var confirmDelete = confirm("회원을 정말 탈퇴시키겠습니까?");
 						        if (confirmDelete) {
@@ -401,16 +402,18 @@
 						    
 						    function confirmModify() {
 						        var confirmDelete = confirm("회원정보를 수정하시겠습니까?");
-						        if (confirmDelete) {
-						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_modify.jsp?memberId=<%= mVO.getId() %>"; //예를 선택한 경우 delete.jsp로 이동
+						             
+						       if (confirmDelete) {
+						        	$("#frm").submit();
 						        } else {
 						            alert("회원정보수정을 취소하셨습니다.");
 						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<%= mVO.getId()%>"; 
-			
 						        }//end else
+						       
 						    }//confirmModify
 							</script>
-
+							<form id="frm" action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_modify.jsp" method="post">
+							<input type="hidden" id="memberId"  name="memberId" value="<%= mVO.getId() %>"/>
                             <div class="formtablewrap">
                                 <table width="100%" class="formtable" cellpadding="0" cellspacing="5">
                                     <colgroup>
@@ -421,27 +424,27 @@
                                     <tbody>
                                       
                                         <tr>
-                                            <th>이름</th>
+                                            <th style="width:250px"><strong>이름</strong></th>
                                             <td style="text-align: center;"><%=name %></td>
                                         </tr>
                                         <tr>
-                                            <th>아이디</th>
+                                            <th><strong>아이디</strong></th>
                                             <td style="text-align: center;"><%=mVO.getId() %></td>
                                         </tr>
                                         <tr>
-                                            <th>생년월일</th>
+                                            <th><strong>생년월일</strong></th>
                                             <td style="text-align: center;"><%= formattedBirthDate %></td>
                                         </tr>
                                         <tr>
-                                            <th>휴대전화</th>
+                                            <th><strong>휴대전화</strong></th>
                                             <td style="text-align: center;"><%=tel %></td>
                                         </tr>
                                         <tr>
-                                            <th>이메일</th>
+                                            <th><strong>이메일</strong></th>
                                             <td style="text-align: center;"><%=email %></td>
                                         </tr>
                                         <tr>
-                                            <th>가입일</th>
+                                            <th><strong>가입일</strong></th>
                                             <td style="text-align: center;"><%=mVO.getJoindate()%></td>
                                         </tr>
                                         <%
@@ -449,6 +452,7 @@
 										%>
                                     </tbody>
                                 </table>
+							 </form>
                                 
                                 
 
@@ -457,7 +461,7 @@
 
                             </div><br><br>
                             <div align="center">
-<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"><span style="color: white; font-size: 15px;"><i>글 목록</i></span></a></button>
+<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"><span style="color: white; font-size: 15px;"><i>글 목록</i></span></a></button>
 </div>
                             </section>
 

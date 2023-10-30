@@ -334,9 +334,8 @@
                                                             <option>========구분========</option>
                                                             <option>자주찾는질문</option>
                                                             <option>자유게시판</option>
-                                                            <option>예매</option>
-                                                            <option>VIP</option>
-                                                            <option>현금영수증</option>
+                                                            <option>시스템점검</option>
+                                                            <option>극장</option>
                                                             <option>기타</option>
                                                         </select>
                                                         <!-- <script src="https://www.ncyok.or.kr:443/js/autosave.js"></script> -->

@@ -331,8 +331,7 @@
                 <span class="bo_v_link_cnt">1회 연결</span>
             </li>
                 </ul>
-    </section>
-    <!-- } 관련링크 끝 -->
+    </section>    <!-- } 관련링크 끝 -->
 
 
                             <!-- 게시물 상단 버튼 시작 {
@@ -345,6 +344,7 @@
   <%
 			String memberId=request.getParameter("memberId");
 			
+  			System.out.println( memberId );
 			ManageMemberDAO mmDAO = ManageMemberDAO.getInstance();
 			List<MemberVO> list=mmDAO.selectMember(memberId);
 			
@@ -356,7 +356,7 @@
 			
 			MemberVO mVO=null;
 			SimpleDateFormat inputDateFormat=new SimpleDateFormat("yyyyMMdd");
-			SimpleDateFormat outputDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat outputDateFormat=new SimpleDateFormat("yyyyMMdd");
 			
 			for(int i=0; i<list.size(); i++){
 				mVO=list.get(i);
@@ -369,27 +369,12 @@
 				String formattedBirthDate=outputDateFormat.format(birthDate);
 			%>
 			
-                            <!-- 본문 내용 시작 { -->
-                            <div class="formtit">회원 기본정보</div>
-                            <div style="text-align:right">
-
-                                <div style="text-align:right">
-                               <!--  <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_delete.jsp" method="POST"> -->
-                                	<input type="hidden" name="memberId" value="<%= mVO.getId() %>">
-                                    <input class="btn btn-danger" type="submit" value="저장" id="save" onclick="confirmSave()">
-                                
-                                <!-- </form> -->
-                                </div>
                                
-
-
-                            </div>
                             
                             <script>
 						    function confirmSave() {
 						        var confirmSave = confirm("수정된 회원정보를 저장하시겠습니까?");
 						        if (confirmSave) {
-						            alert("회원정보가 변경되었습니다.");
 						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_save.jsp?memberId=<%= mVO.getId() %>"; //예를 선택한 경우 delete.jsp로 이동
 						        } else {
 						            alert("변경된 내용이 취소되었습니다.");
@@ -401,6 +386,21 @@
 						    
 							</script>
 
+                            <!-- 본문 내용 시작 { -->
+                            <div class="formtit">회원 기본정보</div>
+                            <div style="text-align:right">
+
+                                <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_save.jsp" mehtod="post">
+                                <div style="text-align:right">
+                               <!--  <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_delete.jsp" method="POST"> -->
+                                	<input type="hidden" name="memberId" value="<%= mVO.getId() %>">
+                                    <input class="btn btn-danger" type="submit" value="저장" id="save" onclick="confirmSave()">
+                                
+                                <!-- </form> -->
+                                </div>
+
+
+                            
                             <div class="formtablewrap">
                                 <table width="100%" class="formtable" cellpadding="0" cellspacing="5">
                                     <colgroup>
@@ -411,30 +411,45 @@
                                     <tbody>
                                       
                                         <tr>
-                                            <th>아이디</th>
-									        <td style="text-align: center;">
-									            <input type="text" name="id" value="<%=mVO.getId() %>">
+                                            <th style="width:250px"><strong>이름</strong></th>
+                                            <td style="text-align: center;">
+                                            <input type="text" name="newName" value="<%= name %>">
+                                            </td>
+                                            <td>ex) 홍길동</td>
+                                        </tr>
+                                        <tr>
+                                            <th><strong>아이디</strong></th>
+									        <td colspan="2" style="text-align: center;"><%=mVO.getId() %>
 									        </td>
+									        
                                         </tr>
                                         <tr>
-                                            <th>아이디</th>
-                                            <td style="text-align: center;"><%=mVO.getId() %></td>
+                                            <th><strong>생년월일</strong></th>
+                                            <td style="text-align: center; margin-left: 1000px;">
+                                            <input type="text" name="newBirth" value="<%= formattedBirthDate %>">
+                                            </td>
+                                            <td style="width:400px">ex) 19980101</td>
                                         </tr>
                                         <tr>
-                                            <th>생년월일</th>
-                                            <td style="text-align: center;"><%= formattedBirthDate %></td>
+                                            <th><strong>휴대전화</strong></th>
+                                            <td style="text-align: center;">
+                                            <input type="text" name="newTel" value="<%=tel %>">
+                                            </td>
+                                            <td>ex) 010-1234-5678</td>
                                         </tr>
                                         <tr>
-                                            <th>휴대전화</th>
-                                            <td style="text-align: center;"><%=tel %></td>
+                                            <th><strong>이메일</strong></th>
+                                            <td style="text-align: center;">
+                                            <input type="text" name="newEmail" value="<%=email %>">
+                                            </td>
+                                            <td>ex) songsong@naver.com</td>
                                         </tr>
                                         <tr>
-                                            <th>이메일</th>
-                                            <td style="text-align: center;"><%=email %></td>
-                                        </tr>
-                                        <tr>
-                                            <th>가입일</th>
-                                            <td style="text-align: center;"><%=mVO.getJoindate()%></td>
+                                            <th><strong>가입일</strong></th>
+                                            <td colspan="2" style="text-align: center;">
+                                            <%=mVO.getJoindate()%>
+                                            </td>
+                                            
                                         </tr>
                                         <%
 										}
@@ -447,10 +462,13 @@
                                 <!-- } 본문 내용 끝 -->
 
 
-                            </div><br><br>
+                            </div>
+										</form>
+                            </div>
+                            <br><br>
                             <div align="center">
-<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"><span style="color: white; font-size: 15px;"><i>글 목록</i></span></a></button>
-</div>
+							<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"><span style="color: white; font-size: 15px;"><i>글 목록</i></span></a></button>
+							</div>
                             </section>
 
                             <!-- 링크 버튼 시작 { -->

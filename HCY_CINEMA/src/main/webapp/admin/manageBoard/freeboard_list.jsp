@@ -216,7 +216,7 @@ to {
 
 			<ol class="breadcrumb pull-right">
 				<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-				<li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp">게시판</a></li>
+				<li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp">자유게시판</a></li>
 				<li class="breadcrumb-item active">Dashboard v3</li>
 			</ol>
 
@@ -297,13 +297,13 @@ to {
         <input type="submit" value="검색" class="btn_search" style="margin-left: 10px;">
         </form>
     </fieldset>
+    <br><br>
 <!-- } 게시판 검색 끝 -->
     <!--div id="bo_list_total">
         <span>Total 2,584건</span>
         1 페이지
     </div-->
 </div>
-<div align="right"><button type="button" class="btn btn-dark" style="width:150px;height:50px">글 쓰기</button></div><br>
 <!-- } 게시판 페이지 정보 및 버튼 끝 -->
 
 
@@ -365,6 +365,7 @@ to {
        brVO.setEndNum(endNum);
        %>
 	<strong>
+	<br><br>
 	<font size="4">
        총<%= totalCount %>개의 게시글이 조회되었습니다.</font><br/><br/>
     </strong>   

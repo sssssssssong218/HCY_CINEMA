@@ -1,3 +1,6 @@
+<%@page import="encryption.Encryption"%>
+<%@page import="manageMember.ManageMemberDAO"%>
+<%@page import="manageMember.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page info="" %>
@@ -19,10 +22,50 @@
 $(function(){
    
 });//ready
+
+<%
+String memberId=request.getParameter("memberId");
+String newName=request.getParameter("newName");
+String newBirth=request.getParameter("newBirth");
+String newTel=request.getParameter("newTel");
+String newEmail=request.getParameter("newEmail");
+
+System.out.print(newBirth);
+
+Encryption ec=Encryption.getInstance();
+
+String EnName=ec.encryption(newName); 
+String EnTel=ec.encryption(newTel);
+String EnEmail=ec.encryption(newEmail);
+MemberVO mVO=new MemberVO();
+
+mVO.setId(memberId);
+mVO.setMname(EnName); 
+mVO.setTel(EnTel);
+mVO.setBirth(newBirth);
+mVO.setEmail(EnEmail);
+
+ManageMemberDAO mmDAO=ManageMemberDAO.getInstance();
+boolean isUpdate=mmDAO.updateMemberInfo(mVO);
+
+if(isUpdate){
+%>
+	alert("회원정보가 수정되었습니다.");
+<%	
+	response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp");
+}else{
+%>
+	alert("회원정보 수정중 오류가 발생하였습니다.");
+<%		
+}//end else
+%>
 </script>
+
 
 </head>
 <body>
-asdfasdfasdf
+
+
+
 </body>
 </html>

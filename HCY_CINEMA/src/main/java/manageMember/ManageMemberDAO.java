@@ -245,6 +245,40 @@ private ManageMemberDAO() {
 	      return list;
 	   }//selectMember
 	   
+	   public boolean updateMemberInfo(MemberVO mVO) throws SQLException {
+			boolean flag=false;
+			
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			
+			DBConnection db=DBConnection.getInstance();
+			System.out.println(mVO.getMname()+" / "+mVO.getBirth()+" / "+mVO.getTel()+" / "+mVO.getEmail()+" / "+mVO.getId());
+			try {
+				con=db.getCon();
+				
+				StringBuilder updateMemberInfo=new StringBuilder();
+				updateMemberInfo.append("update member set  mname=?, birth=?, tel=?, email=? where id= ?");
+				
+				pstmt=con.prepareStatement(updateMemberInfo.toString());
+				
+				pstmt.setString(1, mVO.getMname());
+				pstmt.setString(2, mVO.getBirth());
+				pstmt.setString(3, mVO.getTel());
+				pstmt.setString(4, mVO.getEmail());
+				pstmt.setString(5, mVO.getId());
+				
+				int rowUpdate=pstmt.executeUpdate();
+				System.out.println(rowUpdate);
+				if(rowUpdate>0) {
+					flag=true;
+				}
+			}finally {
+				db.dbClose(rs, pstmt, con);
+			}
+			
+			return flag;
+		}//updateMemberInfo
 	   
 	
 }//class
