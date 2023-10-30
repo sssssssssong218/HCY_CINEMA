@@ -1,3 +1,6 @@
+<%@page import="movie.MovieInfoVO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="movie.ManageMovieVO"%>
 <%@page import="movie.DetailMovieDAO"%>
 <%@page import="java.util.Calendar"%>
@@ -11,7 +14,8 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 <meta content="" name="description">
 <meta content="" name="author">
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
 <link href="../CSS/css" rel="stylesheet" id="fontFamilySrc">
 <link href="../CSS/jquery-ui.min.css" rel="stylesheet">
 <link href="../CSS/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +29,8 @@
 <link href="../CSS/dataTables.bootstrap.min.css" rel="stylesheet">
 <link href="../CSS/responsive.bootstrap.min.css" rel="stylesheet">
 
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="pace.min.js" type="text/javascript"></script>
 
@@ -107,9 +112,13 @@ to {
 			<div class="container-fluid">
 
 				<div class="navbar-header">
-					<a href="../ManageDashBoard/manage_dashboard.jsp" class="navbar-brand" style="line-height: 0px"><img src="../../common/images/admin_logo.png"></a>
-					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
-						<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					<a href="../ManageDashBoard/manage_dashboard.jsp"
+						class="navbar-brand" style="line-height: 0px"><img
+						src="../../common/images/admin_logo.png" style="position:absolute;bottom:0px"></a>
+					<button type="button" class="navbar-toggle"
+						data-click="sidebar-toggled">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
 					</button>
 				</div>
 			</div>
@@ -490,11 +499,22 @@ to {
 String movieCode=request.getParameter("movieCode");
 DetailMovieDAO dmDAO=DetailMovieDAO.getInstance();
 ManageMovieVO mmVO=dmDAO.selectSpecificMovieInfo(movieCode);
+Calendar calDB=Calendar.getInstance();
+calDB.setTime(mmVO.getReleaseDate());
+int releaseyear=calDB.get(Calendar.YEAR);
+int releasemonth=calDB.get(Calendar.MONTH)+1;
+int releasedate=calDB.get(Calendar.DAY_OF_MONTH);
+calDB.setTime(mmVO.getEndDate());
+int endyear=calDB.get(Calendar.YEAR);
+int endmonth=calDB.get(Calendar.MONTH)+1;
+int enddate=calDB.get(Calendar.DAY_OF_MONTH);
+List<String> list=new ArrayList<String>();
+
 %>
 
 <h1 class="page-header">영화 추가</h1>
 
-<form class="form-horizontal" accept-charset="UTF-8" action="movie_info_insert.jsp" method="post" enctype="multipart/form-data" id="movie_info_all_frm">
+<form class="form-horizontal" accept-charset="UTF-8" action="modify_movie.jsp" method="post" enctype="multipart/form-data" id="movie_info_all_frm">
 <div class="section-container section-with-top-border p-b-10">
 
 <div class="row">
@@ -513,70 +533,96 @@ ManageMovieVO mmVO=dmDAO.selectSpecificMovieInfo(movieCode);
 <div class="form-group m-b-10" id="actor_title">
 <label class="col-lg-3 col-form-label actor_label">주연</label>
 <div class="col-lg-7 actor_div">
-<input type="text" class="form-control actor_input" placeholder="주연" id="actor_0" name="actor_0">
+<%
+List<String> actorList=new ArrayList<String>();
+actorList=dmDAO.selectActor(movieCode);
+for(int i=0;i<actorList.size();i++){
+%>
+<input type="text" class="form-control actor_input" value="<%= actorList.get(i) %>" id="actor_<%=i %>" name="actor_<%=i %>">
+<%} %>
 </div>
 <input type="hidden" name="actor_hide" id="actor_hide">
-<input type="button" value="추가" id="actor_btn" class="insertBtn">
+<input type="button" value="추가" id="actor_btn" class="insertBtn"  style="height:35px">
 </div>
 <div class="form-group m-b-10" id="extra_title">
 <label class="col-lg-3 col-form-label extra_label">조연</label>
 <div class="col-lg-7 extra_div">
-<input type="text" class="form-control extra_input" placeholder="조연" id="extra_0" name="extra_0">
+<%
+List<String> extraList=new ArrayList<String>();
+extraList=dmDAO.selectExtra(movieCode);
+for(int i=0;i<extraList.size();i++){
+%>
+<input type="text" class="form-control extra_input" value="<%= extraList.get(i) %>" id="extra_<%= i %>" name="extra_<%=i%>">
+<%} %>
 </div>
 <input type="hidden" name="extra_hide" id="extra_hide">
-<input type="button" value="추가" id="extra_btn" class="insertBtn">
+<input type="button" value="추가" id="extra_btn" class="insertBtn" style="height:35px">
 </div>
 <div class="form-group m-b-10" id="director_title">
+
 <label class="col-lg-3 col-form-label director_label">감독</label>
+
 <div class="col-lg-7 director_div">
-<input class="form-control director_input" type="text" placeholder="감독" id="director_0" name="director_0">
+<%
+List<String> directorList=new ArrayList<String>();
+directorList=dmDAO.selectDirector(movieCode);
+for(int i=0;i<directorList.size();i++){
+%>
+<input class="form-control director_input" type="text" value="<%= directorList.get(i) %>" id="director_<%=i %>" name="director_<%=i%>">
+<%} %>
 </div>
 <input type="hidden" name="director_hide" id="director_hide">
-<input type="button" value="추가" id="director_btn" class="insertBtn">
+<input type="button" value="추가" id="director_btn" class="insertBtn" style="height:35px">
 </div>
 
 <div class="form-group m-b-10" id="genre_title">
 <label class="col-lg-3 col-form-label genre_label">장르</label>
 <div class="col-lg-7 genre_div">
-<select class="form-control genre_select" id="genre_select_0" name="genre_select_0">
-<option value="코미디">코미디</option>
-<option value="스릴러">스릴러</option>
-<option value="공포">공포</option>
-<option value="로맨스">로맨스</option>
-<option value="드라마">드라마</option>
-<option value="액션">액션</option>
-<option value="SF">SF</option>
-<option value="애니메이션">애니매이션</option>
+<%
+List<String> genreList=new ArrayList<String>();
+genreList=dmDAO.selectGenre(movieCode);
+for(int i=0;i<genreList.size();i++){
+%>
+<select class="form-control genre_select" id="genre_select_<%= i %>" name="genre_select_<%=i%>">
+<option value="코미디" <%= "코미디".equals(genreList.get(i)) ? "selected='selected'":"" %>>코미디</option>
+<option value="스릴러" <%= "스릴러".equals(genreList.get(i)) ? "selected='selected'":"" %>>스릴러</option>
+<option value="공포" <%= "공포".equals(genreList.get(i)) ? "selected='selected'":"" %>>공포</option>
+<option value="로맨스" <%= "로맨스".equals(genreList.get(i)) ? "selected='selected'":"" %>>로맨스</option>
+<option value="드라마" <%= "드라마".equals(genreList.get(i)) ? "selected='selected'":"" %>>드라마</option>
+<option value="액션" <%= "액션".equals(genreList.get(i)) ? "selected='selected'":"" %>>액션</option>
+<option value="SF" <%= "SF".equals(genreList.get(i)) ? "selected='selected'":"" %>>SF</option>
+<option value="애니메이션" <%= "애니메이션".equals(genreList.get(i)) ? "selected='selected'":"" %>>애니메이션</option>
 </select>
+<%} %>
 </div>
 <input type="hidden" name="genre_hide" id="genre_hide">
-<input type="button" value="추가" id="genre_btn" class="insertBtn">
+<input type="button" value="추가" id="genre_btn" class="insertBtn" style="height:35px">
 </div>
 <div class="form-group m-b-10" id="director_title">
-<label class="col-lg-3 col-form-label">상영시간</label>
+<label class="col-lg-3 col-form-label">상영시간(분)</label>
 <div class="col-lg-7">
-<input class="form-control" type="text" placeholder="상영시간(분)" id="runningtime" name="runningtime">
+<input class="form-control" type="text" value="<%= mmVO.getRunningtime() %>" id="runningtime" name="runningtime">
 </div>
 </div>
 <div class="form-group m-b-10">
 <label class="col-lg-3 col-form-label">국가</label>
 <div class="col-lg-7">
-<input type="radio" name="country" id="domestic" value="국내" checked="checked">국내
-<input type="radio" name="country" id="foreign" value="외국">외국
+<input type="radio" name="country" id="domestic" value="d" checked="checked">국내
+<input type="radio" name="country" id="foreign" value="O">외국
 </div>
 </div>
 <div class="form-group m-b-10">
-<label class="col-lg-3 col-form-label">국가</label>
+<label class="col-lg-3 col-form-label">상영상테</label>
 <div class="col-lg-7">
-<input type="radio" name="status" id="ing" value="Y" checked="checked">상영중
-<input type="radio" name="status" id="ending" value="N">종영
-<input type="radio" name="status" id="willing" value="W">상영예정
+<input type="radio" name="status" id="ing" value="Y" <%= "Y".equals(mmVO.getStatus()) ? "checked='checked'":""%>>상영중
+<input type="radio" name="status" id="ending" value="N" <%= "N".equals(mmVO.getStatus()) ? "checked='checked'":""%>>종영
+<input type="radio" name="status" id="willing" value="W" <%= "W".equals(mmVO.getStatus()) ? "checked='checked'":""%>>상영예정
 </div>
 </div>
 <div class="form-group" style="height:200px">
 <label class="col-lg-3 col-form-label">상세정보</label>
 <div class="col-lg-7">
-<textarea  class="form-control" rows="3" placeholder="상세내용" style="height:150px" id="movie_info" name="movie_info"></textarea>
+<textarea  class="form-control" rows="3" placeholder="상세내용" style="height:150px" id="movie_info" name="movie_info"><%= mmVO.getPlot() %></textarea>
 </div>
 <div class="checkbox disabled m-b-25">
 <h4>개봉기간 설정</h4>
@@ -587,7 +633,7 @@ Calendar cal=Calendar.getInstance();
 int nowYear=cal.get(Calendar.YEAR)-1;
 for(int i=nowYear;i<nowYear+3;i++){
 %>
-<option value="<%= i %>"<%=  i==nowYear+1 ? "selected='selected'":""%> ><%=i%></option>
+<option value="<%= i %>"<%=  i==releasedate ? "selected='selected'":""%> ><%=i%></option>
 <%} %>
 
 </select>
@@ -597,7 +643,7 @@ for(int i=nowYear;i<nowYear+3;i++){
 int nowMonth = cal.get(Calendar.MONTH) + 1;
 for(int i = 1; i < 13; i++) {
 %>
-<option value="<%= i %>"<%= i == nowMonth ? "selected='selected'" : "" %>><%= i %></option>
+<option value="<%= i %>"<%= i == releasemonth ? "selected='selected'" : "" %>><%= i %></option>
 <%
 } %>
 </select>
@@ -626,8 +672,8 @@ function updateDays() {
 updateDays();
 //기본 선택을 오늘 날짜로 설정
 var today = new Date();
-document.getElementById("month").value = today.getMonth() + 1; // 월은 0부터 시작하므로 +1
-document.getElementById("date").value = today.getDate();
+document.getElementById("month").value = <%=releasemonth%>; // 월은 0부터 시작하므로 +1
+document.getElementById("date").value = <%=releasedate%>;
 </script>
 <label style="padding:0px; font-size:20px;">~</label>
 <select style="width:100px; height:30px; text-align:center; font-size: 20px;" id="nextyear" name="nextyear">
@@ -637,7 +683,7 @@ cal=Calendar.getInstance();
 int nextYear=cal.get(Calendar.YEAR);
 for(int i=nowYear;i<nowYear+3;i++){
 %>
-<option value="<%= i %>"<%=  i==nextYear+1 ? "selected='selected'":""%> ><%=i%></option>
+<option value="<%= i %>"<%=  i==endyear ? "selected='selected'":""%> ><%=i%></option>
 <%} %>
 
 </select>
@@ -647,7 +693,7 @@ for(int i=nowYear;i<nowYear+3;i++){
 int nextMonth = cal.get(Calendar.MONTH) + 1;
 for(int i = 1; i < 13; i++) {
 %>
-<option value="<%= i %>"<%= i == nextMonth ? "selected='selected'" : "" %>><%= i %></option>
+<option value="<%= i %>"<%= i == endmonth ? "selected='selected'" : "" %>><%= i %></option>
 <%
 } %>
 </select>
@@ -676,20 +722,20 @@ function updateDays() {
 updateDays();
 //기본 선택을 오늘 날짜로 설정
 var today = new Date();
-document.getElementById("nextmonth").value = today.getMonth() + 1; // 월은 0부터 시작하므로 +1
-document.getElementById("nextdate").value = today.getDate();
+document.getElementById("nextmonth").value = <%=endmonth%>; // 월은 0부터 시작하므로 +1
+document.getElementById("nextdate").value = <%=enddate%>;
 </script>
 </div>
 
 
+<div class="radio" style="position:absolute;bottom:-160px;right:640px">
+<strong style="font-size:20px">연령대 설정</strong><br/>
+<input type="radio" id="ageGroup" name="ageGroup" value="AL" <%= "AL".equals(mmVO.getMovieRatting()) ? "checked='checked'" : "" %>><label style="font-size:15px">전체 관람</label><img src="../../common/images/all.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="12" <%= "12".equals(mmVO.getMovieRatting()) ? "checked='checked'" : "" %>><label style="font-size:15px">12세</label><img src="../../common/images/12age.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="15" <%= "15".equals(mmVO.getMovieRatting()) ? "checked='checked'" : "" %>><label style="font-size:15px">15세</label><img src="../../common/images/15age.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="18" <%= "18".equals(mmVO.getMovieRatting()) ? "checked='checked'" : "" %>><label style="font-size:15px">청소년 관람 불가</label><img src="../../common/images/18age.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="RS" <%= "RS".equals(mmVO.getMovieRatting()) ? "checked='checked'" : "" %>><label style="font-size:15px">제한사영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
 </div>
-<div class="radio" style="position:absolute;bottom:-160px">
-<h4>연령대 설정</h4>
-<input type="radio" id="ageGroup" name="ageGroup" value="AL"><label style="font-size:15px">전체 관람</label><img src="../../common/images/all.png" style="padding-left:10px"><br>
-<input type="radio" id="ageGroup" name="ageGroup" value="12"><label style="font-size:15px">12세</label><img src="../../common/images/12age.png" style="padding-left:10px"><br>
-<input type="radio" id="ageGroup" name="ageGroup" value="15"><label style="font-size:15px">15세</label><img src="../../common/images/15age.png" style="padding-left:10px"><br>
-<input type="radio" id="ageGroup" name="ageGroup" value="18"><label style="font-size:15px">청소년 관람 불가</label><img src="../../common/images/18age.png" style="padding-left:10px"><br>
-<input type="radio" id="ageGroup" name="ageGroup" value="RS"><label style="font-size:15px">제한사영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
 </div>
 </div>
 
@@ -705,18 +751,45 @@ document.getElementById("nextdate").value = today.getDate();
 			<p><input type="hidden" value="" id="poster_hide" name="poster_hide"></p>	 	
 	 	</fieldset>
 	 </div>
-	 <div style="display:inline-block">
-	 <img src="">
-	 </div>
+	<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="http://localhost/HCY_CINEMA/common/poster/<%= dmDAO.selectPoster(movieCode) %>" class="d-block w-100" style="height:440px;width:790px;">
+    </div>
+  </div>
+</div>
 <div style="display:inline-block">
 	 	<fieldset>
 			<p>스틸컷 : <input type="file" id="still_file" name="still_file" multiple="multiple"></p>
 			<p><input type="hidden" value="" id="still_hide" name="still_hide"></p>	 	
 	 	</fieldset>
 	 </div>
-	 <div style="display:inline-block">
-	 <img src="">
-	 </div>
+	 <%
+	 List<String> stillImgList=dmDAO.selectStill(movieCode);
+	 %>
+	<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="http://localhost/HCY_CINEMA/common/poster/<%= stillImgList.get(0) %>" class="d-block w-100" >
+    </div>
+    <%for(int i=1;i<stillImgList.size();i++){
+    	%>
+    <div class="carousel-item">
+      <img src="http://localhost/HCY_CINEMA/common/poster/<%= stillImgList.get(i) %>" class="d-block w-100">
+    </div>
+  <% }%>  
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+s	
+	 
 <div style="display:inline-block">
 	 	<fieldset>
 			<p>트레일러 : <input type="file" name="trailer_file"></p>
@@ -726,9 +799,9 @@ document.getElementById("nextdate").value = today.getDate();
 	 <div style="display:inline-block">
 	 <img src="">
 	 </div>
-	 
+	</div> 
 
-</div>
+
 
 </div>
 
@@ -895,7 +968,7 @@ document.getElementById("nextdate").value = today.getDate();
 	 var actor_Button = document.getElementById("actor_btn");
      var actor_titleContainer = document.getElementById("actor_title");
 
-     var actor_counter = 1; // 초기 카운터 값
+     var actor_counter =<%= actorList.size()%>; // 초기 카운터 값
      
 
      actor_Button.addEventListener("click", function() {
@@ -924,7 +997,7 @@ document.getElementById("nextdate").value = today.getDate();
 	 var extra_Button = document.getElementById("extra_btn");
      var extra_titleContainer = document.getElementById("extra_title");
 
-     var extra_counter = 1; // 초기 카운터 값
+     var extra_counter = <%=extraList.size()%>; // 초기 카운터 값
      
 
      extra_Button.addEventListener("click", function() {
@@ -956,7 +1029,7 @@ document.getElementById("nextdate").value = today.getDate();
      var director_addButton = document.getElementById("director_btn");
      var director_titleContainer = document.getElementById("director_title");
 
-     var director_counter = 1; // 초기 카운터 값
+     var director_counter = <%=directorList.size()%>; // 초기 카운터 값
 
      director_addButton.addEventListener("click", function() {
          var director_label = director_titleContainer.querySelector(".director_label");
@@ -983,7 +1056,7 @@ document.getElementById("nextdate").value = today.getDate();
      var genre_addButton = document.getElementById("genre_btn");
      var genre_titleContainer = document.getElementById("genre_title");
 
-     var genre_counter=1;
+     var genre_counter=<%=genreList.size()%>;
 
      genre_addButton.addEventListener("click", function() {
          var genre_label = genre_titleContainer.querySelector(".genre_label");
