@@ -315,4 +315,3 @@ public class ManageBoardDAO {
 	
 	
 }//class
-

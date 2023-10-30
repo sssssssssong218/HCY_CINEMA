@@ -11,7 +11,7 @@
     
 </head>
 <body>
-<%
+<% 
     String memberId = request.getParameter("memberId");
 
 	ManageMemberDAO mmDAO=ManageMemberDAO.getInstance();
