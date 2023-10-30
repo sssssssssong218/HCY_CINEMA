@@ -1,3 +1,5 @@
+<%@page import="board.NoticeVO"%>
+<%@page import="board.ManageNoticeDAO"%>
 <%@page import="board.BoardVO"%>
 <%@page import="board.ManageBoardDAO"%>
 <%@page import="java.util.Date"%>
@@ -31,7 +33,7 @@
     <meta name="viewport" content="width=1200, user-scalable=no">
     <meta http-equiv="imagetoolbar" content="no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>자유게시판 글</title>
+    <title>공지사항 글</title>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.ncyok.or.kr:443/theme/basic/css/default.css?ver=1697535328">
@@ -249,10 +251,10 @@
                             <li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
                                     <span>회원관리</span>
                                 </a></li>
-                            <li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
+                            <li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
                                     <span>게시판 관리</span>
                                 </a></li>
-                            <li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"> <img class="fa fa-file" src="../../common/images/notice_icon.png">
+                            <li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"> <img class="fa fa-file" src="../../common/images/notice_icon.png">
                                 <span>공지사항 관리</span>
                             </a></li>
                         </ul>
@@ -264,18 +266,18 @@
             </div>
             <div class="sidebar-bg"></div>
 <%
-	String boardTitle=request.getParameter("postNum");
-	int postNum=Integer.parseInt(boardTitle);
+	String noticeTitle=request.getParameter("noticeNum");
+	int noticeNum=Integer.parseInt(noticeTitle);
 	
-	ManageBoardDAO mbDAO=ManageBoardDAO.getInstance();
-	List<BoardVO> list=mbDAO.selectSpecificBoard(postNum);
+	ManageNoticeDAO mnDAO=ManageNoticeDAO.getInstance();
+	List<NoticeVO> list=mnDAO.selectSpecificNotice(noticeNum);
 	
-	BoardVO bVO=null;
+	NoticeVO nVO=null;
 	for(int i=0;i<list.size();i++){
-		bVO=list.get(i);
+		nVO=list.get(i);
 	}//end for
 	
-	 mbDAO.increaseViewCount(postNum);
+	mnDAO.increaseViewCount(noticeNum);
 	
 %>
 
@@ -283,7 +285,7 @@
 
                 <ol style="text-align:right">
                     <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-                    <li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp">게시판관리</a></li>
+                    <li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp">공지사항 관리</a></li>
                 </ol>
 
 
@@ -313,7 +315,7 @@
                             <div id="container_title">
 
                                 <div class="conTit_tt">
-                                    <span>자유게시판</span>
+                                    <span>공지사항</span>
                                     <span style="padding-left:30px;font-size:.9em;font-weight:normal;">
 
                                     </span>
@@ -328,39 +330,39 @@
                         <script src="https://www.ncyok.or.kr:443/js/viewimageresize.js"></script>
 						<script>
 						function confirmDelete(){
-							var confirmDelete=confirm("게시글을 정말 삭제하시겠습니까?");
+							var confirmDelete=confirm("공지글을 정말 삭제하시겠습니까?");
 							if(confirmDelete){
-								alert("게시글이 삭제되었습니다.");
-								window.location.href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_delete.jsp?postNum=<%=bVO.getPostNum()%>";
+								alert("공지사항이 삭제되었습니다.");
+								window.location.href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_delete.jsp?noticeNum=<%=nVO.getNoticeNum()%>";
 							}else{
-								alert("게시글 삭제가 취소되었습니다.");
-								window.location.href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_info.jsp?postNum=<%=bVO.getPostNum()%>";
+								alert("공지사항 삭제가 취소되었습니다.");
+								window.location.href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_info.jsp?noticeNum=<%=nVO.getNoticeNum()%>";
 							}//end else
-						}//confirmDelete
+						}//end if
 						
 						</script>
                         <!-- 게시물 읽기 시작 { -->
 
                         <article id="bo_v" style="width:100%">
-                        <div class="formtit">자유게시판 - 글 </div>
+                        <div class="formtit">공지사항 - 글 </div>
                         <div style="text-align:right">
                         <input class="btn btn-danger" type="submit" value="글 삭제" id="boardDelete" onclick="confirmDelete()"></div>
     <section id="bo_v_file">
         <h2>첨부파일</h2>
         <ul>
                     <li>
-                     <span class="sv_member" style="float:left">작성자 ID&nbsp;&nbsp;</span>  <strong><span class="sv_member">[<%=bVO.getId() %>]</span></strong>
+                     <span class="sv_member" style="float:left">작성자&nbsp;&nbsp;</span>  <strong><span class="sv_member">[관리자]</span></strong>
                 <!--span>DATE : 2023-10-18 15:19:23</span-->
            			 </li>
                 </ul>
     </section>
     <header>
                      <div align="right">
-                     작성일 &nbsp;<strong>[<%=bVO.getInputDate() %>]</strong>
+                     작성일 &nbsp;<strong>[<%=nVO.getInputDate()%>]</strong>
                      </div>
     </header>
-    <span class="sv_member" style="float:right">게시글 번호 &nbsp;<strong>[<%=bVO.getPostNum() %>]</strong></span><br>
-    <span class="sv_member" style="float:right">조회수 &nbsp;<strong>[<%=mbDAO.UpdatedViewCount(postNum) %>]</strong></span>
+    <span class="sv_member" style="float:right">게시글 번호 &nbsp;<strong>[<%=nVO.getNoticeNum()%>]</strong></span><br>
+    <span class="sv_member" style="float:right">조회수 &nbsp;<strong>[<%=mnDAO.UpdatedViewCount(noticeNum) %>]</strong></span>
     
 	<hr class="bg2_1">
     <section id="bo_v_info">
@@ -457,17 +459,21 @@
     </div> --%>
     <table width="100%" class="formtable" cellpadding="0" cellspacing="5">
         <tr>
-            <th><strong>글 제목</strong></th>
-            <td colspan="3"><%= bVO.getTitle() %></td>
+            <th style="width:253.611px; height:40px"><strong>구분</strong></th>
+            <td colspan="3"><%= nVO.getSection() %></td>
         </tr>
         <tr>
-            <th><strong>내용</strong></th>
-            <td colspan="3" style="height: 200px; overflow: auto;"><%= bVO.getContent() %></td>
+            <th style="width:253.611px; height:51.4931px"><strong>글 제목</strong></th>
+            <td colspan="3"><%= nVO.getTitle() %></td>
+        </tr>
+        <tr>
+            <th style="width:253.611px; height:200px"><strong>내용</strong></th>
+            <td colspan="3" style="height: 200px; overflow: auto;"><%= nVO.getContent() %></td>
         </tr>
     </table>
 </div><br><br>
 <div align="center">
-<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"><span style="color: white; font-size: 15px;"><i>글 목록</i></span></a></button>
+<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"><span style="color: white; font-size: 15px;"><i>글 목록</i></span></a></button>
 </div>
                             </section>
 

@@ -242,7 +242,7 @@
                                     <li><a href="email_detail.html">Detail</a></li>
                                 </ul>
                             </li>
-                            <li><a href="widgets.html"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
+                            <li><a href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen.jsp"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
                                 </a></li>
                             <li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
                                     <span>회원관리</span>
@@ -250,6 +250,10 @@
                             <li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
                                     <span>게시판 관리</span>
                                 </a></li>
+                            <li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"> <img class="fa fa-file" src="../../common/images/notice_icon.png">
+                                <span>공지사항 관리</span>
+                            </a></li>
+                                
                         </ul>
                     </div>
                     <div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 197.948px;"></div>
@@ -373,6 +377,8 @@
                                <!--  <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_delete.jsp" method="POST"> -->
                                 	<input type="hidden" name="memberId" value="<%= mVO.getId() %>">
                                     <input class="btn btn-danger" type="submit" value="탈퇴" id="withdraw" onclick="confirmDelete()">
+                                    <input class="btn btn-primary" type="submit" value="수정" id="modify" onclick="confirmModify()">
+                                
                                 <!-- </form> -->
                                 </div>
                                
@@ -384,14 +390,25 @@
 						    function confirmDelete() {
 						        var confirmDelete = confirm("회원을 정말 탈퇴시키겠습니까?");
 						        if (confirmDelete) {
-						            alert("회원정보가 성공적으로 삭제되었습니다.");
+						            alert("회원정보가 삭제되었습니다.");
 						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_delete.jsp?memberId=<%= mVO.getId() %>"; //예를 선택한 경우 delete.jsp로 이동
 						        } else {
 						            alert("탈퇴 작업이 취소되었습니다.");
 						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<%= mVO.getId()%>"; 
 			
-						        }
-						    }
+						        }//end else
+						    }//confirmDelete
+						    
+						    function confirmModify() {
+						        var confirmDelete = confirm("회원정보를 수정하시겠습니까?");
+						        if (confirmDelete) {
+						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_modify.jsp?memberId=<%= mVO.getId() %>"; //예를 선택한 경우 delete.jsp로 이동
+						        } else {
+						            alert("회원정보수정을 취소하셨습니다.");
+						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<%= mVO.getId()%>"; 
+			
+						        }//end else
+						    }//confirmModify
 							</script>
 
                             <div class="formtablewrap">
@@ -433,11 +450,15 @@
                                     </tbody>
                                 </table>
                                 
+                                
 
                                 <!-- } 본문 내용 끝 -->
 
 
-                            </div>
+                            </div><br><br>
+                            <div align="center">
+<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"><span style="color: white; font-size: 15px;"><i>글 목록</i></span></a></button>
+</div>
                             </section>
 
                             <!-- 링크 버튼 시작 { -->

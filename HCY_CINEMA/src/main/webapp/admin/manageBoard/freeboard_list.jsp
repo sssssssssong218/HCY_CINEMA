@@ -8,6 +8,12 @@
 	pageEncoding="UTF-8"%>
 <%@ page info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+    /*  페이지가 로드될 때마다 브라우저 캐싱을 비활성화해줌 이러면 페이지를 캐시하지 않고 서버에서 강제로 새로고침하게 함 */
+%>
 <!doctype html>
 <html lang="en"><!--<![endif]--><head>
 <meta charset="utf-8">
@@ -178,15 +184,15 @@ to {
 <span>Bootstrap 4</span>
 </a>
 </li> -->
-						<li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp">
-								<img class="fa fa-inbox" src="../../common/images/movie_icon.png"> <span>영화</span>
+						<li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp">
+								<img class="fa fa-inbox" src="http://localhost/HCY_CINEMA/common/images/movie_icon.png"> <span>영화</span>
 						</a>
 							<ul class="sub-menu">
 								<li><a href="email_inbox.html">Inbox</a></li>
 								<li><a href="email_compose.html">Compose</a></li>
 								<li><a href="email_detail.html">Detail</a></li>
 							</ul></li>
-						<li><a href="widgets.html"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
+						<li><a href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen.jsp"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
 						</a></li>
 						<li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
 								<span>회원관리</span>
@@ -194,6 +200,9 @@ to {
 						<li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
 								<span>게시판 관리</span>
 						</a></li>
+						<li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"> <img class="fa fa-file" src="../../common/images/notice_icon.png">
+                                <span>공지사항 관리</span>
+                            </a></li>
 				</ul></div>
 				<div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 197.948px;"></div>
 				<div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
@@ -312,6 +321,12 @@ to {
     <div class="tbl_head01 tbl_wrap">
         <table style="text-align:center">
        <%
+       String postNumParam = request.getParameter("postNum");
+       int postNum = 0;
+       if (postNumParam != null && !postNumParam.isEmpty()) {
+           postNum = Integer.parseInt(postNumParam);
+       }//end if
+       
        ManageBoardDAO mbDAO=ManageBoardDAO.getInstance();
        BoardRangeVO brVO=new BoardRangeVO();
        
@@ -349,24 +364,25 @@ to {
        brVO.setStartNum(startNum);
        brVO.setEndNum(endNum);
        %>
-
-       총<%= totalCount %>개의 게시글이 조회되었습니다.<br/><br/>
-       
+	<strong>
+	<font size="4">
+       총<%= totalCount %>개의 게시글이 조회되었습니다.</font><br/><br/>
+    </strong>   
        <%
        try{
-       List<BoardVO> list=ManageBoardDAO.getInstance().selectBoard(brVO);
+       List<BoardVO> list=ManageBoardDAO.getInstance().selectBoardList(brVO);
        pageContext.setAttribute("boardList", list);
        }catch(SQLException se){
     	   se.printStackTrace();
-       }
+       }//end catch
        %>
         <thead>
-        <tr bgcolor="#E4ECEF" style="text-align:center">
-            <th scope="col" style="width: 200px">게시글 번호</th>
-            <th scope="col" style="width: 200px">아이디</th>
-            <th scope="col" style="width: 500px">제목</th>
-            <th scope="col" style="width: 200px">등록일</th>
-            <th scope="col" style="width: 200px">조회 수</th>
+       <tr style="background-color: #FF2121; text-align: center;">
+            <th scope="col" style="width: 200px"><strong>게시글 번호</strong></th>
+            <th scope="col" style="width: 200px"><strong>작성자 아이디</strong></th>
+            <th scope="col" style="width: 500px"><strong>제목</strong></th>
+            <th scope="col" style="width: 200px"><strong>작성일</strong></th>
+            <th scope="col" style="width: 200px"><strong>조회 수</strong></th>
         </tr>
         </thead>
         <tbody style="text-align:center">
@@ -378,13 +394,12 @@ to {
         <c:forEach var="board" items="${boardList }" varStatus="i">
         <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
         	<td><c:out value="${board.postNum}"/></td>
-        	<td><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_info.jsp?boardId=<c:out value='${ board.id }'/>"><c:out value="${ board.id }"/></a></td>
-       		<td><c:out value="${board.title }"/></td>
+        	<td><c:out value="${ board.id }"/></a></td>
+       		<td><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_info.jsp?postNum=<c:out value='${ board.postNum }'/>"><c:out value="${board.title }"/></a></td>
        		<td><c:out value="${board.inputDate }"/></td>
        		<td><c:out value="${board.viewCount }"/></td>
         </tr>
         </c:forEach>
-        
             <!-- <tr class="bo_notice" bgcolor="#ffffff" onmouseover="this.style.backgroundColor='#fafafa'" onmouseout="this.style.backgroundColor='#ffffff'" style="background-color: rgb(255, 255, 255);">
             <td class="td_num">
             <strong>2584</strong></td>
@@ -401,7 +416,18 @@ to {
             
         </tbody>
         </table>
-   		 </div>
+        <nav aria-label="Page navigation example" style="text-align:center">
+                        <div style="text-align:center">
+                        <ul class="pagination">
+                           <li class="page-item">
+	                     <% for( int i=1; i<totalPage+1; i++ ){   %>
+	                      <a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp?currentPage=<%=i %>&keyword=${ param.keyword }&field=${param.field}"><%=i%></a> 
+	                     <%} //end for%> 
+	                   </li>
+	                  </ul>
+        
+        
+						</div>
 
         </form>
 </div>
@@ -422,7 +448,7 @@ to {
 
 		</div>
 
-		<div id="sidebar-right" class="sidebar sidebar-right">
+		<%-- <div id="sidebar-right" class="sidebar sidebar-right">
 
 			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
 				<div data-scrollbar="true" data-height="100%" data-init="true" style="overflow: hidden; width: auto; height: 100%;">
@@ -718,15 +744,13 @@ to {
 				</div>
 				<div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 907px;"></div>
 				<div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
-			</div>
-
-		</div>
-		<div class="sidebar-bg sidebar-right"></div>
+			</div>--%>
+		</div> 
 
 	</div>
 
 
-	<div class="theme-panel">
+	<!-- <div class="theme-panel">
 		<a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-tint"></i></a>
 		<div class="theme-panel-content">
 			<h5 class="m-t-0">Font Family</h5>
@@ -792,8 +816,7 @@ to {
 				<li><a href="javascript:;" class="bg-danger" data-value="sidebar-danger" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Danger" data-original-title="" title="">&nbsp;</a></li>
 			</ul>
 		</div>
-	</div>
-
+	</div> -->
 
 	<script src="jquery-3.3.1.min.js" type="text/javascript"></script>
 	<script src="jquery-ui.min.js" type="text/javascript"></script>

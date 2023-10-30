@@ -75,9 +75,9 @@ private ManageMemberDAO() {
 			con=db.getCon();
 			
 			StringBuilder selectMember=new StringBuilder();
-			 selectMember.append("      select  mname,id, birth,email, tel ,joindate       ")
-	         .append("      from member       ")
-	         .append("     where id=?    ");
+			 selectMember.append("      select  mname,id, birth,email, tel ,joindate         ")
+	         .append("      from member      												 ")
+	         .append("     where id=?    													 ");
 			
 			 pstmt=con.prepareStatement(selectMember.toString());
 			 pstmt.setString(1, id);
@@ -151,7 +151,7 @@ private ManageMemberDAO() {
 	      //4.
 	         StringBuilder selectCnt=new StringBuilder();
 	         selectCnt.append("select count(*) cnt from member   ");
-	         selectCnt.append("  where status = 'M' ");
+	         selectCnt.append("  where status = 'M' 			 ");
 	         /*조건1=처음호출되면 키워드 없으니까*/  
 	         if(brVO.getKeyword() != null &&  !"".equals(brVO.getKeyword() ) &&  !"null".equals( brVO.getKeyword() )){
 	            String field="id";
@@ -200,9 +200,9 @@ private ManageMemberDAO() {
 	         StringBuilder selectMember=new StringBuilder();
 	         selectMember
 	         .append("      select mname,id,joindate                          ")
-	         .append("      from (select mname,id,joindate  ,                ")
-	         .append("      row_number() over (order by joindate desc) rnum                              ")
-	         .append("      from member  where    ");
+	         .append("      from (select mname,id,joindate  ,                 ")
+	         .append("      row_number() over (order by joindate desc) rnum   ")
+	         .append("      from member  where    							  ");
 	            
 	         if(  brVO.getKeyword() != null &&  !"".equals(brVO.getKeyword() ) &&  !"null".equals( brVO.getKeyword() ) ) {
 	            String field="id";
@@ -244,5 +244,7 @@ private ManageMemberDAO() {
 	      
 	      return list;
 	   }//selectMember
+	   
+	   
 	
 }//class

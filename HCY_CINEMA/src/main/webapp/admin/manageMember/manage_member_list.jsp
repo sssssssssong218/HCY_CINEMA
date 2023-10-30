@@ -224,8 +224,8 @@
                      <span>Bootstrap 4</span>
                      </a>
                      </li> -->
-                        <li class="has-sub"><a href="../ManageMovie/manage_movie.jsp">
-                                <img class="fa fa-inbox" src="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp"> <span>영화</span>
+                        <li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp">
+                                <img class="fa fa-inbox" src="http://localhost/HCY_CINEMA/common/images/movie_icon.png"> <span>영화</span>
                             </a>
                             <ul class="sub-menu">
                                 <li><a href="email_inbox.html">Inbox</a></li>
@@ -233,13 +233,16 @@
                                 <li><a href="email_detail.html">Detail</a></li>
                             </ul>
                         </li>
-                        <li><a href="widgets.html"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
+                        <li><a href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen.jsp"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
                             </a></li>
                         <li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
                                 <span>회원관리</span>
                             </a></li>
                         <li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
                                 <span>게시판 관리</span>
+                            </a></li>
+                        <li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"> <img class="fa fa-file" src="../../common/images/notice_icon.png">
+                                <span>공지사항 관리</span>
                             </a></li>
                     </ul>
                 </div>
@@ -390,7 +393,10 @@
                            현재 페이지 번호  : <%= currentPage %><br>
                            시작 번호 : <%= startNum %><br>
                            끝 번호 : <%= endNum %><br> --%>
-                           총 <%= totalCount %>명의 회원이 조회되었습니다.<br/><br/>
+                           <strong>
+							<font size="4">
+						       총<%= totalCount %>명의 회원이 조회되었습니다.</font><br/><br/>
+						    </strong> 
                             <div class="tbl_head01 tbl_wrap">
                            <%
                            try{

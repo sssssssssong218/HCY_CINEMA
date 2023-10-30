@@ -307,28 +307,6 @@
                                         <tbody>
 
                                             <tr>
-                                                <th scope="row"><label for="wr_subject">구분<strong class="sound_only">필수</strong></label></th>
-                                                <td>
-                                                    <div id="autosave_wrapper">
-                                                        <select style="width:200px; height:30px; text-align:center">
-                                                            <option>========구분========</option>
-                                                            <option>예매</option>
-                                                            <option>VIP</option>
-                                                            <option>현금영수증</option>
-                                                            <option>기타</option>
-                                                        </select>
-                                                        <script src="https://www.ncyok.or.kr:443/js/autosave.js"></script>
-
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-
-
-
-
-
-                                            <tr>
                                                 <th scope="row"><label for="wr_subject">제목<strong class="sound_only">필수</strong></label></th>
                                                 <td>
                                                     <div id="autosave_wrapper">

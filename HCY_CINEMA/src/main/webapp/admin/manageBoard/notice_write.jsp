@@ -1,3 +1,6 @@
+<%@page import="board.NoticeVO"%>
+<%@page import="java.util.List"%>
+<%@page import="board.ManageNoticeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page info=""%>
@@ -125,8 +128,7 @@
                     ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     //  ['height', ['height']]
-                    ['table', ['table']],
-                    ['insert', ['picture']]
+                    ['table', ['table']]
                 ],
                 placeholder: '공지사항을 입력해주세요',
                 width: 1000,
@@ -188,7 +190,7 @@
                             </div>
                         </li>
                         <li class="nav-header">today work</li>
-                        <li class="active has-sub"><a href="../ManageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
+                        <li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
                                 <span>Dashboard
                                     <!-- <span class="label label-theme m-l-3">NEW</span> --></span>
                             </a>
@@ -205,7 +207,7 @@
 <span>Bootstrap 4</span>
 </a>
 </li> -->
-                        <li class="has-sub"><a href="../ManageMovie/manage_movie.jsp">
+                        <li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp">
                                 <img class="fa fa-inbox" src="../../common/images/movie_icon.png"> <span>영화</span>
                             </a>
                             <ul class="sub-menu">
@@ -214,13 +216,16 @@
                                 <li><a href="email_detail.html">Detail</a></li>
                             </ul>
                         </li>
-                        <li><a href="widgets.html"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
+                        <li><a href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen.jsp"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
                             </a></li>
-                        <li class="has-sub"><a href="managemember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
+                        <li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
                                 <span>회원관리</span>
                             </a></li>
-                        <li class="has-sub"><a href="javascript:;"> <img class="fa fa-file" src="../../common/images/board_icon.png">
+                        <li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
                                 <span>게시판 관리</span>
+                            </a></li>
+                        <li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"> <img class="fa fa-file" src="../../common/images/notice_icon.png">
+                                <span>공지사항 관리</span>
                             </a></li>
                     </ul>
                 </div>
@@ -234,15 +239,14 @@
 
         <div id="content" class="content">
 
-            <ol class="breadcrumb pull-right">
-                <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
-                <li class="breadcrumb-item active">Dashboard v3</li>
+            <ol style="text-align:right">
+                <li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp">Home</a></li>
+                <li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp">공지사항 관리</a></li>
             </ol>
 
 
             <h1 class="page-header">
-                Manage Board <small>Manage Board </small>
+                Manage Notice <small>Manage Notice </small>
             </h1>
 
 
@@ -289,7 +293,6 @@
 
 
                             <!-- 게시물 작성/수정 시작 { -->
-                            <form name="fwrite" id="fwrite" action="https://www.ncyok.or.kr:443/bbs/write_update.php" onsubmit="return fwrite_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off" style="width:100%">
                                 <input type="hidden" name="uid" value="23101916055704">
                                 <input type="hidden" name="w" value="">
                                 <input type="hidden" name="bo_table" value="5025">
@@ -305,19 +308,38 @@
                                 <div class="tbl_frm01 tbl_wrap">
                                     <table>
                                         <tbody>
-
+                                        <%
+                                        String notice=request.getParameter("noticeNum");
+                                        int noticeNum=0;
+                                        
+                                        if(notice!=null && !notice.isEmpty()){
+                                        	noticeNum=Integer.parseInt(notice);
+                                        }
+                                        ManageNoticeDAO mnDAO=ManageNoticeDAO.getInstance();
+                                        List<NoticeVO> list=mnDAO.selectSpecificNotice(noticeNum);
+                                        
+                                        NoticeVO nVO=null;
+                                        for(int i=0;i<list.size();i++){
+                                        	nVO=list.get(i);
+                                        }//end for
+                                        
+                                        %>
+											<br>
+											<form action="http://localhost/HCY_CINEMA/admin/manageBoard/notice_insert.jsp" method="post">
                                             <tr>
                                                 <th scope="row"><label for="wr_subject">구분<strong class="sound_only">필수</strong></label></th>
                                                 <td>
                                                     <div id="autosave_wrapper">
-                                                        <select style="width:200px; height:30px; text-align:center">
+                                                        <select name="section" style="width:200px; height:30px; text-align:center">
                                                             <option>========구분========</option>
+                                                            <option>자주찾는질문</option>
+                                                            <option>자유게시판</option>
                                                             <option>예매</option>
                                                             <option>VIP</option>
                                                             <option>현금영수증</option>
                                                             <option>기타</option>
                                                         </select>
-                                                        <script src="https://www.ncyok.or.kr:443/js/autosave.js"></script>
+                                                        <!-- <script src="https://www.ncyok.or.kr:443/js/autosave.js"></script> -->
 
                                                     </div>
                                                 </td>
@@ -332,8 +354,8 @@
                                                 <th scope="row"><label for="wr_subject">제목<strong class="sound_only">필수</strong></label></th>
                                                 <td>
                                                     <div id="autosave_wrapper">
-                                                        <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="frm_input required" size="80" maxlength="255">
-                                                        <script src="https://www.ncyok.or.kr:443/js/autosave.js"></script>
+                                                        <input style="width:1000px" type="text" name="title" value="" id="title" required="" class="frm_input required" size="80" maxlength="255">
+                                                       <!--  <script src="https://www.ncyok.or.kr:443/js/autosave.js"></script> -->
 
 
                                                     </div>
@@ -341,7 +363,7 @@
                                             </tr>
 
                                             <tr>
-                                                <th scope="row"><label for="wr_content">내용<strong class="sound_only">필수</strong></label></th>
+                                                <th scope="row"><label for="note">내용<strong class="sound_only">필수</strong></label></th>
                                                 <td class="wr_content">
 
                                                     <div style="width: 500px">
@@ -351,35 +373,35 @@
                                                 </td>
                                             </tr>
 
-
-
-                                            <tr>
-                                                <th scope="row">파일첨부 관련안내</th>
-                                                <td>
-                                                    * 한 파일당 1MB (1,024kb) 이내 <br>
-                                                    * 작성일 기준 3개월 뒤 관리자가 첨부파일을 삭제 할수 있습니다.
-                                                    (서버 용량 문제로 인한 양해부탁드립니다.)
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">파일 #1</th>
-                                                <td>
-                                                    <input type="file" name="bf_file[]" title="파일첨부 1 : 용량 1,048,576 바이트 이하만 업로드 가능" class="frm_file frm_input">
-                                                </td>
-                                            </tr>
-
-
-
-
+										</form>
                                         </tbody>
                                     </table>
                                 </div>
+                                <script>
+                                function confirmInsert(){
+                                	var title=document.getElementById("title").value.trim();
+                                	var note=document.getElementById("note").value.trim();
+                                	if(title==""|| note==""){
+                                		alert("제목과 내용을 모두 입력해주세요");
+                                	}else{
+	                                	var confirmInsert=confirm("공지사항을 등록하시겠습니까?");
+	                                	if(confirmInsert){
+	                                		alert("공지사항이 등록되었습니다.");
+	                                		window.location.href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_insert.jsp";
+	                                		
+	                                	}else{
+	                                		alert("공지사항 등록을 취소하셨습니다.");
+	                                		window.location.href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp";
+	                                	}//end else
+                                	}
+                                }//confirmInsert
+                                
+                                </script>
+                                <br><br>
                                 <div class="btn_confirm">
-                                    <input type="submit" value="작성완료" id="btn_submit" accesskey="s" class="btn_submit">
-                                    <a href="./board.php?bo_table=5025" class="btn_cancel">취소</a>
+                                    <input type="submit" value="작성완료" id="btn_submit" accesskey="s" class="btn_submit" onclick="confirmInsert()">
+                                    <button type="button" class="btn btn-light" style="width:108.229px; height:44.184px;"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp">취소</a></button>
                                 </div>
-                            </form>
 
                             <script>
                                 function html_auto_br(obj) {

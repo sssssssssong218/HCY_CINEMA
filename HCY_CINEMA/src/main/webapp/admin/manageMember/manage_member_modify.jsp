@@ -1,5 +1,3 @@
-<%@page import="board.BoardVO"%>
-<%@page import="board.ManageBoardDAO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="encryption.Encryption"%>
@@ -8,7 +6,7 @@
 <%@page import="manageMember.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page info=""%>
+<%@ page info="회원정보 수정"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%-- <jsp:useBean id="mmDAO" class="manageMember.ManageMemberDAO"/>
 <%
@@ -31,7 +29,7 @@
     <meta name="viewport" content="width=1200, user-scalable=no">
     <meta http-equiv="imagetoolbar" content="no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>자유게시판 글</title>
+    <title>회원정보 수정</title>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.ncyok.or.kr:443/theme/basic/css/default.css?ver=1697535328">
@@ -246,15 +244,16 @@
                             </li>
                             <li><a href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen.jsp"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
                                 </a></li>
-                            <li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
+                            <li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
                                     <span>회원관리</span>
                                 </a></li>
-                            <li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
+                            <li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
                                     <span>게시판 관리</span>
                                 </a></li>
                             <li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"> <img class="fa fa-file" src="../../common/images/notice_icon.png">
                                 <span>공지사항 관리</span>
                             </a></li>
+                                
                         </ul>
                     </div>
                     <div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 197.948px;"></div>
@@ -263,32 +262,18 @@
 
             </div>
             <div class="sidebar-bg"></div>
-<%
-	String boardTitle=request.getParameter("postNum");
-	int postNum=Integer.parseInt(boardTitle);
-	
-	ManageBoardDAO mbDAO=ManageBoardDAO.getInstance();
-	List<BoardVO> list=mbDAO.selectSpecificBoard(postNum);
-	
-	BoardVO bVO=null;
-	for(int i=0;i<list.size();i++){
-		bVO=list.get(i);
-	}//end for
-	
-	 mbDAO.increaseViewCount(postNum);
-	
-%>
+
 
             <div id="content" class="content">
 
                 <ol style="text-align:right">
                     <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-                    <li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp">게시판관리</a></li>
+                    <li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp">회원관리</a></li>
                 </ol>
 
 
                 <h1 class="page-header">
-                    Manage Board <small>Manage Board</small>
+                    Manage Member <small>Manage Member</small>
                 </h1>
 
                 <div id="container">
@@ -313,7 +298,7 @@
                             <div id="container_title">
 
                                 <div class="conTit_tt">
-                                    <span>자유게시판</span>
+                                    <span>회원정보</span>
                                     <span style="padding-left:30px;font-size:.9em;font-weight:normal;">
 
                                     </span>
@@ -326,50 +311,10 @@
                         </div> <!--  서브상단 이미지 및 로케이션 단 끝 -->
                         <!-- me_code : 103010-->
                         <script src="https://www.ncyok.or.kr:443/js/viewimageresize.js"></script>
-						<script>
-						function confirmDelete(){
-							var confirmDelete=confirm("게시글을 정말 삭제하시겠습니까?");
-							if(confirmDelete){
-								alert("게시글이 삭제되었습니다.");
-								window.location.href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_delete.jsp?postNum=<%=bVO.getPostNum()%>";
-							}else{
-								alert("게시글 삭제가 취소되었습니다.");
-								window.location.href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_info.jsp?postNum=<%=bVO.getPostNum()%>";
-							}//end else
-						}//confirmDelete
-						
-						</script>
+
                         <!-- 게시물 읽기 시작 { -->
 
                         <article id="bo_v" style="width:100%">
-                        <div class="formtit">자유게시판 - 글 </div>
-                        <div style="text-align:right">
-                        <input class="btn btn-danger" type="submit" value="글 삭제" id="boardDelete" onclick="confirmDelete()"></div>
-    <section id="bo_v_file">
-        <h2>첨부파일</h2>
-        <ul>
-                    <li>
-                     <span class="sv_member" style="float:left">작성자 ID&nbsp;&nbsp;</span>  <strong><span class="sv_member">[<%=bVO.getId() %>]</span></strong>
-                <!--span>DATE : 2023-10-18 15:19:23</span-->
-           			 </li>
-                </ul>
-    </section>
-    <header>
-                     <div align="right">
-                     작성일 &nbsp;<strong>[<%=bVO.getInputDate() %>]</strong>
-                     </div>
-    </header>
-    <span class="sv_member" style="float:right">게시글 번호 &nbsp;<strong>[<%=bVO.getPostNum() %>]</strong></span><br>
-    <span class="sv_member" style="float:right">조회수 &nbsp;<strong>[<%=mbDAO.UpdatedViewCount(postNum) %>]</strong></span>
-    
-	<hr class="bg2_1">
-    <section id="bo_v_info">
-        <h2>페이지 정보</h2>
-    </section>
-
-    
-        <!-- 첨부파일 시작 { -->
-		<hr class="bg2_1">
 
 
 
@@ -397,76 +342,113 @@
                                                                                 </ul>
             </div>
     <!-- } 게시물 상단 버튼 끝 -->
-<!--  ----------------- -->
-<%-- <%
-	String boardTitle=request.getParameter("postNum");
-	int postNum=Integer.parseInt(boardTitle);
-	
-	ManageBoardDAO mbDAO=ManageBoardDAO.getInstance();
-	List<BoardVO> list=mbDAO.selectSpecificBoard(postNum);
-	
-	BoardVO bVO=null;
-	for(int i=0;i<list.size();i++){
-		bVO=list.get(i);
-	}//end for
-	
-	 mbDAO.increaseViewCount(postNum);
-	
-%> --%>
+  <%
+			String memberId=request.getParameter("memberId");
+			
+			ManageMemberDAO mmDAO = ManageMemberDAO.getInstance();
+			List<MemberVO> list=mmDAO.selectMember(memberId);
+			
+			Encryption ec=Encryption.getInstance();
+			
+			String name="";
+			String tel="";
+			String email="";
+			
+			MemberVO mVO=null;
+			SimpleDateFormat inputDateFormat=new SimpleDateFormat("yyyyMMdd");
+			SimpleDateFormat outputDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+			
+			for(int i=0; i<list.size(); i++){
+				mVO=list.get(i);
+				name=ec.decryption(mVO.getMname());
+				tel=ec.decryption(mVO.getTel());
+				email=ec.decryption(mVO.getEmail());
+				
+				String birthDateStr=mVO.getBirth();
+				Date birthDate=inputDateFormat.parse(birthDateStr);
+				String formattedBirthDate=outputDateFormat.format(birthDate);
+			%>
 			
                             <!-- 본문 내용 시작 { -->
-                            
+                            <div class="formtit">회원 기본정보</div>
                             <div style="text-align:right">
 
-                                <%-- <div style="text-align:right">
+                                <div style="text-align:right">
                                <!--  <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_delete.jsp" method="POST"> -->
                                 	<input type="hidden" name="memberId" value="<%= mVO.getId() %>">
-                                    <input class="btn btn-danger" type="submit" value="탈퇴" id="withdraw" onclick="confirmDelete()">
+                                    <input class="btn btn-danger" type="submit" value="저장" id="save" onclick="confirmSave()">
+                                
                                 <!-- </form> -->
-                                </div> --%>
+                                </div>
                                
 
 
                             </div>
                             
-                          <%--   <script>
-						    function confirmDelete() {
-						        var confirmDelete = confirm("회원을 정말 탈퇴시키겠습니까?");
-						        if (confirmDelete) {
-						            alert("회원정보가 성공적으로 삭제되었습니다.");
-						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_delete.jsp?memberId=<%= mVO.getId() %>"; //예를 선택한 경우 delete.jsp로 이동
+                            <script>
+						    function confirmSave() {
+						        var confirmSave = confirm("수정된 회원정보를 저장하시겠습니까?");
+						        if (confirmSave) {
+						            alert("회원정보가 변경되었습니다.");
+						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_save.jsp?memberId=<%= mVO.getId() %>"; //예를 선택한 경우 delete.jsp로 이동
 						        } else {
-						            alert("탈퇴 작업이 취소되었습니다.");
+						            alert("변경된 내용이 취소되었습니다.");
 						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<%= mVO.getId()%>"; 
 			
-						        }
-						    }
-							</script> --%>
-							
+						        }//end else
+						    }//confirmSave
+						    
+						    
+							</script>
 
-<div class="formtablewrap">
-   <%--  <div class="info-div">
-        <div class="info-label">게시물 번호</div>
-        <div class="info-value"><%= bVO.getPostNum() %></div>
-        <div class="info-label">조회수</div>
-        <div class="info-value"><%= mbDAO.UpdatedViewCount(postNum) %></div>
-        <div class="info-label">작성자 아이디</div>
-        <div class="info-value"><%= bVO.getId() %></div>
-        <div class="info-label">작성일</div>
-        <div class="info-value"><%= bVO.getInputDate() %></div>
-    </div> --%>
-    <table width="100%" class="formtable" cellpadding="0" cellspacing="5">
-        <tr>
-            <th><strong>글 제목</strong></th>
-            <td colspan="3"><%= bVO.getTitle() %></td>
-        </tr>
-        <tr>
-            <th><strong>내용</strong></th>
-            <td colspan="3" style="height: 200px; overflow: auto;"><%= bVO.getContent() %></td>
-        </tr>
-    </table>
-</div><br><br>
-<div align="center">
+                            <div class="formtablewrap">
+                                <table width="100%" class="formtable" cellpadding="0" cellspacing="5">
+                                    <colgroup>
+                                        <col width="140px">
+                                        <col>
+                                    </colgroup>
+                                    <!-- 1이름 아이디 생년월일 1휴대전화 1이메일 가입일 -->
+                                    <tbody>
+                                      
+                                        <tr>
+                                            <th>아이디</th>
+									        <td style="text-align: center;">
+									            <input type="text" name="id" value="<%=mVO.getId() %>">
+									        </td>
+                                        </tr>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <td style="text-align: center;"><%=mVO.getId() %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>생년월일</th>
+                                            <td style="text-align: center;"><%= formattedBirthDate %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>휴대전화</th>
+                                            <td style="text-align: center;"><%=tel %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>이메일</th>
+                                            <td style="text-align: center;"><%=email %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>가입일</th>
+                                            <td style="text-align: center;"><%=mVO.getJoindate()%></td>
+                                        </tr>
+                                        <%
+										}
+										%>
+                                    </tbody>
+                                </table>
+                                
+                                
+
+                                <!-- } 본문 내용 끝 -->
+
+
+                            </div><br><br>
+                            <div align="center">
 <button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"><span style="color: white; font-size: 15px;"><i>글 목록</i></span></a></button>
 </div>
                             </section>
