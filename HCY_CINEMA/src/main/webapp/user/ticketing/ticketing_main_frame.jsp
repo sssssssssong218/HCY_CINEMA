@@ -173,8 +173,6 @@ function msTimeClickListener( sdnum,snum ){
 	$("#tnb_step_btn_right").attr("class","btn-right on")
 }//sTimeClickListener
 
-var directJson = [];
-var tempJson = {};
 function runAjax(){
 	$("#infoTheater").attr("style","")
 	$("#screenList").html("");
@@ -201,8 +199,6 @@ function runAjax(){
 				
 				$("#screenList").append(screenList);
 				$.each(element.screenArr,function(i,jsonele){
-					tempJson = {"mcode":element.movieCode,"name":element.mname,"poster":"http://192.168.10.147/HCY_CINEMA/common/poster/"+element.movieCode+".jpg","type":element.screenCat,"rate":cat,"date":sendDate,"start":jsonele.time,"end":jsonele.endtime,"screen":element.screenName,"seat":jsonele.remain};
-					directJson.push(tempJson);
 					var temp = "";
 					if(i==0){
 					temp += '<li data-index="0" data-remain_seat="'+jsonele.remain+'" play_start_tm="1340" screen_cd="'+element.screenCode+'" movie_cd="'+element.movieCode+'" play_num="2" class="'+(jsonele.flag?'morning':'disalbe')+'" data-price="'+jsonele.price+'" id="schedule'+jsonele.scheduleCode+'">';

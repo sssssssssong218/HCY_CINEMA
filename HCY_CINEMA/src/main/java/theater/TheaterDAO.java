@@ -26,7 +26,6 @@ private static TheaterDAO tDAO;
 	
 	public List<MovieVO> selectTheaterSchedule(String date) throws SQLException{
 		List<MovieVO> list = new ArrayList<MovieVO>();
-		
 		DBConnection db = DBConnection.getInstance();
 		
 		Connection con = null;
@@ -42,7 +41,7 @@ private static TheaterDAO tDAO;
 			.append("	SELECT sd.MOVIECODE, m.MNAME, m.RELEASEDATE, m.RUNNINGTIME,	")
 			.append("	m.MOVIE_RATING, s.SCREENNUM, s.SCREENNAME,	")
 			.append("	(select SCREENTYPE from SCREEN_TYPE st where st.TYPENUM = s.TYPENUM) screentype ,	")	
-			.append("	sd.SCHEDULENUM, sd.SHOWTIME,(select count(*) from TICKETING t, 	")	
+			.append("	sd.SCHEDULENUM, to_date(sd.SHOWTIME,'yy-mm-dd') SHOWdate,to_char(sd.SHOWTIME,'hh24:mi') SHOWtime ,(select count(*) from TICKETING t, 	")	
 			.append("	SEAT se where  t.SCHEDULENUM = sd.SCHEDULENUM and t.TICKETNUM = se.TICKETNUM) seat	")	
 			.append("	FROM MOVIE m, SCREEN s, SCHEDULE sd	")	
 			.append("	WHERE sd.MOVIECODE = m.MOVIECODE(+) and sd.SCREENNUM = s.SCREENNUM(+) and to_char(sd.SHOWTIME,'yyyymmdd') = ? ORDER BY MOVIECODE, SCREENNUM	");	
@@ -101,8 +100,9 @@ private static TheaterDAO tDAO;
 				
 				sdVO = new ScheduleVO();
 				sdVO.setScheduleNum(rs.getInt("SCHEDULENUM"));
-				sdVO.setScheduleNum(rs.getInt("SCHEDULENUM"));
-				sdVO.setScheduleNum(rs.getInt("SCHEDULENUM"));
+				sdVO.setShowdate(rs.getDate("SHOWdate"));
+				sdVO.setShowtime(rs.getString("SHOWtime"));
+				sdVO.setTicketedSeat(rs.getInt("seat"));
 				sdList.add(sdVO);
 			}//while
 			

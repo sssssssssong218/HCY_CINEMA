@@ -389,7 +389,7 @@
                             <div class="formtit">회원 기본정보</div>
                             <div style="text-align:right">
 
-                                <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_save.jsp" mehtod="post">
+                                <form id="frm" action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_save.jsp" mehtod="post">
                                 <div style="text-align:right">
                                <!--  <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_delete.jsp" method="POST"> -->
                                 	<input type="hidden" name="memberId" value="<%= mVO.getId() %>">
@@ -462,7 +462,7 @@
 
 
                             </div>
-										</form>
+						</form>
                             </div>
                             <br><br>
                             <div align="center">

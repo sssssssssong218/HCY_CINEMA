@@ -8,15 +8,16 @@ private String mName;
 private String ticketRate;
 private String movieRating;
 private String movieFile;
-private Date releaseDate;
+private int releaseDate;
 private double starRating;
+private String plot;
 
 
 public MainMovieVO() {
 }
 
 public MainMovieVO(String movieCode, String mName, String ticketRate, String movieRating, String movieFile,
-		Date releaseDate, double starRating) {
+		int releaseDate, double starRating) {
 	super();
 	this.movieCode = movieCode;
 	this.mName = mName;
@@ -64,12 +65,20 @@ public void setStarRating(double starRating) {
 	this.starRating = starRating;
 }
 
-public Date getReleaseDate() {
+public int getReleaseDate() {
 	return releaseDate;
 }
 
-public void setReleaseDate(Date releaseDate) {
+public void setReleaseDate(int releaseDate) {
 	this.releaseDate = releaseDate;
+}
+
+public String getPlot() {
+	return plot;
+}
+
+public void setPlot(String plot) {
+	this.plot = plot;
 }
 
 }//class

@@ -268,7 +268,6 @@ private ManageMemberDAO() {
 				pstmt.setString(5, mVO.getId());
 				
 				int rowUpdate=pstmt.executeUpdate();
-				System.out.println(rowUpdate);
 				if(rowUpdate>0) {
 					flag=true;
 				}

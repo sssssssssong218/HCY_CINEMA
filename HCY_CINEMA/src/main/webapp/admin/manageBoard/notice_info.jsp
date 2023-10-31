@@ -340,18 +340,31 @@
 							}//end else
 						}//end if
 						
+						function confirmModify() {
+					        var confirmModify = confirm("공지사항을 수정하시겠습니까?");
+					             
+					       if (confirmDelete) {
+					        	$("#frm").submit();
+					        } else {
+					            alert("회원정보수정을 취소하셨습니다.");
+					            window.location.href = "http://localhost/HCY_CINEMA/admin/manageBoard/notice_info.jsp?noticeNum=<%= nVO.getNoticeNum()%>"; 
+					        }//end else
+					       
+					    }//confirmModify
+						
 						</script>
                         <!-- 게시물 읽기 시작 { -->
-
-                        <article id="bo_v" style="width:100%">
-                        <div class="formtit">공지사항 - 글 </div>
-                        <div style="text-align:right">
-                        <input class="btn btn-danger" type="submit" value="글 삭제" id="boardDelete" onclick="confirmDelete()"></div>
+<form action="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp" id="frm" method="post">
+    <article id="bo_v" style="width:100%">
+     <div class="formtit">공지사항 - 글 </div>
+      <div style="text-align:right">
+       <input class="btn btn-danger" type="submit" value="글 삭제" id="boardDelete" onclick="confirmDelete()">
+    	<input class="btn btn-primary" type="submit" value="수정" id="modify" onclick="confirmModify()"></div>
     <section id="bo_v_file">
         <h2>첨부파일</h2>
         <ul>
                     <li>
-                     <span class="sv_member" style="float:left">작성자&nbsp;&nbsp;</span>  <strong><span class="sv_member">[관리자]</span></strong>
+                     <span class="sv_member" style="float:left">작성자 &nbsp;&nbsp;</span>  <strong><span class="sv_member">[관리자]</span></strong>
                 <!--span>DATE : 2023-10-18 15:19:23</span-->
            			 </li>
                 </ul>
@@ -369,7 +382,7 @@
         <h2>페이지 정보</h2>
     </section>
 
-    
+ </form>   
         <!-- 첨부파일 시작 { -->
 		<hr class="bg2_1">
 
@@ -473,7 +486,7 @@
     </table>
 </div><br><br>
 <div align="center">
-<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"><span style="color: white; font-size: 15px;"><i>글 목록</i></span></a></button>
+<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"><span style="color: white; font-size: 15px;"><i>공지사항 목록</i></span></a></button>
 </div>
                             </section>
 

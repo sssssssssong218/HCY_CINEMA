@@ -401,9 +401,9 @@
 						    }//confirmDelete
 						    
 						    function confirmModify() {
-						        var confirmDelete = confirm("회원정보를 수정하시겠습니까?");
+						        var confirmModify = confirm("회원정보를 수정하시겠습니까?");
 						             
-						       if (confirmDelete) {
+						       if (confirmModify) {
 						        	$("#frm").submit();
 						        } else {
 						            alert("회원정보수정을 취소하셨습니다.");
@@ -461,7 +461,7 @@
 
                             </div><br><br>
                             <div align="center">
-<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"><span style="color: white; font-size: 15px;"><i>글 목록</i></span></a></button>
+<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"><span style="color: white; font-size: 15px;"><i>회원 목록</i></span></a></button>
 </div>
                             </section>
 
