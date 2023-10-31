@@ -72,7 +72,7 @@ public List<ScreenVO> selectSchedule(DailyScheduleVO dsVO) throws SQLException{
 		.append("	(SELECT SCREENTYPE from SCREEN_TYPE st where s.TYPENUM = st.TYPENUM) screentyp,	")
 		.append("	sd.SCHEDULENUM, to_char(sd.SHOWTIME,'hh:mi') starttime,	(SELECT RUNNINGTIME from MOVIE m where m.MOVIECODE = sd.MOVIECODE) RUNNINGTIME,")
 		.append("	(SELECT count(*) from TICKETING t where sd.SCHEDULENUM = t.SCHEDULENUM and STATUS='Y') ticketed,	")
-		.append("	(SELECT MNAME FROM MOVIE m WHERE m.MOVIECODE = sd.MOVIECODE) mname	")
+		.append("	(SELECT MNAME FROM MOVIE m WHERE m.MOVIECODE = sd.MOVIECODE) mname, sd.PRICE	")
 		.append("	FROM SCREEN s, SCHEDULE sd	")
 		.append("	where s.SCREENNUM(+) = sd.SCREENNUM and sd.MOVIECODE = ? and to_char(sd.SHOWTIME,'yyyymmdd') = ?) where screentyp = ?	");
 		
@@ -114,6 +114,7 @@ public List<ScreenVO> selectSchedule(DailyScheduleVO dsVO) throws SQLException{
 			sdVO.setShowtime(rs.getString("starttime"));
 			sdVO.setRunningrime(rs.getString("RUNNINGTIME"));
 			sdVO.setTicketedSeat(rs.getInt("ticketed"));
+			sdVO.setPrice(rs.getInt("PRICE"));
 			sdList.add(sdVO);
 		}//while
 		
@@ -127,4 +128,59 @@ public List<ScreenVO> selectSchedule(DailyScheduleVO dsVO) throws SQLException{
 	
 	return list;
 }//selectSchedule
+
+public List<String> selectSeat(String sdCode) throws SQLException{
+	List<String> list = new ArrayList<String>();
+	
+	DBConnection db = DBConnection.getInstance();
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		con = db.getCon();
+		
+		String selectSeat = "SELECT SEATNUM FROM SEAT where SCHEDULENUM  = ?";
+		
+		pstmt = con.prepareStatement(selectSeat);
+		pstmt.setString(1, sdCode);
+		
+		rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			list.add(rs.getString("SEATNUM"));
+		}//while
+	}finally {
+		db.dbClose(rs, pstmt, con);
+	}//finally
+	
+	return list;
+}//selectSeat
+
+public void insertMemberPayment(PaymentVO pVO) throws SQLException {
+	DBConnection db = DBConnection.getInstance();
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	
+	try {
+		con = db.getCon();
+		
+		String insertMemberPayment = "INSERT INTO TICKETING(SCHEDULENUM, ID, TEL, MOVIECODE, SCREENNUM, PPLCOUNT, STATUS, TICKETDATE, PAYMENT) VALUES(?,?,?,?,?,?,'Y','SYSDATE',?)";
+		
+		pstmt = con.prepareStatement(insertMemberPayment);
+		pstmt.setString(1, pVO.getScheduleNum());
+		pstmt.setString(2, pVO.getId());
+		pstmt.setString(3, pVO.getTel());
+		pstmt.setString(4, pVO.getMovieCode());
+		pstmt.setString(5, pVO.getScreenNum());
+		pstmt.setInt(6, pVO.getPplcount());
+		pstmt.setString(7, pVO.getPayment());
+		
+		pstmt.executeUpdate();
+	}finally {
+		db.dbClose(null, pstmt, con);
+	}//finally
+}//insertMemberPayment
 }//class

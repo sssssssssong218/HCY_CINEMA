@@ -51,6 +51,7 @@
 			<% 
         	 return;
          }//if
+         	session.setAttribute("mVO", mVO);
          	session.setAttribute("login", true);
         	response.sendRedirect("http://localhost/HCY_CINEMA/user/home/main.jsp");
  		 %>

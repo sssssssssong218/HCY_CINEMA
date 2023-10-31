@@ -1,10 +1,9 @@
-<%@page import="javax.print.attribute.standard.PagesPerMinuteColor"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page info="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head>
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Expires" content="-1">
@@ -15,13 +14,13 @@
     <meta name="keywords" content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
     <meta name="description" content="CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
     <meta property="og:site_name" content="영화 그 이상의 감동. CGV">
-    <meta id="ctl00_og_title" property="og:title" content="CGV강남 | 영화 그 이상의 감동. CGV">
+    <meta id="ctl00_og_title" property="og:title" content="비밀번호 변경 < 로그인 | 영화 그 이상의 감동. CGV">
     
     
-    <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/Theater/Theater/2014/1211/CGVgangnam.jpg">
+    <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
     <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
-    <title id="ctl00_headerTitle">HCY극장 &lt; 극장</title>
+    <title id="ctl00_headerTitle">비밀번호 변경 &lt; 로그인 | 영화 그 이상의 감동. CGV</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
@@ -34,7 +33,7 @@
     <link rel="stylesheet" media="print" type="text/css" href="https://img.cgv.co.kr/R2014/css/print.css">    
     <link rel="stylesheet" type="text/css" href="https://img.cgv.co.kr/R2014/js/jquery.ui/smoothness/jquery-ui-1.10.4.custom.min.css">
     
-    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-SSGE1ZCJKG&amp;cx=c&amp;_slc=1"></script><script type="text/javascript" async="" src="http://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="http://www.googletagmanager.com/gtag/js?id=G-559DE9WSKZ&amp;l=dataLayer&amp;cx=c"></script><script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-NNNFR3"></script><script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="/common/js/extraTheaters.js"></script>
+    <script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-SSGE1ZCJKG&amp;cx=c&amp;_slc=1"></script><script type="text/javascript" async="" src="http://www.googletagmanager.com/gtag/js?id=G-559DE9WSKZ&amp;l=dataLayer&amp;cx=c"></script><script type="text/javascript" async="" src="http://www.google-analytics.com/analytics.js"></script><script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-NNNFR3"></script><script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="/common/js/extraTheaters.js"></script>
     <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/app.config.js"></script>
     <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.tmpl.min.js"></script>
@@ -72,23 +71,11 @@
     <script type="text/javascript" src="https://img.cgv.co.kr/resource_pc/js/cgvUi.js"></script>
 
     <!-- 각페이지 Header Start--> 
-   
-
+    
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
-    
-    $(document).ready(function() {
-    	<%
-    	pageContext.setAttribute("login", session.getAttribute("login"));
-    	%> 
-    	if(${login=="false"}){
-    		alert("로그인 후 이용해주세요!")
-    		location.href="http://localhost/HCY_CINEMA/user/login/login.jsp"
-    	}//if
-    });//ready
-    
         //<![CDATA[
-        _TRK_CP = "/극장/CGV극장";
+        _TRK_CP = "/회원서비스/로그인/비밀번호 변경";
 
         app.config('staticDomain', 'https://img.cgv.co.kr/R2014/')
             .config('imageDomain', 'https://img.cgv.co.kr')
@@ -193,7 +180,7 @@
     
 
     
-<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script></head>
+<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script><script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script></head>
 <body class="" style="" cz-shortcut-listen="true">
 
 <div class="skipnaiv">
@@ -213,131 +200,96 @@
         </div>    
     </div>    
 	
-      <!-- S Header
-        Description
-        - class 'nav' 에 class 'active' 추가시 서브메뉴노출
-        - class 'nav' 에 class 'fixed' 추가시 상단고정되며 스타일 변경됨
-     -->
-	<c:import url="../include/headerContents.jsp"/>
-	<!-- E Header -->
+<jsp:include page="../include/headerContents.jsp"/>
 
 	<!-- Contaniner -->
 	<div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
         
 
 		<!-- Contents Area -->
+		 <div id="contents" class="">
+        
+            
+            <!-- Contents Start -->
+			
+<!-- 실컨텐츠 시작 -->
+<div class="wrap-login">
+            <div class="sect-user">
 
-    <iframe title="CGV 빠른예매" id="ticket_iframe" src="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame.jsp" scrolling="no" frameborder="0" width="100%" height="750px" style="width:100%; border:0 none;"></iframe>
-    
-    <script type="text/javascript">
-        //default.master  변경후 padding 처리
-        $("#contents").css("padding-bottom", "0px");
+                <h3>회원가입</h3>
 
-        //<![CDATA[
-        var iframe = document.getElementById("ticket_iframe");
+        <!-- ******************************************** 수정된 부분 시작! ******************************************** -->
+                        <div class="cols-enterform find_0826 find_pw_id">
+                            <div class="col-confirm">
+                                <h4>회원가입 완료</h4>
+                                <div class="box-confirm">
+                                   <h5>회원가입이 완료되었습니다.<br>로그인 해주세요!</h5>
+                                   <form id="form1" name="form1" method="post" novalidate="novalidate" action="">
+                                       <a href="http://localhost/HCY_CINEMA/user/home/main.jsp"><img src="http://localhost/HCY_CINEMA/common/images/logo_main.png"></a>
+                                   </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+   <!-- ******************************************** 수정된 부분 끝! ******************************************** -->
+    </div>    
+    <div class="sect-loginguide">
+        <dl class="box-operationguide">
+            <dt>이용문의</dt>
+            <dd>HCY 고객센터 : 4444-4444</dd>
+            <dd>상담 가능 시간 : 월~금 09:00~09:01 (이 외 시간은 자동 응답 안내 가능)</dd>
+        </dl>
+    </div>
+</div>
+<!-- 실컨텐츠 끝 -->
 
-        function ticketIframeResize(height) {
-            var iframe = document.getElementById("ticket_iframe");
-            // resize
-            iframe.height = height;
-        }
+<!-- find id -->
+<form name="frmFindAccount" id="frmFindAccount" method="post" action="https://www.cgv.co.kr/user/login/find-pw-proc.aspx" novalidate="novalidate">   
+    <input type="hidden" id="userid" name="userid"> 
+</form>
+<!-- //find id -->
 
-        function addEvent(event, elem, func) {
-            // W3C DOM
-            if (elem.addEventListener) {
-                elem.addEventListener(event, func, false);
-            }
-            // IE DOM
-            else if (elem.attachEvent) {
-                var r = elem.attachEvent("on" + event, func);
-                return r;
-            }
-            // else
-            else {
-            }
-        }
+<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/crypto.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+	
+	
 
-        function f_clientWidth() {
-            return f_filterResults(
-			window.innerWidth ? window.innerWidth : 0,
-			document.documentElement ? document.documentElement.clientWidth : 0,
-			document.body ? document.body.clientWidth : 0
-		);
-        }
-        function f_clientHeight() {
-            return f_filterResults(
-			window.innerHeight ? window.innerHeight : 0,
-			document.documentElement ? document.documentElement.clientHeight : 0,
-			document.body ? document.body.clientHeight : 0
-		);
-        }
-        function f_scrollLeft() {
-            return f_filterResults(
-			window.pageXOffset ? window.pageXOffset : 0,
-			document.documentElement ? document.documentElement.scrollLeft : 0,
-			document.body ? document.body.scrollLeft : 0
-		);
-        }
-        function f_scrollTop() {
-            return f_filterResults(
-			window.pageYOffset ? window.pageYOffset : 0,
-			document.documentElement ? document.documentElement.scrollTop : 0,
-			document.body ? document.body.scrollTop : 0
-		);
-        }
-        function f_filterResults(n_win, n_docel, n_body) {
-            var n_result = n_win ? n_win : 0;
-            if (n_docel && (!n_result || (n_result > n_docel)))
-                n_result = n_docel;
-            return n_body && (!n_result || (n_result > n_body)) ? n_body : n_result;
-        }
-        function scrollToTop(y, isAnimate) {
-            if (y == undefined) y = 0;
-            $("html, body").animate({ scrollTop: y + "px" });
-        }
+    (function ($) {
+        $(function () {
 
-        function ticketInfoModifyMobile(mobile1, mobile2, mobile3) {
-            try {
-                $.ajax({
-                    type: "post",
-                    url: "/user/join/UpdateUserInfoRia.aspx?mobile1=" + mobile1 + "&mobile2=" + mobile2 + "&mobile3=" + mobile3,
-                    dataType: "html",
-                    contentType: "application/html; charset=utf-8",
-                    success: function (_data) {
-                        //alert(_data); // 00000
+            var $frm = $('#form1');
+
+            $frm.validate({
+                submitHandler: function (form) {
+
+                    var strUserID = $.trim($("#txtUserId").val());
+                    
+                    if (strUserID.length == 0) {
+                        alert("아이디를 입력해 주세요.");
+                        return false;
                     }
-                });
-            } catch (ex) {
-            }
-        }
-        function ticketGuestLogin(name, ssn) {
-            var keyObject = document.getElementById("loginform");
-            if (keyObject) {
-                document.loginform.method = "post";
-                document.loginform.id.value = name;
-                document.loginform.password.value = ssn;
-                document.loginform.returnURL.value = "AA";
-                document.loginform.action = "/user/guest/GuestMember.aspx";
-                document.loginform.submit();
-            }
-            else {
-                alert("진행중입니다. 화면이 완료된 후에 클릭해주세요.");
-                document.location.reload();
-            }
-        }
 
-       //]]>
+                    var $AccountFrm = $('#frmFindAccount');
 
-        function goFamilySite() {
-            var famulySiteURL = $(familysite).val();
-            if (famulySiteURL != "") {
-                var win = window.open(famulySiteURL, 'winFamilySite')
-                win.focus();
-            }
-        }
+                    $AccountFrm.find('#userid').val(app.crypto.AESEncryptToBase64($frm.find('#txtUserId').val()));
 
-    </script>
+                    $AccountFrm.submit();
+                    return false;
+                }
+            });
 
+
+
+
+        });
+    })(jQuery);
+//]]>
+</script>
+
+            
+            <!--/ Contents End -->
+		 </div>
 		<!-- /Contents Area -->
 	</div>
     <!-- E Contaniner -->
@@ -384,7 +336,7 @@
     <!-- E Popup -->
     
     <!-- S 예매하기 및 TOP Fixed 버튼 -->
-    <div class="fixedBtn_wrap topBtn">
+    <div class="fixedBtn_wrap">
      
         <a href="/ticket/" class="btn_fixedTicketing">예매하기</a>
         
@@ -394,7 +346,7 @@
     <!-- E 예매하기 및 TOP Fixed 버튼 -->
 	
     <!-- S Footer -->
-    <jsp:include page="../include/footer.jsp"/>
+<jsp:include page="../include/footer.jsp"/>
 	<!-- E Footer -->
 
     <!-- Aside Banner :  -->
@@ -417,7 +369,7 @@
     //-->
 	<!-- //Aside Banner -->
     
-</div>
+
 
 
 <script type="text/template" id="temp_popup_movie_player">
@@ -523,7 +475,7 @@
 
     (function ($) {
         $(function () {
-        	
+
         
             $('.movie_player_popup').moviePlayer();     //동영상플레이어
 
@@ -631,6 +583,3 @@
 
 
 </body></html>
-
-</body>
-</html>

@@ -3,7 +3,7 @@ package ticketing;
 import java.sql.Date;
 
 public class ScheduleVO {
-private int scheduleNum,ticketedSeat;
+private int scheduleNum,ticketedSeat, price;
 private String showtime,runningrime;
 public int getScheduleNum() {
 	return scheduleNum;
@@ -29,6 +29,13 @@ public String getRunningrime() {
 }
 public void setRunningrime(String runningrime) {
 	this.runningrime = runningrime;
+}
+
+public int getPrice() {
+	return price;
+}
+public void setPrice(int price) {
+	this.price = price;
 }
 @Override
 public String toString() {

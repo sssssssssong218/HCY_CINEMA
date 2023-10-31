@@ -43,11 +43,14 @@ for(ScreenVO sVO : list){
 	for(ScheduleVO sdVO : sVO.getScdVO()){
 		tempH =  sdVO.getShowtime().trim().split(":")[0];
 		tempM =  sdVO.getShowtime().trim().split(":")[1];
-		tempH = Integer.toString(Integer.parseInt(tempM)+(Integer.parseInt(sdVO.getRunningrime().trim()))/60);
+		tempH = Integer.toString(Integer.parseInt(tempH)+(Integer.parseInt(sdVO.getRunningrime().trim()))/60);
 		tempM = Integer.toString(Integer.parseInt(tempM)+(Integer.parseInt(sdVO.getRunningrime().trim()))%60);
 		if(Integer.parseInt(tempM)>59){
 			tempM = Integer.toString(Integer.parseInt(tempM)-60);
 			tempH = Integer.toString(Integer.parseInt(tempM)+1);
+		}//if
+		if(tempM.length()==1){
+			tempM +="0";
 		}//if
 		tempH += ":"+tempM;
 		
@@ -58,6 +61,7 @@ for(ScreenVO sVO : list){
 		scheduleObj.put("endtime", tempH);
 		scheduleObj.put("remain", remain);
 		scheduleObj.put("flag", remain>0?true:false);
+		scheduleObj.put("price",sdVO.getPrice());
 		scheduleArr.add(scheduleObj);
 	}//for
 	screenObj.put("screenArr", scheduleArr);
