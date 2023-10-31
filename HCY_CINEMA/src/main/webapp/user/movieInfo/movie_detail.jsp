@@ -245,11 +245,11 @@
         </a> 
     </div>
     <div class="box-contents">
-        <div class="title"> 
+        <div class="title" style="display: flex"> 
             <strong>소년들</strong>
             
             <em class="round brown"><span>예매중</span></em>
-            <em class="round red"><span>D-1</span></em>
+            <em class="round red" ><span>D-1</span></em>
             <p>The Boys</p>
         </div>
         <div class="score"> 
