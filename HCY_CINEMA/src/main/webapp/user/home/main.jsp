@@ -390,7 +390,7 @@
                     <div class="video_wrap">
                         
                     <video autoplay="" muted="">
-                        <source src="https://localhost/HCY_CINEMA/common/trailer/${ mtVO.trailerName }" type="video/mp4">
+                        <source src="https://localhost/HCY_CINEMA/common/movie_files/${ mtVO.trailerName }" type="video/mp4">
                         이 브라우저는 Video 태그를 지원하지 않습니다. (Your browser does not support the video tag.)
                     </video>
                     

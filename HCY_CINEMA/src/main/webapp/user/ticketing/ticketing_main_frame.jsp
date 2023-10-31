@@ -49,8 +49,9 @@
 <script type="text/javascript" src="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/js/2023/1024.NAVER_PAY/0800/reservation.step2.js"></script>
 <script type="text/javascript">
 <%
-MemberVO memVO = (MemberVO)request.getAttribute("mVO");
+MemberVO memVO = (MemberVO)session.getAttribute("mVO");
 pageContext.setAttribute("memVO", memVO);
+System.out.println("mem : "+memVO);
 %>
 
 
@@ -112,8 +113,7 @@ function mListClickListener(index , name, rate){
 	selectMovie = index;
 	moviename = name;
 	
-	
-	$(".movie_poster").html('<img src="http://192.168.10.147/HCY_CINEMA/common/poster/'+index+'_p.jpg'+'" alt="영화 포스터">')
+	$(".movie_poster").html('<img src="http://192.168.10.147/HCY_CINEMA/common/movie_files/'+index+'_P.jpg'+'" alt="영화 포스터">')
 	$(".info.movie > .placeholder").attr("style","display:none;")
 	
 	$(".row.movie_title.colspan2").attr("style","display:block;")
@@ -165,6 +165,7 @@ function sTimeClickListener( sdnum,snum ){
 function msTimeClickListener( sdnum,snum ){
 	$("#screen"+snum+" > .selected").attr("class","")
 	$("#schedule"+sdnum).attr("class","morning selected")
+	screenCode = snum;
 	
 	scheduleCode=sdnum;
 	remain_seat = $("#schedule"+sdnum).data("remain_seat")
@@ -306,12 +307,14 @@ function TnbRightClick(){
 	}//if
 		
 	$("#scheduleNum").val(scheduleCode);
-	$("#id").val(${memVO.id});
+	$("#id").val("${memVO.id}");
 	$("#tel").val("");
 	$("#movieCode").val(selectMovie);
+	alert(screenCode)
 	$("#screenNum").val(screenCode);
 	$("#pplCount").val(seatnums.length);
 	$("#payment").val(paymentName[selectedIndex]);
+	$("#seatNum").val(seatnums);
 	
 	$("#hidFrm").submit()
 	return
@@ -403,7 +406,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	    selectedIndex = parseInt(selectedValue);
 
 	    if (!isNaN(selectedIndex) && selectedIndex >= 0 && selectedIndex < payments.length) {
-	        alert($(payments[selectedIndex]).attr("style"));
 	        $(payments[selectedIndex]).attr("style", "display:block");
 	        $("#summary_payment_list_cat").html(paymentName[selectedIndex])
 	    }//if
@@ -426,7 +428,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </head>
 
 <body cz-shortcut-listen="true">
-<form action="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_process.jsp" id="hidFrm" name="hidFrm">
+<form action="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_process.jsp" id="hidFrm" name="hidFrm" method="get">
 <input type="hidden" id="screenType" name="screenType" value="">
 <input type="hidden" id="movie" name="movie" value="">
 <input type="hidden" id="date" name="date" value="">
@@ -437,6 +439,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <input type="hidden" id="screenNum" name="screenNum" value="">
 <input type="hidden" id="pplCount" name="pplCount" value="">
 <input type="hidden" id="payment" name="payment" value="">
+<input type="hidden" id="seatNum" name="seatNum" value="">
 </form>
 
 <a name="t"></a>

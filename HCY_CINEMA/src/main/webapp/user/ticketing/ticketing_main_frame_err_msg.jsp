@@ -18,7 +18,7 @@
 pageContext.setAttribute("msg", session.getAttribute("msg"));
 pageContext.setAttribute("url", session.getAttribute("url"));
 %>
-alert(${msg})
+alert("${msg}")
 location.href="${url}"
         })
 </script>

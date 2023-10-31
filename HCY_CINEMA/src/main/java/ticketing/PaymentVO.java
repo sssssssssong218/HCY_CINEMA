@@ -2,7 +2,7 @@ package ticketing;
 
 public class PaymentVO {
 private int ticketNum,pplcount;
-private String id,tel,movieCode,payment,scheduleNum,screenNum;
+private String id,tel,movieCode,payment,scheduleNum,screenNum,seat;
 
 public int getTicketNum() {
 	return ticketNum;
@@ -52,12 +52,20 @@ public String getPayment() {
 public void setPayment(String payment) {
 	this.payment = payment;
 }
+
+public String getSeat() {
+	return seat;
+}
+public void setSeat(String seat) {
+	this.seat = seat;
+}
 @Override
 public String toString() {
-	return "PaymentVO [ticketNum=" + ticketNum + ", scheduleNum=" + scheduleNum + ", screenNum=" + screenNum
-			+ ", ppicount=" + pplcount + ", id=" + id + ", tel=" + tel + ", movieCode=" + movieCode + ", payment="
-			+ payment + "]";
+	return "PaymentVO [ticketNum=" + ticketNum + ", pplcount=" + pplcount + ", id=" + id + ", tel=" + tel
+			+ ", movieCode=" + movieCode + ", payment=" + payment + ", scheduleNum=" + scheduleNum + ", screenNum="
+			+ screenNum + ", seat=" + seat + "]";
 }
+
 
 
 }//class

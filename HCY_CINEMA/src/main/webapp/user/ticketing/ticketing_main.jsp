@@ -81,7 +81,7 @@
     	<%
     	pageContext.setAttribute("login", session.getAttribute("login"));
     	%> 
-    	if(${login=="false"}){
+    	if(${login!="true"}){
     		alert("로그인 후 이용해주세요!")
     		location.href="http://localhost/HCY_CINEMA/user/login/login.jsp"
     	}//if
