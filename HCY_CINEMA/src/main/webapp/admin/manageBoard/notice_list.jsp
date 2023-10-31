@@ -48,7 +48,7 @@
 <script src="https://www.ncyok.or.kr:443/js/jquery-1.8.3.min.js"></script>
 <script src="https://www.ncyok.or.kr:443/js/jquery.menu.js"></script>
 <script src="https://www.ncyok.or.kr:443/js/common.js"></script>
-<script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script>
+<!-- <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script> -->
 <script src="https://www.ncyok.or.kr:443/js/printThis.js"></script>
 <meta name="naver-site-verification" content="8e74a1f533fc95526c71b92c12475d0129bcdd32">
 <meta name="robots" content="index,follow">
@@ -218,8 +218,7 @@ to {
 
 			<ol class="breadcrumb pull-right">
 				<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-				<li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp">공지사항</a></li>
-				<li class="breadcrumb-item active">Dashboard v3</li>
+				<li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp">공지사항 관리</a></li>
 			</ol>
 
 

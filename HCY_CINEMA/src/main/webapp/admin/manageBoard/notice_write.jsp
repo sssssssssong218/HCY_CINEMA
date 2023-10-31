@@ -39,7 +39,7 @@
     <script src="https://www.ncyok.or.kr:443/js/jquery-1.8.3.min.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/jquery.menu.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/common.js"></script>
-    <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script>
+<!--     <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script> -->
     <script src="https://www.ncyok.or.kr:443/js/printThis.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

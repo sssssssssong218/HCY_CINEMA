@@ -57,7 +57,7 @@
     <script src="https://www.ncyok.or.kr:443/js/jquery-1.8.3.min.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/jquery.menu.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/common.js"></script>
-    <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script>
+<!--     <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script> -->
     <script src="https://www.ncyok.or.kr:443/js/printThis.js"></script>
     <meta name="naver-site-verification" content="8e74a1f533fc95526c71b92c12475d0129bcdd32">
     <meta name="robots" content="index,follow">
@@ -71,7 +71,7 @@
     <script src="https://www.ncyok.or.kr:443/js/jquery-1.8.3.min.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/jquery.menu.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/common.js"></script>
-    <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script>
+<!--     <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script> -->
     <script src="https://www.ncyok.or.kr:443/js/printThis.js"></script>
     <meta name="naver-site-verification" content="8e74a1f533fc95526c71b92c12475d0129bcdd32">
     <meta name="robots" content="index,follow">
@@ -87,7 +87,7 @@
     <script src="https://www.ncyok.or.kr:443/js/jquery-1.8.3.min.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/jquery.menu.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/common.js"></script>
-    <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script>
+<!--     <script src="https://www.ncyok.or.kr:443/js/wrest2.js"></script> -->
     <script src="https://www.ncyok.or.kr:443/js/printThis.js"></script>
     <meta name="naver-site-verification" content="8e74a1f533fc95526c71b92c12475d0129bcdd32">
     <meta name="robots" content="index,follow">
