@@ -1057,7 +1057,7 @@ to {
 		<div class="sidebar-bg sidebar-right"></div>
 
 	</div>
-
+	
 	<script src="jquery-3.3.1.min.js" type="text/javascript"></script>
 	<script src="jquery-ui.min.js" type="text/javascript"></script>
 	<script src="bootstrap.bundle.min.js" type="text/javascript"></script>

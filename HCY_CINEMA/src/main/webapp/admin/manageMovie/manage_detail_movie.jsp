@@ -14,8 +14,9 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 <meta content="" name="description">
 <meta content="" name="author">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"> 
 <link href="../CSS/css" rel="stylesheet" id="fontFamilySrc">
 <link href="../CSS/jquery-ui.min.css" rel="stylesheet">
 <link href="../CSS/bootstrap.min.css" rel="stylesheet">
@@ -23,16 +24,14 @@
 <link href="../CSS/animate.min.css" rel="stylesheet">
 <link href="../CSS/style.min.css" rel="stylesheet">
 
-
 <link href="../CSS/bootstrap_calendar.css" rel="stylesheet">
 <link href="../CSS/jquery.gritter.css" rel="stylesheet">
 <link href="../CSS/dataTables.bootstrap.min.css" rel="stylesheet">
 <link href="../CSS/responsive.bootstrap.min.css" rel="stylesheet">
-
     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="pace.min.js" type="text/javascript"></script>
+
+<!-- <script src="pace.min.js" type="text/javascript"></script> -->
 
 <!--[if lt IE 9]>
 	    <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
@@ -89,6 +88,9 @@ to {
 	font: 10px arial, san serif;
 	text-align: left;
 }
+.carousel-item {
+    margin-right: 0;
+  }
 </style>
 
 </head>
@@ -754,7 +756,7 @@ document.getElementById("nextdate").value = <%=enddate%>;
 	<div id="carouselExample" class="carousel slide">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="http://localhost/HCY_CINEMA/common/poster/<%= dmDAO.selectPoster(movieCode) %>" class="d-block w-100" style="height:440px;width:790px;">
+      <img src="http://localhost/HCY_CINEMA/common/movie_files/<%= dmDAO.selectPoster(movieCode) %>" class="d-block w-100" style="height:440px;width:790px;">
     </div>
   </div>
 </div>
@@ -767,38 +769,44 @@ document.getElementById("nextdate").value = <%=enddate%>;
 	 <%
 	 List<String> stillImgList=dmDAO.selectStill(movieCode);
 	 %>
-	<div id="carouselExample" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="http://localhost/HCY_CINEMA/common/poster/<%= stillImgList.get(0) %>" class="d-block w-100" >
+<div id="carouselExampleControlsNoTouching" class="carousel slide gap-0" data-interval = "0">
+  <div class="carousel-inner"  >
+    <div class="carousel-item active"  >
+      <img src="http://localhost/HCY_CINEMA/common/movie_files/<%= stillImgList.get(0) %>" class="d-block w-100" alt="...">
     </div>
-    <%for(int i=1;i<stillImgList.size();i++){
-    	%>
-    <div class="carousel-item">
-      <img src="http://localhost/HCY_CINEMA/common/poster/<%= stillImgList.get(i) %>" class="d-block w-100">
+   <%for(int i=1;i<stillImgList.size();i++){ 
+    %>
+      <div class="carousel-item"  >
+      <img src="http://localhost/HCY_CINEMA/common/movie_files/<%= stillImgList.get(i) %>" class="d-block w-100" alt="...">
     </div>
-  <% }%>  
+    <%} %>
+   
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-s	
-	 
+
 <div style="display:inline-block">
 	 	<fieldset>
 			<p>트레일러 : <input type="file" name="trailer_file"></p>
 			<p><input type="hidden" value="" id="trailer_hide" name="trailer_hide"></p>	 	
 	 	</fieldset>
 	 </div>
-	 <div style="display:inline-block">
-	 <img src="">
-	 </div>
+	<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <video class="d-block w-100" style="height:440px;width:790px;" controls>
+      <source src="http://localhost/HCY_CINEMA/common/movie_files/<%= dmDAO.selectTrailer(movieCode) %>" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</div>
 	</div> 
 
 
@@ -900,14 +908,17 @@ s
 		</div>
 	</div>
 
+	
 
-	<script src="jquery-3.3.1.min.js" type="text/javascript"></script>
-	<script src="jquery-ui.min.js" type="text/javascript"></script>
+
+	
+		
+ 	<script src="jquery-ui.min.js" type="text/javascript"></script>
 	<script src="bootstrap.bundle.min.js" type="text/javascript"></script>
-	<!--[if lt IE 9]>
+	<!-- [if lt IE 9]>
 		<script src="../assets/crossbrowserjs/html5shiv.js"></script>
 		<script src="../assets/crossbrowserjs/respond.min.js"></script>
-	<![endif]-->
+	<![endif] -->
 	<script src="jquery.slimscroll.min.js" type="text/javascript"></script>
 	<script src="jquery.cookie.js" type="text/javascript"></script>
 
@@ -922,8 +933,12 @@ s
 	<script src="jquery.sparkline.min.js" type="text/javascript"></script>
 	<script src="demo.min.js" type="text/javascript"></script>
 	<script src="page-index-v3.demo.min.js" type="text/javascript"></script>
-	<script src="apps.min.js" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="apps.min.js" type="text/javascript"></script> 
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> 
+	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>   -->
+	<!-- <script src="jquery-3.3.1.min.js" type="text/javascript"></script> 
+
 
 	<!-- <script type="text/javascript">
 		$(document).ready(function() {
@@ -1101,6 +1116,7 @@ s
     	        
     	 })
      });
+     
      
      
 	</script>

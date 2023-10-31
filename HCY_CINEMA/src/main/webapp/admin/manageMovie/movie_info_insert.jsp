@@ -50,7 +50,7 @@ String hide = "";
 String[] hideArr = null;
 List<String> list = new ArrayList<String>();
 try {
-    File saveDir = new File("C:/Users/user/git/HCY_CINEMA/HCY_CINEMA/src/main/webapp/common/poster");
+    File saveDir = new File("C:/Users/user/git/HCY_CINEMA/HCY_CINEMA/src/main/webapp/common/movie_files");
     int maxSize = 1024 * 1024 * 50; // 키로바이트 * 메가바이트 * 기가바이트
     MultipartRequest mr = new MultipartRequest(request, saveDir.getAbsolutePath(), maxSize, "UTF-8", new DefaultFileRenamePolicy());
     
