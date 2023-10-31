@@ -1,3 +1,5 @@
+<%@page import="theater.ScheduleVO"%>
+<%@page import="theater.ScreenVO"%>
 <%@page import="theater.MovieVO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Calendar"%>
@@ -36,6 +38,7 @@
     <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/app.config.js"></script>
     <script type="text/javascript" src="/common/js/extraTheaters.js"></script>
     <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery-1.10.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.tmpl.min.js"></script>
     <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.validate.min.js"></script>
     <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/jquery.plugin/jquery.paging.min.js"></script>
@@ -55,11 +58,106 @@
 
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
+    
+    
     //<![CDATA[
         app.config('staticDomain', 'http://localhost/HCY_CINEMA/user/schedule/theater_schedule_frame.jsp')
             .config('imageDomain', 'https://img.cgv.co.kr')
             .config('isLogin', 'False');
     //]]>
+    
+    function clickDate(date){
+    	$("#date > .on").attr("class","")
+    	$("#"+date).attr("class","on")
+    	
+    	var data = {"date":date}
+    	$.ajax({
+    		url : "http://localhost/HCY_CINEMA/user/schedule/theater_schedule_frame_ajax.jsp",
+    		type : "get",
+    		data : data,
+    		dataType : "json",
+    		error : function(xhr){
+    			console.log(xhr.status)
+    		},
+    		success : function(json){
+    				var html = ""; 
+    			$.each(json.list[i],function(i,e){
+    				var iconClass = e.movieRating == "AL" ? "All" : e.movieRating;
+    				html += '<li><div class="col-times"><div class="info-movie">'
+    				html += '<i class="cgvIcon etc age'
+    				html += iconClass
+    				html += '">'
+    				html +=	iconClass
+    				html +=	'</i>'
+    				html += '<a href="http://localhost/HCY_CINEMA/user/movieInfo/movie_detail.jsp?movie='
+   					html += e.moviecode
+    				html += '"target="_parent">'
+    				html += '<strong>'
+    				html += ${mVO.mname }
+    				html += '</strong></a><span class="round lightblue"><em>상영중</em></span><span class="">'
+    				html += '<em></em></span> <i>'
+    				html += e.
+    	                        
+    	                            
+    	                    
+    	                           ${mVO.runningTime }</i>/ <i>
+    	                                ${mVO.releseDate }
+    	                                개봉</i>
+    	                </div>
+    			})//each
+    				 
+    				
+    		}
+    		
+    		
+                <%
+                for(ScreenVO sVO : mVO.getsVO()){
+                	pageContext.setAttribute("sVO", sVO);
+                	%>
+                	<div class="type-hall">
+                            <div class="info-hall">
+                                <ul>
+                                    <li>
+                                        ${sVO.typeName }</li>
+                                    <li>
+                                        ${sVO.screenName }</li>
+                                    <li>총
+                                        169석</li>
+                                </ul>
+                            </div>
+                            <div class="info-timetable">
+                                <ul>
+                                    <%
+                                    for(ScheduleVO sdVO : sVO.getScdVO()){
+                                    	pageContext.setAttribute("sdVO", sdVO);
+                                    	if(sdVO.getTicketedSeat()<169){
+                                    		%>
+                                    		<li>
+                                    	<a href="" target="_top" data-theatercode="0056" data-playymd="20231031" data-screencode="001" data-playnum="6" data-playstarttime="2030" data-playendtime="2232" data-theatername="CGV 강남" data-seatremaincnt="140" data-screenkorname="1관 6층">
+                                    	<em>${sdVO.showtime }</em>
+                                    	<span class="txt-lightblue">
+                                    	<span class="hidden">잔여좌석</span>${169-sdVO.ticketedSeat }석</span></a>
+                                    		</li>
+                                    		<%
+                                    	}else{
+                                    	%>
+                                    	<li><em>${sdVO.showtime }</em><span>마감</span></li>
+                                    	<%
+                                    	}//else
+                                    }//for
+                                    %>
+                                </ul>
+                            </div>
+                        </div>
+                	<%
+                }//for
+                %>
+            </div>
+        </li>
+    		
+    		
+    	})//ajax
+    }//clickDate
     </script>
     <style>
     .round > * {height :auto; }
@@ -88,7 +186,7 @@
                        	
                        	String day = null;
                        	int year = cal.get(Calendar.YEAR);
-                       	int month = cal.get(Calendar.MONTH);
+                       	int month = cal.get(Calendar.MONTH)+1;
                        	int date = cal.get(Calendar.DAY_OF_MONTH);
                        	int maxDate = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
                         	
@@ -97,7 +195,6 @@
                         }else{
                         	sbDate.append(request.getParameter("date"));
                         }//else
-                        	
                        	TheaterDAO tDAO = TheaterDAO.getInstance();
                        	List<MovieVO> list = tDAO.selectTheaterSchedule(sbDate.toString());
                        	
@@ -124,10 +221,9 @@
                        	pageContext.setAttribute("month", month);
                        	pageContext.setAttribute("date", date);
                         %>
-                        <li ${ target == temp?'class="on"':'' }>
+                        <li ${ target == temp?'class="on"':'' } id="${year}${month }${date<10?'0':'' }${date}">
                             <div class="day">
-                                <a href="?areacode=01&theatercode=0013&date=${ temp }&screencodes=&screenratingcode=&regioncode=#menu"
-                                    ${ target == temp?'title="현재 선택"':'' }>
+                                <a onclick="clickDate('${year}${month }${date<10?'0':'' }${date}')">
                                     <span>
                                        <c:out value="${month }"/>월</span> <em>
                                             <c:out value="${day }"/></em> <strong>
@@ -147,7 +243,7 @@
                         }//if
                     }//for %>
                         </ul></div>
-                        <div class='item-wrap on'><ul class='item'>
+                        <div class='item-wrap on'><ul class='item' id="date">
                     <%
                 	for(int i = 0;i<8;i++ ){
                 		sbTemp.replace(0, sbTemp.length(), "");
@@ -164,9 +260,9 @@
                        	pageContext.setAttribute("month", month);
                        	pageContext.setAttribute("date", date);
                     %>
-                        <li ${ target == temp?'class="on"':'' }>
+                        <li ${ target == temp?'class="on"':'' } id="${year}${month }${date<10?'0':'' }${date}">
                             <div class="day">
-                                <a href="?areacode=01&theatercode=0013&date=${ temp }&screencodes=&screenratingcode=&regioncode="
+                                <a onclick="clickDate('${year}${month }${date<10?'0':'' }${date}')"
                                     ${ target == temp?'title="현재 선택"':'' }>
                                     <span>
                                        <c:out value="${month }"/>월</span> <em>
@@ -206,339 +302,80 @@
 
 
         <div class="sect-showtimes">
-            <ul>
-                        <li>
+            <ul id="movieList">
+            
+            <%
+            List<MovieVO> movieList = TheaterDAO.getInstance().selectTheaterSchedule(currentDate.toString());
+             for(MovieVO mVO : movieList){
+            	 pageContext.setAttribute("mVO", mVO);
+            	 %>
+            	 <li>
                             <div class="col-times">
                                 <div class="info-movie">
                                     <!-- 영상물 등급 노출 변경 2022.08.24 -->
-                                    <i class="cgvIcon etc age12">12</i>
+                                    <i class="cgvIcon etc age${mVO.movieRating=='AL'?'All':mVO.movieRating }">${mVO.movieRating=='AL'?'All':mVO.movieRating }</i>
                                     <!-- <span class="ico-grade 12">
-                                        12</span>--> <a href="/movies/detail-view/?midx=87407"
+                                        12</span>--> <a href="http://localhost/HCY_CINEMA/user/movieInfo/movie_detail.jsp?movie=${mVO.moviecode }"
                                             target="_parent"><strong>
-                                                30일</strong></a>
+                                                ${mVO.mname }</strong></a>
                                     <span class="round lightblue">
                                         <em>
                                             상영중</em>
                                     </span><span class="">
                                         <em>
                                             </em>
-                                    </span><i>
-                                        코미디</i>/ <i>
-                                            119분</i>/ <i>
-                                                2023.10.03
+                                    </span> <i>
+                                           ${mVO.runningTime }</i>/ <i>
+                                                ${mVO.releseDate }
                                                 개봉</i>
                                 </div>
-                                
-                                        <div class="type-hall">
+                                <%
+                                for(ScreenVO sVO : mVO.getsVO()){
+                                	pageContext.setAttribute("sVO", sVO);
+                                	%>
+                                	<div class="type-hall">
                                             <div class="info-hall">
                                                 <ul>
                                                     <li>
-                                                        2D</li>
+                                                        ${sVO.typeName }</li>
                                                     <li>
-                                                        15관 (Laser)</li>
+                                                        ${sVO.screenName }</li>
                                                     <li>총
-                                                        247석</li>
+                                                        169석</li>
                                                 </ul>
                                             </div>
                                             <div class="info-timetable">
                                                 <ul>
-                                                    
-                                                            <li><em>21:15</em><span>마감</span></li>
-                                                            
-                                                        
+                                                    <%
+                                                    for(ScheduleVO sdVO : sVO.getScdVO()){
+                                                    	pageContext.setAttribute("sdVO", sdVO);
+                                                    	if(sdVO.getTicketedSeat()<169){
+                                                    		%>
+                                                    		<li>
+                                                    	<a href="" target="_top" data-theatercode="0056" data-playymd="20231031" data-screencode="001" data-playnum="6" data-playstarttime="2030" data-playendtime="2232" data-theatername="CGV 강남" data-seatremaincnt="140" data-screenkorname="1관 6층">
+                                                    	<em>${sdVO.showtime }</em>
+                                                    	<span class="txt-lightblue">
+                                                    	<span class="hidden">잔여좌석</span>${169-sdVO.ticketedSeat }석</span></a>
+                                                    		</li>
+                                                    		<%
+                                                    	}else{
+                                                    	%>
+                                                    	<li><em>${sdVO.showtime }</em><span>마감</span></li>
+                                                    	<%
+                                                    	}//else
+                                                    }//for
+                                                    %>
                                                 </ul>
                                             </div>
-
-                                             
                                         </div>
-                                    
-
-
-                            
+                                	<%
+                                }//for
+                                %>
                             </div>
                         </li>
-                    
-                    
-                    
-                        <li>
-                            <div class="col-times">
-                                <div class="info-movie">
-                                    <!-- 영상물 등급 노출 변경 2022.08.24 -->
-                                    <i class="cgvIcon etc ageAll">All</i>
-                                    <!-- <span class="ico-grade All">
-                                        All</span>--> <a href="/movies/detail-view/?midx=87422"
-                                            target="_parent"><strong>
-                                                바람 따라 만나리 : 김호중의 계절</strong></a>
-                                    <span class="round lightblue">
-                                        <em>
-                                            상영중</em>
-                                    </span><span class="">
-                                        <em>
-                                            </em>
-                                    </span><i>
-                                        다큐멘터리</i>/ <i>
-                                            107분</i>/ <i>
-                                                2023.10.18
-                                                개봉</i>
-                                </div>
-                                
-                                        <div class="type-hall">
-                                            <div class="info-hall">
-                                                <ul>
-                                                    <li>
-                                                        SCREENX 2D(STAGE)</li>
-                                                    <li>
-                                                        14관[SCREENX]</li>
-                                                    <li>총
-                                                        170석</li>
-                                                </ul>
-                                            </div>
-                                            <div class="info-timetable">
-                                                <ul>
-                                                    
-                                                            <li><em>21:10</em><span>마감</span></li>
-                                                            
-                                                        
-                                                </ul>
-                                            </div>
-
-                                             
-                                        </div>
-                                    
-
-
-                            
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="col-times">
-                                <div class="info-movie">
-                                    <!-- 영상물 등급 노출 변경 2022.08.24 -->
-                                    <i class="cgvIcon etc age18">18</i>
-                                    <!-- <span class="ico-grade 18">
-                                        18</span>--> <a href="/movies/detail-view/?midx=87358"
-                                            target="_parent"><strong>
-                                                익스펜더블 4</strong></a>
-                                    <span class="round lightblue">
-                                        <em>
-                                            상영중</em>
-                                    </span><span class="">
-                                        <em>
-                                            </em>
-                                    </span><i>
-                                        액션</i>/ <i>
-                                            103분</i>/ <i>
-                                                2023.10.18
-                                                개봉</i>
-                                </div>
-                                
-                                        <div class="type-hall">
-                                            <div class="info-hall">
-                                                <ul>
-                                                    <li>
-                                                        2D(PRIVATE BOX)</li>
-                                                    <li>
-                                                        PRIVATE BOX</li>
-                                                    <li>총
-                                                        8석</li>
-                                                </ul>
-                                            </div>
-                                            <div class="info-timetable">
-                                                <ul>
-                                                    
-                                                            <li><em>21:30</em><span>마감</span></li>
-                                                            
-                                                        
-                                                </ul>
-                                            </div>
-
-                                             
-                                        </div>
-                                    
-                                        <div class="type-hall">
-                                            <div class="info-hall">
-                                                <ul>
-                                                    <li>
-                                                        2D</li>
-                                                    <li>
-                                                        4관 (Laser)</li>
-                                                    <li>총
-                                                        403석</li>
-                                                </ul>
-                                            </div>
-                                            <div class="info-timetable">
-                                                <ul>
-                                                    
-                                                            <li><em>21:30</em><span>마감</span></li>
-                                                            
-                                                        
-                                                </ul>
-                                            </div>
-
-                                             
-                                        </div>
-                                    
-
-
-                            
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="col-times">
-                                <div class="info-movie">
-                                    <!-- 영상물 등급 노출 변경 2022.08.24 -->
-                                    <i class="cgvIcon etc age12">12</i>
-                                    <!-- <span class="ico-grade 12">
-                                        12</span>--> <a href="/movies/detail-view/?midx=87335"
-                                            target="_parent"><strong>
-                                                천박사 퇴마 연구소-설경의 비밀</strong></a>
-                                    <span class="round lightblue">
-                                        <em>
-                                            상영중</em>
-                                    </span><span class="">
-                                        <em>
-                                            </em>
-                                    </span><i>
-                                        </i>/ <i>
-                                            98분</i>/ <i>
-                                                2023.09.27
-                                                개봉</i>
-                                </div>
-                                
-                                        <div class="type-hall">
-                                            <div class="info-hall">
-                                                <ul>
-                                                    <li>
-                                                        2D</li>
-                                                    <li>
-                                                        7관 (Laser)</li>
-                                                    <li>총
-                                                        201석</li>
-                                                </ul>
-                                            </div>
-                                            <div class="info-timetable">
-                                                <ul>
-                                                    
-                                                            <li><em>21:15</em><span>마감</span></li>
-                                                            
-                                                        
-                                                </ul>
-                                            </div>
-
-                                             
-                                        </div>
-                                    
-
-
-                            
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="col-times">
-                                <div class="info-movie">
-                                    <!-- 영상물 등급 노출 변경 2022.08.24 -->
-                                    <i class="cgvIcon etc age12">12</i>
-                                    <!-- <span class="ico-grade 12">
-                                        12</span>--> <a href="/movies/detail-view/?midx=87388"
-                                            target="_parent"><strong>
-                                                1947 보스톤</strong></a>
-                                    <span class="round lightblue">
-                                        <em>
-                                            상영중</em>
-                                    </span><span class="">
-                                        <em>
-                                            </em>
-                                    </span><i>
-                                        드라마</i>/ <i>
-                                            108분</i>/ <i>
-                                                2023.09.27
-                                                개봉</i>
-                                </div>
-                                
-                                        <div class="type-hall">
-                                            <div class="info-hall">
-                                                <ul>
-                                                    <li>
-                                                        2D(러닝메이트 특가)</li>
-                                                    <li>
-                                                        18관</li>
-                                                    <li>총
-                                                        126석</li>
-                                                </ul>
-                                            </div>
-                                            <div class="info-timetable">
-                                                <ul>
-                                                    
-                                                            <li><em>21:30</em><span>마감</span></li>
-                                                            
-                                                        
-                                                </ul>
-                                            </div>
-
-                                             
-                                        </div>
-                                    
-
-
-                            
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="col-times">
-                                <div class="info-movie">
-                                    <!-- 영상물 등급 노출 변경 2022.08.24 -->
-                                    <i class="cgvIcon etc age15">15</i>
-                                    <!-- <span class="ico-grade 15">
-                                        15</span>--> <a href="/movies/detail-view/?midx=87238"
-                                            target="_parent"><strong>
-                                                잠</strong></a>
-                                    <span class="round lightblue">
-                                        <em>
-                                            상영중</em>
-                                    </span><span class="">
-                                        <em>
-                                            </em>
-                                    </span><i>
-                                        미스터리</i>/ <i>
-                                            94분</i>/ <i>
-                                                2023.09.06
-                                                개봉</i>
-                                </div>
-                                
-                                        <div class="type-hall">
-                                            <div class="info-hall">
-                                                <ul>
-                                                    <li>
-                                                        2D(영화제 초청 기념 특가)</li>
-                                                    <li>
-                                                        12관[Business]</li>
-                                                    <li>총
-                                                        214석</li>
-                                                </ul>
-                                            </div>
-                                            <div class="info-timetable">
-                                                <ul>
-                                                    
-                                                            <li><em>21:40</em><span>마감</span></li>
-                                                            
-                                                        
-                                                </ul>
-                                            </div>
-
-                                             
-                                        </div>
-                                    
-
-
-                            
-                            </div>
-                        </li>
-                    
-                
+            	 <%
+             }//for
+            %>
             </ul>
         </div>
       
