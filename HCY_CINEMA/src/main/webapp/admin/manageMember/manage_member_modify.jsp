@@ -370,20 +370,20 @@
 			
                                
                             
-                            <script>
-						    function confirmSave() {
-						        var confirmSave = confirm("수정된 회원정보를 저장하시겠습니까?");
-						        if (confirmSave) {
-						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_save.jsp?memberId=<%= mVO.getId() %>"; //예를 선택한 경우 delete.jsp로 이동
-						        } else {
-						            alert("변경된 내용이 취소되었습니다.");
-						            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<%= mVO.getId()%>"; 
-			
-						        }//end else
-						    }//confirmSave
-						    
-						    
-							</script>
+        <script>
+	    function confirmSave() {
+	        var confirmSave = confirm("수정된 회원정보를 저장하시겠습니까?");
+	        if (confirmSave) {
+	            $("#frm").submit();
+	        } else {
+	            alert("변경된 내용이 취소되었습니다.");
+	            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<%= mVO.getId()%>"; 
+
+	        }//end else
+	    }//confirmSave
+	    
+	    
+		</script>
 
                             <!-- 본문 내용 시작 { -->
                             <div class="formtit">회원 기본정보</div>

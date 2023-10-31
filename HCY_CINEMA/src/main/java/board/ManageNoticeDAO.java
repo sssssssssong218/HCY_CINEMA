@@ -307,29 +307,24 @@ public class ManageNoticeDAO {
 		PreparedStatement pstmt=null;
 		
 		DBConnection db=DBConnection.getInstance();
-		
+//		System.out.println(nVO.getSection()+" / "+nVO.getTitle()+" / "+nVO.getContent());
 		try {
 			con=db.getCon();
 			
 			StringBuilder insertNotice=new StringBuilder();
-//			insertNotice.append("");//쿼리문 작성해야함
+			insertNotice.append("insert into notice(section,title,content) values(?,?,?)");
 			
 			pstmt=con.prepareStatement(insertNotice.toString());
 			
 			pstmt.setString(1, nVO.getSection());
 			pstmt.setString(2, nVO.getTitle());
-			
-			Clob clob=con.createClob();
-			
-			clob.setString(1, nVO.getContent());
-			
-			pstmt.setClob(3, clob);
+			pstmt.setString(3, nVO.getContent());
 			
 			
 			int rowCnt=pstmt.executeUpdate();
 			if(rowCnt>0) {
 				flag=true;
-			}
+			}//end if
 			
 		}catch(SQLException se) {
 			se.printStackTrace();
@@ -340,6 +335,48 @@ public class ManageNoticeDAO {
 		
 		return flag;
 	}//insertNotice
+	
+	public boolean updateNotice(NoticeVO nVO)throws SQLException{
+		
+		boolean flag=false;
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		DBConnection db=DBConnection.getInstance();
+		
+		try {
+			con=db.getCon();
+			StringBuilder updateNotice=new StringBuilder();
+			updateNotice.append("update notice")
+			.append("set section=?,title=?,content=?")
+			.append("where noticenum=?");
+			
+			pstmt=con.prepareStatement(updateNotice.toString());
+			
+			pstmt.setString(1, nVO.getSection());
+			pstmt.setString(2, nVO.getTitle());
+			
+			Clob clob=con.createClob();
+			
+			clob.setString(1, nVO.getContent());
+			
+			pstmt.setClob(3, clob);
+			pstmt.setInt(4, nVO.getNoticeNum());
+
+			int rowCnt=pstmt.executeUpdate();
+			
+			if(rowCnt>0) {
+				flag=true;
+			}//end if
+			
+		}finally {
+			db.dbClose(null, pstmt, con);
+		}//end finally
+		
+		
+		return flag;
+	}//updateNotice
 	
 	
 }//class

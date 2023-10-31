@@ -30,7 +30,6 @@ String newBirth=request.getParameter("newBirth");
 String newTel=request.getParameter("newTel");
 String newEmail=request.getParameter("newEmail");
 
-System.out.print(newBirth);
 
 Encryption ec=Encryption.getInstance();
 

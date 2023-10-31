@@ -253,7 +253,6 @@ private ManageMemberDAO() {
 			ResultSet rs=null;
 			
 			DBConnection db=DBConnection.getInstance();
-			System.out.println(mVO.getMname()+" / "+mVO.getBirth()+" / "+mVO.getTel()+" / "+mVO.getEmail()+" / "+mVO.getId());
 			try {
 				con=db.getCon();
 				

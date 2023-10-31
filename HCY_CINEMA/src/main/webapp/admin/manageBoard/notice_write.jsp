@@ -134,7 +134,10 @@
                 width: 1000,
                 height: 300,
                 lang: 'ko-KR'
-            });
+            });//summernote
+            $("#btn_submit").click(function(){
+            	$("#frm").submit();
+            });//click
         }); //ready
     </script>
 </head>
@@ -344,13 +347,9 @@
                                                 </td>
                                             </tr>
 
-
-
-
-
-
                                             <tr>
                                                 <th scope="row"><label for="wr_subject">제목<strong class="sound_only">필수</strong></label></th>
+                                                	<input type="button" name="title" id="hidden_title" value="">
                                                 <td>
                                                     <div id="autosave_wrapper">
                                                         <input style="width:1000px" type="text" name="title" value="" id="title" required="" class="frm_input required" size="80" maxlength="255">
@@ -363,6 +362,7 @@
 
                                             <tr>
                                                 <th scope="row"><label for="note">내용<strong class="sound_only">필수</strong></label></th>
+                                                	<input type="button" name="content" id="hidden_content" value="">
                                                 <td class="wr_content">
 
                                                     <div style="width: 500px">
@@ -371,11 +371,16 @@
 
                                                 </td>
                                             </tr>
-
-										</form>
                                         </tbody>
                                     </table>
                                 </div>
+                                 <br><br>
+                                <div class="btn_confirm">
+                                    <input type="submit" value="작성완료" id="btn_submit" accesskey="s" class="btn_submit" onclick="confirmInsert()">
+                                    <button type="button" class="btn btn-light" style="width:108.229px; height:44.184px;"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp">취소</a></button>
+                                </div>
+                                </form>
+                                
                                 <script>
                                 function confirmInsert(){
                                 	var title=document.getElementById("title").value.trim();
@@ -396,11 +401,7 @@
                                 }//confirmInsert
                                 
                                 </script>
-                                <br><br>
-                                <div class="btn_confirm">
-                                    <input type="submit" value="작성완료" id="btn_submit" accesskey="s" class="btn_submit" onclick="confirmInsert()">
-                                    <button type="button" class="btn btn-light" style="width:108.229px; height:44.184px;"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp">취소</a></button>
-                                </div>
+                               
 
                             <script>
                                 function html_auto_br(obj) {

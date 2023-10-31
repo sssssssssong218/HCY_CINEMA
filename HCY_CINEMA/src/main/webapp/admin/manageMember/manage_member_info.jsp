@@ -81,7 +81,7 @@
     <meta property="og:image" content="/img/meta.jpg">
     <link rel="canonical" href="https://ncyok.or.kr/index.php">
 
-    <script src="pace.min.js" type="text/javascript"></script>
+<!--     <script src="pace.min.js" type="text/javascript"></script> -->
     <script src="https://www.ncyok.or.kr:443/js/jquery-1.8.3.min.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/jquery.menu.js"></script>
     <script src="https://www.ncyok.or.kr:443/js/common.js"></script>
