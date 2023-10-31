@@ -386,5 +386,90 @@ public class DetailMovieDAO {
 		}//try
 		return trailer;
 	}//selectTrailer
+	
+	public void updateMovie(String movieCode, AddMovieVO amVO) throws SQLException{
+		DBConnection db = DBConnection.getInstance();
 
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		try {
+			con = db.getCon();
+
+			StringBuilder updateMovie = new StringBuilder();
+			updateMovie
+			.append("	update movie										")
+			.append("	set mname=?,releasedate=?,enddate=?,runningtime=?,	")
+			.append("	plot=?,status=?,movie_rating=?						")
+			.append("	where moviecode=?									");
+
+			pstmt = con.prepareStatement(updateMovie.toString());
+			
+			pstmt.setString(1, amVO.getMname());
+			pstmt.setDate(2, amVO.getReleaseDate());
+			pstmt.setDate(3, amVO.getEndDate());
+			pstmt.setInt(4, amVO.getRunningTime());
+			pstmt.setString(5, amVO.getPlot());
+			pstmt.setString(6, amVO.getStatus());
+			pstmt.setString(7, amVO.getMovieRating());
+			pstmt.setString(8, movieCode);
+			
+			pstmt.executeUpdate();
+		
+		} finally {
+			db.dbClose(rs, pstmt, con);
+		}//try
+	}//updateMovie
+
+	public void deleteMovieInfo(String movieCode) throws SQLException {
+		DBConnection db = DBConnection.getInstance();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = db.getCon();
+
+			StringBuilder updateMovie = new StringBuilder();
+			updateMovie
+			.append("	delete 				")
+			.append("	from movie_info		")
+			.append("	where moviecode=?	");
+
+			pstmt = con.prepareStatement(updateMovie.toString());
+			
+
+			pstmt.setString(1, movieCode);
+			
+			pstmt.executeUpdate();
+		
+		} finally {
+			db.dbClose(null, pstmt, con);
+		}//try
+	}//deleteMovieInfo
+	public void deleteMovieFile(String movieCode) throws SQLException {
+		DBConnection db = DBConnection.getInstance();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = db.getCon();
+
+			StringBuilder updateMovie = new StringBuilder();
+			updateMovie
+			.append("	delete 				")
+			.append("	from moviefile		")
+			.append("	where moviecode=?	");
+
+			pstmt = con.prepareStatement(updateMovie.toString());
+			
+
+			pstmt.setString(1, movieCode);
+			
+			pstmt.executeUpdate();
+		
+		} finally {
+			db.dbClose(null, pstmt, con);
+		}//try
+	}//deleteMovieFile
+	
 }// class

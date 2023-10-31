@@ -516,7 +516,7 @@ List<String> list=new ArrayList<String>();
 
 <h1 class="page-header">영화 추가</h1>
 
-<form class="form-horizontal" accept-charset="UTF-8" action="modify_movie.jsp" method="post" enctype="multipart/form-data" id="movie_info_all_frm">
+<form class="form-horizontal" accept-charset="UTF-8" action="modify_movie.jsp?movieCode=<%= movieCode %>" method="post" enctype="multipart/form-data" id="movie_info_all_frm">
 <div class="section-container section-with-top-border p-b-10">
 
 <div class="row">
@@ -756,6 +756,7 @@ document.getElementById("nextdate").value = <%=enddate%>;
 	<div id="carouselExample" class="carousel slide">
   <div class="carousel-inner">
     <div class="carousel-item active">
+    <input type="checkbox" name="posterfile" id="<%= dmDAO.selectPoster(movieCode) %>" value="<%= dmDAO.selectPoster(movieCode) %>">선택
       <img src="http://localhost/HCY_CINEMA/common/movie_files/<%= dmDAO.selectPoster(movieCode) %>" class="d-block w-100" style="height:440px;width:790px;">
     </div>
   </div>
@@ -772,17 +773,19 @@ document.getElementById("nextdate").value = <%=enddate%>;
 <div id="carouselExampleControlsNoTouching" class="carousel slide gap-0" data-interval = "0">
   <div class="carousel-inner"  >
     <div class="carousel-item active"  >
+      <input type="checkbox" name="stillfile" id="<%= stillImgList.get(0) %>" value="<%= stillImgList.get(0) %>">선택<br/>
       <img src="http://localhost/HCY_CINEMA/common/movie_files/<%= stillImgList.get(0) %>" class="d-block w-100" alt="...">
     </div>
    <%for(int i=1;i<stillImgList.size();i++){ 
     %>
       <div class="carousel-item"  >
+      <input type="checkbox" name="stillfile" id="<%= stillImgList.get(i) %>" value="<%= stillImgList.get(i) %>">선택<br/>
       <img src="http://localhost/HCY_CINEMA/common/movie_files/<%= stillImgList.get(i) %>" class="d-block w-100" alt="...">
     </div>
     <%} %>
    
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev" style="position:absolute;height:440px;top:20px;">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
@@ -801,6 +804,7 @@ document.getElementById("nextdate").value = <%=enddate%>;
 	<div id="carouselExample" class="carousel slide">
   <div class="carousel-inner">
     <div class="carousel-item active">
+    <input type="checkbox" name="trailerfile" id="<%= dmDAO.selectTrailer(movieCode) %>" value="<%= dmDAO.selectTrailer(movieCode) %>">선택
       <video class="d-block w-100" style="height:440px;width:790px;" controls>
       <source src="http://localhost/HCY_CINEMA/common/movie_files/<%= dmDAO.selectTrailer(movieCode) %>" type="video/mp4">
       </video>

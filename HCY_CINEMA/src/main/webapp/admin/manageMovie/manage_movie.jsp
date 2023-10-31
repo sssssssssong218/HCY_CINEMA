@@ -306,7 +306,7 @@ to {
 														</div>
 														<div style="display: inline-block;">
 															<img
-																src="http://localhost/HCY_CINEMA/common/poster/<%= mmVO.getFileName() %>" style="width:200px;height:200px;">
+																src="http://localhost/HCY_CINEMA/common/movie_files/<%= mmVO.getFileName() %>" style="width:200px;height:200px;">
 														</div>
 													</td>
 

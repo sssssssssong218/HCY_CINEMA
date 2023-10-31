@@ -104,7 +104,7 @@ try {
 	DetailMovieDAO dmDAO=DetailMovieDAO.getInstance(); 
 
 	 miVO.setActor(actor_list);
-	 miVO.setActor(extra_list);
+	 miVO.setExtra(extra_list);
 	miVO.setDirector(director_list);
 	miVO.setGenre(genre_list);
 	dmDAO.insertActorInfo(miVO, movieCode);
