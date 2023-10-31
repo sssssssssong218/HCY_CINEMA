@@ -29,7 +29,7 @@
     <meta name="viewport" content="width=1200, user-scalable=no">
     <meta http-equiv="imagetoolbar" content="no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>회원정보 수정</title>
+    <title>공지사항 수정</title>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.ncyok.or.kr:443/theme/basic/css/default.css?ver=1697535328">
@@ -244,13 +244,13 @@
                             </li>
                             <li><a href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen.jsp"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
                                 </a></li>
-                            <li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
+                            <li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
                                     <span>회원관리</span>
                                 </a></li>
                             <li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
                                     <span>게시판 관리</span>
                                 </a></li>
-                            <li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"> <img class="fa fa-file" src="../../common/images/notice_icon.png">
+                            <li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"> <img class="fa fa-file" src="../../common/images/notice_icon.png">
                                 <span>공지사항 관리</span>
                             </a></li>
                                 
@@ -268,7 +268,7 @@
 
                 <ol style="text-align:right">
                     <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-                    <li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp">회원관리</a></li>
+                    <li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp">공지사항 관리</a></li>
                 </ol>
 
 
@@ -466,7 +466,7 @@
                             </div>
                             <br><br>
                             <div align="center">
-							<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"><span style="color: white; font-size: 15px;"><i>회원 목록</i></span></a></button>
+							<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"><span style="color: white; font-size: 15px;"><i>공지사항 목록</i></span></a></button>
 							</div>
                             </section>
 

@@ -330,6 +330,7 @@
 						function confirmDelete(){
 							var confirmDelete=confirm("게시글을 정말 삭제하시겠습니까?");
 							if(confirmDelete){
+								$("#frm").submit();
 								alert("게시글이 삭제되었습니다.");
 								window.location.href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_delete.jsp?postNum=<%=bVO.getPostNum()%>";
 							}else{
@@ -345,31 +346,32 @@
                         <div class="formtit">자유게시판 - 글 </div>
                         <div style="text-align:right">
                         <input class="btn btn-danger" type="submit" value="글 삭제" id="boardDelete" onclick="confirmDelete()"></div>
-    <section id="bo_v_file">
-        <h2>첨부파일</h2>
-        <ul>
-                    <li>
-                     <span class="sv_member" style="float:left">작성자 ID&nbsp;&nbsp;</span>  <strong><span class="sv_member">[<%=bVO.getId() %>]</span></strong>
-                <!--span>DATE : 2023-10-18 15:19:23</span-->
-           			 </li>
-                </ul>
-    </section>
-    <header>
+				    	
+				    <section id="bo_v_file">
+				        <h2>첨부파일</h2>
+				        <ul>
+				                    <li>
+				                     <span class="sv_member" style="float:left">작성자 ID&nbsp;&nbsp;</span>  <strong><span class="sv_member">[<%=bVO.getId() %>]</span></strong>
+				                <!--span>DATE : 2023-10-18 15:19:23</span-->
+				           			 </li>
+				                </ul>
+				    </section>
+				    <header>
                      <div align="right">
                      작성일 &nbsp;<strong>[<%=bVO.getInputDate() %>]</strong>
                      </div>
-    </header>
-    <span class="sv_member" style="float:right">게시글 번호 &nbsp;<strong>[<%=bVO.getPostNum() %>]</strong></span><br>
-    <span class="sv_member" style="float:right">조회수 &nbsp;<strong>[<%=mbDAO.UpdatedViewCount(postNum) %>]</strong></span>
-    
-	<hr class="bg2_1">
-    <section id="bo_v_info">
-        <h2>페이지 정보</h2>
-    </section>
-
-    
-        <!-- 첨부파일 시작 { -->
-		<hr class="bg2_1">
+				    </header>
+				    <span class="sv_member" style="float:right">게시글 번호 &nbsp;<strong>[<%=bVO.getPostNum() %>]</strong></span><br>
+				    <span class="sv_member" style="float:right">조회수 &nbsp;<strong>[<%=mbDAO.UpdatedViewCount(postNum) %>]</strong></span>
+				    
+					<hr class="bg2_1">
+				    <section id="bo_v_info">
+				        <h2>페이지 정보</h2>
+				    </section>
+				
+				    
+				        <!-- 첨부파일 시작 { -->
+						<hr class="bg2_1">
 
 
 
@@ -463,12 +465,12 @@
         <tr>
             <th><strong>내용</strong></th>
             <td colspan="3" style="height: 200px; overflow: auto;"><%= bVO.getContent() %></td>
-        </tr>
-    </table>
-</div><br><br>
-<div align="center">
-<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"><span style="color: white; font-size: 15px;"><i>글 목록</i></span></a></button>
-</div>
+		 </tr>
+		    </table>
+		</div><br><br>
+		<div align="center">
+		<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"><span style="color: white; font-size: 15px;"><i>게시판 목록</i></span></a></button>
+		</div>
                             </section>
 
                             <!-- 링크 버튼 시작 { -->

@@ -307,7 +307,6 @@ public class ManageNoticeDAO {
 		PreparedStatement pstmt=null;
 		
 		DBConnection db=DBConnection.getInstance();
-//		System.out.println(nVO.getSection()+" / "+nVO.getTitle()+" / "+nVO.getContent());
 		try {
 			con=db.getCon();
 			
@@ -319,7 +318,6 @@ public class ManageNoticeDAO {
 			pstmt.setString(1, nVO.getSection());
 			pstmt.setString(2, nVO.getTitle());
 			pstmt.setString(3, nVO.getContent());
-			
 			
 			int rowCnt=pstmt.executeUpdate();
 			if(rowCnt>0) {
