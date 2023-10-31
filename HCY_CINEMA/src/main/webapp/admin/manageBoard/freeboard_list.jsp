@@ -216,8 +216,8 @@ to {
 
 			<ol class="breadcrumb pull-right">
 				<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-				<li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp">자유게시판</a></li>
-				<li class="breadcrumb-item active">Dashboard v3</li>
+				<li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp">게시판 관리</a></li>
+				<li class="breadcrumb-item active"></li>
 			</ol>
 
 
@@ -297,7 +297,7 @@ to {
         <input type="submit" value="검색" class="btn_search" style="margin-left: 10px;">
         </form>
     </fieldset>
-    <br><br>
+    
 <!-- } 게시판 검색 끝 -->
     <!--div id="bo_list_total">
         <span>Total 2,584건</span>

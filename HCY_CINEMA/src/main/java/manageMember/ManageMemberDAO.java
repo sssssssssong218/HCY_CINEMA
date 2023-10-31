@@ -201,7 +201,7 @@ private ManageMemberDAO() {
 	         selectMember
 	         .append("      select mname,id,joindate                          ")
 	         .append("      from (select mname,id,joindate  ,                 ")
-	         .append("      row_number() over (order by joindate desc) rnum   ")
+	         .append("      row_number() over (order by joindate ) rnum   ")
 	         .append("      from member  where    							  ");
 	            
 	         if(  brVO.getKeyword() != null &&  !"".equals(brVO.getKeyword() ) &&  !"null".equals( brVO.getKeyword() ) ) {
