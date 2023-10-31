@@ -102,6 +102,7 @@ public class DetailMovieDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		System.out.println(miVO.getExtra());
 		try {
 			con = db.getCon();
 
@@ -112,6 +113,7 @@ public class DetailMovieDAO {
 			for (String extra : miVO.getExtra()) {
 				pstmt.setString(1, movieCode);
 				pstmt.setString(2, extra);
+			
 				pstmt.executeUpdate();
 			} // for
 		} finally {
@@ -446,7 +448,7 @@ public class DetailMovieDAO {
 			db.dbClose(null, pstmt, con);
 		}//try
 	}//deleteMovieInfo
-	public void deleteMovieFile(String movieCode) throws SQLException {
+	public void deleteMovieFile(String movieCode,String filename) throws SQLException {
 		DBConnection db = DBConnection.getInstance();
 
 		Connection con = null;
@@ -458,12 +460,14 @@ public class DetailMovieDAO {
 			updateMovie
 			.append("	delete 				")
 			.append("	from moviefile		")
-			.append("	where moviecode=?	");
+			.append("	where moviecode=?	")
+			.append("	and filename=?		");
 
 			pstmt = con.prepareStatement(updateMovie.toString());
 			
 
 			pstmt.setString(1, movieCode);
+			pstmt.setString(2, filename);
 			
 			pstmt.executeUpdate();
 		

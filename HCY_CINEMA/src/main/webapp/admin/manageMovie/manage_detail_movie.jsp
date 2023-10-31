@@ -511,12 +511,12 @@ int endyear=calDB.get(Calendar.YEAR);
 int endmonth=calDB.get(Calendar.MONTH)+1;
 int enddate=calDB.get(Calendar.DAY_OF_MONTH);
 List<String> list=new ArrayList<String>();
-
+List<String> stillImgList=dmDAO.selectStill(movieCode);
 %>
 
 <h1 class="page-header">영화 추가</h1>
 
-<form class="form-horizontal" accept-charset="UTF-8" action="modify_movie.jsp?movieCode=<%= movieCode %>" method="post" enctype="multipart/form-data" id="movie_info_all_frm">
+<form class="form-horizontal" accept-charset="UTF-8" action="modify_movie.jsp?movieCode=<%= movieCode %>&stillSize=<%= stillImgList.size() %>" method="post" enctype="multipart/form-data" id="movie_info_all_frm">
 <div class="section-container section-with-top-border p-b-10">
 
 <div class="row">
@@ -767,9 +767,6 @@ document.getElementById("nextdate").value = <%=enddate%>;
 			<p><input type="hidden" value="" id="still_hide" name="still_hide"></p>	 	
 	 	</fieldset>
 	 </div>
-	 <%
-	 List<String> stillImgList=dmDAO.selectStill(movieCode);
-	 %>
 <div id="carouselExampleControlsNoTouching" class="carousel slide gap-0" data-interval = "0">
   <div class="carousel-inner"  >
     <div class="carousel-item active"  >

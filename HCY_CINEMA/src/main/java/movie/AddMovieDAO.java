@@ -97,7 +97,7 @@ public class AddMovieDAO {
 			StringBuilder insertMovie = new StringBuilder();
 			insertMovie.append("	insert into moviefile(MOVIECODE, FILENAME, FILETYPE)	")
 					.append("	values(?,?,'P')											");
-
+			
 			pstmt = con.prepareStatement(insertMovie.toString());
 			pstmt.setString(1, movieCode);
 			pstmt.setString(2, mVO.getPosterFile());
@@ -110,6 +110,7 @@ public class AddMovieDAO {
 		} finally {
 			db.dbClose(rs, pstmt, con);
 		}
+		
 		return flag;
 	}
 
