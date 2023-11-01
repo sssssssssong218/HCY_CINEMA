@@ -255,8 +255,8 @@ to {
 <div class="form-group m-b-10">
 <label class="col-lg-3 col-form-label">국가</label>
 <div class="col-lg-7">
-<input type="radio" name="country" id="domestic" value="국내" checked="checked">국내
-<input type="radio" name="country" id="foreign" value="외국">외국
+<input type="radio" name="country" id="domestic" value="K" checked="checked">국내
+<input type="radio" name="country" id="foreign" value="F">외국
 </div>
 </div>
 <div class="form-group m-b-10">

@@ -120,6 +120,33 @@ public class DetailMovieDAO {
 			db.dbClose(rs, pstmt, con);
 		} // try
 	}// insertExtraInfo
+	public void insertContryInfo(String country, String movieCode) throws SQLException {
+		DBConnection db = DBConnection.getInstance();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String type="";
+		if(country.equals("국내")) {
+			type="K";
+		}else {
+			type="F";
+		}
+		try {
+			con = db.getCon();
+			
+			StringBuilder movieInfo = new StringBuilder();
+			movieInfo.append("	insert into MOVIE_INFO(MOVIECODE, INFO, INFOTYPE)	")
+			.append(" 	values(?,?,?)										");
+				pstmt = con.prepareStatement(movieInfo.toString());
+				pstmt.setString(1, movieCode);
+				pstmt.setString(2, country);
+				pstmt.setString(3, type);
+				pstmt.executeUpdate();
+		} finally {
+			db.dbClose(rs, pstmt, con);
+		} // try
+	}// insertExtraInfo
 
 	public ManageMovieVO selectSpecificMovieInfo(String movieCode) throws SQLException {
 		DBConnection db = DBConnection.getInstance();
