@@ -34,7 +34,7 @@ pVO.setPass(request.getParameter("pass"));
 pVO.setName(request.getParameter("name"));
 pVO.setBirth(request.getParameter("birth"));
     try{
-    	if((boolean)session.getAttribute("nonMemLogin")){
+    	if(session.getAttribute("nonMemLogin")!= null && (boolean)session.getAttribute("nonMemLogin")){
     		NonMemberTicketingDAO.getInstance().insertNonmemberPayment(pVO);
     	}else{
 		TicketingDAO.getInstance().insertMemberPayment(pVO);
@@ -45,12 +45,12 @@ pVO.setBirth(request.getParameter("birth"));
 	   	session.setAttribute("url","http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp" );
 	   	response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
     }//catch
-    if((boolean)session.getAttribute("nonMemLogin")){
+    if(session.getAttribute("nonMemLogin")!= null && (boolean)session.getAttribute("nonMemLogin")){
     	session.setAttribute("nonMemLogin",false);
     }//if
 %>
     alert("예매가 성공적으로 이루어졌습니다.")
-    location.href="http://localhost/HCY_CINEMA/user/home/main.jsp";
+    window.parent.location.href="http://localhost/HCY_CINEMA/user/home/main.jsp";
         })
 </script>
 <head>
