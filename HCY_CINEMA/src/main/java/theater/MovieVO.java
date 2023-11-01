@@ -47,8 +47,11 @@ public void setsVO(List<ScreenVO> sVO) {
 @Override
 public String toString() {
 	return "MovieVO [moviecode=" + moviecode + ", mname=" + mname + ", runningTime=" + runningTime + ", releseDate="
-			+ releseDate + ", movieRating=" + movieRating + "]";
+			+ releseDate + ", movieRating=" + movieRating + ", sVO=" + sVO + "]";
 }
+
+
+
 
 
 }//class

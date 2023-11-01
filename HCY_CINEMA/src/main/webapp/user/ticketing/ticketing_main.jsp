@@ -21,7 +21,7 @@
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/Theater/Theater/2014/1211/CGVgangnam.jpg">
     <link rel="alternate" href="http://m.cgv.co.kr">
     <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
-    <title id="ctl00_headerTitle">HCY극장 &lt; 극장</title>
+    <title id="ctl00_headerTitle">영화 예매 &lt; 즐거움의 시작 HCY</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
@@ -76,12 +76,8 @@
 
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
-    
     $(document).ready(function() {
-    	<%
-    	pageContext.setAttribute("login", session.getAttribute("login"));
-    	%> 
-    	if(${login!="true"}){
+    	if(${login!="true"} && ${nonMemLogin!="true"}){
     		alert("로그인 후 이용해주세요!")
     		location.href="http://localhost/HCY_CINEMA/user/login/login.jsp"
     	}//if

@@ -81,7 +81,8 @@
     		},
     		success : function(json){
     				var html = ""; 
-    			$.each(json.list[i],function(i,e){
+    				alert(json)
+    			$.each(json.list,function(i,e){
     				var iconClass = e.movieRating == "AL" ? "All" : e.movieRating;
     				html += '<li><div class="col-times"><div class="info-movie">'
     				html += '<i class="cgvIcon etc age'
@@ -93,69 +94,45 @@
    					html += e.moviecode
     				html += '"target="_parent">'
     				html += '<strong>'
-    				html += ${mVO.mname }
+    				html += e.mname
     				html += '</strong></a><span class="round lightblue"><em>상영중</em></span><span class="">'
     				html += '<em></em></span> <i>'
-    				html += e.
-    	                        
-    	                            
-    	                    
-    	                           ${mVO.runningTime }</i>/ <i>
-    	                                ${mVO.releseDate }
-    	                                개봉</i>
-    	                </div>
+    				html += e.runningTime
+    				html += '</i>/ <i>'
+    				html += e.releseDate
+    				html += '개봉</i></div>'
+   					$.each(e.sVO,function(j,se){
+    					
+    					html += '<div class="type-hall"><div class="info-hall"><ul><li>' 
+    					html += se.typeName
+    					html += '</li><li>'
+    					html += se.screenName
+    					html += '</li><li>총169석</li></ul></div><div class="info-timetable"><ul>'
+                        
+    					$.each(se.scdVO,function(k,sde){
+    						var remainSeat = 169-sde.ticketedSeat;
+    						if(remainSeat!=0){
+    							html += '<li><a href="" target="_top" data-theatercode="0056" data-playymd="'
+    							html += sde.showdate
+    							html += '" data-screencode="001" data-playnum="6" data-playstarttime="2030" data-playendtime="2232" data-theatername="HCY 강남" data-seatremaincnt="140" data-screenkorname="'
+    							html += se.screenName
+    							html += '"><em>'
+    							html += sde.showtime
+    							html += '</em><span class="txt-lightblue"><span class="hidden">잔여좌석</span>'
+    							html += remainSeat
+    							html += '석</span></a></li>' 
+    						}else{
+    						html += '<li><em>'
+    						html += sde.showtime
+    						html += '</em><span>마감</span></li>'
+    						}//else
+    					})//each
+    					html += '</ul></div></div>'
+   					})//each
+   					html += '</div></li>'
     			})//each
-    				 
-    				
+    			$("#movieList").html(html)
     		}
-    		
-    		
-                <%
-                for(ScreenVO sVO : mVO.getsVO()){
-                	pageContext.setAttribute("sVO", sVO);
-                	%>
-                	<div class="type-hall">
-                            <div class="info-hall">
-                                <ul>
-                                    <li>
-                                        ${sVO.typeName }</li>
-                                    <li>
-                                        ${sVO.screenName }</li>
-                                    <li>총
-                                        169석</li>
-                                </ul>
-                            </div>
-                            <div class="info-timetable">
-                                <ul>
-                                    <%
-                                    for(ScheduleVO sdVO : sVO.getScdVO()){
-                                    	pageContext.setAttribute("sdVO", sdVO);
-                                    	if(sdVO.getTicketedSeat()<169){
-                                    		%>
-                                    		<li>
-                                    	<a href="" target="_top" data-theatercode="0056" data-playymd="20231031" data-screencode="001" data-playnum="6" data-playstarttime="2030" data-playendtime="2232" data-theatername="CGV 강남" data-seatremaincnt="140" data-screenkorname="1관 6층">
-                                    	<em>${sdVO.showtime }</em>
-                                    	<span class="txt-lightblue">
-                                    	<span class="hidden">잔여좌석</span>${169-sdVO.ticketedSeat }석</span></a>
-                                    		</li>
-                                    		<%
-                                    	}else{
-                                    	%>
-                                    	<li><em>${sdVO.showtime }</em><span>마감</span></li>
-                                    	<%
-                                    	}//else
-                                    }//for
-                                    %>
-                                </ul>
-                            </div>
-                        </div>
-                	<%
-                }//for
-                %>
-            </div>
-        </li>
-    		
-    		
     	})//ajax
     }//clickDate
     </script>
@@ -179,16 +156,20 @@
                         
                         StringBuilder currentDate = new StringBuilder();
                        	Calendar cal = Calendar.getInstance();
-                       	currentDate.append(cal.get(Calendar.YEAR))
-                        	.append(cal.get(Calendar.MONTH)+1)
-                        	.append(cal.get(Calendar.DAY_OF_MONTH));
-                       	String[] days ={"일","월","화","수","목","금","토"};
                        	
-                       	String day = null;
                        	int year = cal.get(Calendar.YEAR);
                        	int month = cal.get(Calendar.MONTH)+1;
                        	int date = cal.get(Calendar.DAY_OF_MONTH);
                        	int maxDate = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+                       	
+                       	currentDate.append(year)
+                        	.append(month<10?"0":"")
+                        	.append(month)
+                        	.append(date<10?"0":"")
+                        	.append(date);
+                       	String[] days ={"일","월","화","수","목","금","토"};
+                       	
+                       	String day = null;
                         	
                         if(request.getParameter("date") == null){
                         	sbDate = currentDate;

@@ -168,17 +168,15 @@ public void insertMemberPayment(PaymentVO pVO) throws SQLException {
 		con = db.getCon();
 		con.setAutoCommit(false);
 		
-		String insertMemberPayment = "INSERT INTO TICKETING(SCHEDULENUM, ID, TEL, MOVIECODE, SCREENNUM, PPLCOUNT, STATUS, TICKETDATE, PAYMENT) VALUES(?,?,?,?,?,?,'Y',SYSDATE,?)";
+		String insertMemberPayment = "INSERT INTO TICKETING(SCHEDULENUM, ID, MOVIECODE, SCREENNUM, PPLCOUNT, STATUS, TICKETDATE, PAYMENT) VALUES(?,?,?,?,?,?,'Y',SYSDATE,?)";
 		
 		pstmt = con.prepareStatement(insertMemberPayment);
-		System.out.println("pVO : "+pVO);
 		pstmt.setString(1, pVO.getScheduleNum());
 		pstmt.setString(2, pVO.getId());
-		pstmt.setString(3, pVO.getTel());
-		pstmt.setString(4, pVO.getMovieCode());
-		pstmt.setString(5, pVO.getScreenNum());
-		pstmt.setInt(6, pVO.getPplcount());
-		pstmt.setString(7, pVO.getPayment());
+		pstmt.setString(3, pVO.getMovieCode());
+		pstmt.setString(4, pVO.getScreenNum());
+		pstmt.setInt(5, pVO.getPplcount());
+		pstmt.setString(6, pVO.getPayment());
 		
 		pstmt.executeUpdate();
 		String[] seats = pVO.getSeat().split(",");
@@ -197,6 +195,7 @@ public void insertMemberPayment(PaymentVO pVO) throws SQLException {
 		
 		con.commit();
 	}finally {
+		con.rollback();
 		db.dbClose(null, pstmt, con);
 	}//finally
 }//insertMemberPayment

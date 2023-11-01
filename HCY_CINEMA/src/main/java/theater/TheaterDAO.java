@@ -27,7 +27,6 @@ private static TheaterDAO tDAO;
 	public List<MovieVO> selectTheaterSchedule(String date) throws SQLException{
 		List<MovieVO> list = new ArrayList<MovieVO>();
 		DBConnection db = DBConnection.getInstance();
-		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

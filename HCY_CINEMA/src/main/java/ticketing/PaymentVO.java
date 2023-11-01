@@ -2,8 +2,27 @@ package ticketing;
 
 public class PaymentVO {
 private int ticketNum,pplcount;
-private String id,tel,movieCode,payment,scheduleNum,screenNum,seat;
+private String id,tel,movieCode,payment,scheduleNum,screenNum,seat,name,pass,birth;
 
+
+public String getBirth() {
+	return birth;
+}
+public void setBirth(String birth) {
+	this.birth = birth;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getPass() {
+	return pass;
+}
+public void setPass(String pass) {
+	this.pass = pass;
+}
 public int getTicketNum() {
 	return ticketNum;
 }

@@ -304,13 +304,18 @@ function TnbRightClick(){
 		
 	$("#scheduleNum").val(scheduleCode);
 	$("#id").val("${memVO.id}");
-	$("#tel").val("");
 	$("#movieCode").val(selectMovie);
 	alert(screenCode)
 	$("#screenNum").val(screenCode);
 	$("#pplCount").val(seatnums.length);
 	$("#payment").val(paymentName[selectedIndex]);
 	$("#seatNum").val(seatnums);
+	
+	$("#tel").val("${memVO.tel}");
+	$("#name").val("${memVO.mname}")
+	$("#pass").val("${memVO.password}")
+	$("#birth").val("${memVO.birth}")
+	
 	
 	$("#hidFrm").submit()
 	return
@@ -436,6 +441,9 @@ document.addEventListener("DOMContentLoaded", function() {
 <input type="hidden" id="pplCount" name="pplCount" value="">
 <input type="hidden" id="payment" name="payment" value="">
 <input type="hidden" id="seatNum" name="seatNum" value="">
+<input type="hidden" id="name" name="name" value="">
+<input type="hidden" id="pass" name="pass" value="">
+<input type="hidden" id="birth" name="birth" value="">
 </form>
 
 <a name="t"></a>

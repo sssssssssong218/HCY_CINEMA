@@ -45,13 +45,13 @@
     <div class="sect-login">
         <ul class="tab-menu-round">
             <li class="on">
-                <a href="http://localhost/HCY_CINEMA/user/login/login.jsp">로그인</a>
+                <a href="">로그인</a>
             </li>
             <li>
-                <a href="http://localhost/HCY_CINEMA/user/login/nonmemberLogin.jsp">비회원 예매</a>
+                <a href="http://localhost/HCY_CINEMA/user/ticketing/nonmem_ticketing_main.jsp">비회원 예매</a>
             </li>
             <li>
-                <a href="http://localhost/HCY_CINEMA/user/myTicket/checkNonmember.jsp">비회원 예매확인</a>
+                <a href="http://localhost/HCY_CINEMA/user/myPage/nonmem_myticketlogin.jsp">비회원 예매확인</a>
             </li>
         </ul>
         <div class="box-login">

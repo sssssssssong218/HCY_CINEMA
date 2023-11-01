@@ -32,8 +32,10 @@ public void setScdVO(List<ScheduleVO> scdVO) {
 }
 @Override
 public String toString() {
-	return "ScreenVO [screenName=" + screenName + ", typeName=" + typeName + ", screenNum=" + screenNum + "]";
+	return "ScreenVO [screenName=" + screenName + ", typeName=" + typeName + ", screenNum=" + screenNum + ", scdVO="
+			+ scdVO + "]";
 }
+
 
 
 }//class

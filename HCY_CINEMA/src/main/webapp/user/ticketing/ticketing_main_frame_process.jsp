@@ -1,3 +1,4 @@
+<%@page import="ticketing.NonMemberTicketingDAO"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="ticketing.PaymentVO"%>
 <%@page import="ticketing.TicketingDAO"%>
@@ -29,14 +30,24 @@ pVO.setScreenNum(request.getParameter("screenNum"));
 pVO.setPplcount(Integer.parseInt(request.getParameter("pplCount")));
 pVO.setPayment(request.getParameter("payment"));
 pVO.setSeat(request.getParameter("seatNum"));
+pVO.setPass(request.getParameter("pass"));
+pVO.setName(request.getParameter("name"));
+pVO.setBirth(request.getParameter("birth"));
     try{
+    	if((boolean)session.getAttribute("nonMemLogin")){
+    		NonMemberTicketingDAO.getInstance().insertNonmemberPayment(pVO);
+    	}else{
 		TicketingDAO.getInstance().insertMemberPayment(pVO);
+    	}//else
     }catch(SQLException se){
 	   	se.printStackTrace();
 	   	session.setAttribute("msg","비정상적인 접근이 확인되었습니다.<br>다시 시도해주세요!" );
 	   	session.setAttribute("url","http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp" );
 	   	response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
     }//catch
+    if((boolean)session.getAttribute("nonMemLogin")){
+    	session.setAttribute("nonMemLogin",false);
+    }//if
 %>
     alert("예매가 성공적으로 이루어졌습니다.")
     location.href="http://localhost/HCY_CINEMA/user/home/main.jsp";
