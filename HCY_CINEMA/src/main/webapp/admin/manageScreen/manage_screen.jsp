@@ -24,7 +24,30 @@
 
 
 
-<script src="pace.min.js" type="text/javascript"></script>
+	<script src="pace.min.js" type="text/javascript"></script>
+	<script src="jquery-3.3.1.min.js" type="text/javascript"></script>
+	<script src="jquery-ui.min.js" type="text/javascript"></script>
+	<script src="bootstrap.bundle.min.js" type="text/javascript"></script>
+	<!--[if lt IE 9]>
+		<script src="../assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="../assets/crossbrowserjs/respond.min.js"></script>
+	<![endif]-->
+	<script src="jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src="jquery.cookie.js" type="text/javascript"></script>
+
+
+	<script src="bootstrap_calendar.min.js" type="text/javascript"></script>
+	<script src="Chart.min.js" type="text/javascript"></script>
+	<script src="jquery.gritter.js" type="text/javascript"></script>
+	<script src="bootstrap_calendar.min.js" type="text/javascript"></script>
+	<script src="jquery.dataTables.js" type="text/javascript"></script>
+	<script src="dataTables.bootstrap.min.js" type="text/javascript"></script>
+	<script src="dataTables.responsive.min.js" type="text/javascript"></script>
+	<script src="jquery.sparkline.min.js" type="text/javascript"></script>
+	<script src="demo.min.js" type="text/javascript"></script>
+	<script src="page-index-v3.demo.min.js" type="text/javascript"></script>
+	<script src="apps.min.js" type="text/javascript"></script>
+
 
 <!--[if lt IE 9]>
 	    <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
@@ -134,7 +157,7 @@ to {
 							</div>
 						</li>
 						<li class="nav-header">today work</li>
-						<li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/ManageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
+						<li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
 								<span>Dashboard <!-- <span class="label label-theme m-l-3">NEW</span> --></span>
 						</a> <!-- <ul class="sub-menu">
 <li><a href="index.html">Dashboard v1</a></li>
@@ -148,7 +171,7 @@ to {
 <span>Bootstrap 4</span>
 </a>
 </li> -->
-						<li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/ManageMovie/manage_movie.jsp">
+						<li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp">
 								<img class="fa fa-inbox" src="../../common/images/movie_icon.png"> <span>영화</span>
 						</a>
 							<ul class="sub-menu">
@@ -220,8 +243,8 @@ to {
   <li class="nav-item">
     <a class=" nav-link active" aria-current="page" href="#">1관</a>
   </li>
-  <li class="active nav-item">
-    <a class="nav-link" href="../manageScreen/manage_screen.jsp">2관</a>
+  <li class="nav-item">
+    <a class="nav-link active" href="../manageScreen/manage_screen.jsp">2관</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">3관</a>
@@ -232,7 +255,7 @@ to {
 </ul>
 <div>
 	<h2>&nbsp;&nbsp;상영스케줄</h2>
-	<h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;날짜 선택</h2>
+	<h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;날짜 선택</h4>
 
    &nbsp;&nbsp;&nbsp;
    <select id="selectbox" name="selectbox" onchange=""
@@ -696,28 +719,6 @@ to {
 	</div> -->
 
 
-	<script src="jquery-3.3.1.min.js" type="text/javascript"></script>
-	<script src="jquery-ui.min.js" type="text/javascript"></script>
-	<script src="bootstrap.bundle.min.js" type="text/javascript"></script>
-	<!--[if lt IE 9]>
-		<script src="../assets/crossbrowserjs/html5shiv.js"></script>
-		<script src="../assets/crossbrowserjs/respond.min.js"></script>
-	<![endif]-->
-	<script src="jquery.slimscroll.min.js" type="text/javascript"></script>
-	<script src="jquery.cookie.js" type="text/javascript"></script>
-
-
-	<script src="bootstrap_calendar.min.js" type="text/javascript"></script>
-	<script src="Chart.min.js" type="text/javascript"></script>
-	<script src="jquery.gritter.js" type="text/javascript"></script>
-	<script src="bootstrap_calendar.min.js" type="text/javascript"></script>
-	<script src="jquery.dataTables.js" type="text/javascript"></script>
-	<script src="dataTables.bootstrap.min.js" type="text/javascript"></script>
-	<script src="dataTables.responsive.min.js" type="text/javascript"></script>
-	<script src="jquery.sparkline.min.js" type="text/javascript"></script>
-	<script src="demo.min.js" type="text/javascript"></script>
-	<script src="page-index-v3.demo.min.js" type="text/javascript"></script>
-	<script src="apps.min.js" type="text/javascript"></script>
 
 	<!-- <script type="text/javascript">
 		$(document).ready(function() {
@@ -737,7 +738,7 @@ to {
 
 		gtag('config', 'G-Y3Q0VGQKY3');
 	</script>
-	<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;817469ae18dc8084&quot;,&quot;version&quot;:&quot;2023.8.0&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;4db8c6ef997743fda032d4f73cfeff63&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+	<!-- <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;817469ae18dc8084&quot;,&quot;version&quot;:&quot;2023.8.0&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;4db8c6ef997743fda032d4f73cfeff63&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
 		//<canvas> 요소 선택
@@ -759,6 +760,6 @@ to {
 			ctx.fillStyle = "blue"; // 막대 색상
 			ctx.fillRect(startX, startY - barHeight, barWidth, barHeight);
 		}
-	</script>
+	</script> -->
 
 </body></html>

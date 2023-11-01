@@ -5,14 +5,14 @@
 <%@page import="manageMember.ManageMemberDAO"%>
 <%@page import="manageMember.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ page info="회원정보 수정"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%-- <jsp:useBean id="mmDAO" class="manageMember.ManageMemberDAO"/>
 <%
-	String mname=request.getParameter("mname");
-	MemberVO mVO=mmDAO.selectMember(mname);
-	pageContext.setAttribute("mVO", mVO);
+   String mname=request.getParameter("mname");
+   MemberVO mVO=mmDAO.selectMember(mname);
+   pageContext.setAttribute("mVO", mVO);
 %> --%>
 
 <!doctype html>
@@ -104,9 +104,9 @@
 
     <link rel="stylesheet" href="https://www.ncyok.or.kr:443/theme/basic/css/sub.css">
     <!--[if lt IE 9]>
-	    <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
-	<![endif]-->
-	
+       <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
+   <![endif]-->
+   
     <style type="text/css">
         /* Chart.js */
         @ -webkit-keyframes chartjs-render-animation {
@@ -321,7 +321,7 @@
 
 
                             <!-- 관련링크 시작 { 
-	 <section id="bo_v_link">
+    <section id="bo_v_link">
         <h2>관련링크</h2>
         <ul>
                     <li>
@@ -342,48 +342,49 @@
             </div>
     <!-- } 게시물 상단 버튼 끝 -->
   <%
-			String memberId=request.getParameter("memberId");
-			
-			ManageMemberDAO mmDAO = ManageMemberDAO.getInstance();
-			List<MemberVO> list=mmDAO.selectMember(memberId);
-			
-			Encryption ec=Encryption.getInstance();
-			
-			String name="";
-			String tel="";
-			String email="";
-			
-			MemberVO mVO=null;
-			SimpleDateFormat inputDateFormat=new SimpleDateFormat("yyyyMMdd");
-			SimpleDateFormat outputDateFormat=new SimpleDateFormat("yyyyMMdd");
-			
-			for(int i=0; i<list.size(); i++){
-				mVO=list.get(i);
-				name=ec.decryption(mVO.getMname());
-				tel=ec.decryption(mVO.getTel());
-				email=ec.decryption(mVO.getEmail());
-				
-				String birthDateStr=mVO.getBirth();
-				Date birthDate=inputDateFormat.parse(birthDateStr);
-				String formattedBirthDate=outputDateFormat.format(birthDate);
-			%>
-			
+         String memberId=request.getParameter("memberId");
+         
+         ManageMemberDAO mmDAO = ManageMemberDAO.getInstance();
+         List<MemberVO> list=mmDAO.selectMember(memberId);
+         
+         Encryption ec=Encryption.getInstance();
+         
+         String name="";
+         String tel="";
+         String email="";
+         
+         MemberVO mVO=null;
+         SimpleDateFormat inputDateFormat=new SimpleDateFormat("yyyyMMdd");
+         SimpleDateFormat outputDateFormat=new SimpleDateFormat("yyyyMMdd");
+         
+         for(int i=0; i<list.size(); i++){
+            mVO=list.get(i);
+            name=ec.decryption(mVO.getMname());
+            tel=ec.decryption(mVO.getTel());
+            email=ec.decryption(mVO.getEmail());
+            
+            String birthDateStr=mVO.getBirth();
+            Date birthDate=inputDateFormat.parse(birthDateStr);
+            String formattedBirthDate=outputDateFormat.format(birthDate);
+         %>
+         
                                
                             
         <script>
-	    function confirmSave() {
-	        var confirmSave = confirm("수정된 회원정보를 저장하시겠습니까?");
-	        if (confirmSave) {
-	            $("#frm").submit();
-	        } else {
-	            alert("변경된 내용이 취소되었습니다.");
-	            window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<%= mVO.getId()%>"; 
+       function confirmSave() {
+           var confirmSave = confirm("수정된 회원정보를 저장하시겠습니까?");
+           if (confirmSave) {
+               $("#frm").submit();
+               alert("회원정보가 변경되었습니다.");
+           } else {
+               alert("변경된 내용이 취소되었습니다.");
+               window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<%= mVO.getId()%>"; 
 
-	        }//end else
-	    }//confirmSave
-	    
-	    
-		</script>
+           }//end else
+       }//confirmSave
+       
+       
+      </script>
 
                             <!-- 본문 내용 시작 { -->
                             <div class="formtit">회원 기본정보</div>
@@ -392,8 +393,8 @@
                                 <form id="frm" action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_save.jsp" mehtod="post">
                                 <div style="text-align:right">
                                <!--  <form action="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_delete.jsp" method="POST"> -->
-                                	<input type="hidden" name="memberId" value="<%= mVO.getId() %>">
-                                    <input class="btn btn-danger" type="submit" value="저장" id="save" onclick="confirmSave()">
+                                   <input type="hidden" name="memberId" value="<%= mVO.getId() %>">
+                                    <input class="btn btn-danger" type="button" value="저장" id="save" onclick="confirmSave()">
                                 
                                 <!-- </form> -->
                                 </div>
@@ -418,9 +419,9 @@
                                         </tr>
                                         <tr>
                                             <th><strong>아이디</strong></th>
-									        <td colspan="2" style="text-align: center;"><%=mVO.getId() %>
-									        </td>
-									        
+                                   <td colspan="2" style="text-align: center;"><%=mVO.getId() %>
+                                   </td>
+                                   
                                         </tr>
                                         <tr>
                                             <th><strong>생년월일</strong></th>
@@ -451,8 +452,8 @@
                                             
                                         </tr>
                                         <%
-										}
-										%>
+		                              }
+		                              %>
                                     </tbody>
                                 </table>
                                 
@@ -462,12 +463,12 @@
 
 
                             </div>
-						</form>
+                  </form>
                             </div>
                             <br><br>
                             <div align="center">
-							<button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"><span style="color: white; font-size: 15px;"><i>회원 목록</i></span></a></button>
-							</div>
+                     <button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"><span style="color: white; font-size: 15px;"><i>회원 목록</i></span></a></button>
+                     </div>
                             </section>
 
                             <!-- 링크 버튼 시작 { -->
