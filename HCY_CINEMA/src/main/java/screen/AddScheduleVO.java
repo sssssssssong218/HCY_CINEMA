@@ -53,6 +53,12 @@ public class AddScheduleVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
+	@Override
+	public String toString() {
+		return "AddScheduleVO [movieCode=" + movieCode + ", screenNum=" + screenNum + ", showtime=" + showtime
+				+ ", price=" + price + "]";
+	}
 	
 	
 	
