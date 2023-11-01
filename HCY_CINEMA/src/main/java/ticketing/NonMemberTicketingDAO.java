@@ -83,7 +83,7 @@ public void insertNonmemberPayment(PaymentVO pVO) throws SQLException {
 		pstmt.executeUpdate();
 		String[] seats = pVO.getSeat().split(",");
 		for(String seat:seats) {
-			insertNonmemberPayment = "INSERT INTO SEAT( SEATNUM, SCHEDULENUM, TICKETNUM) values(?,?,(select TICKETNUM from TICKETING where tel = ? and SCHEDULENUM = ? ))";
+			insertNonmemberPayment = "INSERT INTO SEAT( SEATNUM, SCHEDULENUM, TICKETNUM) values(?,?,(select TICKETNUM from TICKETING where tel = ? and SCHEDULENUM = ? AND TICKETDATE = (SELECT MAX(TICKETDATE) FROM TICKETING tt) ))";
 			
 			pstmt = con.prepareStatement(insertNonmemberPayment);
 			System.out.println("seatnon : "+seat.trim());

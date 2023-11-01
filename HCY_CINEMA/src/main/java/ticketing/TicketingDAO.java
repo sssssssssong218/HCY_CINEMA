@@ -168,7 +168,7 @@ public void insertMemberPayment(PaymentVO pVO) throws SQLException {
 		con = db.getCon();
 		con.setAutoCommit(false);
 		
-		String insertMemberPayment = "INSERT INTO TICKETING(SCHEDULENUM, ID, MOVIECODE, SCREENNUM, PPLCOUNT, STATUS, TICKETDATE, PAYMENT) VALUES(?,?,?,?,?,?,'Y',SYSDATE,?)";
+		String insertMemberPayment = "INSERT INTO TICKETING(SCHEDULENUM, ID, MOVIECODE, SCREENNUM, PPLCOUNT, STATUS, TICKETDATE, PAYMENT) VALUES(?,?,?,?,?,'Y',SYSDATE,?)";
 		
 		pstmt = con.prepareStatement(insertMemberPayment);
 		pstmt.setString(1, pVO.getScheduleNum());
@@ -181,10 +181,12 @@ public void insertMemberPayment(PaymentVO pVO) throws SQLException {
 		pstmt.executeUpdate();
 		String[] seats = pVO.getSeat().split(",");
 		for(String seat:seats) {
-			insertMemberPayment = "INSERT INTO SEAT( SEATNUM, SCHEDULENUM, TICKETNUM) values(?,?,(select TICKETNUM from TICKETING where ID = ? and SCHEDULENUM = ? ))";
+			insertMemberPayment = "INSERT INTO SEAT( SEATNUM, SCHEDULENUM, TICKETNUM) values(?,?,(SELECT TICKETNUM FROM TICKETING t WHERE ID = ? AND SCHEDULENUM = ? AND TICKETDATE = (SELECT MAX(TICKETDATE) FROM TICKETING tt)))";
 			
 			pstmt = con.prepareStatement(insertMemberPayment);
 			System.out.println("seat : "+seat.trim());
+			System.out.println("schedule : "+pVO.getScheduleNum());
+			System.out.println("id : "+pVO.getId());
 			pstmt.setString(1, seat.trim());
 			pstmt.setString(2, pVO.getScheduleNum());
 			pstmt.setString(3, pVO.getId());
