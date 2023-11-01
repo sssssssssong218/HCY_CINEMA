@@ -38,7 +38,7 @@ private static MainDAO mnDAO;
 		try {
 			con=db.getCon();
 			//쿼리문부터
-			String spl = "select ceil(RELEASEDATE- sysdate) dday, MOVIECODE, MNAME, round((SELECT count(*) from TICKETING t where TICKETDATE BETWEEN sysdate-7 AND sysdate and t.MOVIECODE = m.MOVIECODE)/(SELECT count(*) from TICKETING t where TICKETDATE BETWEEN sysdate-7 AND sysdate),3)*100||'%' ticketrate, MOVIE_RATING, PLOT,(SELECT round(sum(STAR_RATING)/count(*)) from REVIEW r where r.MOVIECODE = m.MOVIECODE) starrating FROM  MOVIE m where RELEASEDATE > sysdate";
+			String spl = "select ceil(RELEASEDATE- sysdate) dday, MOVIECODE, MNAME, round((SELECT count(*) from TICKETING t where TICKETDATE BETWEEN sysdate-7 AND sysdate and t.MOVIECODE = m.MOVIECODE)/(SELECT count(*) from TICKETING t where TICKETDATE BETWEEN sysdate-7 AND sysdate),3)*100||'%' ticketrate, MOVIE_RATING, PLOT,(SELECT round(sum(STAR_RATING)/count(*)) from REVIEW r where r.MOVIECODE = m.MOVIECODE) starrating FROM  MOVIE m where RELEASEDATE > sysdate order by ticketrate desc";
 			
 			pstmt = con.prepareStatement(spl);
 			rs = pstmt.executeQuery();
@@ -71,7 +71,7 @@ private static MainDAO mnDAO;
 		try {
             con=db.getCon();
 			//쿼리문부터
-			String spl = "select ceil(RELEASEDATE- sysdate) dday, MOVIECODE, MNAME, round((SELECT count(*) from TICKETING t where TICKETDATE BETWEEN sysdate-7 AND sysdate and t.MOVIECODE = m.MOVIECODE)/(SELECT count(*) from TICKETING t where TICKETDATE BETWEEN sysdate-7 AND sysdate),3)*100||'%' ticketrate, MOVIE_RATING, PLOT,(SELECT round(sum(STAR_RATING)/count(*)) from REVIEW r where r.MOVIECODE = m.MOVIECODE) starrating FROM  MOVIE m";
+			String spl = "select ceil(RELEASEDATE- sysdate) dday, MOVIECODE, MNAME, round((SELECT count(*) from TICKETING t where TICKETDATE BETWEEN sysdate-7 AND sysdate and t.MOVIECODE = m.MOVIECODE)/(SELECT count(*) from TICKETING t where TICKETDATE BETWEEN sysdate-7 AND sysdate),3)*100||'%' ticketrate, MOVIE_RATING, PLOT,(SELECT round(sum(STAR_RATING)/count(*)) from REVIEW r where r.MOVIECODE = m.MOVIECODE) starrating FROM  MOVIE m order by ticketrate desc";
 			
 			pstmt = con.prepareStatement(spl);
 			rs = pstmt.executeQuery();

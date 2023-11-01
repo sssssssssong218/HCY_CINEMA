@@ -84,7 +84,7 @@
                 $("#btnMovie").addClass('active');
                 $("#btnReserMovie").removeClass('active');
             	/* 전체보기 버튼 */
-                $("#btn_allView_Movie").attr("href", "http://localhost/HCY_CHINEMA/movieInfo/movieChart");
+                $("#btn_allView_Movie").attr("href", "http://localhost/HCY_CINEMA/user/movieInfo/moviechart.jsp");
             });
 			
         	/* 상영예정작 보기 */
@@ -96,7 +96,7 @@
                 $("#btnReserMovie").addClass('active');
                 $("#btnMovie").removeClass('active');
             	/* 전체보기 버튼 */
-                $("#btn_allView_Movie").attr("href", "http://localhost/HCY_CHINEMA/movieInfo/movieChart_Reser");
+                $("#btn_allView_Movie").attr("href", "http://localhost/HCY_CINEMA/user/movieInfo/moviechart_res.jsp");
             });
 
         	/* 무비차트 슬와이퍼 */
@@ -399,9 +399,9 @@
                         <strong id="ctl00_PlaceHolderContent_AD_MOVIE_NM" class="movieSelection_title"><c:out value="${ mtVO.movieName }"/></strong>
                         <span id="ctl00_PlaceHolderContent_AD_DESCRIPTION_NM" class="movieSelection_txt"><c:out value="${ mtVO.adMsg }"/></span>
                         <div class="movieSelection_video_controller_wrap">
-                            <a href="https://localhost/HCY_CINEMA/user/movie.jsp${not empty mtVO ?'?mNum=mtVO.movieCode' : ''}" id="ctl00_PlaceHolderContent_AD_CLIP_DETAIL_URL" class="btn_movieSelection_detailView">상세보기</a>
+                            <a href="http://localhost/HCY_CINEMA/user/movieInfo/movie_detail.jsp?movie=${mtVO.movieCode}" id="ctl00_PlaceHolderContent_AD_CLIP_DETAIL_URL" class="btn_movieSelection_detailView">상세보기</a>
                             
-                            <a href="#none" id="ctl00_PlaceHolderContent_playStop" class="btn_movieSelection_playStop">Stop</a>
+                            <a href="#none" id="ctl00_PlaceHolderContent_playStop" class="btn_movieSelection_playStop active">Stop</a>
                             <a href="#none" id="ctl00_PlaceHolderContent_soundOnOff" class="btn_movieSelection_soundOnOff">Sound On</a>
 
                             <input name="ctl00$PlaceHolderContent$AD_CNT_URL" type="hidden" id="ctl00_PlaceHolderContent_AD_CNT_URL" value="http://ad.cgv.co.kr/NetInsight/imp/CGV/CGV_201401/main@MovieSelection2021?ads_id%3d50242%26creative_id%3d74273">
@@ -423,7 +423,7 @@
                             <h3><a href="#none" class="active" id="btnMovie">무비차트</a></h3>
                             <h3><a href="#none" id="btnReserMovie">상영예정작</a></h3>
                         </div>
-                        <a href="/movies/?lt=1&amp;ft=0" id="btn_allView_Movie" class="btn_allView">전체보기</a>
+                        <a href="http://localhost/HCY_CINEMA/user/movieInfo/moviechart.jsp" id="btn_allView_Movie" class="btn_allView">전체보기</a>
                     </div>
 
                     <div class="swiper movieChart_list swiper-container-initialized swiper-container-horizontal" id="movieChart_list">

@@ -47,11 +47,11 @@
     <div class="wrap-movie-chart">
         <!-- Heading Map Multi -->
         <div class="tit-heading-wrap" style="height:  93px">
-            <h3>무비차트</h3>
+            <h3>상영예정작</h3>
             <div class="submenu">
                 <ul>
-                    <li class="on"><a href="/movies/" title="선택">무비차트</a></li>
-                    <li><a href="http://localhost/HCY_CINEMA/user/movieInfo/moviechart_res.jsp">상영예정작</a></li>
+                    <li><a href="http://localhost/HCY_CINEMA/user/movieInfo/moviechart.jsp">무비차트</a></li>
+                    <li class="on"><a href="" title="선택">상영예정작</a></li>
                     <!--<li><a href="/movies/?lt=3">CGV아트하우스</a></li>//-->
                 </ul>
             </div>
@@ -62,13 +62,15 @@
         
         <div class="sect-movie-chart">
             <h4 class="hidden">
-                무비차트 - 예매율순
+                상영예정작 - 예매율순
             </h4>
+             <% 
+            List<MovieChartVO> mcVOList = MovieChartDAO.getInstance().selectPreMainMovie();
+            MovieChartVO mcVO = null;
+            %>
             <ol>
             <%
-            List<MovieChartVO> mcVOList = MovieChartDAO.getInstance().selectMainMovie();
-            MovieChartVO mcVO = null;
-            for(int i = 0 ; i<4;i++){
+            for(int i = 0 ; i<(mcVOList.size()>4?4:mcVOList.size());i++){
             	mcVO = mcVOList.get(i);
             	%>
             
@@ -122,7 +124,7 @@
            	</ol>
             <ol>
              <%
-            for(int i = 4 ; i<8;i++){
+            for(int i = 4 ; i<(mcVOList.size()>8?8:mcVOList.size());i++){
             	mcVO = mcVOList.get(i);
             	%>
                <li>
