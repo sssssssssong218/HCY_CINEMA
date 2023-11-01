@@ -95,12 +95,6 @@ private static MainDAO mnDAO;
 		return list;
 	}//selectMainMovie
 	
-	private double selectMainStarRating() {
-		double rating = 0.0;
-		//아직 안함
-		return rating;
-	}//selectMainStarRating
-	
 	public MainTrailerVO selectMainTrailer() throws SQLException, NamingException {
 		DBConnection db = DBConnection.getInstance();
 		
