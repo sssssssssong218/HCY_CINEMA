@@ -41,6 +41,11 @@ public class ManageSeatVO {
 	public void setTicketNum(int ticketNum) {
 		this.ticketNum = ticketNum;
 	}
+
+	@Override
+	public String toString() {
+		return "ManageSeatVO [id=" + id + ", seatNum=" + seatNum + ", ticketNum=" + ticketNum + "]";
+	}
 	
 	
 	

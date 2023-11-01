@@ -41,6 +41,11 @@ public class ScheduleVO {
 	public void setMovieCode(String movieCode) {
 		this.movieCode = movieCode;
 	}
+
+	@Override
+	public String toString() {
+		return "ScheduleVO [scheduleNum=" + scheduleNum + ", mname=" + mname + ", movieCode=" + movieCode + "]";
+	}
 	
 	
 	

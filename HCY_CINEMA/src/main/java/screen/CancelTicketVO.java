@@ -31,6 +31,11 @@ public class CancelTicketVO {
 	public void setTicketNum(int ticketNum) {
 		this.ticketNum = ticketNum;
 	}
+
+	@Override
+	public String toString() {
+		return "CancelTicketVO [scheduleNum=" + scheduleNum + ", ticketNum=" + ticketNum + "]";
+	}
 	
 	
 	

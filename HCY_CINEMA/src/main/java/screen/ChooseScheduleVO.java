@@ -33,6 +33,11 @@ public class ChooseScheduleVO {
 	public void setScheduleDate(Date scheduleDate) {
 		this.scheduleDate = scheduleDate;
 	}
+
+	@Override
+	public String toString() {
+		return "ChooseScheduleVO [screenNum=" + screenNum + ", scheduleDate=" + scheduleDate + "]";
+	}
 	
 	
 	

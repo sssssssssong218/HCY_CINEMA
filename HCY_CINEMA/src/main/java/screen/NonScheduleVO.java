@@ -61,6 +61,12 @@ public class NonScheduleVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
+	@Override
+	public String toString() {
+		return "NonScheduleVO [movieCode=" + movieCode + ", mname=" + mname + ", plot=" + plot + ", fileName="
+				+ fileName + ", price=" + price + "]";
+	}
 	
 	
 	
