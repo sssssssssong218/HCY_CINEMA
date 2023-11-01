@@ -272,7 +272,7 @@
 	ManageNoticeDAO mnDAO=ManageNoticeDAO.getInstance();
 	List<NoticeVO> list=mnDAO.selectSpecificNotice(noticeNum);
 	
-	NoticeVO nVO=null;
+	NoticeVO nVO=new NoticeVO();
 	for(int i=0;i<list.size();i++){
 		nVO=list.get(i);
 	}//end for
@@ -342,11 +342,10 @@
 						
 						function confirmModify() {
 					        var confirmModify = confirm("공지사항을 수정하시겠습니까?");
-					             
-					       if (confirmDelete) {
+					       if (confirmModify) {
 					        	$("#frm").submit();
 					        } else {
-					            alert("회원정보수정을 취소하셨습니다.");
+					            alert("공지사항 수정을 취소하셨습니다.");
 					            window.location.href = "http://localhost/HCY_CINEMA/admin/manageBoard/notice_info.jsp?noticeNum=<%= nVO.getNoticeNum()%>"; 
 					        }//end else
 					       
@@ -354,12 +353,13 @@
 						
 						</script>
                         <!-- 게시물 읽기 시작 { -->
-<form action="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp" id="frm" method="post">
+<form action="http://localhost/HCY_CINEMA/admin/manageBoard/notice_modify.jsp" id="frm" method="post">
     <article id="bo_v" style="width:100%">
      <div class="formtit">공지사항 - 글 </div>
       <div style="text-align:right">
-       <input class="btn btn-danger" type="submit" value="글 삭제" id="boardDelete" onclick="confirmDelete()">
-    	<input class="btn btn-primary" type="submit" value="수정" id="modify" onclick="confirmModify()"></div>
+     <input type="hidden" name="noticeNum" value='<%=nVO.getNoticeNum() %>'>
+       <input class="btn btn-danger" type="button" value="글 삭제" id="boardDelete" onclick="confirmDelete()">
+    	<input class="btn btn-primary" type="button" value="수정" id="modify" onclick="confirmModify()"></div>
     <section id="bo_v_file">
         <h2>첨부파일</h2>
         <ul>
@@ -382,7 +382,7 @@
         <h2>페이지 정보</h2>
     </section>
 
- </form>   
+
         <!-- 첨부파일 시작 { -->
 		<hr class="bg2_1">
 
@@ -473,22 +473,27 @@
     <table width="100%" class="formtable" cellpadding="0" cellspacing="5">
         <tr>
             <th style="width:253.611px; height:40px"><strong>구분</strong></th>
-            <td colspan="3"><%= nVO.getSection() %></td>
+            <td colspan="3">
+            <input type="hidden" name="section" id="section" value='<%= nVO.getSection() %>'/>
+            <%= nVO.getSection() %></td>
         </tr>
         <tr>
             <th style="width:253.611px; height:51.4931px"><strong>글 제목</strong></th>
-            <td colspan="3"><%= nVO.getTitle() %></td>
+            <td colspan="3"><input type="hidden" name="title" id="title" value='<%=nVO.getTitle()%>'><%= nVO.getTitle() %></td>
         </tr>
         <tr>
             <th style="width:253.611px; height:200px"><strong>내용</strong></th>
-            <td colspan="3" style="height: 200px; overflow: auto;"><%= nVO.getContent() %></td>
+            <td colspan="3" style="height: 200px; overflow: auto;">
+            <input type="hidden" name="content" id="content" value='<%=nVO.getContent()%>'/>
+            <%= nVO.getContent() %></td>
         </tr>
     </table>
 </div><br><br>
 <div align="center">
 <button type="button" style="width:130px;height:40px" class="btn btn-dark"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"><span style="color: white; font-size: 15px;"><i>공지사항 목록</i></span></a></button>
 </div>
-                            </section>
+  </form>                          
+      </section>
 
                             <!-- 링크 버튼 시작 { -->
                             <div id="formbtns">

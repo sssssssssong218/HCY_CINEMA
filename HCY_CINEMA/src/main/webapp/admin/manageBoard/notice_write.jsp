@@ -142,7 +142,7 @@ to {
 							[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
 							//  ['height', ['height']]
 							[ 'table', [ 'table' ] ],
-							[ 'insert', [ 'picture' ] ] ],
+							/* [ 'insert', [ 'picture' ] ]  */],
 					placeholder : '공지사항을 입력해주세요',
 					width : 1000,
 					height : 300,
@@ -359,11 +359,10 @@ to {
 										} //end for
 										%>
 										<br>
-										<form
-											action="http://localhost/HCY_CINEMA/admin/manageBoard/notice_insert.jsp"
+										<form action="http://localhost/HCY_CINEMA/admin/manageBoard/notice_insert.jsp"
 											method="post" id="frm" name="frm">
 											<tr>
-												<th scope="row"><label for="wr_subject">구분<strong
+												<th style="text-align:center" scope="row"><label for="wr_subject">구분<strong
 														class="sound_only">필수</strong></label></th>
 												<td>
 													<div id="autosave_wrapper">
@@ -383,7 +382,7 @@ to {
 											</tr>
 
 											<tr>
-												<th scope="row"><label for="wr_subject">제목<strong
+												<th style="text-align:center"  scope="row"><label for="wr_subject">제목<strong
 														class="sound_only">필수</strong></label></th>
 												<td>
 													<div id="autosave_wrapper">
@@ -398,12 +397,12 @@ to {
 											</tr>
 
 										<tr>
-											<th scope="row"><label for="note">내용<strong
+											<th style="text-align:center"  scope="row"><label for="note">내용<strong
 													class="sound_only">필수</strong></label></th>
 											<td class="wr_content">
 
 												<div style="width: 500px">
-													<textarea class="inputBox" name="note" id="note"></textarea>
+													<textarea class="inputBox" name="note" id="note" oninput="autoNewLine(this,50)"></textarea>
 													<br />
 												</div>
 
@@ -427,9 +426,11 @@ to {
 							</form>
 
 							<script>
+							 
+							
 								$(function() {
 									$("#btn_submit").click(function() {
-									var section = $("#section").val();
+										var section=$("#section").val();
 									var title = $("#title").val().trim();
 									var note = $("#note").val().trim();
 										if (section == "========구분========") {
@@ -453,6 +454,15 @@ to {
 										}//end else
 									});//click
 								});//ready
+							</script>
+							<script>
+						    /* 최대 글자 수 넘어가면 엔터키로 조정해주기 */
+							 function autoNewLine(textarea, 50) {
+						            if (textarea.value.length > 50) {
+						                textarea.value = textarea.value.substring(0, 50);
+						                textarea.value += "\n"; // 텍스트가 길 경우 자동으로 다음 줄로 넘어감
+						            }//end if
+						        }//autoNewLine
 							</script>
 
 

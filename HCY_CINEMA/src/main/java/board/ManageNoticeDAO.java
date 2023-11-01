@@ -318,7 +318,6 @@ public class ManageNoticeDAO {
 			pstmt.setString(1, nVO.getSection());
 			pstmt.setString(2, nVO.getTitle());
 			pstmt.setString(3, nVO.getContent());
-			
 			int rowCnt=pstmt.executeUpdate();
 			if(rowCnt>0) {
 				flag=true;
@@ -340,23 +339,23 @@ public class ManageNoticeDAO {
 		
 		Connection con=null;
 		PreparedStatement pstmt=null;
+		ResultSet rs=null;
 		
 		DBConnection db=DBConnection.getInstance();
 		
 		try {
 			con=db.getCon();
 			StringBuilder updateNotice=new StringBuilder();
-			updateNotice.append("update notice")
-			.append("set section=?,title=?,content=?")
-			.append("where noticenum=?");
+			updateNotice.append("update notice ")
+			.append("set section=?,title=?,content=? ")
+			.append(" where noticenum=? ");
+			
 			
 			pstmt=con.prepareStatement(updateNotice.toString());
 			
 			pstmt.setString(1, nVO.getSection());
 			pstmt.setString(2, nVO.getTitle());
-			
 			Clob clob=con.createClob();
-			
 			clob.setString(1, nVO.getContent());
 			
 			pstmt.setClob(3, clob);

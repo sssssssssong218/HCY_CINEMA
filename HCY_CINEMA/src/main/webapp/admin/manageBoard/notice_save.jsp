@@ -26,20 +26,28 @@ $(function(){
 });//ready
 </script>
 <%
+request.setCharacterEncoding("UTF-8");
 String section=request.getParameter("section");
 String title=request.getParameter("title");
-String content=request.getParameter("content");
+String content=request.getParameter("note");
+String notice=request.getParameter("noticeNum");
+int noticeNum=0;
+
+if(notice!=null&&!notice.isEmpty()){
+	noticeNum=Integer.parseInt(notice);
+}//end if
 
 NoticeVO nVO=new NoticeVO();
 nVO.setSection(section);
 nVO.setTitle(title);
 nVO.setContent(content);
+nVO.setNoticeNum(noticeNum);
 
 ManageNoticeDAO mnDAO=ManageNoticeDAO.getInstance();
 boolean isUpdate=mnDAO.updateNotice(nVO);
 
 if(isUpdate){
-	response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageNotice/notice_List.jsp");
+	response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp");
 }else{
 %>
 	<h2>공지사항 수정 중 오류가 발생하였습니다.</h2>

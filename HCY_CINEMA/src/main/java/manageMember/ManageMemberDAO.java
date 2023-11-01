@@ -41,7 +41,7 @@ private ManageMemberDAO() {
 		try {
 			con=db.getCon();
 			
-			String selectMemberList="select mname,id,joindate from member where status='M' order by joindate desc";
+			String selectMemberList="select mname,id,joindate from member where status='M' order by joindate ";
 			
 			pstmt=con.prepareStatement(selectMemberList);
 			
@@ -201,7 +201,7 @@ private ManageMemberDAO() {
 	         selectMember
 	         .append("      select mname,id,joindate                          ")
 	         .append("      from (select mname,id,joindate  ,                 ")
-	         .append("      row_number() over (order by joindate ) rnum   ")
+	         .append("      row_number() over (order by joindate desc) rnum   ")
 	         .append("      from member  where    							  ");
 	            
 	         if(  brVO.getKeyword() != null &&  !"".equals(brVO.getKeyword() ) &&  !"null".equals( brVO.getKeyword() ) ) {

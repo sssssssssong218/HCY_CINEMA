@@ -73,9 +73,11 @@ public class NoticeVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "NoticeVO [noticeNum=" + noticeNum + ", section=" + section + ", title=" + title + ", inputDate="
+				+ inputDate + ", viewCnt=" + viewCnt + ", content=" + content + "]";
+	}
 	
 }//class

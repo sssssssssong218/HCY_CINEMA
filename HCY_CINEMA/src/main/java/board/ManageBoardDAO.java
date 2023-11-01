@@ -193,8 +193,10 @@ public class ManageBoardDAO {
 				bVO.setTitle(rs.getString("title"));
 				bVO.setInputDate(rs.getDate("input_Date"));
 				bVO.setViewCount(rs.getInt("viewCount"));
+				
 				BufferedReader br=null;
 				StringBuilder content=new StringBuilder("");
+				
 				try {
 					Clob clob=rs.getClob("content");
 					if(clob!=null) {

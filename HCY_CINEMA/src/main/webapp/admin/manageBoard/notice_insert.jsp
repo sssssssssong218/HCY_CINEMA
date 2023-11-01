@@ -32,9 +32,6 @@ String section=request.getParameter("section");
 String title=request.getParameter("title");
 String note=request.getParameter("note");
 
-System.out.println(section);
-System.out.println(title);
-System.out.println(note);
 
 NoticeVO nVO=new NoticeVO();
 nVO.setSection(section);
