@@ -217,7 +217,6 @@ to {
 			<ol class="breadcrumb pull-right">
 				<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
 				<li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp">게시판 관리</a></li>
-				<li class="breadcrumb-item active"></li>
 			</ol>
 
 

@@ -180,8 +180,7 @@ to {
 
 			<ol class="breadcrumb pull-right">
 				<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-				<li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
-				<li class="breadcrumb-item active">Dashboard v3</li>
+				<li class="breadcrumb-item"><a href="javascript:;">상영관 관리</a></li>
 			</ol>
 
 
@@ -219,9 +218,9 @@ to {
 									
 									<ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">1관</a>
+    <a class=" nav-link active" aria-current="page" href="#">1관</a>
   </li>
-  <li class="nav-item">
+  <li class="active nav-item">
     <a class="nav-link" href="../manageScreen/manage_screen.jsp">2관</a>
   </li>
   <li class="nav-item">
@@ -324,7 +323,7 @@ to {
 
 		</div>
 
-		<div id="sidebar-right" class="sidebar sidebar-right">
+		<%-- <div id="sidebar-right" class="sidebar sidebar-right">
 
 			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
 				<div data-scrollbar="true" data-height="100%" data-init="true" style="overflow: hidden; width: auto; height: 100%;">
@@ -617,7 +616,7 @@ to {
 						</div>
 					</div>
 
-				</div>
+				</div> --%>
 				<div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 907px;"></div>
 				<div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
 			</div>
@@ -628,7 +627,7 @@ to {
 	</div>
 
 
-	<div class="theme-panel">
+	<!-- <div class="theme-panel">
 		<a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-tint"></i></a>
 		<div class="theme-panel-content">
 			<h5 class="m-t-0">Font Family</h5>
@@ -694,7 +693,7 @@ to {
 				<li><a href="javascript:;" class="bg-danger" data-value="sidebar-danger" data-click="sidebar-theme-selector" data-toggle="tooltip" data-title="Danger" data-original-title="" title="">&nbsp;</a></li>
 			</ul>
 		</div>
-	</div>
+	</div> -->
 
 
 	<script src="jquery-3.3.1.min.js" type="text/javascript"></script>
