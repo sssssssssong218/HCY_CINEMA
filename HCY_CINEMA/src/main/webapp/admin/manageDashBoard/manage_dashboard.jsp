@@ -122,18 +122,21 @@
 </a>
 </li>
 <li class="has-sub">
-<a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_list.jsp">
+<a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp">
 <img class="fa fa-suitcase" src="http://localhost/HCY_CINEMA/common/images/member_icon.png">
 <span>회원관리</span>
 </a>
 </li>
 <li class="has-sub">
-<a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp">
+<a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp">
 <img class="fa fa-file" src="http://localhost/HCY_CINEMA/common/images/board_icon.png">
 <span>게시판 관리</span>
 </a>
 
 </li>
+<li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"> <img class="fa fa-file" src="../../common/images/notice_icon.png">
+                                <span>공지사항 관리</span>
+                            </a></li>
 
 
 </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 197.948px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
@@ -146,8 +149,6 @@
 
 <ol class="breadcrumb pull-right">
 <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-<li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
-<li class="breadcrumb-item active">Dashboard v3</li>
 </ol>
 
 

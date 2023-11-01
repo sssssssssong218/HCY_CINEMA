@@ -136,7 +136,7 @@ to {
 							</div>
 						</li>
 						<li class="nav-header">today work</li>
-						<li class="active has-sub"><a href="../ManageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
+						<li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp"> <img class="fa fa-home" src="../../common/images/dashboard2.png">
 								<span>Dashboard <!-- <span class="label label-theme m-l-3">NEW</span> --></span>
 						</a> <!-- <ul class="sub-menu">
 <li><a href="index.html">Dashboard v1</a></li>
@@ -150,22 +150,21 @@ to {
 <span>Bootstrap 4</span>
 </a>
 </li> -->
-						<li class="has-sub"><a href="../ManageMovie/manage_movie.jsp">
+						<li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp">
 								<img class="fa fa-inbox" src="../../common/images/movie_icon.png"> <span>영화</span>
 						</a>
-							<ul class="sub-menu">
-								<li><a href="email_inbox.html">Inbox</a></li>
-								<li><a href="email_compose.html">Compose</a></li>
-								<li><a href="email_detail.html">Detail</a></li>
-							</ul></li>
-						<li><a href="widgets.html"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
+							</li>
+						<li><a href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen.jsp"> <img class="fa fa-gem" src="../../common/images/cinema_icon.png"> <span>상영관</span>
 						</a></li>
-						<li class="has-sub"><a href="javascript:;"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
+						<li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMember/manage_member_list.jsp"> <img class="fa fa-suitcase" src="../../common/images/member_icon.png">
 								<span>회원관리</span>
 						</a></li>
-						<li class="has-sub"><a href="javascript:;"> <img class="fa fa-file" src="../../common/images/board_icon.png">
+						<li class="has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/freeboard_list.jsp"> <img class="fa fa-file" src="../../common/images/board_icon.png">
 								<span>게시판 관리</span>
 						</a></li>
+						<li class=" has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageBoard/notice_list.jsp"> <img class="fa fa-file" src="../../common/images/notice_icon.png">
+                                <span>공지사항 관리</span>
+                            </a></li>
 				</ul></div>
 				<div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 197.948px;"></div>
 				<div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
@@ -177,313 +176,14 @@ to {
 
 		
 
-		<div id="sidebar-right" class="sidebar sidebar-right">
-
-			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
-				<div data-scrollbar="true" data-height="100%" data-init="true" style="overflow: hidden; width: auto; height: 100%;">
-
-					<ul class="nav nav-tabs" role="tablist">
-						<li class="width-half"><a class="active" href="#today" data-toggle="tab">Today</a></li>
-						<li class="width-half"><a href="#notifications" data-toggle="tab">Notifications</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane active" id="today">
-							<ul class="nav">
-								<li class="nav-date">Sunday, May 31 st</li>
-								<li class="divider"></li>
-								<li class="nav-header">Stocks</li>
-								<li>
-									<ul class="stock-list">
-										<li>
-											<div class="name">AAPL</div>
-											<div class="value">130.28</div>
-											<div class="percentage">
-												<span class="label label-inverse">- 1.14%</span>
-											</div>
-										</li>
-										<li>
-											<div class="name">DOWJ</div>
-											<div class="value">18010.68</div>
-											<div class="percentage">
-												<span class="label label-inverse">- 0.64%</span>
-											</div>
-										</li>
-										<li>
-											<div class="name">SBUX</div>
-											<div class="value">51.96</div>
-											<div class="percentage">
-												<span class="label label-success">+ 0.29%</span>
-											</div>
-										</li>
-										<li>
-											<div class="name">NKE</div>
-											<div class="value">18010.68</div>
-											<div class="percentage">
-												<span class="label label-inverse">- 0.62%</span>
-											</div>
-										</li>
-										<li>
-											<div class="name">YHOO</div>
-											<div class="value">42.94</div>
-											<div class="percentage">
-												<span class="label label-inverse">- 0.31%</span>
-											</div>
-										</li>
-									</ul>
-								</li>
-								<li class="divider"></li>
-								<li class="nav-header">Calendar</li>
-								<li>
-									<div id="schedule-calendar">
-										<div class="calendar" id="cal_18nl">
-											<table class="table header">
-												<tbody>
-													<tr></tr>
-												</tbody>
-												<tbody><tr><td><i class="icon-arrow-left"></i></td>
-												<td colspan="5" class="year span6"><div class="visualmonthyear">October 2023</div></td>
-												<td><i class="icon-arrow-right"></i></td>
-											</tr></tbody></table>
-											<table class="daysmonth table table">
-												<tbody><tr class="week_days">
-													<td class="first">S</td>
-													<td>M</td>
-													<td>T</td>
-													<td>W</td>
-													<td>T</td>
-													<td>F</td>
-													<td class="last">S</td>
-												</tr>
-												<tr>
-													<td id="cal_18nl_1_10_2023" class="first"><a>1</a></td>
-													<td id="cal_18nl_2_10_2023"><a>2</a></td>
-													<td id="cal_18nl_3_10_2023"><a>3</a></td>
-													<td id="cal_18nl_4_10_2023" class="event event_popover" style="background: rgb(23, 182, 164);"><a data-original-title="Client Meeting" data-trigger="manual" class="manual_popover" rel="popover" data-content="<address class=&quot;m-b-0 text-inverse f-s-12&quot;>
-															<strong>Twitter, Inc.</strong><br /> 795 Folsom Ave,
-															Suite 600<br /> San Francisco, CA 94107 <br /> P: (123)
-															456-7890
-															</address>">4
-													</a></td>
-													<td id="cal_18nl_5_10_2023"><a>5</a></td>
-													<td id="cal_18nl_6_10_2023"><a>6</a></td>
-													<td id="cal_18nl_7_10_2023" class="last event event_tooltip" style="background: rgb(48, 55, 62);"><a data-original-title="Bootstrap.com" href="http://www.getbootstrap.com" rel="tooltip">7</a></td>
-												</tr>
-												<tr>
-													<td id="cal_18nl_8_10_2023" class="first"><a>8</a></td>
-													<td id="cal_18nl_9_10_2023"><a>9</a></td>
-													<td id="cal_18nl_10_10_2023"><a>10</a></td>
-													<td id="cal_18nl_11_10_2023"><a>11</a></td>
-													<td id="cal_18nl_12_10_2023"><a>12</a></td>
-													<td id="cal_18nl_13_10_2023"><a>13</a></td>
-													<td id="cal_18nl_14_10_2023" class="last"><a>14</a></td>
-												</tr>
-												<tr>
-													<td id="cal_18nl_15_10_2023" class="first"><a>15</a></td>
-													<td id="cal_18nl_16_10_2023"><a>16</a></td>
-													<td id="cal_18nl_17_10_2023"><a>17</a></td>
-													<td id="cal_18nl_18_10_2023" class="event event_popover" style="background: rgb(48, 55, 62);"><a data-original-title="Popover with HTML Content" data-trigger="manual" class="manual_popover" rel="popover" data-content="Some contents here <div class=&quot;text-right&quot;><a href=&quot;http://www.google.com&quot;>view more >>></a></div>">18</a></td>
-													<td id="cal_18nl_19_10_2023"><a>19</a></td>
-													<td id="cal_18nl_20_10_2023"><a>20</a></td>
-													<td id="cal_18nl_21_10_2023" class="last"><a>21</a></td>
-												</tr>
-												<tr>
-													<td id="cal_18nl_22_10_2023" class="first"><a>22</a></td>
-													<td id="cal_18nl_23_10_2023"><a>23</a></td>
-													<td id="cal_18nl_24_10_2023"><a>24</a></td>
-													<td id="cal_18nl_25_10_2023"><a>25</a></td>
-													<td id="cal_18nl_26_10_2023"><a>26</a></td>
-													<td id="cal_18nl_27_10_2023"><a>27</a></td>
-													<td id="cal_18nl_28_10_2023" class="last event event_tooltip" style="background: rgb(48, 55, 62);"><a data-original-title="Source Admin Launched" href="http://www.seantheme.com/source-admin-v1.5/" rel="tooltip">28</a></td>
-												</tr>
-												<tr>
-													<td id="cal_18nl_29_10_2023" class="first"><a>29</a></td>
-													<td id="cal_18nl_30_10_2023"><a>30</a></td>
-													<td id="cal_18nl_31_10_2023"><a>31</a></td>
-													<td class="invalid"></td>
-													<td class="invalid"></td>
-													<td class="invalid"></td>
-													<td class="invalid last"></td>
-												</tr>
-											</tbody></table>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li class="nav-header">Latest Post</li>
-								<li>
-									<ul class="nav-post">
-										<li>
-											<div class="image">
-												<img src="../assets/img/latest_post_1.jpg" alt="">
-											</div>
-											<div class="info">
-												<div class="title">Mauris ac condimentum erat.
-													Curabitur porta pretium ultricies.</div>
-												<div class="time">Today, 8.12am</div>
-											</div>
-										</li>
-										<li>
-											<div class="image">
-												<img src="../assets/img/latest_post_2.jpg" alt="">
-											</div>
-											<div class="info">
-												<div class="title">Cras pretium ipsum vel nulla
-													laoreet malesuada sed at turpis.</div>
-												<div class="time">Yesterday, 11.42pm</div>
-											</div>
-										</li>
-										<li>
-											<div class="image">
-												<img src="../assets/img/latest_post_3.jpg" alt="">
-											</div>
-											<div class="info">
-												<div class="title">Ut sit amet vulputate ante. Nunc
-													quis convallis arcu.</div>
-												<div class="time">Posted on 3 days ago</div>
-											</div>
-										</li>
-									</ul>
-								</li>
-								<li class="divider"></li>
-							</ul>
-						</div>
-						<div class="tab-pane" id="notifications">
-							<ul class="nav">
-								<li class="nav-header">Mailbox</li>
-								<li>
-									<ul class="notification-list">
-										<li>
-											<div class="media">
-												<i class="fa fa-check"></i>
-											</div>
-											<div class="info">
-												<div class="title">
-													<a href="javascript:;">PHP version updated</a>
-												</div>
-												<div class="time">Yesterday, 6.06pm</div>
-												<div class="desc">Donec tristique malesuada nibh quis
-													lobortis. Quisque viverra faucibus hendrerit.</div>
-											</div>
-										</li>
-										<li>
-											<div class="media">
-												<i class="fa fa-bug text-danger"></i>
-											</div>
-											<div class="info">
-												<div class="title">
-													<a href="javascript:;">10 Unknown mysql query detected</a>
-												</div>
-												<div class="time">Yesterday, 12.05am</div>
-												<div class="desc">Integer fermentum arcu et dolor
-													sodales, quis laoreet justo aliquam.</div>
-											</div>
-										</li>
-										<li>
-											<div class="media">
-												<img src="../assets/img/user_2.jpg" alt="">
-											</div>
-											<div class="info">
-												<div class="title">
-													<a href="javascript:;">New email from David</a>
-												</div>
-												<div class="time">Just now</div>
-												<div class="desc">Nunc metus orci, lobortis eu luctus
-													quis, dictum mollis ante.</div>
-											</div>
-										</li>
-										<li>
-											<div class="media">
-												<img src="../assets/img/user_4.jpg" alt="">
-											</div>
-											<div class="info">
-												<div class="title">
-													<a href="javascript:;">New email from Terry</a>
-												</div>
-												<div class="time">Today, 12.05am</div>
-												<div class="desc">Integer fermentum arcu et dolor
-													sodales, quis laoreet justo aliquam.</div>
-											</div>
-										</li>
-										<li>
-											<div class="media">
-												<img src="../assets/img/user_3.jpg" alt="">
-											</div>
-											<div class="info">
-												<div class="title">
-													<a href="javascript:;">New email from Tom (2)</a>
-												</div>
-												<div class="time">Yesterday, 5.23pm</div>
-												<div class="desc">Integer fermentum arcu et dolor
-													sodales, quis laoreet justo aliquam.</div>
-											</div>
-										</li>
-									</ul>
-								</li>
-								<li class="divider"></li>
-								<li class="nav-header">Activities Log</li>
-								<li>
-									<ul class="notification-list">
-										<li>
-											<div class="media">
-												<i class="fa fa-cog"></i>
-											</div>
-											<div class="info">
-												<div class="title">
-													<a href="javascript:;">Your scheduled post has been
-														published</a>
-												</div>
-												<div class="time">Just now</div>
-												<div class="desc">Aenean lobortis libero libero, vitae
-													imperdiet dolor dictum id.</div>
-											</div>
-										</li>
-										<li>
-											<div class="media">
-												<i class="fa fa-shield-alt"></i>
-											</div>
-											<div class="info">
-												<div class="title">
-													<a href="javascript:;">Turn on the firewall</a>
-												</div>
-												<div class="time">Today, 7.08am</div>
-												<div class="desc">Donec at augue in mi egestas luctus
-													fermentum et ex.</div>
-											</div>
-										</li>
-										<li>
-											<div class="media">
-												<i class="fa fa-user-plus"></i>
-											</div>
-											<div class="info">
-												<div class="title">
-													<a href="javascript:;">Added 2 admin user</a>
-												</div>
-												<div class="time">Today, 6.40am</div>
-												<div class="desc">Quisque elementum urna placerat mi
-													vestibulum lacinia.</div>
-											</div>
-										</li>
-									</ul>
-								</li>
-								<li class="divider"></li>
-							</ul>
-						</div>
-					</div>
-
-				</div>
-				<div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 907px;"></div>
-				<div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
-			</div>
-
-		</div>
 		
 		<div id="content" class="content">
 
 <ol class="breadcrumb pull-right">
-<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-<li class="breadcrumb-item"><a href="javascript:;">Form Stuff</a></li>
-<li class="breadcrumb-item active">Form Elements</li>
-</ol>
+				<li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp">Home</a></li>
+				<li class="breadcrumb-item"><a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp">영화</a></li>
+				<li class="breadcrumb-item"><a href="javascript:;">영화 추가</a></li>
+			</ol>
 
 
 <h1 class="page-header">영화 추가</h1>

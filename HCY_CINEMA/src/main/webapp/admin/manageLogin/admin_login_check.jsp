@@ -46,6 +46,7 @@ Encryption ec=Encryption.getInstance();
 
 String chkPass=ec.directEncryption(pass);
 
+if(aVO!=null){
 if (aVO.getId()!=null) {
 	if(aVO.getPassword().equals(chkPass)){
 	session.setAttribute("userName", id);
@@ -57,7 +58,11 @@ if (aVO.getId()!=null) {
 } else { %>
   	alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
     window.location.href = "manage_login.jsp";
-<% } %>
+<% } 
+}else{%>
+alert("어이디가 존재하지 않습니다.");
+window.location.href = "manage_login.jsp";
+<%}%>
 	});
 	</script>
 </head>
