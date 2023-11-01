@@ -142,7 +142,7 @@ to {
 							[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
 							//  ['height', ['height']]
 							[ 'table', [ 'table' ] ],
-							/* [ 'insert', [ 'picture' ] ]  */],
+							[ 'insert', [ 'picture' ] ]  ],
 					placeholder : '공지사항을 입력해주세요',
 					width : 1000,
 					height : 300,
