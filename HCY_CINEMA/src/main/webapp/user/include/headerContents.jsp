@@ -208,13 +208,13 @@
 
 <div class="nav" style="left: 0px;">
     <div class="contents">
-        <h1><a href="http://localhost/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1"><img src="http://localhost/HCY_CINEMA/common/images/logo_main_y.png" alt="CGV"></a></h1>
+        <h1><a href="http://localhost/HCY_CINEMA/user/home/main.jsp" tabindex="-1"><img src="http://localhost/HCY_CINEMA/common/images/logo_main_y.png" alt="CGV"></a></h1>
         <ul class="nav_menu">
             <li>
-                <h2><a href="http://localhost/HCY_CINEMA/user/movieInfo/movieChart.jsp">영화</a></h2>
+                <h2><a href="http://localhost/HCY_CINEMA/user/movieInfo/moviechart.jsp">영화</a></h2>
                 <dl class="nav_overMenu" style="display: none;">
-                    <dt><h2><a href="http://localhost/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1">영화</a></h2></dt>
-                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/movieInfo/movieChart.jsp">무비차트</a></h3></dd>
+                    <dt><h2><a href="http://localhost/HCY_CINEMA/user/movieInfo/moviechart.jsp" tabindex="-1">영화</a></h2></dt>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/movieInfo/moviechart.jsp">무비차트</a></h3></dd>
                 </dl>
             </li>
             <li>
@@ -229,8 +229,8 @@
                 <h2><a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp"><strong>예매</strong></a></h2>
                 <dl class="nav_overMenu" style="display: none;">
                     <dt><h2><a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp" tabindex="-1">예매</a></h2></dt>
-                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/ticketing/mainTicketing.jsp">빠른예매</a></h3></dd>
-                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/movieSchedule/ticketingSchedule.jsp">상영스케줄</a></h3></dd>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp">빠른예매</a></h3></dd>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/schedule/theater_schedule.jsp">상영스케줄</a></h3></dd>
                 </dl>
             </li>
             <li>
