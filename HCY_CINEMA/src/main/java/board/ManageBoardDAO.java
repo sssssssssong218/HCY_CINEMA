@@ -247,7 +247,7 @@ public class ManageBoardDAO {
 			}//end if
 		}finally {
 			db.dbClose(null, pstmt, con);
-		}
+		}//end finally
 		
 		return flag;
 		

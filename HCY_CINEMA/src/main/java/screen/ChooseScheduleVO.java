@@ -4,42 +4,38 @@ import java.util.Date;
 
 public class ChooseScheduleVO {
 	private int screenNum;
-	private Date scheduleDate;
+	private Date showtime;
 	
 	public ChooseScheduleVO() {
 		
 	}//constructor
 
-	public ChooseScheduleVO(int screenNum, Date scheduleDate) {
+	public ChooseScheduleVO(int screenNum, Date showtime) {
 		super();
 		this.screenNum = screenNum;
-		this.scheduleDate = scheduleDate;
-	}//constructor
+		this.showtime = showtime;
+	}
 
-	//getter
 	public int getScreenNum() {
 		return screenNum;
 	}
 
-	public Date getScheduleDate() {
-		return scheduleDate;
-	}
-
-	//setter
 	public void setScreenNum(int screenNum) {
 		this.screenNum = screenNum;
 	}
 
-	public void setScheduleDate(Date scheduleDate) {
-		this.scheduleDate = scheduleDate;
+	public Date getShowtime() {
+		return showtime;
+	}
+
+	public void setShowtime(Date showtime) {
+		this.showtime = showtime;
 	}
 
 	@Override
 	public String toString() {
-		return "ChooseScheduleVO [screenNum=" + screenNum + ", scheduleDate=" + scheduleDate + "]";
+		return "ChooseScheduleVO [screenNum=" + screenNum + ", showtime=" + showtime + "]";
 	}
-	
-	
-	
-	
+
+
 }//class

@@ -25,10 +25,10 @@
 
 
 
-<!-- 	<script src="pace.min.js" type="text/javascript"></script> -->
-	<!-- <script src="jquery-3.3.1.min.js" type="text/javascript"></script>
+	<script src="pace.min.js" type="text/javascript"></script>
+	<script src="jquery-3.3.1.min.js" type="text/javascript"></script>
 	<script src="jquery-ui.min.js" type="text/javascript"></script>
-	<script src="bootstrap.bundle.min.js" type="text/javascript"></script> -->
+	<script src="bootstrap.bundle.min.js" type="text/javascript"></script>
 	<!--[if lt IE 9]>
 		<script src="../assets/crossbrowserjs/html5shiv.js"></script>
 		<script src="../assets/crossbrowserjs/respond.min.js"></script>
@@ -242,13 +242,13 @@ to {
 									
 									<ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class=" nav-link active" aria-current="page" href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen.jsp">1관</a>
+    <a class=" nav-link " aria-current="page" href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen.jsp">1관</a>
   </li>
   <li class="nav-item">
     <a class="nav-link " href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen2.jsp">2관</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen3.jsp">3관</a>
+    <a class="nav-link active" href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen3.jsp">3관</a>
   </li>
   <li class="nav-item">
     <a class="nav-link " href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen4.jsp">4관</a>
@@ -257,6 +257,310 @@ to {
     <a class="nav-link " href="http://localhost/HCY_CINEMA/admin/manageScreen/manage_screen5.jsp">5관</a>
   </li>
 </ul>
+<div>
+	<h2>&nbsp;&nbsp;상영스케줄 - 2D</h2><br>
+	<img src="http://localhost/HCY_CINEMA/common/images/movie_seat_icon.png" style="margin-left:100px"><br><br><br>
+	<br><br><h4>&nbsp;&nbsp;&nbsp;&nbsp;날짜 선택</h4>
+
+   &nbsp;&nbsp;&nbsp;
+   <select  onchange="updateMaxDay()"
+      class="form-select pt-1 mt-4"  style="height: 33px;width:10%; vertical-align: middle;text-align:center;">
+     <%
+     Calendar cal=Calendar.getInstance();
+     int nowYear=cal.get(Calendar.YEAR);
+     cal.set(Calendar.YEAR, nowYear);
+     
+     for(int i=nowYear;i<nowYear+3;i++){
+   	 %>
+		<option value="<%= i %>"<%=  i==nowYear ? "selected='selected'":""%> ><%=i%></option>
+    <%	 
+     }
+     %>
+    </select>  
+    <span style="margin-top:1000px">년</span>
+   <select  onchange="updateMaxDay()"
+      class="form-select pt-1 mt-4"  style="height: 33px;width:10%; vertical-align: middle;text-align:center;">
+     <%
+     int nowMonth=cal.get(Calendar.MONTH)+1;
+     cal.set(Calendar.MONTH, nowMonth - 1);
+     for(int i=1; i<13; i++){
+   	 %>
+		<option value="<%= i %>"<%=  i==nowMonth ? "selected='selected'":""%> ><%=i%></option>
+    <%	 
+     }
+     %>
+    </select>  
+    월
+   <select  onchange=""
+      class="form-select pt-1 mt-4"  style="height: 33px;width:10%; vertical-align: middle;text-align:center;">
+     <%
+     int maxDay=cal.getMaximum(Calendar.DAY_OF_MONTH);
+     int nowDay=cal.get(Calendar.DAY_OF_MONTH);
+     
+     for(int i=1;i<maxDay;i++){
+   	 %>
+		<option value="<%= i %>"<%=  i==nowDay ? "selected='selected'":""%> ><%=i%></option>
+    <%	 
+     }
+     %>
+    </select>  
+    일
+    <br>
+    <br><br><br>
+</div>	
+
+
+								
+
+<br><br>
+<div id="no_schedule_modal" style="margin-left:20px;">
+<h4>스케줄 선택</h4>
+    <input type="button" class="btn btn-dark" value="스케줄 없음" name="스케줄 없음" onclick="openModal('스케줄 없음')">
+    <input type="button" class="btn btn-dark" value="집으로" name="집으로" onclick="openModal('집으로')">
+    <input type="button" class="btn btn-dark" value="보스 베이비" name="보스 베이비" onclick="openModal('보스 베이비')">
+    <input type="button" class="btn btn-dark" value="헤어질 결심" name="헤어질 결심" onclick="openModal('헤어질 결심')">
+</div><br><br>
+
+<div id="myModal" class="modal" style="overflow: auto;">
+    <div class="modal-content" style="overflow: auto;">
+        <h2>스케줄 추가</h2><br>
+        <div class="input-container" style="overflow: auto;">
+            <label for="movieName">상영중인 영화</label>
+            <select id="movieName">
+                <option>영화 1</option>
+                <option>영화 2</option>
+                <!-- 영화 목록을 적절히 추가 -->
+            </select>
+        </div>
+        <div class="input-container" style="overflow: auto;">
+            <label for="movieDescription">영화 설명:</label>
+            <textarea id="movieDescription" rows="8" cols="50"></textarea>
+        </div>
+        <div class="button-container" style="overflow: auto;">
+            <button type="button" class="btn btn-primary" onclick="saveMovie('myModal')">저장</button>
+            <button type="button" class="btn btn-danger" onclick="closeModal('myModal')">취소</button>
+        </div>
+    </div>
+</div>
+<div id="other_modal" class="modal" style="overflow: auto;">
+    <div class="modal-content" style="overflow: auto;">
+        <h2>스케줄 내역 관리</h2><br>
+         <div id="no_shcedule" style="margin-left:20px; max-height: 300px; overflow: auto;">
+            <table class="table" style="text-align:center">
+                <thead>
+                    <tr style="width:600px">
+                        <th scope="col">좌석</th>
+                        <th scope="col">고객 아이디</th>
+                        <th scope="col">예매 상태</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center; ">
+                    <tr>
+                        <td>A1</td>
+                        <td>Otto</td>
+                        <td>예매
+                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>B2</td>
+                        <td>Thornton</td>
+                        <td>미예매
+                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        <div class="button-container">
+            <button type="button" class="btn btn-danger" onclick="closeModal('other_modal')" style="margin-left:250px">닫기</button>
+        </div>
+        </div>                    
+    </div>
+</div>
+        
+
+<!-- <div id="other_modal" class="modal">
+    <div class="modal-content">
+        <h2>기타 모달</h2><br>
+        <div class="input-container">
+            <label for="movieDescription">영화 설명:</label>
+            <textarea id="movieDescription" rows="8" cols="50"></textarea>
+        </div>
+        <div class="button-container">
+            <button type="button" class="btn btn-primary" onclick="saveMovie('other_modal')">저장</button>
+            <button type="button" class="btn btn-danger" onclick="closeModal('other_modal')">취소</button>
+        </div>
+    </div>
+</div> -->
+
 <style>
 .modal {
     display: none;
@@ -265,7 +569,7 @@ to {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 650px; /* 원하는 넓이 */
-    height: 500px; /* 원하는 높이 */
+    height: 450px; /* 원하는 높이 */
     background-color: white;
     border: 1px solid #ccc;
     z-index: 1;
@@ -297,232 +601,68 @@ to {
 }
 
 .button-container {
-    margin-top: 30px;
-    margin-left: 300px;
+    margin-top: 50px;
+    margin-left: 250px;
 }
 </style>
-<div>
-	<h2>&nbsp;&nbsp;상영스케줄 - 2D</h2><br>
-	<img src="http://localhost/HCY_CINEMA/common/images/movie_seat_icon.png" style="margin-left:100px"><br><br><br>
-	<br><h3>&nbsp;&nbsp;&nbsp;&nbsp;날짜 선택</h3>
-
-   &nbsp;&nbsp;&nbsp;
-
-<select  onchange=""
-      class="form-select pt-1 mt-4" style="height: 33px; width: 10%;font-size:20px;font-family: 'Open Sans'; text-align: center;" id="year">
-    <%
-    Calendar cal = Calendar.getInstance();
-    int nowYear = cal.get(Calendar.YEAR);
-    cal.set(Calendar.YEAR, nowYear);
-
-    for (int i = nowYear; i < nowYear + 3; i++) {
-    %>
-        <option value="<%= i %>"<%= i == nowYear ? "selected='selected'" : "" %>><%= i %></option>
-    <%
-    }
-    %>
-</select>  
-<strong>년</strong>
-
-<select onchange="updateMaxDay()"
-      class="form-select pt-1 mt-4" style="height: 33px; width: 10%;font-size:20px;font-family: 'Open Sans';  text-align: center;" id="month">
-    <%
-    int nowMonth = cal.get(Calendar.MONTH) + 1;
-    cal.set(Calendar.MONTH, nowMonth - 1);
-    for (int i = 1; i < 13; i++) {
-    %>
-        <option value="<%= i %>"<%= i == nowMonth ? "selected='selected'" : "" %>><%= i %></option>
-    <%
-    }
-    %>
-</select>  
-<strong>월</strong>
-<select onchange="updateMaxDay()"
-      class="form-select pt-1 mt-4" style="height: 33px;width: 10%;font-size:20px;font-family: 'Open Sans';text-align: center;" id="day">
-    <%
-    int maxDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-    int nowDay = cal.get(Calendar.DATE);
-    cal.set(Calendar.DAY_OF_MONTH,nowDay );
-    %>
-    <%
-    for (int i = 1; i <= maxDay; i++) {
-    %>
-        <option value="<%= i %>"<%= i == nowDay ? "selected='selected'" : "" %>><%= i %></option>
-    <%
-    }
-    %>
-</select>
-<strong>일</strong>
-    <br>
-
-</div>	
-
-
-								
-
-<br>
-<div id="no_schedule_modal" style="margin-left:20px;">
-<h3>스케줄 선택</h3>
-    <input type="button" class="btn btn-dark" value="스케줄 없음" name="스케줄 없음" onclick="openModal('스케줄 없음')">
-    <input type="button" class="btn btn-dark" value="집으로" name="집으로" onclick="openModal('집으로')">
-    <input type="button" class="btn btn-dark" value="보스 베이비" name="보스 베이비" onclick="openModal('보스 베이비')">
-    <input type="button" class="btn btn-dark" value="헤어질 결심" name="헤어질 결심" onclick="openModal('헤어질 결심')">
-</div><br><br>
-
-<div id="myModal" class="modal" style="overflow: auto;">
-    <div class="modal-content" style="overflow: auto;">
-        <h2>스케줄 추가</h2><br>
-        <div class="input-container" style="overflow: auto;">
-            <label for="movieName">상영중인 영화</label>
-            <select id="movieName">
-                <option>영화 1</option>
-                <option>영화 2</option>
-                <!-- 영화 목록을 적절히 추가 -->
-            </select>
-        </div>
-        <div class="input-container" style="overflow: auto;">
-            <label for="movieDescription">영화 설명:</label>
-            <textarea id="movieDescription" rows="8" cols="50"></textarea>
-        </div>
-        <div class="button-container" style="overflow: auto;">
-            <button type="button" class="btn btn-primary" onclick="saveMovie('myModal')">저장</button>
-            <button type="button" class="btn btn-danger" onclick="closeModal('myModal')">취소</button>
-        </div>
-    </div>
-</div>
-<div id="other_modal" class="modal" >
-    <div class="modal-content" style="overflow: auto;">
-        <h2>&nbsp;&nbsp;&nbsp;스케줄 내역 관리</h2><br>
-         <div id="no_shcedule" style="margin-left:20px; max-height: 300px; overflow: auto;">
-            <table class="table" style="text-align:center">
-                <thead>
-                    <tr style="width:600px">
-                        <th scope="col">좌석</th>
-                        <th scope="col">고객 아이디</th>
-                        <th scope="col">예매 상태</th>
-                    </tr>
-                </thead>
-                <tbody style="text-align:center; ">
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>B2</td>
-                        <td>Thornton</td>
-                        <td>미예매
-                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
-                        </td>
-                    </tr>
-                   
-                    <tr>
-                        <td>B2</td>
-                        <td>Thornton</td>
-                        <td>미예매
-                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>                    
-    </div>
-        <div class="button-container">
-            <button type="button" class="btn btn-danger" onclick="closeModal('other_modal')" style="margin-left:250px">닫기</button>
-        </div>
-</div>
-        
 
 <script>
+
 function updateMaxDay() {
-    // 엘리먼트
-    var yearSelect = document.getElementById("year");
-    var monthSelect = document.getElementById("month");
-    var daySelect = document.getElementById("day");
-
-    // 변수 지정
-    var selectedYear = yearSelect.value;
-    var selectedMonth = monthSelect.value;
-    var selectedDay = daySelect.value;
-
-    // 월을 1일부터 보여줌
-    var adjustedMonth = selectedMonth - 1;
-
-    // 현재 선택된 날짜
-    var currentDate = new Date(selectedYear, adjustedMonth, selectedDay);
-
-    // 선택된 월의 마지막 날짜
-    var lastDay = new Date(selectedYear, adjustedMonth + 1, 0).getDate();
-
-    // 기존의 일자 옵션을 모두 제거하여 초기화
-    daySelect.innerHTML = "";
-
-    // 선택한 월의 마지막 날까지 옵션을 생성하고 추가
-    for (var i = 1; i <= lastDay; i++) {
-        var option = document.createElement("option");
+    var year = document.getElementById('year').value;
+    var month = document.getElementById('month').value;
+    var day = document.getElementById('day');
+    var maxDay = new Date(year, month, 0).getDate(); 
+    daySelect.innerHTML = ''; 
+    for (var i = 1; i <= maxDay; i++) {
+        var option = document.createElement('option');
         option.value = i;
         option.text = i;
         daySelect.appendChild(option);
     }
-
-    // 만약 선택한 날짜가 마지막 날보다 큰 경우
-    if (currentDate.getDate() > lastDay) {
-        // 일자를 마지막 날로 설정
-        daySelect.value = lastDay;
-    } else {
-        // 그렇지 않은 경우, 이전에 선택한 일자를 설정
-        daySelect.value = selectedDay;
-    }
 }
-
-// 페이지가 로딩될 때 초기화 함수를 호출하여 현재 날짜 설정
-window.onload = function() {
-    updateMaxDay();
-};
 
 function openModal(name) {
     if (name === "스케줄 없음") {
         // 스케줄 없음 모달 열기
-        document.getElementById("myModal").style.display = "block";
+        document.getElementById('myModal').style.display = 'block';
         // 모달을 띄울 때 해당 버튼의 이름을 저장
-        document.getElementById("myModal").dataset.buttonName = name;
+        document.getElementById('myModal').dataset.buttonName = name;
     } else {
         // 다른 버튼을 누를 때 기타 모달 열기
-        document.getElementById("other_modal").style.display = "block";
+        document.getElementById('other_modal').style.display = 'block';
         // 모달을 띄울 때 해당 버튼의 이름을 저장
-        document.getElementById("other_modal").dataset.buttonName = name;
+        document.getElementById('other_modal').dataset.buttonName = name;
     }
 }
 
 function saveMovie(modalName) {
-    if (modalName === "myModal") {
-        const movieName = document.getElementById("movieName").value;
-        const movieDescription = document.getElementById("movieDescription").value;
+    if (modalName === 'myModal') {
+        const movieName = document.getElementById('movieName').value;
+        const movieDescription = document.getElementById('movieDescription').value;
         // 해당 버튼의 값을 업데이트
-        const buttonName = document.getElementById("myModal").dataset.buttonName;
+        const buttonName = document.getElementById('myModal').dataset.buttonName;
         document.querySelector(`input[name="${buttonName}"]`).value = movieName;
         // 모달을 닫음
-        closeModal("myModal");
-    } else if (modalName === "other_modal") {
-        const otherInfo = document.getElementById("otherInfo").value;
+        closeModal('myModal');
+    } else if (modalName === 'other_modal') {
+        const otherInfo = document.getElementById('otherInfo').value;
         // 해당 버튼의 값을 업데이트
-        const buttonName = document.getElementById("other_modal").dataset.buttonName;
+        const buttonName = document.getElementById('other_modal').dataset.buttonName;
         // 예: 버튼 텍스트를 업데이트
         document.querySelector(`input[name="${buttonName}"]`).value = otherInfo;
         // 모달을 닫음
-        closeModal("other_modal");
+        closeModal('other_modal');
     }
 }
 
 function closeModal(modalName) {
-    if (modalName === "myModal") {
+    if (modalName === 'myModal') {
         // 스케줄 없음 모달 닫기
-        document.getElementById("myModal").style.display = "none";
-    } else if (modalName === "other_modal") {
+        document.getElementById('myModal').style.display = 'none';
+    } else if (modalName === 'other_modal') {
         // 기타 모달 닫기
-        document.getElementById("other_modal").style.display = "none";
+        document.getElementById('other_modal').style.display = 'none';
     }
 }
 </script>
