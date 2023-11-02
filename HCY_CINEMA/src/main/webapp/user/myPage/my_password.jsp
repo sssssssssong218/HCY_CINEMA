@@ -1,21 +1,9 @@
-<%@page import="encryption.Encryption"%>
-<%@page import="java.time.format.DateTimeFormatter"%>
-<%@page import="java.time.LocalDateTime"%>
-<%@page import="java.sql.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.logging.SimpleFormatter"%>
-<%@page import="java.util.Calendar"%>
-<%@page import="org.eclipse.jdt.internal.compiler.codegen.CachedIndexEntry"%>
-<%@page import="myTicket.MyTicketVO"%>
-<%@page import="manageMember.MemberVO"%>
-<%@page import="myTicket.MyTicketDAO"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page info="회원 예매확인 - 예매내역/예매취소" %>
+<%@ page info="" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head>
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Expires" content="-1">
@@ -23,13 +11,16 @@
     <meta http-equiv="Cache-Control" content="No-Cache">
     <meta http-equiv="imagetoolbar" content="no">
     <meta name="viewport" content="width=1024">
-    <meta id="ctl00_og_title" property="og:title" content="나의 예매내역 | 영화 그 이상의 감동. CGV">
+    <meta name="keywords" content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
+    <meta name="description" content="CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
+    <meta property="og:site_name" content="영화 그 이상의 감동. CGV">
+    <meta id="ctl00_og_title" property="og:title" content="비밀번호 변경 < 로그인 | 영화 그 이상의 감동. CGV">
     
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
     <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
-    <title id="ctl00_headerTitle">회원정보 수정 | 영화 그 이상의 감동. HCY</title>
+    <title id="ctl00_headerTitle">비밀번호 변경 &lt; | 영화 그 이상의 감동. HCY</title>
     <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
@@ -81,23 +72,9 @@
 
     <!-- 각페이지 Header Start--> 
     
-
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
-    <%
-    MemberVO orimVO = (MemberVO)session.getAttribute("mVO");
-    MemberVO mVO = new MemberVO();
-    if(orimVO==null){
-    	orimVO = new MemberVO();
-    }else{
-    Encryption en = Encryption.getInstance();
-    mVO.setMname(en.decryption(orimVO.getMname()));
-    mVO.setEmail(en.decryption(orimVO.getEmail()));
-    mVO.setTel(en.decryption(orimVO.getTel()));
-    mVO.setId(orimVO.getId());
-    }//else
-    %>
-     $(document).ready(function() {
+    $(document).ready(function() {
     	if(${login!="true"} && ${nonMemLogin!="true"}){
     		alert("로그인 후 이용해주세요!")
     		location.href="http://localhost/HCY_CINEMA/user/login/login.jsp"
@@ -111,31 +88,17 @@
     	
     });//ready
     
-    function clickcancel(tNum){
-		var data = {"tNum":tNum}
-		$.ajax({
-			url : "http://localhost/HCY_CINEMA/user/myPage/mypage_myticket_ajax.jsp",
-			type : "get",
-			data : data,
-			dataType : "json",
-			error : function(xhr){
-				alert("예상치 못한 오류가 발생했습니다.")
-				console.log(xhr.status)
-				location.href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp"
-			},
-			success : function(json){
-				if(json.isCancel){
-				alert("예매취소가 정상적으로 이루어졌습니다.")
-				$("#cancleDiv_"+tNum).html("<strong>예매 취소 완료</strong>")
-				}else{
-				alert("예매취소에 실패했습니다.")
-				}//else
-			}//success
-		})//ajax
-	}//clickcancel
+    
+  $(function(){
+	  <%String check = request.getParameter("check"); %>
+	  if(<%="n".equals(check) %>){
+		  $("#txtUserEmail").val("<%=request.getParameter("email") %>")
+		  alert("해당 정보로 등록된 회원이 존재하지 않습니다.\n정보를 확인해 주십시오!")
+	  }//if
+  })//ready
     
         //<![CDATA[
-        _TRK_CP = "/나의 예매내역";
+        _TRK_CP = "/회원서비스/로그인/비밀번호 변경";
 
         app.config('staticDomain', 'https://img.cgv.co.kr/R2014/')
             .config('imageDomain', 'https://img.cgv.co.kr')
@@ -240,8 +203,8 @@
     
 
     
-<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script></head>
-<body class="" cz-shortcut-listen="true" style="">
+<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script><script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script></head>
+<body class="" style="" cz-shortcut-listen="true">
 
 <div class="skipnaiv">
 	<a href="#contents" id="skipHeader">메인 컨텐츠 바로가기</a>
@@ -249,15 +212,18 @@
 <div id="cgvwrap">
     
     
-        
+    <div class="cgv-ad-wrap" id="cgv_main_ad">
+        <div id="TopBarWrapper" class="sect-head-ad">
+            <div class="top_extend_ad_wrap">
+                <div class="adreduce" id="adReduce">                    
+                    <iframe src="//ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@TopBar_EX" width="100%" height="80" title="" frameborder="0" scrolling="no" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" name="TopBanner" id="TopBanner"></iframe>
+                </div> 
+                <div class="adextend" id="adExtend"></div>
+            </div><!-- //.top_extend_ad_wrap -->
+        </div>    
+    </div>    
 	
-      <!-- S Header
-        Description
-        - class 'nav' 에 class 'active' 추가시 서브메뉴노출
-        - class 'nav' 에 class 'fixed' 추가시 상단고정되며 스타일 변경됨
-     -->
-	<c:import url="../include/headerContents.jsp"/>
-	<!-- E Header -->
+<jsp:include page="../include/headerContents.jsp"/>
 
 	<!-- Contaniner -->
 	<div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
@@ -269,218 +235,106 @@
             
             <!-- Contents Start -->
 			
-<div id="contents">
+<!-- 실컨텐츠 시작 -->
+<div class="wrap-login">
 
-
-<div class="cols-content">
-   <div class="col-aside">
-		<div class="skipnaiv">
-			<a href="#mycgv_contents" id="skipMycgvMenu">MYCGV 서브메뉴 건너띄기</a>
-		</div>
-	    <h2>MY HCY 서브메뉴</h2>
-	    
-	    <div class="snb">
-	        <ul>
-	            
-	            <li>
-                    <a href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp">나의 예매내역 <i></i></a>
-                    
-                </li>
-	            <li class="on">
-	                <a href="http://localhost/HCY_CINEMA/user/myPage/edit_member_info.jsp" title="현재 선택">회원정보 관리<i></i></a>
-	                <ul>                      
-                     
-	                    <li>
-                            <a href="http://localhost/HCY_CINEMA/user/myPage/edit_member_info.jsp">회원정보 수정</a>
-                        </li>
-	                    <li>
-                            <a href="http://localhost/HCY_CINEMA/user/myPage/my_password.jsp">비밀번호 변경</a>
-                        </li>
-	                </ul>
-	            </li>
-	        </ul>
-	    </div>
-    </div>
-	<div class="col-detail">
-	    <div class="wrap-login">
             <div class="sect-user">
+            
 
-                <h3>회원정보 수정</h3>
+                <h3>비밀번호 찾기</h3>
                 <p>
-                    저장된 회원님의 정보를 수정할 수 있습니다. 
+                    비밀번호가 기억나지 않으세요? 맴버 확인 후 비밀번호를 재설정하실 수 있습니다. <br>
+                    본인인증 시 제공되는 정보는 해당 인증기관에서 직접 수집 하며, 인증 이외의 용도로 이용 또는 저장하지 않습니다.    
                 </p>
 
         <!-- ******************************************** 수정된 부분 시작! ******************************************** -->
                         <div class="cols-enterform find_0826 find_pw_id">
                             <div class="col-confirm">
-                                <h4>회원 정보 수정</h4>
+                                <h4>비밀번호 재설정</h4>
                                 <div class="box-confirm">
-                                   <h5>수정하실 정보를 입력해주세요!</h5>
-                                       <label for="txtUserName" style="margin-right: 51px">이름</label>
-                                       <input type="text" id="txtUserName" name="txtUserName" value="<%=mVO.getMname()%>"><br><br>
-                                       
-                                       <label for="txtUserId" style="margin-right: 40px;margin-left: 82px">아이디</label>
-                                       <input type="text" id="txtUserId" name="txtUserId" placeholder="아이디를 입력해주세요." value="<%=mVO.getId()%>">
-                                       <input type="button" id="btnDup" name="btnDup" class="btn btn-dark" value="중복확인" style="width: 70px;margin-left: 10px"><br><br>
-					                   <input type="hidden" id="idDupFlag" name="idDupFlag" value="1">
-                                       
-                                       <label for="txtUserTel" style="margin-right: 30px">전화번호</label>
-                                       <input type="text" id="txtUserTel" name="txtUserTel" value="<%=mVO.getTel()%>"><br><br>
-                                       
-                                       <label for="txtUserEmail" style="margin-right: 40px">이메일</label>
-                                       <input type="text" id="txtUserEmail" name="txtUserEmail" placeholder="ex) xxx@xxx.xxx" value="<%=mVO.getEmail()%>"><br><br>
-                                       
-                                       <input type="button" id="btnSave" class="btn btn-danger" value="저장" style="width: 70px" onclick="clickSave()">
-                                       <input type="button" id="btncancel" class="btn btn-secondary" value="취소" style="width: 70px" onclick="clickCancel()"><br><br>
+                                   <h5>본인 확인</h5>
+                                   <form id="form1" name="form1" method="post" novalidate="novalidate" action="">
+                                       <label for="txtUserId">비밀번호</label>
+                                       <input type="password" id="txtUserPass" name="txtUserPass"><br><br>
+                                       <input type="button" id="btnSave" class="btn btn-danger" value="확인" style="width: 70px" onclick="clickOk()">
+                                       <input type="button" id="btncancel" class="btn btn-secondary" value="취소" style="width: 70px" onclick="clickCancel()"><br><br>		
+                                   </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-	                 <form action="http://localhost/HCY_CINEMA/user/myPage/edit_member_info_process.jsp" id="hidFrm" name="hidFrm"  method="post">
-	                 	<input type="hidden" id="name" name="name">
-	                 	<input type="hidden" id="id" name="id">
-	                 	<input type="hidden" id="tel" name="tel">
-	                 	<input type="hidden" id="email" name="email">
+	                 <form action="http://localhost/HCY_CINEMA/user/login/check_mem.jsp" id="hidFrm" name="hidFrm"  method="post">
+	                 	<input type="hidden" id="txtUserPass" name="txtUserPass">
 	                 </form>
    <!-- ******************************************** 수정된 부분 끝! ******************************************** -->
     </div>    
-	    <!-- //CGV 예매 관련 정책 안내 Box Type -->
-	</div>
+    <div class="sect-loginguide">
+        <dl class="box-operationguide">
+            <dt>이용문의</dt>
+            <dd>HCY 고객센터 : 4444-4444</dd>
+            <dd>상담 가능 시간 : 월~금 09:00~09:01 (이 외 시간은 자동 응답 안내 가능)</dd>
+        </dl>
+    </div>
 </div>
+<!-- 실컨텐츠 끝 -->
+
+<!-- find id -->
+<form name="frmFindAccount" id="frmFindAccount" method="post" action="https://www.cgv.co.kr/user/login/find-pw-proc.aspx" novalidate="novalidate">   
+    <input type="hidden" id="userid" name="userid"> 
+</form>
+<!-- //find id -->
+
+<script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/crypto.js"></script>
 <script type="text/javascript">
 //<![CDATA[
-	$(function(){
-		$("#btnDup").click(function(){
-			var id=$("#txtUserId").val();
-			window.open("http://localhost/HCY_CINEMA/user/login/id_dup.jsp?id="+id,"id_dup","width=512,height=313,top="
-		            +( window.screenY+150)+",left="+( window.screenX+200));	
-		})//btnCheckId
-		
-		$("#txtUserId").keydown(function(){
-            $("#idDupFlag").val('0')
-            if("${orimVO.id}")
-        })//txtUserId
-	})//ready
+	function clickOk(){
+		var data = {"pass":$("#txtUserPass").val()}
+		$.ajax({
+			url : "http://localhost/HCY_CINEMA/user/myPage/my_password_ajax.jsp",
+			type : "post",
+			data : data,
+			dataType : "json",
+			error : function(xhr){
+				alert("알 수 없는 오류가 발생했습니다.")
+			},
+			success : function(json){
+				if(json.flag){
+					location.href="http://localhost/HCY_CINEMA/user/myPage/my_password_sub.jsp"
+					return
+				}//if
+				alert("올바르지 않은 비밀번호입니다.")
+				$("#txtUserPass").val("");
+			}//success
+		})//ajax
+	}//clickOk
 	
-	function clickSave(){
-		var inputs = [$("#txtUserId").val(),$("#txtUserEmail").val()];
-		
-		for(var i=0 ; i<inputs.length;i++){
-			var input = inputs[i];
-			if(input == ""){
-				alert("모든 정보를 입력해 주시기 바랍니다.");
-				return;
-			}//if
-		}//for
-		
-		if($("#idDupFlag").val() != "1"){
-			alert("아이디 중복체크를 먼저 진행해주세요!");
-			return;
-		}//if
-		
-		if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($("#txtUserEmail").val())){
-			alert("이메일의 형식이 올바르지 않습니다.\n이메일의 형식은 XXXX@XXX.XXX")
-			return;
-		}//if
-
-		$("#name").val($("#txtUserName").val())
-		$("#id").val($("#txtUserId").val())
-		$("#tel").val($("#txtUserTel").val())
-		$("#email").val($("#txtUserEmail").val())
-		
-		$("#hidFrm").submit();
-		
-	}//clickSave
 	function clickCancel(){
 		location.href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp"
 	}//clickCancel
-
-    (function ($) {
-        $(function () {
-
-            //visualMotion.
-            var sliderOptions = { 'effect': 'none', 'auto': true };
-            $('#slider').visualMotion(sliderOptions);
-
-            $('.receipt').on('click', function () {
-                // 2023.07 영수증 출력 shopId 수정
-                var shopId = $(this).attr("data2");
-                var url = 'https://cjpay.cjsystems.co.kr/cjs/pg/adj/receipt.fo?SHOP_SYS_NO=&SHOP_ID=' + shopId + '&PAY_GRP_ID=0001&PG_CTRL_CD_P=' + $(this).attr("data");
-                var win = window.open(url, "receipt", "left=0,top=o,width=440,height=800,toolbar=no,scrollbars=no");
-                win.focus();
-            });
-
-            $('.hometicket').on('click', function () {
-               // var url = 'http://ticket.cgv.co.kr/CGV2011/RIA/home_ticket.aspx?booking_no=' + $(this).attr("data");
-                var url = 'http://ticket.cgv.co.kr/CGV2011/RIA/home_ticket.aspx?booking_no=' + $(this).attr("data") + '&isMember=N' + '&userPIN=' + "fFY%2bMXir%2bnGcU2mCggroEQ%3d%3d"; 
-                var win = window.open(url, "hometicket", "left=0,top=o,width=640,height=897,toolbar=no,scrollbars=no");
-                win.focus();
-            });
-
-            $('.cancel').on('click', function () {
-
-                if (!confirm('예매를 취소하시겠습니까?\n\n※ 인터넷 예매 취소는 상영시간 20분 전까지 가능하며, \n예매 가능은 상영시간 30분 전까지 가능합니다.'))
-                    return false;
-
-                CancelReserve($(this));
-            });
-
-            function CancelReserve(obj) {
-                var reserveNo = obj.parents('.set-btn').find('.reserve-no').val();
-
-                var url = '/common/ajax/user.aspx/CancelReserveByGuest';
-                var data = { 'reserveNo': reserveNo };
-                var callback = function (result) {
-                    obj.attr('disabled', false);
-                    $('.loading').remove();
-                    if (result == null || result["resultCode"] == null)
-                        return;
-
-                    var resultCode = result["resultCode"];
-                    var resultMessage = result["resultData"];
-
-
-                    switch (resultCode) {
-                        case "-9":
-                            alert('로그인 되어 있지 않습니다.\n확인 후 다시 진행해 주세요.');
-                            location.href = "./login.aspx";
-                            break;
-                        case "-8":
-                            alert('잘못된 경로로 접근하였습니다.\n확인 후 다시 진행해 주세요.');
-                            break;
-                        case "-1":
-                            alert('이미 취소되었거나 존재하지 않는 예매번호입니다.\n확인 후 다시 진행해 주세요.');
-                            break;
-                        case "-2":
-                            alert('예매취소 가능시간이 종료되었습니다.\n자세한 문의는 고객센터 1544-1122를 통하여 진행 가능합니다.');
-                            break;
-                        case "0":
-                            alert('취소처리가 실패하였습니다.\n(' + resultMessage + ')');
-                            break;
-                        case "1":
-                            if ($('.cols-mycgv-booking > .lst-item').length < 2) {
-                                obj.parents('.lst-item').remove();
-                                $('.cols-mycgv-booking .info-log').after('<div class="lst-item"><div class="box-set-info nodata">고객님의 최근 예매내역이 존재하지 않습니다.</div></div>');
-                            }
-                            else {
-                                obj.parents('.lst-item').remove();
-                            }
-
-                            var options = { '$target': null, 'type': 'center', 'position': 'position', 'mask': true };
-                            app.htmlLoad2(options, app.config('html').reservation_cancel);
-
-                            break;
-                    }
-                };
-
-                app.loading().show({ 'target': obj.parents('.lst-item'), 'circleType': 'large' });
-                obj.attr('disabled', true);
-
-                app.ajax().set({ dataType: 'json', url: url, data: JSON.stringify(data), contentType: "application/json; charset=utf-8", successHandler: callback });
-            }
-
-        });
-    })(jQuery);
+	
+	$(function(){
+		$("#btnSearch").click(function(){
+			if($("#txtUserId").val() == "" || $("#txtUserTel").val() == "" || $("#txtUserEmail").val() == ""){
+				alert("아이디, 전화번호, 이메일을 모두 입력해 주시기 바랍니다.")
+			}//if
+			if(!/^\d{3}-\d{4}-\d{4}$/.test($("#txtUserTel").val())){
+				alert("전화번호의 형식이 올바르지 않습니다.\n전화번호의 형식은 000-0000-0000 입니다")
+			}//if
+			if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($("#txtUserEmail").val())){
+				alert("이메일의 형식이 올바르지 않습니다.\n이메일의 형식은 XXXX@XXX.XXX")
+			}//if
+			
+			$("#id").val($("#txtUserId").val())
+			$("#tel").val($("#txtUserTel").val())
+			$("#email").val($("#txtUserEmail").val())
+			
+			$("#hidFrm").submit();
+			
+		})//btnSearch
+		
+		
+	})//ready
+	
 
 //]]>
 </script>
@@ -534,7 +388,7 @@
     <!-- E Popup -->
     
     <!-- S 예매하기 및 TOP Fixed 버튼 -->
-    <div class="fixedBtn_wrap topBtn">
+    <div class="fixedBtn_wrap">
      
         <a href="/ticket/" class="btn_fixedTicketing">예매하기</a>
         
@@ -544,58 +398,7 @@
     <!-- E 예매하기 및 TOP Fixed 버튼 -->
 	
     <!-- S Footer -->
-<footer>
-		<!-- footer_area (s) -->
-		
-<div id="BottomWrapper" class="sect-ad">
-    <iframe src="https://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/main@Bottom" width="100%" height="240" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Bottom" id="Bottom"></iframe>
-</div>
-<ul class="policy_list">
-    <li><a href="http://192.168.10.145/HCY_CINEMA/user/home/conditions.jsp">이용약관</a></li>
-    <li><a href="http://192.168.10.145/HCY_CINEMA/user/home/processingPolicy.jsp"><strong>개인정보처리방침</strong></a></li>
-    <li><a href="http://192.168.10.145/HCY_CINEMA/user/home/legalNotice.jsp">법적고지</a></li>
-    <li><a href="http://192.168.10.145/HCY_CINEMA/user/home/refuseToCollectEmail.jsp">이메일주소무단수집거부</a></li>
-</ul>
-<article class="company_info_wrap">
-    <section class="company_info">
-        <address>(06235)서울특별시 강남 구 테헤란로 132 8층(역삼동)</address>
-        <dl class="company_info_list">
-            <dt>대표이사</dt>
-            <dd>홍찬영</dd>
-            <dt>사업자등록번호</dt>
-            <dd>123-45-67890</dd>
-            <dt>통신판매업신고번호</dt>
-            <dd>2017-서울용산-0123 <a href="#none" onclick="goFtc()" class="btn_goFtc">사업자정보확인</a><a></a></dd>
-        </dl>
-        <dl class="company_info_list">
-            <dt>호스팅사업자</dt>
-            <dd>HCY CINEMA</dd>
-            <dt>개인정보보호 책임자</dt>
-            <dd>송지하</dd>
-            <dt>대표이메일</dt>
-            <dd>hcycinemaster@hcycinema.com</dd>
-            
-        </dl>
-        <p class="copyright">© HCY CINEMA. All Rights Reserved</p>
-    </section>
-</article>
-<script>
-    //footer GA Analytics 영역 LOG
-    $('.policy_list > li > a').on({
-        click: function (e) {
-            gaEventLog('PC_footer', this.text, '');
-        }
-    });
-</script>
-        <!-- footer_area (e) -->
-
-        <div class="adFloat2" style="display:none">
-
-            <iframe src="//ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@Popicon" width="154" height="182" frameborder="0" scrolling="no" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" allowtransparency="true" id="ad_float1" style="display: none;"></iframe>
-        </div>
-        <script type="text/javascript">            OpenAD();</script>
-        <!-- //Float Ad -->
-	</footer>
+<jsp:include page="../include/footer.jsp"/>
 	<!-- E Footer -->
 
     <!-- Aside Banner :  -->
@@ -618,7 +421,7 @@
     //-->
 	<!-- //Aside Banner -->
     
-</div>
+
 
 
 <script type="text/template" id="temp_popup_movie_player">
@@ -772,6 +575,13 @@
         });
     })(jQuery);
 	
+    function goFamilySite() {
+        var famulySiteURL = $(familysite).val();
+        if (famulySiteURL != "") {
+            var win = window.open(famulySiteURL, 'winFamilySite')
+            win.focus();
+        }
+    }
     function goFtc() {
         var ftcUrl = "http://www.ftc.go.kr/bizCommPop.do?wrkr_no=1048145690";
         window.open(ftcUrl, "bizCommPop", "width=750, height=700, scrollbars=1;");        
@@ -824,4 +634,4 @@
 <!-- End Google Tag Manager -->
 
 
-</div></body></html>
+</body></html>

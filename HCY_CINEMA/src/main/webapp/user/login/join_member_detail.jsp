@@ -341,7 +341,7 @@
 				alert("이메일의 형식이 올바르지 않습니다.\n이메일의 형식은 XXXX@XXX.XXX")
 				return;
 			}//if
-
+			
 			$("#name").val($("#txtUserName").val())
 			$("#id").val($("#txtUserId").val())
 			$("#pw").val($("#txtUserPw").val())
