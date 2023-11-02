@@ -348,6 +348,13 @@
         }
 
         
+        
+	function movieinfo(){
+	(".ctl00_PlaceHolderContent_Section_Trailer").empty();
+	(".ctl00_PlaceHolderContent_Section_Still_Cut").empty();
+	(".sect-grade").empty();
+	}
+        
 
         //]]>
     </script>

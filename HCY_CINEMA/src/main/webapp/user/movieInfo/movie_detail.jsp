@@ -445,7 +445,7 @@
 								</dl>
 							</div>
 							<span class="screentype"> </span> <span class="like"> <!-- 2020.05.07 영화찜하기 -> 프리에그 선택 변경(조회하여 노출) -->
-								<<!-- a class="link-count" href="javascript:void (0);"><i
+								<!-- a class="link-count" href="javascript:void (0);"><i
 									class="sprite_preegg btn_md default"></i>프리에그</a> --> <a
 								class="link-reservation"
 								href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp?movie=<%=movieCode%>">예매</a>
@@ -653,6 +653,9 @@
 														});
 											}
 										});
+						function movieInfo(){
+							
+						}
 					</script>
 
 					<script type="text/javascript">
@@ -668,17 +671,15 @@
 						<div class="col-detail">
 							<!-- 메뉴가 선택되면 a 에 title="선택" 이라고 넣는다 -->
 							<ul class="tab-menu">
-								<li class="on"><a title="현재 선택됨"
-									href="/movies/detail-view/?midx=87429#menu">주요정보 </a></li>
+								<li><a title="현재 선택됨"
+									href="#menu">주요정보 </a></li>
 								<li><a
-									href="/movies/detail-view/trailer.aspx?midx=87429#menu">트레일러</a></li>
+									href="#trailer">트레일러</a></li>
 								<li><a
-									href="/movies/detail-view/still-cut.aspx?midx=87429#menu">스틸컷</a></li>
-								<li><a href="/movies/detail-view/?midx=87429#commentReg">평점/리뷰</a></li>
-								<li class="last"><a
-									href="/movies/detail-view/show-times.aspx?midx=87429#menu">상영시간표</a></li>
+									href="#ctl00_PlaceHolderContent_Section_Still_Cut">스틸컷</a></li>
+								<li><a href="#sect-grade">평점/리뷰</a></li>
 							</ul>
-							<div class="sect-story-movie">
+							<div class="sect-story-movie" id="movieInfo">
 								<%=mVO.getPlot()%>
 							</div>
 							<!-- .sect-story -->
@@ -686,7 +687,7 @@
 							
 							<!-- .sect-graph -->
 
-							<div class="movie-detail-ad">
+							<div class="movie-detail-ad" id="trailer">
 								<iframe
 									src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@SponsorBar_800"
 									width="800" height="90" title="" frameborder="0" scrolling="no"
@@ -699,7 +700,7 @@
 								<div class="heading">
 									<h4>트레일러</h4>
 									<span id="ctl00_PlaceHolderContent_TrailerTotalCount"
-										class="count">5건</span><a class="link-more"
+										class="count">1건</span><a class="link-more"
 										href="trailer.aspx?midx=87429">더보기</a>
 								</div>
 								<ul>
@@ -740,7 +741,7 @@
 								class="sect-stillcut">
 								<div class="heading">
 									<h4>스틸컷</h4>
-									<span class="count"><strong id="stillcut_current">1</strong>/36건</span><a
+									<span class="count"><strong id="stillcut_current">1</strong>/<%=StillList.size() %>건</span><a
 										class="link-more" href="still-cut.aspx?midx=87429">더보기</a>
 								</div>
 								<div class="slider-wrap">
@@ -787,7 +788,7 @@
 
 
 
-							< <div class="sect-grade">
+							 <div class="sect-grade" id="sect-grade">
 								<!-- preegg.css 연관 UI -->
 								<div class="movie_grade">
 									<a class="info" id="goldenEggAlert" href="javascript:void(0);"><img
