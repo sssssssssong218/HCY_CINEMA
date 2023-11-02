@@ -1,16 +1,7 @@
-<%@page import="board.BoardVO"%>
-<%@page import="board.BoardDAO"%>
-<%@page import="manageMember.BoardRangeVO"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="board.NoticeVO"%>
-<%@page import="board.NoticeDAO"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page info="" %>
+<%@ page info="자유게시판 작성페이지" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko"><head>
     
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -20,16 +11,16 @@
     <meta http-equiv="Cache-Control" content="No-Cache">
     <meta http-equiv="imagetoolbar" content="no">
     <meta name="viewport" content="width=1024">
-    <meta name="keywords" content="HCY 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
-    <meta name="description" content="HCY는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. HCY홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
-    <meta property="og:site_name" content="영화 그 이상의 감동. HCY">
+    <meta name="keywords" content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
+    <meta name="description" content="CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
+    <meta property="og:site_name" content="영화 그 이상의 감동. CGV">
     <meta id="ctl00_og_title" property="og:title" content="자유게시판 < 고객센터 | 영화 그 이상의 감동. HCY">
     
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
     <link rel="shortcut icon" href="http://192.168.10.145/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
-    <title id="ctl00_headerTitle">자유게시판 &lt; 고객센터 | 영화 그 이상의 감동. HCY</title>
+    <title id="ctl00_headerTitle">자유게시판 &lt; 고객센터 | HCY CINEMA</title>
     <link rel="shortcut icon" type="image/x-icon" href="http://192.168.10.145/HCY_CINEMA/common/images/favicon.png">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
@@ -78,6 +69,11 @@
     <!-- 홈페이지 CSS 일원화로 인한 반영 20220721 -->
     <link rel="stylesheet" type="text/css" href="https://img.cgv.co.kr/resource_pc/css/cgv.min.css">
     <script type="text/javascript" src="https://img.cgv.co.kr/resource_pc/js/cgvUi.js"></script>
+    
+    <!-- summernote  -->
+    <!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>4
 
     <!-- 각페이지 Header Start--> 
     
@@ -86,11 +82,11 @@
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
         //<![CDATA[
-        _TRK_CP = "/고객센터/자유게시판";
+        _TRK_CP = "/고객센터/공지/뉴스";
 
         app.config('staticDomain', 'https://img.cgv.co.kr/R2014/')
             .config('imageDomain', 'https://img.cgv.co.kr')
-            .config('isLogin', 'True');
+            .config('isLogin', 'False');
 
         
         // AD FLOAT
@@ -183,7 +179,13 @@
                 }
             }
         }
+
+        
+
+        //]]>
     </script>
+    
+
     
 <script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script></head>
 <body class="" cz-shortcut-listen="true" style="">
@@ -192,6 +194,7 @@
 	<a href="#contents" id="skipHeader">메인 컨텐츠 바로가기</a>
 </div>    
 <div id="cgvwrap">
+    
 	
       <!-- S Header
         Description
@@ -445,6 +448,43 @@
             <!-- 서브 메뉴 -->			
 	</div>
 	<!-- E Header -->
+	<!-- summernote 시작 -->
+
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+<!-- i18n -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+    $('#postContent').summernote({
+        toolbar: [
+    // [groupName, [list of button]]
+    ['style', ['bold', 'italic', 'underline', 'clear']],
+    // ['font', ['strikethrough', 'superscript', 'subscript']],
+    ['fontsize', ['fontsize']],
+    ['color', ['color']],
+    ['para', ['ul', 'ol', 'paragraph']],
+    // ['height', ['height']]
+    ['table', ['table']],
+  ['insert', ['picture']]
+  ],
+  placeholder: '자유롭게 영화에 대한 이야기를 나눠보세요.',
+    height: 300,
+    lang: 'ko-KR'
+   
+    });//summernote
+   
+    $("#btnSubmit").click(function(){
+    	$("#postContent").submit();
+    	
+    });//click
+});//ready
+</script>
+<!-- summernote 끝 -->
 
 	<!-- Contaniner -->
 	<div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
@@ -456,13 +496,12 @@
             
             <!-- Contents Start -->
 			
-   
 <!-- Contents Area -->
 <div id="contents">
 	<!-- Contents Start -->
 	<div class="cols-content">
-		
-<div class="col-aside">
+	    
+<div class="col-aside" style="margin-left: 0px"/>
     <h2>
         고객센터 메뉴</h2>
     <div class="snb">
@@ -471,138 +510,32 @@
             <li class="on"><a href="http://localhost/HCY_CINEMA/user/board/board.jsp">자유게시판<i></i></a></li>            
         </ul>
     </div>
-    
-</div>
 
-		<div class="col-detail">
+		<div class="col-detail" style="margin-left: 185px;">
 			<div class="customer_top">
 				<h2 class="tit">자유게시판</h2>
-				<p class="stit">자유롭게 영화 이야기를 나눌 수 있습니다.</p>
+				<p class="stit">자유로운 영화 이야기가 가능합니다.</p>
 			</div>
-			<div class="search_area">
-			<%
-			String selsearchfield=request.getParameter("selsearchfield");
-			%>
-				<legend><label for="c_select">검색</label></legend>
-				<select name="selsearchfield" id="selsearchfield" class="c_select" style="width:100px;" selected="selected">
-					<option selected="selected" value="0"${param.selsearchfield eq '0'?" selected='selected'":"" }>제목</option>
-					<option value="1" ${param.selsearchfield eq '1'?" selected='selected'":"" }>내용</option>
-				</select>
-				<label for="searchtext" class="hidden">검색어 입력</label>
-				<input id="searchtext" type="text" class="c_input" title="검색어 입력" placeholder="검색어를 입력해 주세요" style="width:185px;" value="">
-				<input type="button"  class="btn" value="검색하기" id="btn_search" style="background:#222222; color: #FFFFFF; width: 70px; height: 23px;"/>
+			<div class="board_view_area">
+			
+			
+				<ul class="top_title_faq">
+					<li class="title">
+					<span style="color: #333333; font-family: Noto-Sans KR; font-size: 12px; margin-left: 20px"><em>제목</em></span>
+					<input type="text" id="titleTxt" class="inputBox" style="width: 350px; height: 24px; margin-left: 10px;"/>
+					</li>
+				</ul>
+				<div class="view_area">
+				<form method="post">
+				
+ 				 <textarea id="postContent" name="txtContent" ></textarea>
+ 				 <input type="button" id="postSubmit" value="글쓰기" style="background: #5B5B58; width: 140px; height: 30px; color: #FFFFFF; font-size: 12px; margin-left: 320px"/>
+			</form>
+				<div class="customer_btn">
+			
+				<input type="button" id="btn_list" value="목록으로" style="background: #5B5B58; width: 70px; height:23px; color: #FFFFFF; font-size: 12px; font-align: center;"/></div>
 			
 			</div>
-			<div style="display: flex; justify-content: flex-end;">
-				<input type="button" class="btn" value="글쓰기" id="btn_write" style=""/>
-			</div>
-			
-			<div class="tbl_area">
-			<%
-     		  String postNumParam = request.getParameter("postNum");
-     		  int postNum = 0;
-     		  if (postNumParam != null && !postNumParam.isEmpty()) {
-     			 postNum = Integer.parseInt(postNumParam);
-     		  }//end if
-     		  
-     		 BoardDAO bDAO = BoardDAO.getInstance();
-     		 BoardRangeVO brVO=new BoardRangeVO();
-     		  
-     		 String field=request.getParameter("field");
-     	     String keyword=request.getParameter("keyword");
-     	       
-     	      brVO.setField(request.getParameter("field"));
-     	      brVO.setKeyword(request.getParameter("keyword"));
-     	      
-     	     //총 레코드 수
-     	       int totalCount= bDAO.totalCount(brVO);
-     	       
-     	       //한 화면에 보여줄 게시물의 수
-     	       int pageScale=20;
-     	       
-     	       //총 페이지 수
-     	       int totalPage=0;
-     	       totalPage=(int)Math.ceil(totalCount/(double)pageScale);
-     	       
-     	       //현재페이지의 시작번호
-     	       String tempPage=request.getParameter("currentPage");
-     	       int currentPage=1;
-     	       
-     	       if(tempPage!=null){
-     	    	   currentPage=Integer.parseInt(tempPage);
-     	       }//end if
-     	       
-     	       //시작번호
-     	       int startNum=currentPage*pageScale-pageScale+1;
-     	       pageContext.setAttribute("startNum", startNum);
-     	       
-     	       //끝번호
-     	       int endNum=startNum+pageScale-1;
-     	       
-     	       brVO.setStartNum(startNum);
-     	       brVO.setEndNum(endNum);
-     		  
-     		 try{
-                 List<BoardVO> list=BoardDAO.getInstance().selectBoard(brVO);
-                 pageContext.setAttribute("boardList", list);
-                 }catch(SQLException se){
-              	   se.printStackTrace();
-                 }//end catch
-     		  
-     		  %>
-     		
-     		  <!-- 공지목록 -->
-				<table cellspacing="0" cellpadding="0" class="tbl_notice_list">
-				<caption>목록</caption>
-				<colgroup>
-					<col style="width:70px;">
-                    <col style="width:160px;">
-					<col style="auto;">
-					<col style="width:140px;">
-					<col style="width:120px">
-				</colgroup>
-				<thead>
-					<tr>
-					<th scope="col">번호</th>
-                    <th scope="col">작성자</th>
-					<th scope="col" class="tit" style="text-align: center">제목</th>
-					<th scope="col">등록일</th>
-					<th scope="col">조회수</th>
-					</tr>
-				</thead>
-               
-                 <tbody style="text-align:center">
-        		<c:if test="${ empty boardList }">
-      			 <tr>
-   	     		<td colspan="5" style="text-align:center"><strong><font size="5">게시글이 존재하지 않습니다</font></strong></td>
-        		</tr>
-        		</c:if>
-        		<c:forEach var="board" items="${ boardList }" varStatus="i">
-        		<tr class="first" >
-        			<td><c:out value="${ board.postNum}"/></td>
-        			<td><c:out value="${ board.id }"/></a></td>
-       				<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/board_specific.jsp?postNum=<c:out value='${ board.postNum }'/>"><c:out value="${ board.title }"/></a></td>
-       				<td><c:out value="${ board.inputDate }"/></td>
-       				<td class="num"><c:out value="${ board.viewCount }"/></td>
-        		</tr>
-       			 </c:forEach>
-                    
-				</tbody>
-				</table>
-			</div>
-			<!--?xml version="1.0" encoding="utf-8"?-->
-			
-<!-- 페이지번호-->
-<div class="paging" style="text-align:center">
-<ul>
-	<li>
-		<% for( int i=1; i<totalPage+1; i++ ){   %>
-		 <a href="http://localhost/HCY_CINEMA/user/board/board.jsp?currentPage=<%=i %>&keyword=${ param.keyword }&field=${ param.field }"><%=i%></a> 
-		<%} //end for%> 
-	</li>
-</ul>
-</div>
-
 		</div>
 	</div>
 	<!-- //Contents End -->
@@ -612,61 +545,20 @@
 
 //<![CDATA[
 
-        $(function (){
-
-            var searchfield = "0";
-
-            $('#selsearchfield').val(searchfield).attr("selected", "selected");
-
-            $('#btn_search').on('click', function () {
-//                if ($('#searchtext').val() == "") {
-//                    alert("검색어를 입력해 주세요.");
-//                    $('#searchtext').focus();
-//                    return false;
-//                } else {
-//                    Search();
-                //                }
-
+    (function ($) {
+        $(function () {
+            $('#btn_list').on('click', function () {
                 Search();
             });
-            
-			$("btn_write").click(function(){
-				goToWrite();
-			});//btn_write.click
-            
-			$('#searchtext').keypress(function(event){
-				if(event.which == 13){
-					if ($('#searchtext').val() == "") {
-						alert("검색어를 입력해 주세요.");
-						$('#searchtext').focus();
-						return false;
-					} else {
-						Search();
-					}
-				}
-			});
-
 
             function Search() {
-                location.href = "/support/news/default.aspx?searchtext=" + escape($("#searchtext").val()) + "&searchfield=" + $('#selsearchfield option:selected').val();
+                location.href = "/support/news/default.aspx?searchtext=" + escape("") + "&page=1&type=4&searchfield=0";
                 return false;
             }
-            
-            function goToWrite(){
-            	location.href="http://localhost/HCY_CINEMA/user/board/board_write.jsp";
-            }//goToWrite
+        });
+    })(jQuery);
 
-            $('.c_tab_wrap').children('.c_tab').children('li').on('click', function () {
-                //$('.c_tab_wrap').children('.c_tab').children('li').removeClass("on");
-                //$(this).addClass("on");
-
-                location.href = $(this).children('a').attr("href") + escape("") + "&searchfield=0";
-                return false;
-            });
-
-
-        });//ready
-
+//]]>
 </script>
 
             
@@ -718,7 +610,7 @@
     <!-- E Popup -->
     
     <!-- S 예매하기 및 TOP Fixed 버튼 -->
-    <div class="fixedBtn_wrap">
+    <div class="fixedBtn_wrap topBtn">
      
         <a href="/ticket/" class="btn_fixedTicketing">예매하기</a>
         
@@ -728,7 +620,7 @@
     <!-- E 예매하기 및 TOP Fixed 버튼 -->
 	
     <!-- S Footer -->
-    <footer>
+  <footer>
 		<!-- footer_area (s) -->
 		
 <div id="BottomWrapper" class="sect-ad">
