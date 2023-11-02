@@ -81,7 +81,6 @@
     		},
     		success : function(json){
     				var html = ""; 
-    				alert(json)
     			$.each(json.list,function(i,e){
     				var iconClass = e.movieRating == "AL" ? "All" : e.movieRating;
     				html += '<li><div class="col-times"><div class="info-movie">'
@@ -189,7 +188,11 @@
                        	
                        	for(int i = 0;i<8;i++ ){
                   		sbTemp.replace(0, sbTemp.length(), "");
-                       	sbTemp.append(year).append(month).append(date);
+                       	sbTemp.append(year)
+                    	.append(month<10?"0":"")
+                    	.append(month)
+                    	.append(date<10?"0":"")
+                    	.append(date);
                        	day = days[dayNum];
                        	dayNum++;
                        	if(dayNum > 6){
