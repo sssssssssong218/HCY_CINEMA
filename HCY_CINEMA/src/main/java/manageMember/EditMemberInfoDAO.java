@@ -70,4 +70,32 @@ public class EditMemberInfoDAO {
 	public void insertJoinMember(MemberVO mVO) {
 		
 	}//insertJoinMember
+	
+	public void updateMemberStatus(String id, MemberVO mVO) throws SQLException {
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		DBConnection db=DBConnection.getInstance();
+		
+		try {
+			con=db.getCon();
+			
+			String updateMemberStatus="update member set ID = ?, MNAME = ?, TEL = ?, EMAIL = ? where id=?";
+			
+			pstmt=con.prepareStatement(updateMemberStatus);
+			
+			pstmt.setString(1, id);
+			pstmt.setString(2, mVO.getMname());
+			pstmt.setString(3, mVO.getTel());
+			pstmt.setString(4, mVO.getEmail());
+			pstmt.setString(5, mVO.getId());
+			
+			pstmt.executeUpdate();
+			
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}
+	}//updateMemberStatus
 }//class

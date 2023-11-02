@@ -88,8 +88,38 @@
     	if(${login!="true"} && ${nonMemLogin!="true"}){
     		alert("로그인 후 이용해주세요!")
     		location.href="http://localhost/HCY_CINEMA/user/login/login.jsp"
+    		return
     	}//if
+    	if(${mVO == null}){
+    		alert("오류가 발생했습니다. 다시 로그인 해주세요!")
+    		location.href="http://localhost/HCY_CINEMA/user/login/logout.jsp"
+    	}//if
+    	
+    	
     });//ready
+    
+    function clickcancel(tNum){
+		var data = {"tNum":tNum}
+		$.ajax({
+			url : "http://localhost/HCY_CINEMA/user/myPage/mypage_myticket_ajax.jsp",
+			type : "get",
+			data : data,
+			dataType : "json",
+			error : function(xhr){
+				alert("예상치 못한 오류가 발생했습니다.")
+				console.log(xhr.status)
+				location.href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp"
+			},
+			success : function(json){
+				if(json.isCancel){
+				alert("예매취소가 정상적으로 이루어졌습니다.")
+				$("#cancleDiv_"+tNum).html("<strong>예매 취소 완료</strong>")
+				}else{
+				alert("예매취소에 실패했습니다.")
+				}//else
+			}//success
+		})//ajax
+	}//clickcancel
     
         //<![CDATA[
         _TRK_CP = "/나의 예매내역";
@@ -240,15 +270,15 @@
 	        <ul>
 	            
 	            <li class="on">
-                    <a href="/user/mycgv/reserve/?g=1" title="현재 선택">나의 예매내역 <i></i></a>
+                    <a href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp" title="현재 선택">나의 예매내역 <i></i></a>
                     
                 </li>
 	            <li>
-	                <a href="/user/mycgv/coupon/movie-ticket/list.aspx?g=1">회원정보 관리<i></i></a>
+	                <a href="http://localhost/HCY_CINEMA/user/myPage/edit_member_info.jsp">회원정보 관리<i></i></a>
 	                <ul>                      
                      
 	                    <li>
-                            <a href="/user/mycgv/coupon/movie-ticket/list.aspx?g=1">회원정보 수정</a>
+                            <a href="http://localhost/HCY_CINEMA/user/myPage/edit_member_info.jsp">회원정보 수정</a>
                         </li>
 	                    <li>
                             <a href="/user/mycgv/coupon/discount/list.aspx?g=1">비밀번호 변경</a>
@@ -276,6 +306,7 @@
 	        
 	        <%
 	        MemberVO mVO = (MemberVO)session.getAttribute("mVO");
+	        if(mVO==null){return;}
 	        List<MyTicketVO> list = MyTicketDAO.getInstance().selectMyTicket(mVO.getId());
 	        String button = "";
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd(E) HH:mm");
@@ -289,7 +320,7 @@
 		    		        </div>
 		    		        <div class="box-info">
 			        	        <div class="box-image">
-			        		        <a href="/movies/detail-view/?midx=87433">
+			        		        <a href="http://localhost/HCY_CINEMA/common/movie_files/<%=mtVO.getMovieCode() %>_P.jpg">
 			            		        <span class="thumb-image"> 
 			                                <img src="http://localhost/HCY_CINEMA/common/movie_files/<%=mtVO.getMovieCode() %>_P.jpg" alt="<%=mtVO.getMname() %> 포스터" onerror="errorImage(this)">
 			                                <span class="ico-grade All">
@@ -348,25 +379,30 @@
 			                </div>
 			                <div class="set-btn">
                                 <input type="hidden" class="reserve-no" name="reserve-no" value="uGmTfGXTvG/WfANmsLeVtZ1qDKRAKUal6cCLJ9EjRHU=">
-                                <div class="col-print">   
+                                <div class="col-print" id="cancleDiv_<%=mtVO.getTicketNum()%>">   
                                 <%
                                 if("Y".equals(mtVO.getStatus())){
                                 	if(LocalDateTime.now().isBefore(LocalDateTime.parse(mtVO.getShowtime(),formatter))){
                                 		%>
-                                		<input type="button" id="btnCancel" value="예매취소" name="btnCancel" class="btn btn-warning"> 
+                                		<input type="button" value="예매취소" class="btn btn-warning" onclick="clickcancel('<%=mtVO.getTicketNum()%>');"> 
                                 		<%
                                 	}//if
                                 	if(LocalDateTime.now().isAfter(LocalDateTime.parse(mtVO.getShowtime(),formatter))){
-                                		
+                                		%>
+                                		<strong>상영완료</strong>
+                                		<%
                                 	}//if
                                 	if(LocalDateTime.now().isEqual(LocalDateTime.parse(mtVO.getShowtime(),formatter))){
-                                		
+                                		%>
+                                		<strong>현재 영화 진행중</strong>
+                                		<%
                                 	}//if
                                 }else{
-                                	button = "";
+                                		%>
+                                		<strong>예매 취소 완료</strong>
+                                		<%
                                 }//else
                                 %>  
-                                <button type="type" class="round black cancel"><span>예매취소</span></button>
                                 </div>    
                                 
 	        		        </div>
