@@ -1,3 +1,4 @@
+<%@page import="movie.MainTrailerVO"%>
 <%@page import="movie.MovieInfoVO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -439,7 +440,23 @@ document.getElementById("nextdate").value = <%=enddate%>;
 <input type="radio" id="ageGroup" name="ageGroup" value="18" <%= "18".equals(mmVO.getMovieRatting()) ? "checked='checked'" : "" %>><label style="font-size:15px">청소년 관람 불가</label><img src="../../common/images/18age.png" style="padding-left:10px"><br>
 <input type="radio" id="ageGroup" name="ageGroup" value="RS" <%= "RS".equals(mmVO.getMovieRatting()) ? "checked='checked'" : "" %>><label style="font-size:15px">제한사영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
 </div>
+<% 
+MainTrailerVO mtVO=dmDAO.selectMaintrailer(movieCode);
+if(mtVO.getMovieCode()!=null){
+%>
+<div style="position:absolute;left:15px;bottom:-380px">
+<strong style="font-size:20px">메인트레일러 설정</strong><br/>
+<input type="checkbox" name="main_trailer" id="main_trailer" checked="checked" disabled="disabled"><label>메인트레일러</label>
+<textarea  class="form-control" rows="3" style="height:150px;width:800px" id="maintrailer" name="maintrailer"> <%= mtVO.getAdMsg() %></textarea>
 </div>
+<%}else{ %>
+<div style="position:absolute;left:15px;bottom:-380px">
+<strong style="font-size:20px">메인트레일러 설정</strong><br/>
+<input type="checkbox" name="main_trailer" id="main_trailer"><label>메인트레일러</label>
+<textarea  class="form-control" rows="3" placeholder="메인트레일러 소개" style="height:150px;width:800px" id="maintrailer" name="maintrailer"></textarea>
+</div>
+<%} %>
+</div>	
 </div>
 
 
@@ -458,7 +475,7 @@ document.getElementById("nextdate").value = <%=enddate%>;
   <div class="carousel-inner">
     <div class="carousel-item active">
     <input type="checkbox" name="posterfile" id="<%= dmDAO.selectPoster(movieCode) %>" value="<%= dmDAO.selectPoster(movieCode) %>">선택
-      <img src="http://localhost/HCY_CINEMA/common/movie_files/<%= dmDAO.selectPoster(movieCode) %>" class="d-block w-100" style="height:440px;width:790px;">
+      <img src="http://localhost/HCY_CINEMA/common/movie_files/<%= dmDAO.selectPoster(movieCode) %>" class="d-block w-100" style="height:440px;">
     </div>
   </div>
 </div>

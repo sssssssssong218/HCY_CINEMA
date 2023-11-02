@@ -102,7 +102,6 @@ public class DetailMovieDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		System.out.println(miVO.getExtra());
 		try {
 			con = db.getCon();
 
@@ -502,5 +501,83 @@ public class DetailMovieDAO {
 			db.dbClose(null, pstmt, con);
 		}//try
 	}//deleteMovieFile
+	public MainTrailerVO selectMaintrailer(String movieCode) throws SQLException {
+		DBConnection db = DBConnection.getInstance();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		
+		MainTrailerVO mtVO=null;
+		try {
+			con = db.getCon();
+
+			String selectMaintrailer="select * from maintrailer where moviecode=?";
+
+			pstmt = con.prepareStatement(selectMaintrailer);
+			
+
+			pstmt.setString(1, movieCode);
+			
+			rs=pstmt.executeQuery();
+		
+			
+			mtVO=new MainTrailerVO();
+			  if (rs.next()) {
+		            mtVO = new MainTrailerVO();
+		            mtVO.setMovieCode(rs.getString("moviecode"));
+		            mtVO.setTrailerName(rs.getString("filename"));
+		            mtVO.setAdMsg(rs.getString("ad_msg"));
+		        }
+		} finally {
+			db.dbClose(rs, pstmt, con);
+		}//try
+		return mtVO;
+	}
 	
+	public void insertMaintrailer(MainTrailerVO mtVO) throws SQLException {
+		DBConnection db = DBConnection.getInstance();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = db.getCon();
+
+			String selectMaintrailer="insert into maintrailer(MOVIECODE, FILENAME, AD_MSG) values(?,?,?)";
+
+			pstmt = con.prepareStatement(selectMaintrailer);
+			
+
+			pstmt.setString(1, mtVO.getMovieCode());
+			pstmt.setString(2, mtVO.getTrailerName());
+			pstmt.setString(3, mtVO.getAdMsg());
+			
+			pstmt.executeUpdate();
+			
+		} finally {
+			db.dbClose(null, pstmt, con);
+		}//try
+	}
+	public void deleteMaintrailer() throws SQLException {
+		DBConnection db = DBConnection.getInstance();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = db.getCon();
+
+			String selectMaintrailer="delete from maintrailer ";
+
+			pstmt = con.prepareStatement(selectMaintrailer);
+			
+
+			
+			
+			pstmt.executeUpdate();
+			
+		} finally {
+			db.dbClose(null, pstmt, con);
+		}//try
+	}
 }// class

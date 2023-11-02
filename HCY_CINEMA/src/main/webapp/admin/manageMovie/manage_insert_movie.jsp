@@ -676,31 +676,42 @@ document.getElementById("nextdate").value = today.getDate();
      });
      var genre_addButton = document.getElementById("genre_btn");
      var genre_titleContainer = document.getElementById("genre_title");
+     var genre_counter = 1;
 
-     var genre_counter=1;
+     genre_addButton.addEventListener("click", function () {
+       var genre_label = genre_titleContainer.querySelector(".genre_label");
+       var genre_Input = genre_titleContainer.querySelector(".genre_select");
 
-     genre_addButton.addEventListener("click", function() {
-         var genre_label = genre_titleContainer.querySelector(".genre_label");
-         var genre_Input = genre_titleContainer.querySelector(".genre_select");
+       // 라벨 복사
+       var genre_newLabel = genre_label.cloneNode(true);
 
-         // 라벨 복사
-         var genre_newLabel = genre_label.cloneNode(true);
-         
-         // 입력 요소 복사
-         var genre_newInput = genre_Input.cloneNode(true);
-         genre_newInput.name = "genre_select_" + genre_counter;
-         genre_newInput.id = "genre_select_" + genre_counter;
-         genre_newInput.style.position = "relative";
-         genre_newInput.style.left="15px";
-         genre_newInput.style.width = "450px";
+       // 입력 요소 복사
+       var genre_newInput = genre_Input.cloneNode(true);
+       genre_newInput.name = "genre_select_" + genre_counter;
+       genre_newInput.id = "genre_select_" + genre_counter;
+       genre_newInput.style.position = "relative";
+       genre_newInput.style.left = "15px";
+       genre_newInput.style.width = "450px";
 
-         // 복제한 라벨과 입력 요소를 추가
-         genre_titleContainer.appendChild(genre_newLabel);
-         genre_titleContainer.appendChild(genre_newInput);
-         
-         genre_counter++;
+       // 복제한 라벨과 입력 요소를 추가
+       genre_titleContainer.appendChild(genre_newLabel);
+       genre_titleContainer.appendChild(genre_newInput);
 
+       // 원본 "genre_select" 엘리먼트에서 선택된 값을 가져옵니다.
+       var selectedValue = genre_Input.value;
+
+       // 새로 생성된 입력 엘리먼트의 값을 선택된 값으로 설정합니다.
+       genre_newInput.value = selectedValue;
+
+       // 원본 "select" 엘리먼트에서 선택된 옵션을 제거합니다.
+       var selectedOption = genre_Input.querySelector('option[value="' + selectedValue + '"]');
+       if (selectedOption) {
+         selectedOption.remove();
+       }
+
+       genre_counter++;
      });
+
      var genre_selectElement = document.getElementById("genre_select");
     /*  genre_disableButton.addEventListener("click", function() {
     	 genre_selectElement.disabled = true; // select 요소를 비활성화

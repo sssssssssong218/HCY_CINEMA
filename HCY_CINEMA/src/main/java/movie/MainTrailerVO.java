@@ -10,11 +10,11 @@ public class MainTrailerVO {
 		
 	}//constructor
 
-	public MainTrailerVO(String trailerName, String movieCode, String movieName, String adMsg) {
+	public MainTrailerVO(String trailerName, String movieCode,  String adMsg) {
 		super();
 		this.trailerName = trailerName;
 		this.movieCode = movieCode;
-		this.movieName = movieName;
+		
 		this.adMsg = adMsg;
 	}//constructor
 
@@ -27,9 +27,7 @@ public class MainTrailerVO {
 		return movieCode;
 	}
 
-	public String getMovieName() {
-		return movieName;
-	}
+
 
 	public String getAdMsg() {
 		return adMsg;
@@ -44,9 +42,6 @@ public class MainTrailerVO {
 		this.movieCode = movieCode;
 	}
 
-	public void setMovieName(String movieName) {
-		this.movieName = movieName;
-	}
 
 	public void setAdMsg(String adMsg) {
 		this.adMsg = adMsg;
