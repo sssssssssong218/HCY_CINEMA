@@ -260,7 +260,7 @@
 
 
 <div class="cols-content">
-   <div class="col-aside">
+  <div class="col-aside">
 		<div class="skipnaiv">
 			<a href="#mycgv_contents" id="skipMycgvMenu">MYCGV 서브메뉴 건너띄기</a>
 		</div>
@@ -269,19 +269,19 @@
 	    <div class="snb">
 	        <ul>
 	            
-	            <li class="on">
-                    <a href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp" title="현재 선택">나의 예매내역 <i></i></a>
+	            <li>
+                    <a href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp">나의 예매내역 <i></i></a>
                     
                 </li>
-	            <li>
-	                <a href="http://localhost/HCY_CINEMA/user/myPage/edit_member_info.jsp">회원정보 관리<i></i></a>
+	            <li class="on">
+	                <a href="http://localhost/HCY_CINEMA/user/myPage/edit_member_info.jsp" title="현재 선택">회원정보 관리<i></i></a>
 	                <ul>                      
                      
 	                    <li>
                             <a href="http://localhost/HCY_CINEMA/user/myPage/edit_member_info.jsp">회원정보 수정</a>
                         </li>
 	                    <li>
-                            <a href="/user/mycgv/coupon/discount/list.aspx?g=1">비밀번호 변경</a>
+                            <a href="http://localhost/HCY_CINEMA/user/myPage/my_password.jsp">비밀번호 변경</a>
                         </li>
 	                </ul>
 	            </li>
