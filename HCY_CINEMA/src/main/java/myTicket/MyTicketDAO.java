@@ -16,7 +16,7 @@ private MyTicketDAO() {
 }//construct
 
 public static MyTicketDAO getInstance() {
-	if(mtDAO != null) {
+	if(mtDAO == null) {
 		mtDAO = new MyTicketDAO();
 	}//getInstance
 	
@@ -54,7 +54,7 @@ private String selectSeatNum(int tNum) throws SQLException {
 
 public List<MyTicketVO> selectMyTicket(String id) throws SQLException{
 	List<MyTicketVO> list = new ArrayList<MyTicketVO>();
-	
+
 	DBConnection db = DBConnection.getInstance();
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -69,8 +69,9 @@ public List<MyTicketVO> selectMyTicket(String id) throws SQLException{
 		
 		rs = pstmt.executeQuery();
 		
-		MyTicketVO mtVO = new MyTicketVO();
+		MyTicketVO mtVO = null;
 		while(rs.next()) {
+			mtVO = new MyTicketVO();
 			mtVO.setMovieCode(rs.getString("MOVIECODE"));
 			mtVO.setTicketNum(rs.getInt("TICKETNUM"));
 			mtVO.setMname(rs.getString("mname"));
@@ -83,6 +84,7 @@ public List<MyTicketVO> selectMyTicket(String id) throws SQLException{
 			mtVO.setSeat(selectSeatNum(rs.getInt("TICKETNUM")));
 			mtVO.setTicketDate(rs.getString("TICKETDATE"));
 			mtVO.setStatus(rs.getString("STATUS"));
+			list.add(mtVO);
 		}//while
 	}finally {
 		db.dbClose(rs, pstmt, con);
@@ -90,4 +92,27 @@ public List<MyTicketVO> selectMyTicket(String id) throws SQLException{
 	
 	return list;
 }//selectMyTicket
+
+
+public void updateCancelTicket(int tNum) throws SQLException {
+	DBConnection db = DBConnection.getInstance();
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	
+	try {
+		con = db.getCon();
+		
+		String updateCancelTicket = "UPDATE TICKETING set STATUS = 'N' where TICKETNUM = ?";
+		
+		pstmt = con.prepareStatement(updateCancelTicket);
+		pstmt.setInt(1, tNum);
+		
+		pstmt.executeUpdate();
+	}finally {
+		db.dbClose(null, pstmt, con);
+	}//finally
+}//updateCancelTicket
+
+
 }//class

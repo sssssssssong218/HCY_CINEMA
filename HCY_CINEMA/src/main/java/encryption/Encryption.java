@@ -40,12 +40,12 @@ public class Encryption {
 		return result;
 	}// encryption
 	
-	public String decryption(String plan)
+	public String decryption(String cipher)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 		String result = "";
 
 		DataDecrypt dd = new DataDecrypt("1120020301311126");
-		result = dd.decryption(plan);
+		result = dd.decryption(cipher);
 
 		return result;
 	}// encryption

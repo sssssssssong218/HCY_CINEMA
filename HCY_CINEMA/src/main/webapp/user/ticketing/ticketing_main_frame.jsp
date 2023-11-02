@@ -107,8 +107,8 @@ function mListClickListener(index , name, rate){
 	mListSelect = true;
 	$(".placeholder.hidden").attr("class","placeholder")
 	var value = $("#"+index).data("value");
-	$(".press.selected").attr("class","")
-	$("#"+index).attr("class","press selected")
+	$(".selected").attr("class","")
+	$("#"+index).attr("class","selected")
 	$("#movie").val(index)
 	selectMovie = index;
 	moviename = name;
