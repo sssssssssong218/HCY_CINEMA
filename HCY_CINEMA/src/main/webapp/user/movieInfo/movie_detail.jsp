@@ -1,3 +1,4 @@
+<%@page import="moviedetail.ReviewInfoVO"%>
 <%@page import="moviedetail.PageVO"%>
 <%@page import="moviedetail.ReviewVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -140,11 +141,16 @@
 	href="https://img.cgv.co.kr/resource_pc/css/cgv.min.css">
 <script type="text/javascript"
 	src="https://img.cgv.co.kr/resource_pc/js/cgvUi.js"></script>
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
 
 <!-- 각페이지 Header Start-->
 
 
 <!--/각페이지 Header End-->
+
+
+
+
 <script type="text/javascript">
 	//<![CDATA[
 	_TRK_CP = "/극장/CGV극장";
@@ -677,84 +683,7 @@
 							</div>
 							<!-- .sect-story -->
 							<!-- 2020.05.07 성별예매분포, 연령별예매분포 UI 변경 -->
-							<div id="ctl00_PlaceHolderContent_Section_Chart"
-								class="sect-graph sect-graph-emotion">
-								<ul class="graph">
-									<li><strong>성별 예매 분포</strong>
-										<div id="jqplot_sex" class="chart jqplot-target"
-											style="position: relative;">
-											<canvas width="400" height="192" class="jqplot-base-canvas"
-												style="position: absolute; left: 0px; top: 0px;"></canvas>
-											<div class="jqplot-title" style="height: 0px; width: 0px;"></div>
-											<canvas width="400" height="192" class="jqplot-grid-canvas"
-												style="position: absolute; left: 0px; top: 0px;"></canvas>
-											<canvas width="380" height="159"
-												class="jqplot-series-shadowCanvas"
-												style="position: absolute; left: 10px; top: 10px;"></canvas>
-											<canvas width="380" height="159" class="jqplot-series-canvas"
-												style="position: absolute; left: 10px; top: 10px;"></canvas>
-											<canvas width="380" height="159"
-												class="jqplot-donutRenderer-highlight-canvas"
-												style="position: absolute; left: 10px; top: 10px;"></canvas>
-											<span class="jqplot-donut-series jqplot-data-label"
-												style="position: absolute; left: 110px; top: 142px;">남
-												42.6%</span><span class="jqplot-donut-series jqplot-data-label"
-												style="position: absolute; left: 237px; top: 21px;">여
-												57.4%</span>
-											<canvas width="380" height="159" class="jqplot-event-canvas"
-												style="position: absolute; left: 10px; top: 10px;"></canvas>
-										</div></li>
-									<li><strong>연령별 예매 분포</strong>
-										<div id="jqplot_age" class="chart jqplot-target"
-											style="position: relative;">
-											<canvas width="400" height="192" class="jqplot-base-canvas"
-												style="position: absolute; left: 0px; top: 0px;"></canvas>
-											<div class="jqplot-title" style="height: 0px; width: 0px;"></div>
-											<div class="jqplot-axis jqplot-xaxis"
-												style="position: absolute; width: 400px; height: 14px; left: 0px; bottom: 0px;">
-												<div class="jqplot-xaxis-tick"
-													style="position: absolute; font-size: 12px; left: 36px;">10대</div>
-												<div class="jqplot-xaxis-tick"
-													style="position: absolute; font-size: 12px; left: 112px;">20대</div>
-												<div class="jqplot-xaxis-tick"
-													style="position: absolute; font-size: 12px; left: 188px;">30대</div>
-												<div class="jqplot-xaxis-tick"
-													style="position: absolute; font-size: 12px; left: 264px;">40대</div>
-												<div class="jqplot-xaxis-tick"
-													style="position: absolute; font-size: 12px; left: 340px;">50대</div>
-											</div>
-											<div class="jqplot-axis jqplot-yaxis"
-												style="position: absolute; height: 192px; width: 0px; left: 0px; top: 0px;"></div>
-											<canvas width="400" height="192" class="jqplot-grid-canvas"
-												style="position: absolute; left: 0px; top: 0px;"></canvas>
-											<canvas width="380" height="158"
-												class="jqplot-series-shadowCanvas"
-												style="position: absolute; left: 10px; display: block; top: 10px;"></canvas>
-											<canvas width="380" height="158" class="jqplot-series-canvas"
-												style="position: absolute; left: 10px; display: block; top: 10px;"></canvas>
-											<div
-												class="jqplot-point-label jqplot-series-0 jqplot-point-4"
-												style="position: absolute; left: 342.5px; top: 36.24px; display: block;">28.8</div>
-											<div
-												class="jqplot-point-label jqplot-series-0 jqplot-point-3"
-												style="position: absolute; left: 266.5px; top: 23.205px; display: block;">32.1</div>
-											<div
-												class="jqplot-point-label jqplot-series-0 jqplot-point-2"
-												style="position: absolute; left: 190.5px; top: 64.285px; display: block;">21.7</div>
-											<div
-												class="jqplot-point-label jqplot-series-0 jqplot-point-1"
-												style="position: absolute; left: 114.5px; top: 89.96px; display: block;">15.2</div>
-											<div
-												class="jqplot-point-label jqplot-series-0 jqplot-point-0"
-												style="position: absolute; left: 41px; top: 141.31px; display: block;">2.2</div>
-											<canvas width="380" height="158"
-												class="jqplot-barRenderer-highlight-canvas"
-												style="position: absolute; left: 10px; top: 10px;"></canvas>
-											<canvas width="380" height="158" class="jqplot-event-canvas"
-												style="position: absolute; left: 10px; top: 10px;"></canvas>
-										</div></li>
-								</ul>
-							</div>
+							
 							<!-- .sect-graph -->
 
 							<div class="movie-detail-ad">
@@ -885,333 +814,102 @@
                             </div>
                         </div> -->
 									</div>
+<!-- <div style="text-align: center; height: 180px; display: flex; justify-content: center; align-items: center;">
+    <div style="width: 128px;">
+        <img src="http://localhost/HCY_CINEMA/common/images/empty_star.png" style="width: 128px; height: 128px;">
+    </div>
+    <div style="width: 128px;">
+        <img src="http://localhost/HCY_CINEMA/common/images/empty_star.png" style="width: 128px; height: 128px;">
+    </div>
+    <div style="width: 128px;">
+        <img src="http://localhost/HCY_CINEMA/common/images/empty_star.png" style="width: 128px; height: 128px;">
+    </div>
+    <div style="width: 128px;">
+        <img src="http://localhost/HCY_CINEMA/common/images/empty_star.png" style="width: 128px; height: 128px;">
+    </div>
+    <div style="width: 128px;">
+        <img src="http://localhost/HCY_CINEMA/common/images/empty_star.png" style="width: 128px; height: 128px;">
+    </div>
+    <div style="width: 110px;position:relative;overflow:hidden;">
+          <img src="http://localhost/HCY_CINEMA/common/images/star.png" style="float:right;width: 64px; height: 110px; position:absolute;top:-53px;right:630px">
+    </div>
+</div> -->
+<%
+//1%에 1.1퍼
+ReviewInfoVO riVO = mDAO.reviewCntArg(movieCode);
+double img1=0;
+double img2=0;
+double img3=0;
+double img4=0;
+double img5=0;
+double imtstar=0;
+int arg=(int)riVO.getReviewArg();
+System.out.println(arg);
+switch(arg){
 
-									<div class="chart_total">
-										<div class="box">
-											<div class="title">매력 포인트</div>
-											<div class="radar-graph" id="chart2">
-												<div id="charm"
-													style="width: 350px; height: 250px; margin: 0px auto; overflow: hidden; text-align: left;">
-													<div class="amcharts-main-div" style="position: relative;">
-														<div class="amcharts-chart-div"
-															style="overflow: hidden; position: relative; text-align: left; width: 350px; height: 250px; padding: 0px; touch-action: auto;">
-															<svg version="1.1"
-																style="position: absolute; width: 350px; height: 250px; top: 0.390625px; left: 0px;">
-																<g>
-																<path cs="100,100"
-																	d="M0.5,0.5 L349.5,0.5 L349.5,249.5 L0.5,249.5 Z"
-																	fill="#FFFFFF" stroke="#000000" fill-opacity="0"
-																	stroke-width="1" stroke-opacity="0"></path></g>
-																<g>
-																<g transform="translate(175,125)" visibility="visible">
-																<path cs="100,100" d="M0.5,0.5 L0.5,-86.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="middle"
-																	transform="translate(0,-102)">
-																<tspan y="6" x="0">감독연출</tspan></text>
-																<path cs="100,100" d="M0.5,0.5 L83.5,-26.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="start"
-																	transform="translate(98,-30)">
-																<tspan y="6" x="0">스토리</tspan></text>
-																<path cs="100,100" d="M0.5,0.5 L51.5,71.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="start"
-																	transform="translate(62,79)">
-																<tspan y="6" x="0">영상미</tspan></text>
-																<path cs="100,100" d="M0.5,0.5 L-50.5,71.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="end"
-																	transform="translate(-62,79)">
-																<tspan y="6" x="0">배우연기</tspan></text>
-																<path cs="100,100" d="M0.5,0.5 L-82.5,-26.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="end"
-																	transform="translate(-98,-30)">
-																<tspan y="6" x="0">OST</tspan></text></g></g>
-																<g>
-																<g transform="translate(175,125)" visibility="visible">
-																<g>
-																<path cs="100,100"
-																	d="M0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-16.5 L17.5,-4.5 L10.5,14.5 L-9.5,14.5 L-16.5,-4.5 L0.5,-16.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-33.5 L33.5,-10.5 L20.5,28.5 L-19.5,28.5 L-32.5,-10.5 L0.5,-33.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-51.5 L50.5,-15.5 L31.5,42.5 L-30.5,42.5 L-49.5,-15.5 L0.5,-51.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-68.5 L66.5,-20.5 L41.5,56.5 L-40.5,56.5 L-65.5,-20.5 L0.5,-68.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-86.5 L83.5,-26.5 L51.5,71.5 L-50.5,71.5 L-82.5,-26.5 L0.5,-86.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100" d="M0.5,-7.5 L-0.5,-7.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<path cs="100,100"
-																	d="M0.5,-7.5 L8.5,-2.5 L5.5,7.5 L-4.5,7.5 L-7.5,-2.5 L0.5,-7.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100" d="M0.5,1.5 L-0.5,1.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<path cs="100,100"
-																	d="M0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-7.5 L8.5,-2.5 L5.5,7.5 L-4.5,7.5 L-7.5,-2.5 L0.5,-7.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 Z"
-																	fill="#000000" stroke="#000000" fill-opacity="0.1"
-																	stroke-width="0.01" stroke-opacity="0.1"></path></g></g></g>
-																<desc>JavaScript chart by amCharts 3.21.8</desc>
-																<g></g>
-																<g></g>
-																<g></g>
-																<g></g>
-																<g>
-																<g transform="translate(175,125)">
-																<g></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-39.75 L49.59829,-15.453 L12.84349,17.48936 L-40.64497,57.13119 L-13.64697,-4.09663 L0.5,-39.75 M0,0 L0,0"
-																	fill="none" stroke-width="1" stroke-opacity="1"
-																	stroke="#fb8c43" stroke-linejoin="round"></path>
-																<path cs="100,100"
-																	d="M0.5,-39.75 L49.59829,-15.453 L12.84349,17.48936 L-40.64497,57.13119 L-13.64697,-4.09663 L0.5,-39.75 L0.5,0.5 Z"
-																	fill="#fb8c43" stroke="#000" fill-opacity="0.1"
-																	stroke-width="1" stroke-opacity="0"></path></g>
-																<g></g></g></g>
-																<g></g>
-																<g></g>
-																<g></g>
-																<g>
-																<g transform="translate(175,125)">
-																<circle r="3.5" cx="0" cy="0" fill="rgb(255,133,179)"
-																	stroke="rgb(255,255,255)" fill-opacity="1"
-																	stroke-width="1" stroke-opacity="1"
-																	transform="translate(0,-40)" aria-label=" 감독연출 46"></circle>
-																<circle r="3.5" cx="0" cy="0" fill="rgb(254,196,70)"
-																	stroke="rgb(255,255,255)" fill-opacity="1"
-																	stroke-width="1" stroke-opacity="1"
-																	transform="translate(49,-16)" aria-label=" 스토리 59"></circle>
-																<circle r="3.5" cx="0" cy="0" fill="rgb(142,189,255)"
-																	stroke="rgb(255,255,255)" fill-opacity="1"
-																	stroke-width="1" stroke-opacity="1"
-																	transform="translate(12,17)" aria-label=" 영상미 24"></circle>
-																<circle r="3.5" cx="0" cy="0" fill="rgb(100,169,178)"
-																	stroke="rgb(255,255,255)" fill-opacity="1"
-																	stroke-width="1" stroke-opacity="1"
-																	transform="translate(-41,57)" aria-label=" 배우연기 80"></circle>
-																<circle r="3.5" cx="0" cy="0" fill="rgb(178,103,183)"
-																	stroke="rgb(255,255,255)" fill-opacity="1"
-																	stroke-width="1" stroke-opacity="1"
-																	transform="translate(-14,-5)" aria-label=" OST 17"></circle></g></g>
-																<g>
-																<g></g></g>
-																<g>
-																<g transform="translate(175,125)" visibility="visible">
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="end"
-																	transform="translate(-4,-8)">
-																<tspan y="6" x="0"></tspan></text>
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="end"
-																	transform="translate(-4,1)">
-																<tspan y="6" x="0"></tspan></text></g></g>
-																<g></g>
-																<g></g>
-																<g></g>
-																<g></g></svg>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="box">
-											<div class="title">감정 포인트</div>
-											<div class="radar-graph" id="chart3">
-												<div id="emotion"
-													style="width: 350px; height: 250px; margin: 0px auto; overflow: hidden; text-align: left;">
-													<div class="amcharts-main-div" style="position: relative;">
-														<div class="amcharts-chart-div"
-															style="overflow: hidden; position: relative; text-align: left; width: 350px; height: 250px; padding: 0px; touch-action: auto;">
-															<svg version="1.1"
-																style="position: absolute; width: 350px; height: 250px; top: 0.390625px; left: -0.5px;">
-																<g>
-																<path cs="100,100"
-																	d="M0.5,0.5 L349.5,0.5 L349.5,249.5 L0.5,249.5 Z"
-																	fill="#FFFFFF" stroke="#000000" fill-opacity="0"
-																	stroke-width="1" stroke-opacity="0"></path></g>
-																<g>
-																<g transform="translate(175,125)" visibility="visible">
-																<path cs="100,100" d="M0.5,0.5 L0.5,-86.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="middle"
-																	transform="translate(0,-102)">
-																<tspan y="6" x="0">스트레스 해소</tspan></text>
-																<path cs="100,100" d="M0.5,0.5 L83.5,-26.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="start"
-																	transform="translate(98,-30)">
-																<tspan y="6" x="0">유쾌함</tspan></text>
-																<path cs="100,100" d="M0.5,0.5 L51.5,71.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="start"
-																	transform="translate(62,79)">
-																<tspan y="6" x="0">공감</tspan></text>
-																<path cs="100,100" d="M0.5,0.5 L-50.5,71.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="end"
-																	transform="translate(-62,79)">
-																<tspan y="6" x="0">몰입감</tspan></text>
-																<path cs="100,100" d="M0.5,0.5 L-82.5,-26.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="end"
-																	transform="translate(-98,-30)">
-																<tspan y="6" x="0">감동</tspan></text></g></g>
-																<g>
-																<g transform="translate(175,125)" visibility="visible">
-																<g>
-																<path cs="100,100"
-																	d="M0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-16.5 L17.5,-4.5 L10.5,14.5 L-9.5,14.5 L-16.5,-4.5 L0.5,-16.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-33.5 L33.5,-10.5 L20.5,28.5 L-19.5,28.5 L-32.5,-10.5 L0.5,-33.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-51.5 L50.5,-15.5 L31.5,42.5 L-30.5,42.5 L-49.5,-15.5 L0.5,-51.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-68.5 L66.5,-20.5 L41.5,56.5 L-40.5,56.5 L-65.5,-20.5 L0.5,-68.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-86.5 L83.5,-26.5 L51.5,71.5 L-50.5,71.5 L-82.5,-26.5 L0.5,-86.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100" d="M0.5,-7.5 L-0.5,-7.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<path cs="100,100"
-																	d="M0.5,-7.5 L8.5,-2.5 L5.5,7.5 L-4.5,7.5 L-7.5,-2.5 L0.5,-7.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100" d="M0.5,1.5 L-0.5,1.5" fill="none"
-																	stroke-width="1" stroke-opacity="0.15" stroke="#000000"></path>
-																<path cs="100,100"
-																	d="M0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5"
-																	fill="none" stroke-width="1" stroke-opacity="0.15"
-																	stroke="#000000"></path></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-7.5 L8.5,-2.5 L5.5,7.5 L-4.5,7.5 L-7.5,-2.5 L0.5,-7.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 L0.5,0.5 Z"
-																	fill="#000000" stroke="#000000" fill-opacity="0.1"
-																	stroke-width="0.01" stroke-opacity="0.1"></path></g></g></g>
-																<desc>JavaScript chart by amCharts 3.21.8</desc>
-																<g></g>
-																<g></g>
-																<g></g>
-																<g></g>
-																<g>
-																<g transform="translate(175,125)">
-																<g></g>
-																<g>
-																<path cs="100,100"
-																	d="M0.5,-17.875 L11.31827,-3.01507 L24.67267,33.77082 L-32.93029,46.51284 L-27.79393,-8.69326 L0.5,-17.875 M0,0 L0,0"
-																	fill="none" stroke-width="1" stroke-opacity="1"
-																	stroke="#FB4357" stroke-linejoin="round"></path>
-																<path cs="100,100"
-																	d="M0.5,-17.875 L11.31827,-3.01507 L24.67267,33.77082 L-32.93029,46.51284 L-27.79393,-8.69326 L0.5,-17.875 L0.5,0.5 Z"
-																	fill="#FB4357" stroke="#000" fill-opacity="0.1"
-																	stroke-width="1" stroke-opacity="0"></path></g>
-																<g></g></g></g>
-																<g></g>
-																<g></g>
-																<g></g>
-																<g>
-																<g transform="translate(175,125)">
-																<circle r="3.5" cx="0" cy="0" fill="rgb(255,133,179)"
-																	stroke="rgb(255,255,255)" fill-opacity="1"
-																	stroke-width="1" stroke-opacity="1"
-																	transform="translate(0,-18)" aria-label=" 스트레스 해소 21"></circle>
-																<circle r="3.5" cx="0" cy="0" fill="rgb(254,196,70)"
-																	stroke="rgb(255,255,255)" fill-opacity="1"
-																	stroke-width="1" stroke-opacity="1"
-																	transform="translate(11,-4)" aria-label=" 유쾌함 13"></circle>
-																<circle r="3.5" cx="0" cy="0" fill="rgb(142,189,255)"
-																	stroke="rgb(255,255,255)" fill-opacity="1"
-																	stroke-width="1" stroke-opacity="1"
-																	transform="translate(24,33)" aria-label=" 공감 47"></circle>
-																<circle r="3.5" cx="0" cy="0" fill="rgb(100,169,178)"
-																	stroke="rgb(255,255,255)" fill-opacity="1"
-																	stroke-width="1" stroke-opacity="1"
-																	transform="translate(-33,46)" aria-label=" 몰입감 65"></circle>
-																<circle r="3.5" cx="0" cy="0" fill="rgb(178,103,183)"
-																	stroke="rgb(255,255,255)" fill-opacity="1"
-																	stroke-width="1" stroke-opacity="1"
-																	transform="translate(-28,-9)" aria-label=" 감동 34"></circle></g></g>
-																<g>
-																<g></g></g>
-																<g>
-																<g transform="translate(175,125)" visibility="visible">
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="end"
-																	transform="translate(-4,-8)">
-																<tspan y="6" x="0"></tspan></text>
-																<text y="6" fill="rgb(0,0,0)" font-family="CJONLYONENEW"
-																	font-size="12px" opacity="1" text-anchor="end"
-																	transform="translate(-4,1)">
-																<tspan y="6" x="0"></tspan></text></g></g>
-																<g></g>
-																<g></g>
-																<g></g>
-																<g></g></svg>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div> 
+case 0:
+	 img1=(riVO.getReviewArg()-(double)arg)*110;
+	 img2=0;
+	 img3=0;
+	 img4=0;
+	 img5=0;
+	 break;
+case 1:
+	 img1=110;
+	 img2=(riVO.getReviewArg()-(double)arg)*110;
+	 img3=0;
+	 img4=0;
+	 img5=0;
+	break;
+case 2:
+	 img1=110;
+	 img2=110;
+	 img3=(riVO.getReviewArg()-(double)arg)*110;
+	 img4=0;
+	 img5=0;
+	 break;
+case 3:
+	 img1=110;
+	 img2=110;
+	 img3=110;
+	 img4=(riVO.getReviewArg()-(double)arg)*110;
+	 img5=0;
+	 break;
+case 4:
+	 img1=110;
+	 img2=110;
+	 img3=110;
+	 img4=110;
+	 img5=(riVO.getReviewArg()-(double)arg)*110;
+	 break;
+case 5:
+	 img1=110;
+	 img2=110;
+	 img3=110;
+	 img4=110;
+	 img5=110;
+	 break;
+	
+}
+System.out.println(imtstar+" / "+img4+" / "+(double)arg+" / "+ riVO.getReviewArg());
+%>
+<div style="text-align: center;">
+    <div class="star-rating">
+        <img src="http://localhost/HCY_CINEMA/common/images/empty_star.png" class="star" alt="빈 별">
+        <img src="http://localhost/HCY_CINEMA/common/images/empty_star.png" class="star" alt="빈 별">
+        <img src="http://localhost/HCY_CINEMA/common/images/empty_star.png" class="star" alt="빈 별">
+        <img src="http://localhost/HCY_CINEMA/common/images/empty_star.png" class="star" alt="빈 별">
+        <img src="http://localhost/HCY_CINEMA/common/images/empty_star.png" class="star" alt="빈 별">
+    </div>
+    <img src="http://localhost/HCY_CINEMA/common/images/star.png" style="position:absolute;top:145px;right:84px;clip: rect(0px,<%=img5%>px, 110px, 0px);">
+    <img src="http://localhost/HCY_CINEMA/common/images/star.png" style="position:absolute;top:145px;right:215px;clip: rect(0px,<%=img4%>px, 110px, 0px);">
+    <img src="http://localhost/HCY_CINEMA/common/images/star.png" style="position:absolute;top:145px;right:344px;clip: rect(0px,<%=img3%>px, 110px, 0px);">
+    <img src="http://localhost/HCY_CINEMA/common/images/star.png" style="position:absolute;top:145px;right:475px;clip: rect(0px,<%=img2%>px, 110px, 0px);">
+    <img src="http://localhost/HCY_CINEMA/common/images/star.png" style="position:absolute;top:145px;right:607px;clip: rect(0px,<%=img1%>px, 110px, 0px);">
+    </div>
+
+	     
+									
 
 									<!-- Chart code -->
 									<script>

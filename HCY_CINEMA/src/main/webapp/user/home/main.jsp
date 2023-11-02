@@ -72,6 +72,8 @@
 <script type="text/javascript" src="https://img.cgv.co.kr/R2014/js/swiper.min.js"></script>
 <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/swiper-bundle.min.css">
     
+
+    
 <script type="text/javascript">
         $(function(){
 			
@@ -455,7 +457,7 @@
                                         <div class="movieChart_btn_wrap">
                                             <a href="http://localhost/HCY_CINEMA/user/movieInfo/movie_detail.jsp?movie=${mmVO.movieCode }" onclick="gaEventLog('PC_메인', '무비차트_영화상세', '${mmVO.mName}');" class="btn_movieChart_detail">상세보기</a>
                                         
-                                            <a href="http://localhost/HCY_CINEMA/user/movieInfo/movie_detail.jsp" onclick="gaEventLog('PC_메인', '무비차트_예매하기','${mmVO.mName}')" class="btn_movieChart_ticketing">예매하기</a>
+                                            <a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp?movie=${mmVO.movieCode }" onclick="gaEventLog('PC_메인', '무비차트_예매하기','${mmVO.mName}')" class="btn_movieChart_ticketing">예매하기</a>
                                         </div>
                                     </div>
                                     <div class="movie_info_wrap">

@@ -340,4 +340,32 @@ public class MovieDAO {
 		return cnt;
 	}
 	
+	public ReviewInfoVO reviewCntArg(String movieCode) throws SQLException {
+		DBConnection db = DBConnection.getInstance();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ReviewInfoVO riVO=null;
+		try {
+			con = db.getCon();
+
+			String selectReview="select count(*) cnt,round(sum(star_rating)/count(*),2) arg from review where moviecode=?";
+			pstmt = con.prepareStatement(selectReview);
+			pstmt.setString(1, movieCode);
+			rs = pstmt.executeQuery();
+		if(rs.next()) {
+			riVO=new ReviewInfoVO();
+			riVO.setReviewCnt(rs.getInt("cnt"));
+			riVO.setReviewArg(rs.getDouble("arg"));
+		}
+		
+
+		} finally {
+			db.dbClose(rs, pstmt, con);
+		} // try
+		return riVO;
+		
+	}
+	
 }// class
