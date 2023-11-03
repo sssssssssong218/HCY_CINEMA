@@ -36,6 +36,21 @@
 	<![endif]-->
 <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style><style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style></head>
+<script type="text/javascript">
+ function logout(){
+	location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp");
+}
+ if (performance.navigation.type == 2) {
+     // 페이지가 뒤로가기로 로드된 경우
+     location.reload();
+ }
+<%
+if(session.getAttribute("userName")==null||"".equals(session.getAttribute("userName"))){%>
+location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp");
+<%}
+%>
+
+</script>
 <body class="  pace-done" cz-shortcut-listen="true"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
   <div class="pace-progress-inner"></div>
 </div>
@@ -74,12 +89,9 @@
 </div>
 <div class="info">
 <div class="name dropdown">
-<a href="javascript:;" data-toggle="dropdown"><%= session.getAttribute("userName") %> <b class="caret"></b></a>
-<ul class="dropdown-menu">
-<li><a href="javascript:;">Log Out</a></li>
-</ul>
+<a href="javascript:;" data-toggle="dropdown"><%= session.getAttribute("userName") %> </a>
+	<a href="#"onclick="logout();">Log Out</a>
 </div>
-<div class="position">Front End Designer</div>
 </div>
 </li>
 <li class="nav-header">Navigation</li>

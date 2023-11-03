@@ -1,3 +1,5 @@
+<%@page import="manageMember.MemberVO"%>
+<%@page import="review.ReviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page info="회원 예매확인 - 예매내역/예매취소" %>
@@ -78,6 +80,7 @@
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/phototicket/phototicket_20141103.css">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/phototicket/style_201410.css">
     <script src="https://img.cgv.co.kr/R2014/js/phototicket/util.js" type="text/javascript"></script>
+      
     <!--add_css82 
 // 평점 등록및 보기 레이어 팝업 추가-->
 <script id="view_myGrade" type="text/x-jquery-tmpl">
@@ -522,6 +525,21 @@
 
     
 <script type="text/javascript" src="https://img.cgv.co.kr/R2014//js/system/system.packed.js"></script></head>
+<style>
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+       .rate { display: inline-block;border: 0;margin-right: 15px;}
+.rate > input {display: none;}
+.rate > label {float: right;color: #ddd}
+.rate > label:before {display: inline-block;font-size: 1rem;padding: .3rem .2rem;margin: 0;cursor: pointer;font-family: FontAwesome;content: "\f005 ";}
+.rate .half:before {content: "\f089 "; position: absolute;padding-right: 0;}
+.rate input:checked ~ label, 
+.rate label:hover,.rate label:hover ~ label { color: #f73c32 !important;  } 
+.rate input:checked + .rate label:hover,
+.rate input input:checked ~ label:hover,
+.rate input:checked ~ .rate label:hover ~ label,  
+.rate label:hover ~ input:checked ~ label { color: #f73c32 !important;  } 
+</style>
+
 <body class="" cz-shortcut-listen="true" style="">
 
 <div class="skipnaiv">
@@ -861,217 +879,91 @@
     //]]>
     </script>
 </div>
+<script type="text/javascript">
+$(function(){
+	$("#rating10").click(function(){
+		locationLabel.textContent = '5점';
+	})
+	$("#rating9").click(function(){
+		locationLabel.textContent = '4.5점';
+	})
+	$("#rating8").click(function(){
+		locationLabel.textContent = '4점';
+	})
+	$("#rating7").click(function(){
+		locationLabel.textContent = '3.5점';
+	})
+	$("#rating6").click(function(){
+		locationLabel.textContent = '3점';
+	})
+	$("#rating5").click(function(){
+		locationLabel.textContent = '2.5점';
+	})
+	$("#rating4").click(function(){
+		locationLabel.textContent = '2점';
+	})
+	$("#rating3").click(function(){
+		locationLabel.textContent = '1.5점';
+	})
+	$("#rating2").click(function(){
+		locationLabel.textContent = '1점';
+	})
+	$("#rating1").click(function(){
+		locationLabel.textContent = '0.5점';
+	})
+	
+});
+</script>
+<%
+String movieCode=request.getParameter("movie");
+ReviewDAO rDAO=ReviewDAO.getInstance();
+String mName=rDAO.selectMovie(movieCode);
+MemberVO mVO=(MemberVO)session.getAttribute("mVO");
+%>
 
-
-	<div class="col-detail">
-	    <div class="movielog-detail-wrap">
-	        <!-- Title & Button Combo -->
-            <form id="form1" method="get" novalidate="novalidate">
-	            <div class="tit-mycgv">
-		            <h3>내가 본 영화</h3>
-		            <p><em>5건</em></p>
-		            <div class="set-combo">
-		                
-		                
-		                
-		                <button id="regist_real_visitor" type="button" class="round red on"><span>실관람객 등록</span></button>
-                        <!--<a href="/movies/point/my-list.aspx" class="round red on"><span>내 평점 보기</span></a>//-->
-		            </div>
-		        </div>
-            </form>
-		    <!-- //Title & Button Combo -->
-		    <!-- 내가 본 영화 리스트 -->
-            
-		    <div class="sect-movielog-lst">
-			    <ul id="watched_list_container">
-                    
-                            <li class="movie_info_87034">
-                                <div class="article-movie-info">
-				            		<div class="box-image"> 
-				                    	    <a id="phototicket_popup_87034" title="포스터 크게 보기" href="/movies/detail-view/?midx=87034">
-				                        	<span class="thumb-image"> 
-				                                <img alt="엘리멘탈(자막) 포스터" src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000087/87034/87034_185.jpg" onerror="errorImage(this)">
-                                                <!-- 영상물 등급 노출 변경 2022.08.24 -->
-                                                <i class="cgvIcon etc ageAll">All</i>
-                                                <!-- <span class="ico-grade All">All</span> -->
-                                                    <i></i>
-				                            </span> 
-				                        </a> 
-				                    </div>
-				                    <div class="box-contents">
-				                    	<div class="title"> 
-				                        	<a href="/movies/detail-view/?midx=87034">
-                                                <strong id="strong_87034">엘리멘탈(자막)</strong>
-                                            </a>
-				                            <p>(Sub)Elemental</p>
-				                        </div>
-				                        
-                                        <p class="date">2023.07.21 (금) 18:40 ~ 20:39</p>
-				                        <p class="theater">CGV오리 5관 (Laser) / 2명</p>
-				                        <!-- add_css82 평점 개편 -->
-                                        <ul class="writerinfo" id="wid_463340536">                                        
-	                                        <li class="writer-opinion">
-                                                <a class="link-gradewrite" id="wIdx_463340536" href="javascript:void(0);" data-movieidx="87034" data-movietitle="엘리멘탈(자막)">이 영화를 평가해주세요</a>
-                                            </li>
-                                        </ul>
-				                    </div>
-                                    
-				                     
-				                    
-				                </div>
-			                </li>
+<div class="col-detail">
+<table>
+	<tr>
+	<td style="width:50px">아이디</td>
+	<td style="text-align:left;"><input type="text" name="member_id" id="member_id" value="<%=mVO.getId()%>"></td>
+	</tr>
+	<tr>
+	<td>별점</td>
+	<td style="text-align:left;width:400px">
+	<fieldset class="rate">
+            <input type="radio" id="rating10" name="rating" value="10"><label for="rating10" title="5점"></label>
+            <input type="radio" id="rating9" name="rating" value="9"><label class="half" for="rating9" title="4.5점"></label>
+            <input type="radio" id="rating8" name="rating" value="8"><label for="rating8" title="4점"></label>
+            <input type="radio" id="rating7" name="rating" value="7"><label class="half" for="rating7" title="3.5점"></label>
+            <input type="radio" id="rating6" name="rating" value="6"><label for="rating6" title="3점"></label>
+            <input type="radio" id="rating5" name="rating" value="5"><label class="half" for="rating5" title="2.5점"></label>
+            <input type="radio" id="rating4" name="rating" value="4"><label for="rating4" title="2점"></label>
+            <input type="radio" id="rating3" name="rating" value="3"><label class="half" for="rating3" title="1.5점"></label>
+            <input type="radio" id="rating2" name="rating" value="2"><label for="rating2" title="1점"></label>
+            <input type="radio" id="rating1" name="rating" value="1"><label class="half" for="rating1" title="0.5점"></label>
+     </fieldset>
+     <label id="locationLabel" style="position:absolute;top:30px">0점</label>    
+	</td>
                         
-                            <li class="movie_info_81907">
-                                <div class="article-movie-info">
-				            		<div class="box-image"> 
-				                    	    <a id="phototicket_popup_81907" title="포스터 크게 보기" href="/movies/detail-view/?midx=81907">
-				                        	<span class="thumb-image"> 
-				                                <img alt="토이 스토리 4(자막) 포스터" src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81907/81907_185.jpg" onerror="errorImage(this)">
-                                                <!-- 영상물 등급 노출 변경 2022.08.24 -->
-                                                <i class="cgvIcon etc ageAll">All</i>
-                                                <!-- <span class="ico-grade All">All</span> -->
-                                                    <i></i>
-				                            </span> 
-				                        </a> 
-				                    </div>
-				                    <div class="box-contents">
-				                    	<div class="title"> 
-				                        	<a href="/movies/detail-view/?midx=81907">
-                                                <strong id="strong_81907">토이 스토리 4(자막)</strong>
-                                            </a>
-				                            <p>(자막)Toy Story 4</p>
-				                        </div>
-				                        
-                                        <p class="date">2019.06.27 (목) 15:20 ~ 17:10</p>
-				                        <p class="theater">CGV서현 4관 1층 / 2명</p>
-				                        <!-- add_css82 평점 개편 -->
-                                        <ul class="writerinfo" id="wid_383706992">                                        
-	                                        <li class="writer-opinion">
-                                                <a class="link-gradewrite" id="wIdx_383706992" href="javascript:void(0);" data-movieidx="81907" data-movietitle="토이 스토리 4(자막)">이 영화를 평가해주세요</a>
-                                            </li>
-                                        </ul>
-				                    </div>
-                                    
-				                     
-				                    
-				                </div>
-			                </li>
-                        
-                            <li class="movie_info_77674">
-                                <div class="article-movie-info">
-				            		<div class="box-image"> 
-				                    	    <a id="phototicket_popup_77674" title="포스터 크게 보기" href="/movies/detail-view/?midx=77674">
-				                        	<span class="thumb-image"> 
-				                                <img alt="그녀 포스터" src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000077/77674/77674_185.jpg" onerror="errorImage(this)">
-                                                <!-- 영상물 등급 노출 변경 2022.08.24 -->
-                                                <i class="cgvIcon etc age15">15</i>
-                                                <!-- <span class="ico-grade 15">15</span> -->
-                                                    <i></i>
-				                            </span> 
-				                        </a> 
-				                    </div>
-				                    <div class="box-contents">
-				                    	<div class="title"> 
-				                        	<a href="/movies/detail-view/?midx=77674">
-                                                <strong id="strong_77674">그녀</strong>
-                                            </a>
-				                            <p>Her</p>
-				                        </div>
-				                        
-                                        <p class="date">2019.05.31 (금) 14:05 ~ 16:21</p>
-				                        <p class="theater">CGV신촌아트레온 10관[CGV아트하우스] B1층 (Laser) / 1명</p>
-				                        <!-- add_css82 평점 개편 -->
-                                        <ul class="writerinfo" id="wid_379787668">                                        
-	                                        <li class="writer-opinion">
-                                                <a class="link-gradewrite" id="wIdx_379787668" href="javascript:void(0);" data-movieidx="77674" data-movietitle="그녀">이 영화를 평가해주세요</a>
-                                            </li>
-                                        </ul>
-				                    </div>
-                                    
-				                     
-				                    
-				                </div>
-			                </li>
-                        
-                            <li class="movie_info_81774">
-                                <div class="article-movie-info">
-				            		<div class="box-image"> 
-				                    	    <a id="phototicket_popup_81774" title="포스터 크게 보기" href="/movies/detail-view/?midx=81774">
-				                        	<span class="thumb-image"> 
-				                                <img alt="기생충 포스터" src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81774/81774_185.jpg" onerror="errorImage(this)">
-                                                <!-- 영상물 등급 노출 변경 2022.08.24 -->
-                                                <i class="cgvIcon etc age15">15</i>
-                                                <!-- <span class="ico-grade 15">15</span> -->
-                                                    <i></i>
-				                            </span> 
-				                        </a> 
-				                    </div>
-				                    <div class="box-contents">
-				                    	<div class="title"> 
-				                        	<a href="/movies/detail-view/?midx=81774">
-                                                <strong id="strong_81774">기생충</strong>
-                                            </a>
-				                            <p>PARASITE</p>
-				                        </div>
-				                        
-                                        <p class="date">2019.05.30 (목) 20:00 ~ 22:21</p>
-				                        <p class="theater">CGV신촌아트레온 2관 3층 / 2명</p>
-				                        <!-- add_css82 평점 개편 -->
-                                        <ul class="writerinfo" id="wid_379703769">                                        
-	                                        <li class="writer-opinion">
-                                                <a class="link-gradewrite" id="wIdx_379703769" href="javascript:void(0);" data-movieidx="81774" data-movietitle="기생충">이 영화를 평가해주세요</a>
-                                            </li>
-                                        </ul>
-				                    </div>
-                                    
-				                     
-				                    
-				                </div>
-			                </li>
-                        
-                            <li class="movie_info_81127">
-                                <div class="article-movie-info">
-				            		<div class="box-image"> 
-				                    	    <a id="phototicket_popup_81127" title="포스터 크게 보기" href="/movies/detail-view/?midx=81127">
-				                        	<span class="thumb-image"> 
-				                                <img alt="보헤미안 랩소디(SCREENX 2D) 포스터" src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81127/81127_185.jpg" onerror="errorImage(this)">
-                                                <!-- 영상물 등급 노출 변경 2022.08.24 -->
-                                                <i class="cgvIcon etc age12">12</i>
-                                                <!-- <span class="ico-grade 12">12</span> -->
-                                                    <i></i>
-				                            </span> 
-				                        </a> 
-				                    </div>
-				                    <div class="box-contents">
-				                    	<div class="title"> 
-				                        	<a href="/movies/detail-view/?midx=81127">
-                                                <strong id="strong_81127">보헤미안 랩소디(SCREENX 2D)</strong>
-                                            </a>
-				                            <p>(SCREENX 2D)Bohemian Rhapsody</p>
-				                        </div>
-				                        
-                                        <p class="date">2018.11.26 (월) 08:30 ~ 10:54</p>
-				                        <p class="theater">CGV죽전 5관[SCREENX] / 3명</p>
-				                        <!-- add_css82 평점 개편 -->
-                                        <ul class="writerinfo" id="wid_359117730">                                        
-	                                        <li class="writer-opinion">
-                                                <a class="link-gradewrite" id="wIdx_359117730" href="javascript:void(0);" data-movieidx="81127" data-movietitle="보헤미안 랩소디(SCREENX 2D)">이 영화를 평가해주세요</a>
-                                            </li>
-                                        </ul>
-				                    </div>
-                                    
-				                     
-				                    
-				                </div>
-			                </li>
-                        
-			    </ul>
-		    </div>
-            
-		    <!-- //내가 본 영화 리스트 -->
-	    </div>
-        
+	</tr>
+	<tr >
+	<td>영화</td>
+	<td style="text-align:left;"><input type="text" value="<%= mName %>" readonly="readonly"></td>
+	</tr>
+	<tr>
+	<td>리뷰작성</td>
+	<td style="text-align:left;">
+	    <textarea style="width: 400px;height: 200px" class="inputBox"
+						id="info" name="info"></textarea>
+	</td>
+	</tr>
+</table>
+<input type="button" id="review_btn" name="review_btn" value="저장">
+<input type="button" id="cancel_btn" name="cancel_btn" value="취소">
 	</div>
+</div>
+<div>
+
 </div>
 
 

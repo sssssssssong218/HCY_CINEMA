@@ -92,6 +92,11 @@ body {
 	background-size: contain;
 }
 </style>
+<%
+if(session.getAttribute("userName")!=null){
+	session.setAttribute("userName",null);
+}
+%>
 <script type="text/javascript">
 	$(function(){
 	    $("#btn").click(function(){
@@ -159,7 +164,10 @@ body {
             return unescape(cookieValue);
         }
     });
-
+	 if (performance.navigation.type == 2) {
+	     // 페이지가 뒤로가기로 로드된 경우
+	     location.reload();
+	 }
 </script>
 </head>
 <body>

@@ -27,12 +27,11 @@ public class AdminLoginDAO {
 		AdminVO aVO=null;
 		
 		DBConnection db=DBConnection.getInstance();
-		
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
-			
+			System.out.println("asdfasdf");
 			con=db.getCon();
 			
 			String sql="select * from administrator where id=?";
