@@ -198,10 +198,9 @@
             $objKeyword.focus();
             return false;
         }
-
         //GA 검색로그
         gaEventLog('PC_GNB', '검색', $objKeyword.val());
-        location = "http://localhost/HCY_CHINEMA/user/search/search.jsp?query=" + escape($objKeyword.val());
+        location = "http://localhost/HCY_CINEMA/user/search/search_main.jsp?search=" + $objKeyword.val();
     }
 </script>
 

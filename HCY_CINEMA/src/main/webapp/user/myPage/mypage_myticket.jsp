@@ -389,7 +389,7 @@
                                 	}//if
                                 	if(LocalDateTime.now().isAfter(LocalDateTime.parse(mtVO.getShowtime(),formatter))){
                                 		%>
-                                		<strong>상영완료</strong>
+                                		<a href="http://localhost/HCY_CINEMA/user/myPage/my_review.jsp?movie=<%=mtVO.getMovieCode() %>"><strong>리뷰쓰러가기</strong></a>
                                 		<%
                                 	}//if
                                 	if(LocalDateTime.now().isEqual(LocalDateTime.parse(mtVO.getShowtime(),formatter))){
