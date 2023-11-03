@@ -66,7 +66,7 @@ location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp
 <div class="container-fluid">
 
 <div class="navbar-header">
-<a href="index.html" class="navbar-brand" style="padding:-2px"><img src="http://localhost/HCY_CINEMA/common/images/admin_logo.png"></a>
+<a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp" class="navbar-brand" style="padding:-2px"><img src="http://localhost/HCY_CINEMA/common/images/admin_logo.png"></a>
 <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 <span class="icon-bar"></span>
 <span class="icon-bar"></span>
@@ -649,18 +649,27 @@ var data = [
 var totalWidth = data.length * (2 * barWidth + spacing1 + spacing2) - spacing1 - spacing2;
 var xOffset = (canvas.width - totalWidth) / 2;
 
+var maxValue = 0;
+for (var i = 0; i < data.length; i++) {
+    maxValue = Math.max(maxValue, data[i].value1, data[i].value2);
+}
+
 for (var i = 0; i < data.length; i++) {
     var value1 = data[i].value1;
     var value2 = data[i].value2;
     var text = data[i].text;
 
+    // 그래프 높이를 최대값에 비례하여 계산
+    var scaledValue1 = (value1 / maxValue) * (canvas.height - 60);
+    var scaledValue2 = (value2 / maxValue) * (canvas.height - 60);
+
     // 파란색 그래프 그리기
     ctx.fillStyle = "blue";
-    ctx.fillRect(xOffset, canvas.height - 60 - value1, barWidth, value1);
+    ctx.fillRect(xOffset, canvas.height - 60 - scaledValue1, barWidth, scaledValue1);
 
     // 빨간색 그래프 그리기
     ctx.fillStyle = "red";
-    ctx.fillRect(xOffset + barWidth + spacing1, canvas.height - 60 - value2, barWidth, value2);
+    ctx.fillRect(xOffset + barWidth + spacing1, canvas.height - 60 - scaledValue2, barWidth, scaledValue2);
 
     // 텍스트의 폭을 측정
     var textWidth = ctx.measureText(text).width;
