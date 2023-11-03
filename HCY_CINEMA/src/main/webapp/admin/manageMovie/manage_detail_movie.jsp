@@ -37,6 +37,22 @@
 <!--[if lt IE 9]>
 	    <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
 	<![endif]-->
+	
+	<script type="text/javascript">
+ function logout(){
+	location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp");
+}
+ if (performance.navigation.type == 2) {
+     // 페이지가 뒤로가기로 로드된 경우
+     location.reload();
+ }
+<%
+if(session.getAttribute("userName")==null||"".equals(session.getAttribute("userName"))){%>
+location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp");
+<%}
+%>
+
+</script>
 <style type="text/css">/* Chart.js */
 @
 -webkit-keyframes chartjs-render-animation {
@@ -140,14 +156,11 @@ to {
 								<img src="../../common/images/admin.png" alt="">
 							</div>
 							<div class="info">
-								<div class="name dropdown">
-									<a href="javascript:;" data-toggle="dropdown">admin <b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a href="javascript:;">Log Out</a></li>
-									</ul>
-								</div>
-								<div class="position">Front End Designer</div>
-							</div>
+<div class="name dropdown">
+<a href="javascript:;" data-toggle="dropdown"><%= session.getAttribute("userName") %> </a>
+	<a href="#"onclick="logout();">Log Out</a>
+</div>
+</div>
 						</li>
 						<li class="has-sub"><a
 							href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp"> <img
@@ -165,7 +178,7 @@ to {
 <span>Bootstrap 4</span>
 </a>
 </li> -->
-						<li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/ManageMovie/manage_movie.jsp">
+						<li class="active has-sub"><a href="http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp">
 								<img class="fa fa-inbox"
 								src="../../common/images/movie_icon.png"> <span>영화</span>
 						</a>

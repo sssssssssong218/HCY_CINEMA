@@ -280,6 +280,7 @@ alert(파일업로드 중 오류발생);
 		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_detail_movie.jsp");
 		return;
 		}
+		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_detail_movie.jsp");
 		%>
 	});
 </script>

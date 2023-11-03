@@ -474,6 +474,32 @@ public class DetailMovieDAO {
 			db.dbClose(null, pstmt, con);
 		}//try
 	}//deleteMovieInfo
+	public void deleteMovieFile(String movieCode) throws SQLException {
+		DBConnection db = DBConnection.getInstance();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = db.getCon();
+
+			StringBuilder updateMovie = new StringBuilder();
+			updateMovie
+			.append("	delete 				")
+			.append("	from moviefile		")
+			.append("	where moviecode=?	");
+			
+
+			pstmt = con.prepareStatement(updateMovie.toString());
+			
+
+			pstmt.setString(1, movieCode);
+			
+			pstmt.executeUpdate();
+		
+		} finally {
+			db.dbClose(null, pstmt, con);
+		}//try
+	}//deleteMovieFile
 	public void deleteMovieFile(String movieCode,String filename) throws SQLException {
 		DBConnection db = DBConnection.getInstance();
 
@@ -558,7 +584,7 @@ public class DetailMovieDAO {
 		} finally {
 			db.dbClose(null, pstmt, con);
 		}//try
-	}
+	}//insertMaintrailer
 	public void deleteMaintrailer() throws SQLException {
 		DBConnection db = DBConnection.getInstance();
 
@@ -571,11 +597,33 @@ public class DetailMovieDAO {
 
 			pstmt = con.prepareStatement(selectMaintrailer);
 			
-
-			
-			
 			pstmt.executeUpdate();
 			
+		} finally {
+			db.dbClose(null, pstmt, con);
+		}//try
+	}//deleteMaintrailer
+	public void deleteMovie(String movieCode) throws SQLException {
+		DBConnection db = DBConnection.getInstance();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = db.getCon();
+
+			StringBuilder updateMovie = new StringBuilder();
+			updateMovie
+			.append("	update movie 				")
+			.append("	set status='N'				")
+			.append("	where moviecode=?			");
+
+			pstmt = con.prepareStatement(updateMovie.toString());
+			
+
+			pstmt.setString(1, movieCode);
+			
+			pstmt.executeUpdate();
+		
 		} finally {
 			db.dbClose(null, pstmt, con);
 		}//try
