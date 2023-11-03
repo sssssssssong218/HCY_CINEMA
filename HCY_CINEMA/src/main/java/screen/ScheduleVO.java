@@ -1,7 +1,8 @@
 package screen;
 
+
 public class ScheduleVO {
-	private int scheduleNum;
+	private String showtime;
 	private String mname;
 	private String movieCode;
 	
@@ -9,33 +10,24 @@ public class ScheduleVO {
 		
 	}//constructor
 
-	public ScheduleVO(int scheduleNum, String mname, String movieCode) {
-		super();
-		this.scheduleNum = scheduleNum;
-		this.mname = mname;
-		this.movieCode = movieCode;
-	}//constructor
+	public String getShowtime() {
+		return showtime;
+	}
 
-	//getter
-	public int getScheduleNum() {
-		return scheduleNum;
+	public void setShowtime(String showtime) {
+		this.showtime = showtime;
 	}
 
 	public String getMname() {
 		return mname;
 	}
 
-	public String getMovieCode() {
-		return movieCode;
-	}
-
-	public void setScheduleNum(int scheduleNum) {
-		this.scheduleNum = scheduleNum;
-	}
-
-	//setter
 	public void setMname(String mname) {
 		this.mname = mname;
+	}
+
+	public String getMovieCode() {
+		return movieCode;
 	}
 
 	public void setMovieCode(String movieCode) {
@@ -44,9 +36,9 @@ public class ScheduleVO {
 
 	@Override
 	public String toString() {
-		return "ScheduleVO [scheduleNum=" + scheduleNum + ", mname=" + mname + ", movieCode=" + movieCode + "]";
+		return "ScheduleVO [showtime=" + showtime + ", mname=" + mname + ", movieCode=" + movieCode + "]";
 	}
-	
+
 	
 	
 	

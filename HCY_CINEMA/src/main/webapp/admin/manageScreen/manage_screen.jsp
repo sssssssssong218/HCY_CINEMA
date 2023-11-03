@@ -1,3 +1,6 @@
+<%@page import="screen.ScheduleVO"%>
+<%@page import="java.util.List"%>
+<%@page import="screen.ManageScreenDAO"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -213,14 +216,14 @@ to {
 			</h1>
 
 
-			<div class="row" style="overflow: auto;">
+			<div class="row" >
 
-				<div class="col-lg-10" style="width: 1600px; height: 1000px; overflow: auto">
+				<div class="col-lg-10" style="width: 1600px; height: 1000px; ">
 
-					<div class="radius-container m-b-30" style="width: 1600px; height: 1000px">
+					<div class="radius-container m-b-30" style="width: 1600px; height: 1000px; overflow: auto">
 
 
-						<div class="panel pagination-inverse bg-white clearfix no-rounded-corner m-b-0" style="width: 1600px; height: 1000px">
+						<div class="panel pagination-inverse bg-white clearfix no-rounded-corner m-b-0" style="width: 1600px; height: 1000px; overflow: auto">
 
 							<div id="data-table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer" style="width: 1600px; height: 1000px;">
 								<div class="row">
@@ -301,12 +304,15 @@ to {
     margin-left: 300px;
 }
 </style>
-<div>
+<div style="overflow: auto">
 	<h2>&nbsp;&nbsp;상영스케줄 - 2D</h2><br>
 	<img src="http://localhost/HCY_CINEMA/common/images/movie_seat_icon.png" style="margin-left:100px"><br><br><br>
 	<br><h3>&nbsp;&nbsp;&nbsp;&nbsp;날짜 선택</h3>
 
    &nbsp;&nbsp;&nbsp;
+
+
+
 
 <select  onchange=""
       class="form-select pt-1 mt-4" style="height: 33px; width: 10%;font-size:20px;font-family: 'Open Sans'; text-align: center;" id="year">
@@ -353,20 +359,45 @@ to {
     %>
 </select>
 <strong>일</strong>
+<input class="btn btn-primary" type="button" value="조회" id="check">
     <br>
-
 </div>	
 
 
 								
 
 <br>
+<%
+int screenNum=1;
+ManageScreenDAO msDAO=ManageScreenDAO.getInstance();
+List<ScheduleVO> list=msDAO.selectScheduleDate(screenNum);
+
+ScheduleVO sVO=null;
+
+%>
 <div id="no_schedule_modal" style="margin-left:20px;">
 <h3>스케줄 선택</h3>
+<%
+	int hour=0;
+	for(int i=0;i<list.size();i++){
+		sVO=new ScheduleVO();
+		sVO=list.get(i);
+		hour=10+3*i;
+		/* System.out.print(sVO); */
+%>
+<div style="display: inline-block;">
+	 <label style="width:200px;font-size:20px">
+		 <span id="hour<%=i%>" name="hour<%=i%>" value="hour<%=i%>:00"><%= hour %>:00
+	 </span>
+	 </label>
+	 <input type="hidden" value=>
+	<input id="<%=i+1 %>" style="font-size:20px" type="button" class="btn btn-dark" value="<%=sVO.getMname()%>"<%=sVO.getShowtime().substring(5, sVO.getShowtime().length()) %>" 
+       name="<%=sVO.getMname() %>" onclick="openModal('<%=sVO.getMname() %>')">
+</div>  
+<%		
+	}
+%>
     <input type="button" class="btn btn-dark" value="스케줄 없음" name="스케줄 없음" onclick="openModal('스케줄 없음')">
-    <input type="button" class="btn btn-dark" value="집으로" name="집으로" onclick="openModal('집으로')">
-    <input type="button" class="btn btn-dark" value="보스 베이비" name="보스 베이비" onclick="openModal('보스 베이비')">
-    <input type="button" class="btn btn-dark" value="헤어질 결심" name="헤어질 결심" onclick="openModal('헤어질 결심')">
 </div><br><br>
 
 <div id="myModal" class="modal" style="overflow: auto;">
@@ -410,21 +441,7 @@ to {
                             <button type="button" class="btn btn-info" style="float:right">예매취소</button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>B2</td>
-                        <td>Thornton</td>
-                        <td>미예매
-                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
-                        </td>
-                    </tr>
                    
-                    <tr>
-                        <td>B2</td>
-                        <td>Thornton</td>
-                        <td>미예매
-                            <button type="button" class="btn btn-outline-primary" style="float:right" disabled="disabled">예매취소</button>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>                    

@@ -26,9 +26,9 @@ public class ManageScreenDAO {
 		return msDAO;
 	}//getInstance
 	
-	public ScheduleVO selectScheduleDate(ChooseScheduleVO csVO)throws SQLException{
+	public List<ScheduleVO> selectScheduleDate(int screenNum)throws SQLException{
 		
-		ScheduleVO sVO=null;
+		List<ScheduleVO> list=new ArrayList<ScheduleVO>();
 		
 		DBConnection db=DBConnection.getInstance();
 		
@@ -36,20 +36,32 @@ public class ManageScreenDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
+		ScheduleVO sVO=null;
+		
 		try {
 			con=db.getCon();
 			
 			StringBuilder selectScheduleDate=new StringBuilder();
-			selectScheduleDate.append(" select to_char(showtime,'yyyy-MM-dd HH:mm')")
-			.append(" from SCHEDULE ")
-			.append(" where moviecode=? and schedulenum=? ");
+			selectScheduleDate.append(" SELECT S.MOVIECODE, TO_CHAR(S.SHOWTIME, 'YYYY-MM-DD HH24:MI') AS SHOWTIME, M.MNAME")
+			.append(" FROM SCHEDULE S")
+			.append(" INNER JOIN MOVIE M ON S.MOVIECODE = M.MOVIECODE")
+			.append(" WHERE S.SCREENNUM = ?")
+			.append(" AND S.SHOWTIME BETWEEN TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD')) AND TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD')) + 1");
 			
 			pstmt=con.prepareStatement(selectScheduleDate.toString());
+			
+			pstmt.setInt(1, screenNum);
 			
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
 				sVO=new ScheduleVO();
+				sVO.setMovieCode(rs.getString("moviecode"));
+				sVO.setShowtime(rs.getString("showtime"));
+				sVO.setMname(rs.getString("mname"));
+			
+				list.add(sVO);
+			
 			}//end while
 			
 			
@@ -57,11 +69,7 @@ public class ManageScreenDAO {
 			db.dbClose(rs, pstmt, con); 
 		}//end finally
 		
-		
-		
-		
-		return sVO;
-		
+		return list;
 	}//selectScheduleDate
 	
 	public NonScheduleVO selectShowtime(Date d)throws SQLException{
@@ -131,10 +139,8 @@ public class ManageScreenDAO {
 			db.dbClose(null, pstmt, con);
 		}//end finally
 		
-		
 		return flag;
 		
 	}//updateCancelTicket
-	
 	
 }//class
