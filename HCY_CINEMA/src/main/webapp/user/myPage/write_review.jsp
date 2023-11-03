@@ -1,3 +1,6 @@
+<%@page import="review.WriteReviewVO"%>
+<%@page import="manageMember.MemberVO"%>
+<%@page import="review.ReviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page info="리뷰작성 / 별점" %>
@@ -17,7 +20,19 @@
 </style>
 <script type="text/javascript">
 $(function(){
-	
+	<%
+	request.setCharacterEncoding("UTF-8");
+	ReviewDAO rDAO=ReviewDAO.getInstance();
+	WriteReviewVO wrVO=new WriteReviewVO();
+	MemberVO mVO=(MemberVO)session.getAttribute("mVO");
+	wrVO.setId(mVO.getId());
+	wrVO.setMoviecode(request.getParameter("movie"));
+	wrVO.setContent(request.getParameter("info"));
+	double star=Integer.parseInt(request.getParameter("rating"))/2.0;
+	wrVO.setStarRating(star);
+	rDAO.insertReview(wrVO);
+	response.sendRedirect("http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp");
+	%>
 });//ready
 </script>
 </head>

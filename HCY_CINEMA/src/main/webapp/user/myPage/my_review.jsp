@@ -811,7 +811,7 @@
             <!-- Contents Start -->
 			
   <input type="hidden" id="isIPIN" name="isIPIN" value="BP60aVR+lMjMwh1ja1I78YaRB8l/4pRYXrivtpf39DD7acKx19F8Ttm/YqbPXKMGU6cMYkJBBYge8tBTsexLwg==">
-
+<%MemberVO mVO=(MemberVO)session.getAttribute("mVO"); %>
 <div id="dev2014">
 <div class="cols-content">
     
@@ -829,7 +829,7 @@
                      <!-- 등급종류 클래스 : vip, rvip, vvip -->
                 </div>
                 <div class="box-contents">
-	        		<strong>강다연님</strong>
+	        		<strong><%= mVO.getId() %>님</strong>
 	        		
 	        		<em></em>
 	        		
@@ -843,23 +843,13 @@
     <div class="box-round-on">
         <div class="box-round-inner">
             <div class="inner-contents-log">
-                <a href="/user/movielog/watched.aspx">
-                    <em>5</em>
+                <a href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp">
                     <strong>내가 본 영화</strong>
                 </a>
             </div>
         </div>
     </div>
-    <div class="box-round-wgray">
-        <div class="box-round-inner">
-            <div class="inner-contents-log">
-                <a href="/movies/point/my-list.aspx">
-                    <em>0</em>
-                    <strong>내가 쓴 평점</strong>
-                </a>
-            </div>
-        </div>
-    </div>
+
     <!-- 화면깨짐 현상으로 div 안에 넣음//-->
     <script type="text/javascript">
     //<![CDATA[
@@ -912,16 +902,21 @@ $(function(){
 		locationLabel.textContent = '0.5점';
 	})
 	
+	$("#review_btn").click(function(){
+		$("#frm").submit();
+	})
+	
 });
 </script>
 <%
 String movieCode=request.getParameter("movie");
 ReviewDAO rDAO=ReviewDAO.getInstance();
 String mName=rDAO.selectMovie(movieCode);
-MemberVO mVO=(MemberVO)session.getAttribute("mVO");
+
 %>
 
 <div class="col-detail">
+<form name="frm" id="frm" method="post" action="http://localhost/HCY_CINEMA/user/myPage/write_review.jsp?movie=<%= movieCode %>" accept-charset="UTF-8">
 <table>
 	<tr>
 	<td style="width:50px">아이디</td>
@@ -958,8 +953,11 @@ MemberVO mVO=(MemberVO)session.getAttribute("mVO");
 	</td>
 	</tr>
 </table>
-<input type="button" id="review_btn" name="review_btn" value="저장">
-<input type="button" id="cancel_btn" name="cancel_btn" value="취소">
+<div style="text-align:right;">
+<input type="button" id="review_btn" name="review_btn" value="저장" class="btn btn-success">
+<input type="button" id="cancel_btn" name="cancel_btn" value="취소" class="btn btn-success">
+	</div>
+	</form>
 	</div>
 </div>
 <div>

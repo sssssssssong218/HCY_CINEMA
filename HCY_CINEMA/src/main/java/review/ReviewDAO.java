@@ -83,4 +83,31 @@ public class ReviewDAO {
 		return flag; 
 	}//updateReivew
 	
+	public String selectMovie(String movieCode) throws SQLException {
+		DBConnection db=DBConnection.getInstance();
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String mname="";
+		try {
+			con=db.getCon();
+			
+			String selectMovie="select mname from movie where moviecode=?";
+			
+			pstmt=con.prepareStatement(selectMovie);
+			pstmt.setString(1, movieCode);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				mname=rs.getString("mname");
+			}
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}
+		return mname;
+	}//selectMovie
+
+
 }//class
