@@ -269,12 +269,12 @@
 	    <div class="snb">
 	        <ul>
 	            
-	            <li>
-                    <a href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp">나의 예매내역 <i></i></a>
+	            <li class="on">
+                    <a href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp" title="현재 선택">나의 예매내역 <i></i></a>
                     
                 </li>
-	            <li class="on">
-	                <a href="http://localhost/HCY_CINEMA/user/myPage/edit_member_info.jsp" title="현재 선택">회원정보 관리<i></i></a>
+	            <li>
+	                <a href="http://localhost/HCY_CINEMA/user/myPage/edit_member_info.jsp">회원정보 관리<i></i></a>
 	                <ul>                      
                      
 	                    <li>
