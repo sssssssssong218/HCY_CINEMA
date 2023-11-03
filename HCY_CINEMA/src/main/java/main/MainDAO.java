@@ -123,4 +123,31 @@ private static MainDAO mnDAO;
 		return mtVO;
 	}//selectMainTrailer
 	
+	public NoticeVO selectNotice() throws SQLException {
+		NoticeVO nVO = new NoticeVO();
+		
+		DBConnection db = DBConnection.getInstance();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = db.getCon();
+			
+			String selectNotice = "SELECT NOTICENUM, TITLE from NOTICE where INPUT_DATE = (SELECT max(INPUT_DATE) from NOTICE)";
+			
+			pstmt = con.prepareStatement(selectNotice);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				nVO.setNoticeNum(rs.getString("NOTICENUM"));
+				nVO.setTitle(rs.getString("TITLE"));
+			}//if
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}//finally
+		
+		return nVO;
+	}//selectNotice
 }//class

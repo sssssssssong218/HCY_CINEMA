@@ -108,6 +108,21 @@
             	}//if
             	$("#loginform").submit();
         })//loginBtn
+        
+        $("#txtPassword").keydown(function(event) {
+            if (event.which == 13) {
+                // 엔터 키가 눌렸을 때 실행할 코드
+                $('#id').val($('#txtUserId').val());
+                $('#password').val($('#txtPassword').val());
+
+                if ($('#id').val() == "" || $('#password').val() == "") {
+                    alert("아이디나 비밀번호를 입력해주세요!");
+                } else {
+                    // 아이디와 비밀번호가 입력되었을 때만 폼을 제출
+                    $("#loginform").submit();
+                }
+            }
+        });
 	})//ready
 	
 	

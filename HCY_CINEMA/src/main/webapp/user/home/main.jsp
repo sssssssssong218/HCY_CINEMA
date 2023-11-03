@@ -1,3 +1,4 @@
+<%@page import="main.NoticeVO"%>
 <%@page import="main.MainMovieVO"%>
 <%@page import="java.util.List"%>
 <%@page import="main.MainDAO"%>
@@ -596,19 +597,21 @@
                             
                             <div id="ctl00_PlaceHolderContent_notice_wrap" class="notice_wrap">
                                 <strong>공지사항</strong>
+                                <%
+                                NoticeVO nVO = MainDAO.getInstance().selectNotice();
+                                %>
+                                    <a href="http://localhost/HCY_CINEMA/user/board/notice_specific.jsp?noticeNum=<%=nVO.getNoticeNum() %>" class="btn_link"><%=nVO.getTitle() %></a>
                                 
-                                    <a href="/support/news/detail-view.aspx?idx=7982" class="btn_link">[시스템 점검]북앤라이프 도서문화상품권 시스템 점검</a>
-                                
-                                <a href="http://www.cgv.co.kr/support/news/default.aspx" id="notice_more" class="btn_more">더보기</a>
+                                <a href="http://localhost/HCY_CINEMA/user/board/notice.jsp" id="notice_more" class="btn_more">더보기</a>
                             </div>
 
                             <div class="client_wrap">
                                 <dl class="client_list">
                                     <dt><strong>고객센터</strong></dt>
                                     <dd>
-                                        <strong>1544-1122</strong>
-                                        <span>고객센터 운영시간 (평일 09:00~18:00)
-                                        <p>업무시간 외 자동응답 안내 가능합니다.</p>
+                                        <strong>1544-4444</strong>
+                                        <span>고객센터 운영시간 (평일 09:00~09:05)
+                                        <p>업무시간 외 전화 사절합니다.</p>
                                     </span></dd>
                                 </dl>
                                 <!-- <div class="client_btn_wrap" id="client_btn_wrap" style="justify-content: center;">
