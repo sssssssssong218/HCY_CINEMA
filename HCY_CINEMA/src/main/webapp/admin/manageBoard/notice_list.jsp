@@ -141,7 +141,7 @@ to {
 			<div class="container-fluid">
 
 				<div class="navbar-header">
-					<a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp" class="navbar-brand" style="line-height: 0px"><img src="../../common/images/admin_logo.png"></a>
+					<a href="http://localhost/HCY_CINEMA/admin/manageDashBoard/manage_dashboard.jsp" style="line-height: 0px"><img src="../../common/images/admin_logo.png"></a>
 					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 						<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 					</button>
