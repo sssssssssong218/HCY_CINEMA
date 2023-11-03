@@ -43,15 +43,15 @@ public class DashBoardDAO {
 					.append(" 		SELECT nw.now_week,lw.last_week,nw.moviecode,m.mname							")
 					.append(" 		FROM  (SELECT COUNT(ticketdate) now_week,moviecode								")
 					.append(" 		from ticketing																	")
-					.append(" 	 	WHERE ticketdate BETWEEN to_date(to_char(sysdate,'yyyy-mm-dd'))-7 AND to_date(to_char(sysdate,'yyyy-mm-dd'))									")
+					.append(" 	 	WHERE ticketdate BETWEEN sysdate-7 AND sysdate									")
 					.append(" 		GROUP BY moviecode) nw,															")
 					.append(" 		(SELECT COUNT(ticketdate) last_week,moviecode									")
 					.append(" 		FROM ticketing																	")
-					.append(" 		WHERE ticketdate BETWEEN to_date(to_char(sysdate,'yyyy-mm-dd'))-15 AND to_date(to_char(sysdate,'yyyy-mm-dd'))-8								")
+					.append(" 		WHERE ticketdate BETWEEN sysdate-15 AND sysdate-8								")
 					.append(" 		GROUP BY moviecode) lw,															")
 					.append(" 		movie m																			")
-					.append(" 		where (nw.moviecode=m.moviecode and nw.moviecode=lw.moviecode)					")
-					.append("		order by nw.now_week desc														");
+					.append(" 		where (m.moviecode=nw.moviecode(+) and m.moviecode=lw.moviecode(+))					")
+					.append("		and m.status='Y' order by nw.now_week desc														");
 
 			pstmt = con.prepareCall(selectMovieCnt.toString());
 

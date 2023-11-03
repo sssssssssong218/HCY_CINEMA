@@ -635,54 +635,72 @@ list = dbDAO.selectMovieCntInfo();
 dbDAO.selectTicketCnt();
 %>
 
-// 서버에서 데이터를 가져와서 JavaScript 변수로 변환
-var data = [
+// 서버에서 데이터를 가져와서 JavaScript 변수로 변환 및 필터링 및 정렬
+var filteredData = [];
+<% if (list.size() > 0) { %>
+    var rawData = [];
     <% for (int i = 0; i < list.size(); i += 3) { %>
-        {
-            value1: <%= list.get(i) %>,
-            value2: <%= (i + 1 < list.size()) ? list.get(i + 1) : 0 %>,
-            text: "<%= list.get(i + 2) %>"
-        },
+        var value1 = <%= list.get(i) %>;
+        var value2 = <%= (i + 1 < list.size()) ? list.get(i + 1) : 0 %>;
+        var text = "<%= list.get(i + 2) %>";
+
+        // 첫 번째 값 또는 두 번째 값 중 하나라도 있는 데이터만 추가
+        if (value1 > 0 || value2 > 0) {
+            rawData.push({ value1, value2, text });
+        }
     <% } %>
-];
 
-var totalWidth = data.length * (2 * barWidth + spacing1 + spacing2) - spacing1 - spacing2;
-var xOffset = (canvas.width - totalWidth) / 2;
+    // 데이터를 첫 번째 값이 큰 순서대로 정렬
+    rawData.sort(function(a, b) {
+        return b.value1 - a.value1;
+    });
 
-var maxValue = 0;
-for (var i = 0; i < data.length; i++) {
-    maxValue = Math.max(maxValue, data[i].value1, data[i].value2);
-}
+    // 정렬된 데이터를 필터링된 데이터에 추가
+    filteredData = rawData;
+<% } %>
 
-for (var i = 0; i < data.length; i++) {
-    var value1 = data[i].value1;
-    var value2 = data[i].value2;
-    var text = data[i].text;
+if (filteredData.length > 0) {
+    var totalWidth = filteredData.length * (2 * barWidth + spacing1 + spacing2) - spacing1 - spacing2;
+    var xOffset = (canvas.width - totalWidth) / 2;
 
-    // 그래프 높이를 최대값에 비례하여 계산
-    var scaledValue1 = (value1 / maxValue) * (canvas.height - 60);
-    var scaledValue2 = (value2 / maxValue) * (canvas.height - 60);
+    var maxValue = filteredData[0].value1; // 첫 번째 값이 가장 큰 값
 
-    // 파란색 그래프 그리기
-    ctx.fillStyle = "blue";
-    ctx.fillRect(xOffset, canvas.height - 60 - scaledValue1, barWidth, scaledValue1);
+    for (var i = 0; i < filteredData.length; i++) {
+        var value1 = filteredData[i].value1;
+        var value2 = filteredData[i].value2;
+        var text = filteredData[i].text;
 
-    // 빨간색 그래프 그리기
-    ctx.fillStyle = "red";
-    ctx.fillRect(xOffset + barWidth + spacing1, canvas.height - 60 - scaledValue2, barWidth, scaledValue2);
+        // 그래프 높이를 최대값에 비례하여 계산
+        var scaledValue1 = (value1 / maxValue) * (canvas.height - 60);
+        var scaledValue2 = (value2 / maxValue) * (canvas.height - 60);
 
-    // 텍스트의 폭을 측정
-    var textWidth = ctx.measureText(text).width;
+        // 파란색 그래프 그리기
+        ctx.fillStyle = "blue";
+        ctx.fillRect(xOffset, canvas.height - 60 - scaledValue1, barWidth, scaledValue1);
 
-    // 텍스트를 중앙에 맞추기
-    var textX = xOffset + barWidth + (barWidth - textWidth) / 2;
-    var textY = canvas.height - 10;
+        // 빨간색 그래프 그리기
+        ctx.fillStyle = "red";
+        ctx.fillRect(xOffset + barWidth + spacing1, canvas.height - 60 - scaledValue2, barWidth, scaledValue2);
 
+        // 텍스트의 폭을 측정
+        var textWidth = ctx.measureText(text).width;
+
+        // 텍스트를 중앙에 맞추기
+        var textX = xOffset + barWidth + (barWidth - textWidth) / 2;
+        var textY = canvas.height - 10;
+
+        ctx.fillStyle = "white";
+        ctx.fillText(text, textX-10, textY);
+
+        xOffset += 2 * barWidth + spacing1 + spacing2;
+    }
+} else {
+    // 데이터가 없을 때 처리
+    // 예를 들어, 어떤 메시지를 화면에 표시할 수 있습니다.
     ctx.fillStyle = "white";
-    ctx.fillText(text, textX-10, textY);
-
-    xOffset += 2 * barWidth + spacing1 + spacing2;
+    ctx.fillText("No data available", canvas.width / 2 - 60, canvas.height / 2);
 }
+
 // 현재 시간을 가져오는 함수
 function displayCurrentTime() {
     var currentTimeElement = document.getElementById("currentTime");
