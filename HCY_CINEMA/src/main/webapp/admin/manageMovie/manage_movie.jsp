@@ -43,6 +43,22 @@
 <!--[if lt IE 9]>
 	    <script src="../assets/crossbrowserjs/excanvas.min.js"></script>
 	<![endif]-->
+	
+	<script type="text/javascript">
+ function logout(){
+	location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp");
+}
+ if (performance.navigation.type == 2) {
+     // 페이지가 뒤로가기로 로드된 경우
+     location.reload();
+ }
+<%
+if(session.getAttribute("userName")==null||"".equals(session.getAttribute("userName"))){%>
+location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp");
+<%}
+%>
+
+</script>
 <style type="text/css">/* Chart.js */
 @
 -webkit-keyframes chartjs-render-animation {
@@ -146,15 +162,11 @@ to {
 								<img src="../../common/images/admin.png" alt="">
 							</div>
 							<div class="info">
-								<div class="name dropdown">
-									<a href="javascript:;" data-toggle="dropdown">admin <b
-										class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a href="javascript:;">Log Out</a></li>
-									</ul>
-								</div>
-								<div class="position">Front End Designer</div>
-							</div>
+<div class="name dropdown">
+<a href="javascript:;" data-toggle="dropdown"><%= session.getAttribute("userName") %> </a>
+	<a href="#"onclick="logout();">Log Out</a>
+</div>
+</div>
 						</li>
 						<li class="nav-header">today work</li>
 						<li class="has-sub"><a
@@ -304,7 +316,7 @@ to {
 													<td id=<%=mmVO.getMname()%> tabindex="0"
 														style="padding-left: 20px; vertical-align: middle;">
 														<div style="display: inline-block;">
-															<input type="checkbox">
+															<input type="checkbox" name="check" id="check" value="<%=mmVO.getMovieCode() %>">
 														</div>
 														<div style="display: inline-block;">
 															<img
@@ -720,6 +732,7 @@ to {
 				</div>
 				<form action="http://localhost/HCY_CINEMA/admin/manageMovie/manage_insert_movie.jsp" id="plusmovie" name="plusmovie">
 	<input type="button" id="plus_btn" name="plus_btn" style="height:50px" value="영화 추가">
+	<input type="button" id="minus_btn" name="minus_btn" style="height:50px" value="영화 종영">
 			</form>
 			</div>
 
@@ -1134,7 +1147,29 @@ to {
 		$(function(){
 			$("#plus_btn").click(function(){
 				$("#plusmovie").submit();
-			})
+			});
+			$("#minus_btn").click(function() {
+			    var checkedCheckboxes = $(":checkbox[name='check']:checked");
+			    
+			    if (checkedCheckboxes.length > 0) {
+			        var selectedValues = [];
+
+			        checkedCheckboxes.each(function() {
+			            selectedValues.push($(this).val());
+			        });
+
+			        var url = "http://localhost/HCY_CINEMA/admin/manageMovie/delete_movie.jsp";
+
+			        if (selectedValues.length > 0) {
+			            // 선택된 체크박스의 값들을 URL에 추가
+			            url += "?check=" + selectedValues.join("&check=");
+			        }
+
+			        location.href = url;
+			    } else {
+			        alert("체크박스를 선택한 후 버튼을 눌러주세요!");
+			    }
+			});
 		})
 	</script>
 
