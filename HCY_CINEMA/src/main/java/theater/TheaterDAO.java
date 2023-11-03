@@ -71,6 +71,7 @@ private static TheaterDAO tDAO;
 						sList = null;
 						sVO = null;
 						sdList = null;
+						tempscode = -1;
 					}//if
 					sList = new ArrayList<ScreenVO>();
 					mVO = new MovieVO();
@@ -96,7 +97,6 @@ private static TheaterDAO tDAO;
 					sVO.setScreenName(rs.getString("SCREENNAME"));
 					sVO.setTypeName(rs.getString("screentype"));
 				}//if
-				
 				sdVO = new ScheduleVO();
 				sdVO.setScheduleNum(rs.getInt("SCHEDULENUM"));
 				sdVO.setShowdate(rs.getDate("SHOWdate"));

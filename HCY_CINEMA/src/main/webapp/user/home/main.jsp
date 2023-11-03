@@ -541,15 +541,15 @@
                 <div class="contents">
                     <div class="specialHall_title_wrap">
                         <h3>특별관</h3>
-                        <a href="http://192.168.145/HCY_CINEMA/user/home/special.jsp" id="btn_allView_Special" class="btn_allView">전체보기</a>
+                        <a href="http://localhost/HCY_CINEMA/user/home/special.jsp" id="btn_allView_Special" class="btn_allView">전체보기</a>
                     </div>
                     <div class="specialHall_content">
-                        <a href="http://192.168.145/HCY_CINEMA/user/home/suiteCinema.jsp" id="ctl00_PlaceHolderContent_specialHall_link" class="specialHall_link"><div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr//Front/Main/2021/1209/16390080561620.png" id="ctl00_PlaceHolderContent_specialHall_img" alt="SUITE CINEMA"></div></a>
+                        <a href="http://localhost/HCY_CINEMA/user/home/suiteCinema.jsp" id="ctl00_PlaceHolderContent_specialHall_link" class="specialHall_link"><div class="img_wrap" data-scale="false"><img src="https://img.cgv.co.kr//Front/Main/2021/1209/16390080561620.png" id="ctl00_PlaceHolderContent_specialHall_img" alt="SUITE CINEMA"></div></a>
                         
                         <ul class="specialHall_list">
                             
                             <li class="active">
-                                <a href="http://192.168.145/HCY_CINEMA/user/home/suiteCinema.jsp">
+                                <a href="http://localhost/HCY_CINEMA/user/home/suiteCinema.jsp">
                                     <strong>SUITE CINEMA</strong>
                                     <div class="specialHall_hashTag_wrap">
                                         <span class="specialHall_hashTag">#호텔 컨셉의 프리미엄관</span>                                        
@@ -558,7 +558,7 @@
                             </li>
                             
                             <li>
-                                <a href="http://192.168.145/HCY_CINEMA/user/home/cineLivingRomm.jsp">
+                                <a href="http://localhost/HCY_CINEMA/user/home/cine_living_room.jsp">
                                     <strong>CINE &amp; LIVINGROOM</strong>
                                     <div class="specialHall_hashTag_wrap">
                                         <span class="specialHall_hashTag">#신개념 소셜 상영관</span>                                        
@@ -567,7 +567,7 @@
                             </li>
                             
                             <li>
-                                <a href="http://192.168.145/HCY_CINEMA/user/home/fourDX.jsp">
+                                <a href="http://localhost/HCY_CINEMA/user/home/4dx.jsp">
                                     <strong>4DX</strong>
                                     <div class="specialHall_hashTag_wrap">
                                         <span class="specialHall_hashTag">#모션시트 #오감체험</span>                                        
@@ -576,7 +576,7 @@
                             </li>
                             
                             <li>
-                                <a href="http://192.168.145/HCY_CINEMA/user/home/cineDeChef.jsp">
+                                <a href="http://localhost/HCY_CINEMA/user/home/cine_de_chef.jsp">
                                     <strong>CINE de CHEF</strong>
                                     <div class="specialHall_hashTag_wrap">
                                         <span class="specialHall_hashTag">#쉐프가 있는 영화관</span>                                        

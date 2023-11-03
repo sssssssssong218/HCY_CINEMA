@@ -212,118 +212,40 @@
 #contaniner .contents{height: auto;}
 </style>
 <div id="contaniner">
-<!-- S > Contents Area -->
-    <article class="specialtheater_title">
-        <div class="contents">
-            <strong>HCY만의 특별함이 있는 영화관을 소개합니다.</strong>
-            <ul class="specialtheater_hash_list">
-                <li>#TECHNOLOGY</li><li>#PRESTIGE</li><li>#CONCEPT</li>
-                <!--<li>#Technologe</li>
-                <li>#Prestige</li>
-                <li>#Concept</li>-->
-            </ul>
-        </div>
-    </article>
-<!-- S 특별관 카테고리 및 소갬 문구
-    Description:
-    - 긴 이미지: 유형1, 짧은 이미지: 유형2
-    - 유형1은 li 태그에 'wide' 추가
-    - 총 갯수가 짝수인 경우 (유형 1 -> 유형2 -> 유형2 -> 유형1 -> 유형1 -> 유형2 -> 유형2 ...)
-    - 총 갯수가 혹수인 경우 (맨 마지막 3개만 유형2로 3개 노출)
 
---> 
-    
-    <article class="specialtheater_category">  <div class="contents">      
-    <h4 class="specialtheater_category_title_wrap">     
-     <strong class="specialtheater_category_title">TECHNOLOGY</strong>     
-      <span class="specialtheater_category_comment">진화된 3S(Screen, Sound, Seat) 기술로 컨텐츠 몰입도를 극대화하여 영화 관람에 최적화된 환경을 제공합니다.</span>  
-      </h4><ul class="specialtheater_category_list"><li class="wide">    
-      <a href="http://localhost/HCY_CINEMA/user/home/iMax.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844565213590.png" alt="궁극의 몰입감" onerror="errorImage(this)">        </div>        
-      <strong>IMAX</strong>        <span>궁극의 몰입감</span>    </a></li>
-      <li>    
-      <a href="http://localhost/HCY_CINEMA/user/home/4dx.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844565563790.png" alt="특별한 오감체험" onerror="errorImage(this)">        </div>        
-      <strong>4DX</strong>        <span>특별한 오감체험</span>    </a></li><li>    
-      <a href="http://localhost/HCY_CINEMA/user/home/4dx_screen.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844578208900.png" alt="최대치의 공감각" onerror="errorImage(this)">        </div>        
-      <strong>4DX SCREEN</strong>        <span>최대치의 공감각</span>    </a></li><li class="wide">    
-      <a href="http://localhost/HCY_CINEMA/user/home/screenX.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844566032440.png" alt="3면 확장 스크린" onerror="errorImage(this)">        </div>        
-      <strong>SCREENX</strong>        <span>3면 확장 스크린</span>    </a></li><li class="wide">    
-      <a href="http://localhost/HCY_CINEMA/user/home/sphereX.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844566818680.png" alt="진화된 스크린" onerror="errorImage(this)">        </div>        
-      <strong>SPHEREX</strong>        <span>진화된 스크린</span>    </a></li><li>    
-      <a href="http://localhost/HCY_CINEMA/user/home/soundX.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844577756460.png" alt="3D 입체음향" onerror="errorImage(this)">        </div>        
-      <strong>SOUNDX</strong>        <span>3D 입체음향</span>    </a></li><li>    
-      <a href="http://localhost/HCY_CINEMA/user/home/starium.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844567163410.png" alt="초대형 스크린" onerror="errorImage(this)">        </div>        
-      <strong>STARIUM</strong>        <span>초대형 스크린</span>    </a></li><li class="wide">    
-      <a href="http://localhost/HCY_CINEMA/user/home/dolby_atmos.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16632369964330.jpg" alt="차세대 몰입형 사운드" onerror="errorImage(this)">        </div>        
-      <strong>DOLBY ATMOS</strong>        <span>차세대 몰입형 사운드</span>    </a></li><!-- ul --></ul></div></article>
-      <article class="specialtheater_category">  
-      <div class="contents">      
-      <h4 class="specialtheater_category_title_wrap">      
-      <strong class="specialtheater_category_title">PRESTIGE</strong>      
-      <span class="specialtheater_category_comment">세련된 인테리어와 프리미엄 서비스로 진정한 품격을 느낄 수 있는  최고급 영화 관람 환경을 선사합니다.</span>  </h4>
-      <ul class="specialtheater_category_list"><li class="wide">    
-      <a href="http://localhost/HCY_CINEMA/user/home/private_box.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844574293100.png" alt="박스형 프리미엄 상영관" onerror="errorImage(this)">        </div>        
-      <strong>PRIVATE BOX</strong>        <span>박스형 프리미엄 상영관</span>    </a></li><li>    
-      <a href="http://localhost/HCY_CINEMA/user/home/suiteCinema.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844574556230.png" alt="호텔형 프리미엄 상영관" onerror="errorImage(this)">        </div>        
-      <strong>SUITE CINEMA</strong>        <span>호텔형 프리미엄 상영관</span>    </a></li><li>    
-      <a href="http://localhost/HCY_CINEMA/user/home/cine_de_chef.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844574779520.png" alt="쉐프가 있는 영화관" onerror="errorImage(this)">        </div>        
-      <strong>CINE de CHEF</strong>        <span>쉐프가 있는 영화관</span>    </a></li><li class="wide">    
-      <a href="http://localhost/HCY_CINEMA/user/home/temper_cinema.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844575096390.png" alt="리클라이닝 침대 상영관" onerror="errorImage(this)">        </div>        
-      <strong>TEMPUR CINEMA</strong>        <span>리클라이닝 침대 상영관</span>    </a></li><li>    
-      <a href="http://localhost/HCY_CINEMA/user/home/gold_class.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844575399980.png" alt="프리미엄 소파 상영관" onerror="errorImage(this)">        </div>        
-      <strong>GOLD CLASS</strong>        <span>프리미엄 소파 상영관</span>    </a></li><li>    
-      <a href="http://localhost/HCY_CINEMA/user/home/the_private_cinema.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844576881620.png" alt="대관형 프리미엄 상영관" onerror="errorImage(this)">        </div>        
-      <strong>THE PRIVATE CINEMA</strong>        <span>대관형 프리미엄 상영관</span>    </a></li><li>    
-      <a href="http://localhost/HCY_CINEMA/user/home/premium.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16844577116970.png" alt="리클라이너 상영관" onerror="errorImage(this)">        </div>        
-      <strong>PREMIUM</strong>        <span>리클라이너 상영관</span>    </a></li><!-- ul --></ul></div></article>
-      <article class="specialtheater_category">  
-      <div class="contents">      
-      <h4 class="specialtheater_category_title_wrap">      
-      <strong class="specialtheater_category_title">CONCEPT</strong>      
-      <span class="specialtheater_category_comment">유니크한 테마로 구성된 컨셉 상영관으로 특별한 추억을 만들 수 있는  다양한 영화 관람 경험을 선물합니다.</span>  </h4>
-      <ul class="specialtheater_category_list"><li class="wide">    
-      <a href="http://localhost/HCY_CINEMA/user/home/cine_foret.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844577273360.png" alt="자연 컨셉의 힐링 상영관" onerror="errorImage(this)">        </div>        
-      <strong>CINE &amp; FORET</strong>        <span>자연 컨셉의 힐링 상영관</span>    </a></li><li>    
-      <a href="http://localhost/HCY_CINEMA/user/home/cine_living_room.jsp">        
-      <div class="img_wrap">            
-      <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list2/16554503371910.png" alt="신개념 소셜 상영관" onerror="errorImage(this)">        </div>        
-      <strong>CINE &amp; LIVING ROOM</strong>        <span>신개념 소셜 상영관</span>    </a></li><!-- ul -->
-      </ul></div></article>
-            
-<!-- E 특별관 카테고리 및 소갬 문구 -->
-<!-- E > Contents Area -->
+        <!-- 상단 띠베너-->
+        <article class="special_detail_top">  <div class="contents">      <div class="img_wrap" data-scale="false">          <img src="http://img.cgv.co.kr/WebApp/contents/specialTheater/list1/16844574555600.png" alt="호텔형 프리미엄 상영관" onerror="errorImage(this)">      </div>      <strong class="special_detail_title">SUITE CINEMA</strong>      <span class="special_detail_subTitle">호텔형 프리미엄 상영관<span>  </span></span></div></article>
+        <!-- BI 리스트-->
+        <article class="specialtheater_wrap">    <div class="contents">        
+                                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="다음 슬라이드" aria-disabled="false"></div>        <div class="swiper-button-prev" tabindex="0" role="button" aria-label="이전 슬라이드" aria-disabled="false"></div>    </div>    </article>    
+        <!-- 유닛관리-->
+        <article class="specialtheater_detail_edit_wrap"><div class="contents suitecinema"><strong class="specialtheater_detail_edit_title tAlignC">The Moment of Exclusivity</strong> <span class="specialtheater_detail_edit_context tAlignC"> 집보다 더 프라이빗하게<br>
+호텔보다 더 프리미엄하게<br>
+우리만의 Sweet Time, Suite Cinema </span> <img alt="SUITE CINEMA 사진" src="https://img.cgv.co.kr/resource_pc/images/specialtheater/suitecinema/specialtheater_suitecinema_00.jpg"> <strong class="specialtheater_detail_edit_title">A Hotel in the Theater</strong> <span class="specialtheater_detail_edit_context"> 호텔 스위트룸을 극장 안에 옮긴 듯 독립된 공간과 세련된 인테리어로<br>
+쾌적한 영화 관람 환경을 선사합니다.<br>
+소중한 이들과 특별한 영화 여행을 떠나보세요&nbsp;</span><img alt="SUITE CINEMA 사진" src="https://img.cgv.co.kr/resource_pc/images/specialtheater/suitecinema/specialtheater_suitecinema_10.jpg"> <strong class="specialtheater_detail_edit_title">Premium &amp; Comfortable Seats</strong> <span class="specialtheater_detail_edit_context">2~4인 이용 가능한 거실타입 공간으로 전 좌석 최고급 리클라이닝 소파 및 체어가 준비되어 있으며 스위트 패키지(무릎담요, 실내용 슬리퍼, 물티슈)를 제공합니다.</span>
+<div class="specialtheater_detail_theaterInfo_wrap">
+<div class="specialtheater_detail_theaterInfo_img_wrap"><img alt="The Moment of Exclusivity 사진2" src="https://img.cgv.co.kr/resource_pc/images/specialtheater/suitecinema/specialtheater_suitecinema_20.jpg">
+<div class="column"><img alt="The Moment of Exclusivity 사진2" src="https://img.cgv.co.kr/resource_pc/images/specialtheater/suitecinema/specialtheater_suitecinema_21.jpg"> <img alt="The Moment of Exclusivity 사진3" src="https://img.cgv.co.kr/resource_pc/images/specialtheater/suitecinema/specialtheater_suitecinema_22.jpg"></div>
 </div>
+</div>
+<strong class="specialtheater_detail_edit_title">Relax &amp; Be Happy, Exclusive Lounge</strong> <span class="specialtheater_detail_edit_context">스위트 시네마 이용 고객만을 위한 익스클루시브 라운지에서는<br>
+영화 관람 전 차별화 된 서비스를 제공해 드립니다.<br>
+웰컴 주류 및 음료 등을 무료로 즐기며 일상에서의 스트레스를 잠시 내려놓아 보세요</span>
+
+<p class="suitecinema_comment">*영화 시작 30분 전 입장 가능</p>
+
+<div class="specialtheater_detail_theaterInfo_wrap">
+<div class="specialtheater_detail_theaterInfo_img_wrap"><img alt="Relax &amp; Be Happy, Exclusive Lounge 사진1" src="https://img.cgv.co.kr/resource_pc/images/specialtheater/suitecinema/specialtheater_suitecinema_30.jpg"> <img alt="Relax &amp; Be Happy, Exclusive Lounge 사진2" src="https://img.cgv.co.kr/resource_pc/images/specialtheater/suitecinema/specialtheater_suitecinema_31.jpg"></div>
+</div>
+</div></article>
+        
+        
+        <article class="specialtheater_detail_edit_wrap"></article>
+        
+    
+
+    </div>
 
     
     <!-- S Popup -->
