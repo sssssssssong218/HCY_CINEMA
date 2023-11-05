@@ -1,3 +1,5 @@
+<%@page import="board.BoardUtil"%>
+<%@page import="board.BoardUtilVO"%>
 <%@page import="board.BoardVO"%>
 <%@page import="board.BoardDAO"%>
 <%@page import="manageMember.BoardRangeVO"%>
@@ -20,7 +22,7 @@
     <meta http-equiv="Cache-Control" content="No-Cache">
     <meta http-equiv="imagetoolbar" content="no">
     <meta name="viewport" content="width=1024">
-    <meta name="keywords" content="HCY 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
+    <meta name="keywords" content="HCY 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Hcy, hcy, 예매, 상영작">
     <meta name="description" content="HCY는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. HCY홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
     <meta property="og:site_name" content="영화 그 이상의 감동. HCY">
     <meta id="ctl00_og_title" property="og:title" content="자유게시판 < 고객센터 | 영화 그 이상의 감동. HCY">
@@ -452,6 +454,131 @@
 
 		<!-- Contents Area -->
 		 <div id="contents" class="">
+ 
+ <!-- //Contents Area -->
+<script type="text/javascript">
+
+        $(function (){
+
+          /*   var searchfield = "0";
+
+            $('#selsearchfield').val(searchfield).attr("selected", "selected");
+
+            $('#btn_search').on('click', function () {
+//                if ($('#searchtext').val() == "") {
+//                    alert("검색어를 입력해 주세요.");
+//                    $('#searchtext').focus();
+//                    return false;
+//                } else {
+//                    Search();
+                //                }
+
+                Search();
+            });
+            
+            
+			$('#searchtext').keypress(function(event){
+				if(event.which == 13){
+					if ($('#searchtext').val() == "") {
+						alert("검색어를 입력해 주세요.");
+						$('#searchtext').focus();
+						return false;
+					} else {
+						Search();
+					}
+				}
+			});
+
+
+            function Search() {
+                location.href = "/support/news/default.aspx?searchtext=" + escape($("#searchtext").val()) + "&searchfield=" + $('#selsearchfield option:selected').val();
+                return false;
+            }
+            
+
+            $('.c_tab_wrap').children('.c_tab').children('li').on('click', function () {
+                //$('.c_tab_wrap').children('.c_tab').children('li').removeClass("on");
+                //$(this).addClass("on");
+
+                location.href = $(this).children('a').attr("href") + escape("") + "&searchfield=0";
+                return false;
+            }); */
+            
+			$("#btn_write").click(function(){
+				goToWrite();
+			});//btn_write.click
+			
+
+			$("#btnSearch").click(function(){
+				chkNull();
+			});//click
+			
+			$("#keyword").keyup(function(evt){ //keydown은 값을 받을 수 없음
+				if( evt.which == 13 /*엔터는 13번*/){
+					chkNull();
+				}//end if
+			});//keyup
+			/* 
+            $("#searchbtn").click(function(){
+        		chkNull();
+        	});//click
+        	
+        	$("#keyword").keyup(function(evt){ //keydown은 값을 받을 수 없음
+        		if( evt.which == 13 /*엔터는 13번*/){
+        			chkNull();
+        		}//end if
+        	});//keyup */
+        	
+        });//ready
+
+          
+
+        function chkNull(){
+        	var keyword = $("#keyword").val();
+        	
+        	if( keyword.trim() == "" ){
+        		alert("검색 키워드를 입력해 주세요.")
+        		return;
+        	}//end if
+        	
+        	//글자수 제한
+        	
+        	//
+        	$("#frmSearch").submit();
+        	
+        }//chkNull
+        
+        
+        function memberDetail( id ){
+                  
+                  $( "#id" ).val( id );
+                  $( "#hidFrm" ).submit();
+                  
+               }//memberDetail
+        
+               
+               
+               function goToWrite(){
+            	location.href="http://localhost/HCY_CINEMA/user/board/board_write.jsp";
+            	return false;
+            }//goToWrite
+            
+        /* function chkNull(){
+        	var keyword = $("#keyword").val();
+        	
+        	if( keyword.trim() == "" ){
+        		alert("검색 키워드를 입력해 주세요.")
+        		return;
+        	}//end if
+        	
+        	//글자수 제한
+        	
+        	$("#frmSearch").submit();
+        }//chkNull */
+</script>
+
+            
+            <!--/ Contents End -->   
         
             
             <!-- Contents Start -->
@@ -479,22 +606,42 @@
 				<h2 class="tit">자유게시판</h2>
 				<p class="stit">자유롭게 영화 이야기를 나눌 수 있습니다.</p>
 			</div>
-			<div class="search_area">
-			<%
-			String selsearchfield=request.getParameter("selsearchfield");
-			%>
-				<legend><label for="c_select">검색</label></legend>
-				<select name="selsearchfield" id="selsearchfield" class="c_select" style="width:100px;" selected="selected">
-					<option selected="selected" value="0"${param.selsearchfield eq '0'?" selected='selected'":"" }>제목</option>
-					<option value="1" ${param.selsearchfield eq '1'?" selected='selected'":"" }>내용</option>
-				</select>
-				<label for="searchtext" class="hidden">검색어 입력</label>
-				<input id="searchtext" type="text" class="c_input" title="검색어 입력" placeholder="검색어를 입력해 주세요" style="width:185px;" value="">
-				<input type="button"  class="btn" value="검색하기" id="btn_search" style="background:#222222; color: #FFFFFF; width: 70px; height: 23px;"/>
 			
-			</div>
+			<!-- 검색 -->
+			 <div class="search_area">
+			<%-- <%
+			String selsearchfield=request.getParameter("selsearchfield");
+			%> --%>
+			<%-- 	<legend><label for="cselect">검색</label></legend>
+				<form name="frmSearch" id="frmSearch" action="board.jsp" method="get">
+				<select name="field" id="field" class="c_select" style="width:100px;">
+					<option selected="selected" value="0"${param.field eq '0'?" selected='selected'":"" }>제목</option>
+					<option value="1" ${param.field eq '0'?" selected='selected'":"" }>내용</option>
+				</select>
+				<label for="keyword" class="hidden">검색어 입력</label>
+				<input id="keyword" type="text" class="inputBox" title="검색어 입력" placeholder="검색어를 입력해 주세요" style="width:185px; height: 29px;" value="${ param.keyword ne 'null'? param.keyword : ''  }"/>
+				<input type="hidden" name="dataFlag" value="1"/>
+				<input type="button"  class="btn" value="검색하기" id="btn_search" style="background:#222222; color: #FFFFFF; width: 70px; height: 29px;"/>
+				</form> --%>
+	
+	<form name="frmSearch" id="frmSearch" action="http://localhost/HCY_CINEMA/user/board/board.jsp" method="get">
+<select name="field" class="inputBox">
+	<option value="1" ${ param.field eq '1'? "selected='selected'":"" }>제목</option>
+	<option value="2" ${ param.field eq '1'? "selected='selected'":"" }>내용</option>
+</select>
+<label for="keyword" class="hidden">검색어 입력</label>
+<input type="text" name="keyword"  id="keyword" class="inputBox"   placeholder="검색어를 입력해 주세요" value="${ param.keyword ne 'null'? param.keyword : ''  }"/>
+<input type="text" style="display: none;"/>
+<input type="hidden" name="dataFlag" value="1"/>
+<input type="button" value="btnSearch" id="btnSearch" class="btn btn-info"/>
+
+</form>
+	
+			</div> 
+			
 			<div style="display: flex; justify-content: flex-end;">
-				<input type="button" class="btn" value="글쓰기" id="btn_write" style=""/>
+			<input type="button" value="글쓰기"  id="btn_write" class="btn_search" style="margin-left: 10px; background: #888888; width: 70px; 
+			height: 29px; color: #FFFFFF; border: none;"/>
 			</div>
 			
 			<div class="tbl_area">
@@ -596,81 +743,25 @@
 <div class="paging" style="text-align:center">
 <ul>
 	<li>
-		<% for( int i=1; i<totalPage+1; i++ ){   %>
+	<%-- 	<% for( int i=1; i<totalPage+1; i++ ){   %>
 		 <a href="http://localhost/HCY_CINEMA/user/board/board.jsp?currentPage=<%=i %>&keyword=${ param.keyword }&field=${ param.field }"><%=i%></a> 
-		<%} //end for%> 
+		<%} //end for%>   --%>
+ <% 
+String dataFlag=request.getParameter("dataFlag");
+BoardUtilVO buVO=new BoardUtilVO("board.jsp", dataFlag, keyword, field, currentPage, totalPage );
+	
+out.println(BoardUtil.getInstance().pageNation(buVO));
+%> 
 	</li>
 </ul>
 </div>
+
 
 		</div>
 	</div>
 	<!-- //Contents End -->
 </div>
-<!-- //Contents Area -->
-<script type="text/javascript">
 
-//<![CDATA[
-
-        $(function (){
-
-            var searchfield = "0";
-
-            $('#selsearchfield').val(searchfield).attr("selected", "selected");
-
-            $('#btn_search').on('click', function () {
-//                if ($('#searchtext').val() == "") {
-//                    alert("검색어를 입력해 주세요.");
-//                    $('#searchtext').focus();
-//                    return false;
-//                } else {
-//                    Search();
-                //                }
-
-                Search();
-            });
-            
-			$("btn_write").click(function(){
-				goToWrite();
-			});//btn_write.click
-            
-			$('#searchtext').keypress(function(event){
-				if(event.which == 13){
-					if ($('#searchtext').val() == "") {
-						alert("검색어를 입력해 주세요.");
-						$('#searchtext').focus();
-						return false;
-					} else {
-						Search();
-					}
-				}
-			});
-
-
-            function Search() {
-                location.href = "/support/news/default.aspx?searchtext=" + escape($("#searchtext").val()) + "&searchfield=" + $('#selsearchfield option:selected').val();
-                return false;
-            }
-            
-            function goToWrite(){
-            	location.href="http://localhost/HCY_CINEMA/user/board/board_write.jsp";
-            }//goToWrite
-
-            $('.c_tab_wrap').children('.c_tab').children('li').on('click', function () {
-                //$('.c_tab_wrap').children('.c_tab').children('li').removeClass("on");
-                //$(this).addClass("on");
-
-                location.href = $(this).children('a').attr("href") + escape("") + "&searchfield=0";
-                return false;
-            });
-
-
-        });//ready
-
-</script>
-
-            
-            <!--/ Contents End -->
 		 </div>
 		<!-- /Contents Area -->
 	</div>

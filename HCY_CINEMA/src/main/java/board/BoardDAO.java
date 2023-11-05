@@ -130,13 +130,14 @@ public class BoardDAO {
 //	}//selectBoard
 	
 	
-	public void insertBoard( BoardVO bVO) throws SQLException {
+	public boolean insertBoard( BoardVO bVO) throws SQLException {
 		
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		
 		DBConnection db=DBConnection.getInstance();
 		
+		boolean flag=false;
 		try {
 			con=db.getCon();
 			
@@ -150,11 +151,16 @@ public class BoardDAO {
 			pstmt.setString(2, bVO.getTitle());
 			pstmt.setString(3, bVO.getContent());
 			
-			pstmt.executeUpdate();
-	
+			int rowCnt=pstmt.executeUpdate();
+			if(rowCnt>0) {
+				flag=true;
+			}//end if
+			
 		}finally{
 			db.dbClose(null, pstmt, con);
 		}//end finally
+		
+		return flag;
 	}//insertBoard
 	
 	

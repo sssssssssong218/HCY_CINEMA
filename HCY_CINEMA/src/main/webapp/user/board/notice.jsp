@@ -1,3 +1,5 @@
+<%@page import="board.BoardUtil"%>
+<%@page import="board.BoardUtilVO"%>
 <%@page import="manageMember.BoardRangeVO"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="board.NoticeVO"%>
@@ -460,6 +462,7 @@
 	<!-- Contents Start -->
 	<div class="cols-content">
 		
+		
 <div class="col-aside">
     <h2>
         고객센터 메뉴</h2>
@@ -472,39 +475,7 @@
     
 </div>
 
-		<div class="col-detail">
-			<div class="customer_top">
-				<h2 class="tit">공지/뉴스</h2>
-				<p class="stit">HCY의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.</p>
-			</div>
-			<div class="search_area">
-			<%
-			String selsearchfield=request.getParameter("selsearchfield");
-			
-			
-			%>
-				<legend><label for="c_select">검색</label></legend>
-				<select name="selsearchfield" id="selsearchfield" class="c_select" style="width:100px;" selected="selected">
-					<option selected="selected" value="0"${param.selsearchfield eq '0'?" selected='selected'":"" }>제목</option>
-					<option value="1" ${param.selsearchfield eq '1'?" selected='selected'":"" }>내용</option>
-				</select>
-				<label for="searchtext" class="hidden">검색어 입력</label>
-				<input id="searchtext" type="text" class="c_input" title="검색어 입력" placeholder="검색어를 입력해 주세요" style="width:185px;" value="">
-				<input type="button"  class="btn" value="검색하기" id="btn_search" style="background:#222222; color: #FFFFFF; width: 70px; height: 23px;"/>
-			</div>
-			<div class="c_tab_wrap">
-				<ul class="c_tab">
-					<li class="on"><a href="/support/news/default.aspx?type=&amp;searchtext=" title="선택된 탭메뉴">전체</a></li>
-					<li class=""><a href="/support/news/default.aspx?type=1&amp;searchtext=">자주찾는질문</a></li>
-					<li class=""><a href="/support/news/default.aspx?type=1&amp;searchtext=">시스템점검</a></li>
-					<li class=""><a href="/support/news/default.aspx?type=2&amp;searchtext=">극장</a></li>
-					<li class=""><a href="/support/news/default.aspx?type=2&amp;searchtext=">자유게시판</a></li>
-                    <li class=""><a href="/support/news/default.aspx?type=4&amp;searchtext=">기타</a></li>
-				</ul>
-			</div>
-			
-			<div class="tbl_area">
-			<%
+<%
      		  String noticeNumParam = request.getParameter("noticeNum");
      		  int noticeNum = 0;
      		  if (noticeNumParam != null && !noticeNumParam.isEmpty()) {
@@ -557,6 +528,41 @@
                  }//end catch
      		  
      		  %>
+		<div class="col-detail">
+			<div class="customer_top">
+				<h2 class="tit">공지/뉴스</h2>
+				<p class="stit">HCY의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.</p>
+			</div>
+			<div class="search_area">
+			<%
+			/* String field=request.getParameter("field"); */
+			
+			
+			%>
+				<legend><label for="c_select">검색</label></legend>
+				<form name="frmSearch" id="frmSearch" action="notice.jsp" method="get">
+				<select name="field" id="field" class="c_select" style="width:100px;" selected="selected">
+					<option selected="selected" value="0"${param.field eq '0'?" selected='selected'":"" }>제목</option>
+					<option value="1" ${param.field eq '1'?" selected='selected'":"" }>내용</option>
+				</select>
+				<label for="keyword" class="hidden">검색어 입력</label>
+				<input id="keyword" type="text" class="inputBox" title="검색어 입력" placeholder="검색어를 입력해 주세요" style="width:185px; height: 29px;" value="${ param.keyword ne 'null'? param.keyword : ''  }">
+				<input type="button"  class="btn" value="검색하기" id="btn_search" style="background:#222222; color: #FFFFFF; width: 70px; height: 29px;"/>
+				</form>
+				
+			</div>
+			<div class="c_tab_wrap">
+				<ul class="c_tab">
+					<li class="on"><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp" title="선택된 탭메뉴">전체</a></li>
+					<li class=""><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp">자주찾는질문</a></li>
+					<li class=""><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp">시스템점검</a></li>
+					<li class=""><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp">극장</a></li>
+					<li class=""><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp">자유게시판</a></li>
+                    <li class=""><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp">기타</a></li>
+				</ul>
+			</div>
+			<div class="tbl_area">
+			
      		
      		  <!-- 공지목록 -->
 				<table cellspacing="0" cellpadding="0" class="tbl_notice_list">
@@ -613,32 +619,19 @@
 <div class="paging" style="text-align:center">
 <ul>
 	<li>
-		<% for( int i=1; i<totalPage+1; i++ ){   %>
+		<%-- <% for( int i=1; i<totalPage+1; i++ ){   %>
 		 <a href="http://localhost/HCY_CINEMA/user/board/notice.jsp?currentPage=<%=i %>&keyword=${ param.keyword }&field=${ param.field }"><%=i%></a> 
-		<%} //end for%> 
+		<%} //end for%>  --%>
+		<% 
+String dataFlag=request.getParameter("dataFlag");
+BoardUtilVO buVO=new BoardUtilVO("notice.jsp", dataFlag, keyword, field, currentPage, totalPage );
+	
+out.println(BoardUtil.getInstance().pageNation(buVO));
+%>
 	</li>
 </ul>
 </div>
-<!-- <div class="paging">
-  <ul>
-    <li class="on">
-      <a title="1 페이지 선택" href=" #pg">1</a>
-    </li>
-    <li>
-      <a href="/support/news/default.aspx?page=2&amp;type=&amp;searchtext=&amp;searchfield=0">2</a>
-    </li>
-    <li>
-      <a href="/support/news/default.aspx?page=3&amp;type=&amp;searchtext=&amp;searchfield=0">3</a>
-    </li>
-    <li>
-      <a href="/support/news/default.aspx?page=4&amp;type=&amp;searchtext=&amp;searchfield=0">4</a>
-    </li>
-    <li>
-      <a href="/support/news/default.aspx?page=5&amp;type=&amp;searchtext=&amp;searchfield=0">5</a>
-    </li>
-  </ul>
-  <button class="btn-paging end" type="button" onclick="location='/support/news/default.aspx?page=5&amp;type=&amp;searchtext=&amp;searchfield=0'">끝</button>
-</div> -->
+
 		</div>
 	</div>
 	<!-- //Contents End -->
@@ -648,14 +641,14 @@
 
 //<![CDATA[
 
-    (function ($) {
+   
         $(function () {
-
+/* 
             var searchfield = "0";
 
-            $('#selsearchfield').val(searchfield).attr("selected", "selected");
+            $('#selsearchfield').val(searchfield).attr("selected", "selected"); */
 
-            $('#btn_search').on('click', function () {
+           /*  $('#btn_search').on('click', function () {
 //                if ($('#searchtext').val() == "") {
 //                    alert("검색어를 입력해 주세요.");
 //                    $('#searchtext').focus();
@@ -681,21 +674,45 @@
 
 
             function Search() {
-                location.href = "/support/news/default.aspx?searchtext=" + escape($("#searchtext").val()) + "&searchfield=" + $('#selsearchfield option:selected').val();
+                location.href = "http://localhost/HCY_CINEMA/user/board/notice.jsp?searchtext=" + escape($("#searchtext").val()) + "&searchfield=" + $('#selsearchfield option:selected').val();
                 return false;
-            }
-
+            } */
+/* 
             $('.c_tab_wrap').children('.c_tab').children('li').on('click', function () {
                 //$('.c_tab_wrap').children('.c_tab').children('li').removeClass("on");
                 //$(this).addClass("on");
 
                 location.href = $(this).children('a').attr("href") + escape("") + "&searchfield=0";
                 return false;
-            });
+            });  */
 
+        	$("#btn_search").click(function(){
+        		chkNull();
+        	});//click
+        	
+        	$("#keyword").keyup(function(evt){ //keydown은 값을 받을 수 없음
+        		if( evt.which == 13 /*엔터는 13번*/){
+        			chkNull();
+        		}//end if
+        	});//keyup
+        	
+         });//ready 
 
-        });
-    })(jQuery);
+        function chkNull(){
+        	var keyword = $("#keyword").val();
+        	
+        	if( keyword.trim() == "" ){
+        		alert("검색어를 입력해 주세요.")
+        		return;
+        	}//end if
+        	
+        	//글자수 제한
+        	
+        	//
+        	$("#frmSearch").submit();
+        	
+        }//chkNull
+
 
 //]]>
 </script>
