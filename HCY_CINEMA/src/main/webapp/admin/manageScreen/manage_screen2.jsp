@@ -525,40 +525,55 @@ $(function () {
     // 페이지 로딩 시 초기화
   /*   updateMaxDay(); */
  
+    $("#checkBtn").click(function () {
     var selectedYear = $("#year").val();
     var selectedMonth = $("#month").val();
     var selectedDay = $("#day").val();
     var selectedScreenNum = 2;
-	$("#checkBtn").click(function(){
-    $.ajax({
-        type: "POST",
-        url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_date_check.jsp",
-        data: {
-            year: selectedYear,
-            month: selectedMonth,
-            day: selectedDay,
-            screenNum: selectedScreenNum //2관
-        },
-        dataType: "json",
-        error: function (error) {
-            console.log(error.status);
-        },
-        success: function (jsonObj) {
-        	 var btn1 = $("#1"); // jQuery로 요소 선택
-        	 var btn2 = $("#1"); // jQuery로 요소 선택
-        	 var btn3 = $("#1"); // jQuery로 요소 선택
-        	 var btn4 = $("#1"); // jQuery로 요소 선택
-        	 var btn5 = $("#1"); // jQuery로 요소 선택
-             first.val(""); // 값 지우기
-        	$.each(jsonObj.data,function(i,json){
-        		json.mname;
-        	});
-            /* updateMovieInfo(data); */
-            
-           
-        }
+        var btn1 = $("#1"); // jQuery로 요소 선택
+        var btn2 = $("#2"); // jQuery로 요소 선택
+        var btn3 = $("#3"); // jQuery로 요소 선택
+        var btn4 = $("#4"); // jQuery로 요소 선택
+        var btn5 = $("#5"); // jQuery로 요소 선택
+
+        var scheduleData = {}; // 스케줄 데이터를 저장할 객체
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_date_check.jsp",
+            data: {
+                year: selectedYear,
+                month: selectedMonth,
+                day: selectedDay,
+                screenNum: selectedScreenNum // 2관
+            },
+            dataType: "json",
+            error: function (error) {
+                console.log(error.status);
+            },
+            success: function (jsonObj) {
+                $.each(jsonObj.data, function (i, json) {
+                    var showtime = json.showtime.substring(11, 13);
+                    var mname = json.mname;
+
+                    // 해당 시간대의 스케줄 데이터를 객체에 저장
+                    scheduleData[showtime] = mname;
+                });
+
+                // 버튼에 스케줄 데이터 설정
+                btn1.val(scheduleData[10] || "스케쥴 없음");
+                btn2.val(scheduleData[13] || "스케쥴 없음");
+                btn3.val(scheduleData[16] || "스케쥴 없음");
+                btn4.val(scheduleData[19] || "스케쥴 없음");
+                btn5.val(scheduleData[22] || "스케쥴 없음");
+          /*       alert(btn1.val());
+                alert(btn2.val());
+                alert(btn3.val());
+                alert(btn4.val());
+                alert(btn5.val()); */
+            }
+        });
     });
-	});
 });
 
 

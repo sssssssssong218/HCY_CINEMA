@@ -354,7 +354,7 @@ to {
         %>
     </select>
     <strong>일</strong>
-    <button id="checkBtn" style="position: absolute; top:684px; left:600px;" onclick="updateMovieSchedule()" type="button" class="btn btn-primary">조회</button>
+    <input id="checkBtn" style="position: absolute; top:684px; left:600px;" type="button" class="btn btn-primary" value="조회">
     <br>
 </div>
 
@@ -517,39 +517,57 @@ for(int i=0;i<fixedHours.length;i++){
 <script>
 
 $(function () {
-    // 날짜가 변경될 때 실행
-    $("#year, #month, #day").on("change", function () {
-        updateMovieSchedule();
-    });
+	$("#checkBtn").click(function () {
+	    var selectedYear = $("#year").val();
+	    var selectedMonth = $("#month").val();
+	    var selectedDay = $("#day").val();
+	    var selectedScreenNum = 5;
+	        var btn1 = $("#1"); // jQuery로 요소 선택
+	        var btn2 = $("#2"); // jQuery로 요소 선택
+	        var btn3 = $("#3"); // jQuery로 요소 선택
+	        var btn4 = $("#4"); // jQuery로 요소 선택
+	        var btn5 = $("#5"); // jQuery로 요소 선택
 
-    // 페이지 로딩 시 초기화
-    updateMaxDay();
+	        var scheduleData = {}; // 스케줄 데이터를 저장할 객체
+
+	        $.ajax({
+	            type: "POST",
+	            url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_date_check.jsp",
+	            data: {
+	                year: selectedYear,
+	                month: selectedMonth,
+	                day: selectedDay,
+	                screenNum: selectedScreenNum // 2관
+	            },
+	            dataType: "json",
+	            error: function (error) {
+	                console.log(error.status);
+	            },
+	            success: function (jsonObj) {
+	                $.each(jsonObj.data, function (i, json) {
+	                    var showtime = json.showtime.substring(11, 13);
+	                    var mname = json.mname;
+
+	                    // 해당 시간대의 스케줄 데이터를 객체에 저장
+	                    scheduleData[showtime] = mname;
+	                });
+
+	                // 버튼에 스케줄 데이터 설정
+	                btn1.val(scheduleData[10] || "스케쥴 없음");
+	                btn2.val(scheduleData[13] || "스케쥴 없음");
+	                btn3.val(scheduleData[16] || "스케쥴 없음");
+	                btn4.val(scheduleData[19] || "스케쥴 없음");
+	                btn5.val(scheduleData[22] || "스케쥴 없음");
+	          /*       alert(btn1.val());
+	                alert(btn2.val());
+	                alert(btn3.val());
+	                alert(btn4.val());
+	                alert(btn5.val()); */
+	            }
+	        });
+	    });
 });
 
-function updateMovieSchedule() {
-    var selectedYear = $("#year").val();
-    var selectedMonth = $("#month").val();
-    var selectedDay = $("#day").val();
-    var selectedScreenNum = 5;
-
-    $.ajax({
-        type: "POST",
-        url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_date_check.jsp",
-        data: {
-            year: selectedYear,
-            month: selectedMonth,
-            day: selectedDay,
-            screenNum: selectedScreenNum //5관
-        },
-        dataType: "json",
-        success: function (data) {
-            updateMovieInfo(data);
-        },
-        error: function (error) {
-            alert("스케줄을 불러오는데 오류가 발생하였습니다.");
-        },
-    });
-}
 
  function updateMovieInfo(movieData) {
     var movieInfoDiv = $("#movieInfo");
