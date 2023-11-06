@@ -547,12 +547,12 @@ function updateMovieSchedule() {
             alert("스케줄을 불러오는데 오류가 발생하였습니다.");
         },
         success: function (data) {
-            updateMovieInfo(data);
+            /* updateMovieInfo(data); */
         }
     });
 }
 
- function updateMovieInfo(movieData) {
+/*  function updateMovieInfo(movieData) {
     var movieInfoDiv = $("#movieInfo");
     
     //영화 초기화
@@ -571,7 +571,7 @@ function updateMovieSchedule() {
         movieInfoElement.append(movieTitleElement, showtimeElement);
         movieInfoDiv.append(movieInfoElement);
     }
-} 
+}  */
 
 
 
