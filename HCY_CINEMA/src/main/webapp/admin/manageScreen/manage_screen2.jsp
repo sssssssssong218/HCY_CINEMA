@@ -354,7 +354,7 @@ to {
         %>
     </select>
     <strong>일</strong>
-    <button id="checkBtn" style="position: absolute; top:684px; left:600px;" onclick="updateMovieSchedule()" type="button" class="btn btn-primary">조회</button>
+    <input id="checkBtn" style="position: absolute; top:684px; left:600px;" type="button" class="btn btn-primary" value="조회">
     <br>
 </div>
 
@@ -514,24 +514,22 @@ for(int i=0;i<fixedHours.length;i++){
 </div>
         
 
-<script>
+<script type="text/javascript">
 
 $(function () {
     // 날짜가 변경될 때 실행
-    $("#year, #month, #day").on("change", function () {
+ /*    $("#year, #month, #day").on("change", function () {
         updateMovieSchedule();
     });
-
+ */
     // 페이지 로딩 시 초기화
-    updateMaxDay();
-});
-
-function updateMovieSchedule() {
+  /*   updateMaxDay(); */
+ 
     var selectedYear = $("#year").val();
     var selectedMonth = $("#month").val();
     var selectedDay = $("#day").val();
     var selectedScreenNum = 2;
-
+	$("#checkBtn").click(function(){
     $.ajax({
         type: "POST",
         url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_date_check.jsp",
@@ -542,23 +540,41 @@ function updateMovieSchedule() {
             screenNum: selectedScreenNum //2관
         },
         dataType: "json",
-        success: function (data) {
-            updateMovieInfo(data);
-        },
         error: function (error) {
-            alert(error.status);
+            console.log(error.status);
         },
+        success: function (jsonObj) {
+        	 var btn1 = $("#1"); // jQuery로 요소 선택
+        	 var btn2 = $("#1"); // jQuery로 요소 선택
+        	 var btn3 = $("#1"); // jQuery로 요소 선택
+        	 var btn4 = $("#1"); // jQuery로 요소 선택
+        	 var btn5 = $("#1"); // jQuery로 요소 선택
+             first.val(""); // 값 지우기
+        	$.each(jsonObj.data,function(i,json){
+        		json.mname;
+        	});
+            /* updateMovieInfo(data); */
+            
+           
+        }
     });
-}
+	});
+});
 
- function updateMovieInfo(movieData) {
-    var movieInfoDiv = $("#movieInfo");
+
+ 
+
+
+ /* function updateMovieInfo(movieData) {
+/*     var movieInfoDiv = $("#movieInfo"); */
+
     
     //영화 초기화
-    movieInfoDiv.empty();
+   /*  movieInfoDiv.empty(); */
+
 
     // 영화 정보 movieData
-    for (var i = 0; i < movieData.length; i++) {
+   /*  for (var i = 0; i < movieData.length; i++) {
         var movie = movieData[i];
 
         // div로 나타냄
@@ -569,8 +585,8 @@ function updateMovieSchedule() {
 
         movieInfoElement.append(movieTitleElement, showtimeElement);
         movieInfoDiv.append(movieInfoElement);
-    }
-} 
+    } 
+}  */
 
 
 
