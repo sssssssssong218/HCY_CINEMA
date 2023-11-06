@@ -458,80 +458,15 @@
  <!-- //Contents Area -->
 <script type="text/javascript">
 
-        $(function (){
-
-          /*   var searchfield = "0";
-
-            $('#selsearchfield').val(searchfield).attr("selected", "selected");
-
-            $('#btn_search').on('click', function () {
-//                if ($('#searchtext').val() == "") {
-//                    alert("검색어를 입력해 주세요.");
-//                    $('#searchtext').focus();
-//                    return false;
-//                } else {
-//                    Search();
-                //                }
-
-                Search();
-            });
-            
-            
-			$('#searchtext').keypress(function(event){
-				if(event.which == 13){
-					if ($('#searchtext').val() == "") {
-						alert("검색어를 입력해 주세요.");
-						$('#searchtext').focus();
-						return false;
-					} else {
-						Search();
-					}
-				}
-			});
-
-
-            function Search() {
-                location.href = "/support/news/default.aspx?searchtext=" + escape($("#searchtext").val()) + "&searchfield=" + $('#selsearchfield option:selected').val();
-                return false;
-            }
-            
-
-            $('.c_tab_wrap').children('.c_tab').children('li').on('click', function () {
-                //$('.c_tab_wrap').children('.c_tab').children('li').removeClass("on");
-                //$(this).addClass("on");
-
-                location.href = $(this).children('a').attr("href") + escape("") + "&searchfield=0";
-                return false;
-            }); */
-            
-			$("#btn_write").click(function(){
-				goToWrite();
-			});//btn_write.click
-			
-
-			$("#btnSearch").click(function(){
-				chkNull();
-			});//click
-			
-			$("#keyword").keyup(function(evt){ //keydown은 값을 받을 수 없음
-				if( evt.which == 13 /*엔터는 13번*/){
-					chkNull();
-				}//end if
-			});//keyup
-			/* 
-            $("#searchbtn").click(function(){
-        		chkNull();
-        	});//click
-        	
-        	$("#keyword").keyup(function(evt){ //keydown은 값을 받을 수 없음
-        		if( evt.which == 13 /*엔터는 13번*/){
-        			chkNull();
-        		}//end if
-        	});//keyup */
-        	
-        });//ready
-
-          
+      
+$(document).ready(function() {
+	$("#keyword").keyup(function(event) {
+        if (event.keyCode === 13) {
+        	chkNull()
+        }//if
+    });//keyUp
+	
+});//ready        
 
         function chkNull(){
         	var keyword = $("#keyword").val();
@@ -540,13 +475,50 @@
         		alert("검색 키워드를 입력해 주세요.")
         		return;
         	}//end if
-        	
-        	//글자수 제한
-        	
-        	//
-        	$("#frmSearch").submit();
-        	
+        	search()
         }//chkNull
+        
+        function search(){
+        	var data = { "search":$("#keyword").val()}
+        	$.ajax({
+        		url : "http://localhost/HCY_CINEMA/user/board/board_ajax.jsp",
+        		type : "get",
+        		data : data,
+        		dataType : "json",
+        		error : function(xhr){
+        			console.log(xhr.status)
+        		},
+        		success : function(jsonArr){
+        			var text = "";
+        			$.each(jsonArr,function(i,json){
+        				text += '<tr class="first" >'
+        				text += '<td>'
+        				text += json.postNum
+        				text += '</td>'
+        				text += '<td>' 
+        				text += json.id
+        				text += '</a></td>' 
+        				text += '<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/board_specific.jsp?postNum=' 
+        				text += json.postNum 
+        				text += '/>">' 
+        				text += json.title 
+        				text += '</a></td>' 
+        				text += '<td>'
+        				text += json.inputDate
+        				text += '</td>'
+        				text += '<td class="num">'
+        				text += json.viewCount
+        				text += '</td></tr>'
+        			})//each
+        			if(jsonArr.length == 0){
+        				text += '<td colspan="5" style="text-align:center"><strong><font size="5">"'
+        				text += $("#keyword").val()
+        				text += '"로 검색된 결과가 없습니다.</font></strong></td>'
+                    }//if
+        			$("#tbody").html(text)
+        		}//success
+        	})//ajax
+        }//search
         
         
         function memberDetail( id ){
@@ -632,8 +604,9 @@
 <label for="keyword" class="hidden">검색어 입력</label>
 <input type="text" name="keyword"  id="keyword" class="inputBox"   placeholder="검색어를 입력해 주세요" value="${ param.keyword ne 'null'? param.keyword : ''  }"/>
 <input type="text" style="display: none;"/>
-<input type="hidden" name="dataFlag" value="1"/>
-<input type="button" value="btnSearch" id="btnSearch" class="btn btn-info"/>
+<input type="hidden" id="dataFlag" name="dataFlag" value="1"/>
+<input type="button" value="검색" id="btnSearch" onclick="chkNull();" class="btn btn-danger"style="margin-left: 5px; background: #FB4357; width: 60px; 
+			height: 25px; color: #FFFFFF; border: none;"/>
 
 </form>
 	
@@ -718,7 +691,7 @@
 					</tr>
 				</thead>
                
-                 <tbody style="text-align:center">
+                 <tbody style="text-align:center" id="tbody">
         		<c:if test="${ empty boardList }">
       			 <tr>
    	     		<td colspan="5" style="text-align:center"><strong><font size="5">게시글이 존재하지 않습니다</font></strong></td>
