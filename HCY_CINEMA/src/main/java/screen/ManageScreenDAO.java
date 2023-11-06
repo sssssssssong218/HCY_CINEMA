@@ -1,5 +1,8 @@
 package screen;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -185,4 +188,83 @@ public class ManageScreenDAO {
 		
 	}//updateCancelTicket
 	
+	/*
+	 * public ManageSeatVO selectMember() {
+	 * 
+	 * }
+	 */
+	
+	public List<MovieVO> selectMovie(Date date) throws SQLException{
+		List<MovieVO> list=new ArrayList<MovieVO>();
+		
+		DBConnection db=DBConnection.getInstance();
+		
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=db.getCon();
+			
+			String selectMovie="select moviecode, mname,plot from movie where releasedate<? and enddate>?";
+			
+			pstmt=con.prepareStatement(selectMovie);
+			pstmt.setDate(1,date);
+			pstmt.setDate(2,date);
+			
+			rs=pstmt.executeQuery();
+			MovieVO mVO=null;
+			while(rs.next()) {
+				mVO=new MovieVO();
+				mVO.setMovieCode(rs.getString("moviecode"));
+				mVO.setmName(rs.getString("mname"));
+				BufferedReader br = null;
+				StringBuilder plot = new StringBuilder("");
+				try {
+					Clob clob = rs.getClob("plot");
+					if (clob != null) {
+						br = new BufferedReader(clob.getCharacterStream());
+						String temp = "";
+						while ((temp = br.readLine()) != null) {
+							plot.append(temp);
+						}
+						mVO.setPlot(plot.toString());
+						if (br != null) {
+							br.close();
+						}
+					}
+				} catch (IOException ie) {
+					ie.printStackTrace();
+				} // try
+				list.add(mVO);
+			}//while
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}//try
+		
+		return list;
+	}//selectMovie
+	
+	public void insertSchedule(MovieVO mVO,Date date) throws SQLException {
+		DBConnection db=DBConnection.getInstance();
+		
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=db.getCon();
+			
+			String insertSchedule="insert into schedule(MOVIECODE, SCREENNUM, SHOWTIME,price) values(?,?,?,10000)";
+			pstmt=con.prepareStatement(insertSchedule);
+			
+			pstmt.setString(1, mVO.getMovieCode());
+			pstmt.setString(2, mVO.getScreennum());
+			pstmt.setDate(3, date);
+			
+			pstmt.executeUpdate();
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}
+	}//insertSchedule
 }//class
