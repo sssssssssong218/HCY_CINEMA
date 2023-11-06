@@ -11,9 +11,9 @@
     <meta http-equiv="Cache-Control" content="No-Cache">
     <meta http-equiv="imagetoolbar" content="no">
     <meta name="viewport" content="width=1024">
-    <meta name="keywords" content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
-    <meta name="description" content="CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
-    <meta property="og:site_name" content="영화 그 이상의 감동. CGV">
+    <meta name="keywords" content="HCY, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema,  Hcy, hcy, 예매, 상영작">
+    <meta name="description" content="HCY는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. HCY홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
+    <meta property="og:site_name" content="영화 그 이상의 감동. HCY">
     <meta id="ctl00_og_title" property="og:title" content="자유게시판 < 고객센터 | 영화 그 이상의 감동. HCY">
     
     
@@ -520,13 +520,13 @@ $(function(){
 			
 			
 				<ul class="top_title_faq">
+			<form name="frmWrite" id="frmWrite" action="board_write_prcs.jsp" method="post">
 					<li class="title">
 					<span style="color: #333333; font-family: Noto-Sans KR; font-size: 12px; margin-left: 20px"><em>제목</em></span>
 					<input type="text" id="titleTxt" class="inputBox" style="width: 350px; height: 24px; margin-left: 10px;"/>
 					</li>
 				</ul>
 				<div class="view_area">
-				<form method="post">
 				
  				 <textarea id="postContent" name="txtContent" ></textarea>
  				 <input type="button" id="postSubmit" value="글쓰기" style="background: #5B5B58; width: 140px; height: 30px; color: #FFFFFF; font-size: 12px; margin-left: 320px"/>
@@ -543,22 +543,24 @@ $(function(){
 <!-- //Contents Area -->
 <script type="text/javascript">
 
-//<![CDATA[
+ $(function () {
 
-    (function ($) {
-        $(function () {
-            $('#btn_list').on('click', function () {
-                Search();
-            });
+	$("#btn_list").click(function(){
+		goBack();
+	});//click.목록으로
+	
+	$("#postSubmit").click(function(){
+		$("#frmWrite").submit();
+	});//click.글쓰기
+            
+});//ready
 
-            function Search() {
-                location.href = "/support/news/default.aspx?searchtext=" + escape("") + "&page=1&type=4&searchfield=0";
-                return false;
-            }
-        });
-    })(jQuery);
+function goBack() {
+	location.href = "http://localhost/HCY_CINEMA/user/board/board.jsp";
+	return false;
+}//goBack
 
-//]]>
+
 </script>
 
             

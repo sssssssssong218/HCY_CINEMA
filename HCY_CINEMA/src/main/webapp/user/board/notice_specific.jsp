@@ -491,10 +491,12 @@
 				<h2 class="tit">공지/뉴스</h2>
 				<p class="stit">HCY의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.</p>
 			</div>
+			
 			<div class="board_view_area">
 			
 				<ul class="top_title_faq">
-					<li class="title" ><%= nVO.getTitle() %></li>
+				
+					<li class="title" >[ <%= nVO.getSection() %> ] <%= nVO.getTitle() %></li>
 					<li class="stit_area">
 						<span>등록일<em class="regist_day"><%= nVO.getInputDate() %></em></span>
 						<span class="check_tit_area" style="margin-left:8px;">조회수<em class="check_num"><%= nDAO.UpdatedViewCount(noticeNum) %></em></span>
@@ -515,9 +517,6 @@
 <!-- //Contents Area -->
 <script type="text/javascript">
 
-//<![CDATA[
-
-    (function ($) {
         $(function () {
             $('#btn_list').on('click', function () {
                 Search();
@@ -528,9 +527,7 @@
                 return false;
             }
         });
-    })(jQuery);
 
-//]]>
 </script>
 
             
