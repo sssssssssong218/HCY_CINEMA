@@ -1,5 +1,6 @@
 package screen;
 
+import java.sql.Date;
 
 public class ScheduleVO {
 	private String showtime;

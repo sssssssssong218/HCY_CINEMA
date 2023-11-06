@@ -51,7 +51,7 @@
             <div class="submenu">
                 <ul>
                     <li><a href="http://localhost/HCY_CINEMA/user/movieInfo/moviechart.jsp">무비차트</a></li>
-                    <li class="on"><a href="" title="선택">상영예정작</a></li>
+                    <li class="on"><a href="http://localhost/HCY_CINEMA/user/movieInfo/moviechart_res.jsp" title="선택">상영예정작</a></li>
                     <!--<li><a href="/movies/?lt=3">CGV아트하우스</a></li>//-->
                 </ul>
             </div>

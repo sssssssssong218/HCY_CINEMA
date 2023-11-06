@@ -1,6 +1,6 @@
 package screen;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ChooseScheduleVO {
 	private int screenNum;

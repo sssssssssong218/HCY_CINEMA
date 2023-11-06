@@ -693,6 +693,7 @@ if (filteredData.length > 0) {
         ctx.fillText(text, textX-10, textY);
 
         xOffset += 2 * barWidth + spacing1 + spacing2;
+        
     }
 } else {
     // 데이터가 없을 때 처리
@@ -700,7 +701,23 @@ if (filteredData.length > 0) {
     ctx.fillStyle = "white";
     ctx.fillText("No data available", canvas.width / 2 - 60, canvas.height / 2);
 }
+//마우스 이벤트 처리
 
+
+canvas.addEventListener("mouseout", function(event) {
+    hideTooltip(); // 마우스가 그래프에서 벗어나면 툴팁을 숨김
+});
+
+function showTooltip(event, data) {
+    tooltip.style.display = "block";
+    tooltip.style.left = event.clientX + 10 + "px";
+    tooltip.style.top = event.clientY + 10 + "px";
+    tooltip.textContent = "Value 1: " + data.value1 + " - Value 2: " + data.value2;
+}
+
+function hideTooltip() {
+    tooltip.style.display = "none";
+}
 // 현재 시간을 가져오는 함수
 function displayCurrentTime() {
     var currentTimeElement = document.getElementById("currentTime");

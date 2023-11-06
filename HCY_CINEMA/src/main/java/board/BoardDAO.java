@@ -336,4 +336,39 @@ public class BoardDAO {
 	    return updatedViewCount;
 	}//UpdatedViewCount
 	
+	public List<BoardVO> selectSpecificBoard(String key) throws SQLException{
+		List<BoardVO> list = new ArrayList<BoardVO>();
+		
+		DBConnection db = DBConnection.getInstance();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = db.getCon();
+			
+			String selectSpecificBoard = "SELECT POSTNUM, ID, TITLE, INPUT_DATE, VIEWCOUNT from BOARD where TITLE like ?";
+			
+			pstmt = con.prepareStatement(selectSpecificBoard);
+			pstmt.setString(1, "%"+key+"%");
+			
+			rs=pstmt.executeQuery();
+			BoardVO bVO = null;
+			while(rs.next()) {
+				bVO = new BoardVO();
+				bVO.setPostNum(rs.getInt("POSTNUM"));
+				bVO.setId(rs.getString("ID"));
+				bVO.setTitle(rs.getString("TITLE"));
+				bVO.setInputDate(rs.getDate("INPUT_DATE"));
+				bVO.setViewCount(rs.getInt("VIEWCOUNT"));
+				list.add(bVO);
+			}//while
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}//finally
+		
+		return list;
+	}//selectSpecificBoard
+	
 }//class

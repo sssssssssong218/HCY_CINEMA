@@ -1,3 +1,4 @@
+<%@page import="java.sql.Date"%>
 <%@page import="screen.ScheduleVO"%>
 <%@page import="java.util.List"%>
 <%@page import="screen.ManageScreenDAO"%>
@@ -51,6 +52,8 @@
 	<script src="demo.min.js" type="text/javascript"></script>
 	<script src="page-index-v3.demo.min.js" type="text/javascript"></script>
 	<script src="apps.min.js" type="text/javascript"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	
 
 
 <!--[if lt IE 9]>
@@ -305,63 +308,57 @@ to {
 }
 </style>
 <div style="overflow: auto">
-	<h2>&nbsp;&nbsp;상영스케줄 - 2D</h2><br>
-	<img src="http://localhost/HCY_CINEMA/common/images/movie_seat_icon.png" style="margin-left:100px"><br><br><br>
-	<br><h3>&nbsp;&nbsp;&nbsp;&nbsp;날짜 선택</h3>
-
-   &nbsp;&nbsp;&nbsp;
-
-
-
-
-<select  onchange=""
-      class="form-select pt-1 mt-4" style="height: 33px; width: 10%;font-size:20px;font-family: 'Open Sans'; text-align: center;" id="year">
-    <%
-    Calendar cal = Calendar.getInstance();
-    int nowYear = cal.get(Calendar.YEAR);
-    cal.set(Calendar.YEAR, nowYear);
-
-    for (int i = nowYear; i < nowYear + 3; i++) {
-    %>
-        <option value="<%= i %>"<%= i == nowYear ? "selected='selected'" : "" %>><%= i %></option>
-    <%
-    }
-    %>
-</select>  
-<strong>년</strong>
-
-<select onchange="updateMaxDay()"
-      class="form-select pt-1 mt-4" style="height: 33px; width: 10%;font-size:20px;font-family: 'Open Sans';  text-align: center;" id="month">
-    <%
-    int nowMonth = cal.get(Calendar.MONTH) + 1;
-    cal.set(Calendar.MONTH, nowMonth - 1);
-    for (int i = 1; i < 13; i++) {
-    %>
-        <option value="<%= i %>"<%= i == nowMonth ? "selected='selected'" : "" %>><%= i %></option>
-    <%
-    }
-    %>
-</select>  
-<strong>월</strong>
-<select onchange="updateMaxDay()"
-      class="form-select pt-1 mt-4" style="height: 33px;width: 10%;font-size:20px;font-family: 'Open Sans';text-align: center;" id="day">
-    <%
-    int maxDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-    int nowDay = cal.get(Calendar.DATE);
-    cal.set(Calendar.DAY_OF_MONTH,nowDay );
-    %>
-    <%
-    for (int i = 1; i <= maxDay; i++) {
-    %>
-        <option value="<%= i %>"<%= i == nowDay ? "selected='selected'" : "" %>><%= i %></option>
-    <%
-    }
-    %>
-</select>
-<strong>일</strong>
-<input class="btn btn-primary" type="button" value="조회" id="check">
+    <h2>&nbsp;&nbsp;상영스케줄 - 2D</h2>
     <br>
-</div>	
+    <img src="http://localhost/HCY_CINEMA/common/images/movie_seat_icon.png" style="margin-left:100px">
+    <br><br><br>
+    <br>
+    <h3>&nbsp;&nbsp;&nbsp;&nbsp;날짜 선택</h3>
+    &nbsp;&nbsp;&nbsp;
+    <select onchange="updateMovieSchedule()" class="form-select pt-1 mt-4" style="height: 33px; width: 10%; font-size: 20px; font-family: 'Open Sans'; text-align: center;" id="year">
+        <% Calendar cal = Calendar.getInstance();
+        int nowYear = cal.get(Calendar.YEAR);
+        cal.set(Calendar.YEAR, nowYear);
+
+        for (int i = nowYear; i < nowYear + 3; i++) {
+        %>
+        <option value="<%= i %>"<%= i == nowYear ? "selected='selected'" : "" %>><%= i %></option>
+        <%
+        }
+        %>
+    </select>
+    <strong>년</strong>
+    <select onchange="updateMaxDay()" class="form-select pt-1 mt-4" style="height: 33px; width: 10%; font-size: 20px; font-family: 'Open Sans'; text-align: center;" id="month">
+        <%
+        int nowMonth = cal.get(Calendar.MONTH) + 1;
+        cal.set(Calendar.MONTH, nowMonth - 1);
+        for (int i = 1; i < 13; i++) {
+        %>
+        <option value="<%= i %>"<%= i == nowMonth ? "selected='selected'" : "" %>><%= i %></option>
+        <%
+        }
+        %>
+    </select>
+    <strong>월</strong>
+    <select onchange="updateMaxDay()" class="form-select pt-1 mt-4" style="height: 33px; width: 10%; font-size: 20px; font-family: 'Open Sans'; text-align: center;" id="day">
+        <%
+        int maxDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        int nowDay = cal.get(Calendar.DATE);
+        cal.set(Calendar.DAY_OF_MONTH, nowDay);
+        %>
+        <%
+        for (int i = 1; i <= maxDay; i++) {
+        %>
+        <option value="<%= i %>"<%= i == nowDay ? "selected='selected'" : "" %>><%= i %></option>
+        <%
+        }
+        %>
+    </select>
+    <strong>일</strong>
+    <button id="checkBtn" style="position: absolute; top:684px; left:600px;" onclick="updateMovieSchedule()" type="button" class="btn btn-primary">조회</button>
+    <br>
+</div>
+
 
 
 								
@@ -371,36 +368,46 @@ to {
 int screenNum=1;
 ManageScreenDAO msDAO=ManageScreenDAO.getInstance();
 List<ScheduleVO> list=msDAO.selectScheduleDate(screenNum);
-
 ScheduleVO sVO=null;
+
+int[]fixedHours={10,13,16,19,22};
 
 %>
 <div id="no_schedule_modal" style="margin-left:20px;">
+
 <h3>스케줄 선택</h3>
 <%
-	int hour=0;
-	for(int i=0;i<list.size();i++){
-		sVO=new ScheduleVO();
-		sVO=list.get(i);
-		hour=10+3*i;
+for(int i=0;i<fixedHours.length;i++){
+	int hour=fixedHours[i];
+	boolean hasSchedule=false;
+	for(int j=0;j<list.size();j++){
+		sVO=list.get(j);
+		 int scheduleHour=Integer.parseInt(sVO.getShowtime().substring(11,13));
+		
+		if(scheduleHour==hour){
+			hasSchedule=true;
+			break;
+		}//end if
+	}//end for
 		/* System.out.print(sVO); */
 %>
+
 <div style="display: inline-block;">
 	 <label style="width:200px;font-size:20px">
-		 <span id="hour<%=i%>" name="hour<%=i%>" value="hour<%=i%>:00"><%= hour %>:00
-	 </span>
-	 </label>
-	 <input type="hidden" value=>
-	<input id="<%=i+1 %>" style="font-size:20px" type="button" class="btn btn-dark" value="<%=sVO.getMname()%>"<%=sVO.getShowtime().substring(5, sVO.getShowtime().length()) %>" 
-       name="<%=sVO.getMname() %>" onclick="openModal('<%=sVO.getMname() %>')">
-</div>  
+		<span id="hour<%=i%>" name="hour<%=i%>" value="hour<%=i%>:00"><%= hour %>:00</span>
+        </label>
+	<input id="<%=i+1 %>" style="font-size:20px" type="button" class="btn btn-dark" value="<%= hasSchedule ? sVO.getMname() : "스케줄 없음" %>"
+            name="<%= hasSchedule ? sVO.getMname() : "스케줄 없음" %>" onclick="openModal('<%= hasSchedule ? sVO.getMname() : "스케줄 없음" %>')">
+    </div>
 <%		
-	}
+}//end for
 %>
-    <input type="button" class="btn btn-dark" value="스케줄 없음" name="스케줄 없음" onclick="openModal('스케줄 없음')">
+</div>
 </div><br><br>
+<input type="hidden" name="screenNum" value="1" id="screenNum">
 
-<div id="myModal" class="modal" style="overflow: auto;">
+
+<div id="no_has_schedule" class="modal" style="overflow: auto;">
     <div class="modal-content" style="overflow: auto;">
         <h2>스케줄 추가</h2><br>
         <div class="input-container" style="overflow: auto;">
@@ -416,12 +423,12 @@ ScheduleVO sVO=null;
             <textarea id="movieDescription" rows="8" cols="50"></textarea>
         </div>
         <div class="button-container" style="overflow: auto;">
-            <button type="button" class="btn btn-primary" onclick="saveMovie('myModal')">저장</button>
-            <button type="button" class="btn btn-danger" onclick="closeModal('myModal')">취소</button>
+            <button type="button" class="btn btn-primary" onclick="saveMovie('no_has_schedule')">저장</button>
+            <button type="button" class="btn btn-danger" onclick="closeModal('no_has_schedule')">취소</button>
         </div>
     </div>
 </div>
-<div id="other_modal" class="modal" >
+<div id="has_schedule" class="modal" >
     <div class="modal-content" style="overflow: auto;">
         <h2>&nbsp;&nbsp;&nbsp;스케줄 내역 관리</h2><br>
          <div id="no_shcedule" style="margin-left:20px; max-height: 300px; overflow: auto;">
@@ -441,42 +448,156 @@ ScheduleVO sVO=null;
                             <button type="button" class="btn btn-info" style="float:right">예매취소</button>
                         </td>
                     </tr>
+                    <tr>
+                        <td>A1</td>
+                        <td>Otto</td>
+                        <td>예매
+                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A1</td>
+                        <td>Otto</td>
+                        <td>예매
+                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A1</td>
+                        <td>Otto</td>
+                        <td>예매
+                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A1</td>
+                        <td>Otto</td>
+                        <td>예매
+                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A1</td>
+                        <td>Otto</td>
+                        <td>예매
+                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A1</td>
+                        <td>Otto</td>
+                        <td>예매
+                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A1</td>
+                        <td>Otto</td>
+                        <td>예매
+                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>A1</td>
+                        <td>Otto</td>
+                        <td>예매
+                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
+                        </td>
+                    </tr>
                    
                 </tbody>
             </table>
         </div>                    
     </div>
         <div class="button-container">
-            <button type="button" class="btn btn-danger" onclick="closeModal('other_modal')" style="margin-left:250px">닫기</button>
+            <button type="button" class="btn btn-danger" onclick="closeModal('has_schedule')" style="margin-left:250px">닫기</button>
         </div>
 </div>
         
 
 <script>
+
+$(function () {
+    // 날짜가 변경될 때 실행
+    $("#year, #month, #day").on("change", function () {
+        updateMovieSchedule();
+    });
+
+    // 페이지 로딩 시 초기화
+    updateMaxDay();
+});
+
+function updateMovieSchedule() {
+    var selectedYear = $("#year").val();
+    var selectedMonth = $("#month").val();
+    var selectedDay = $("#day").val();
+    var selectedScreenNum = 1;
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_date_check.jsp",
+        data: {
+            year: selectedYear,
+            month: selectedMonth,
+            day: selectedDay,
+            screenNum: selectedScreenNum //1관
+        },
+        dataType: "json",
+        error: function (error) {
+            alert("스케줄을 불러오는데 오류가 발생하였습니다.");
+        },
+        success: function (data) {
+            /* updateMovieInfo(data); */
+        }
+    });
+}
+
+/*  function updateMovieInfo(movieData) {
+    var movieInfoDiv = $("#movieInfo");
+    
+    //영화 초기화
+    movieInfoDiv.empty();
+
+    // 영화 정보 movieData
+    for (var i = 0; i < movieData.length; i++) {
+        var movie = movieData[i];
+
+        // div로 나타냄
+        var movieInfoElement = $("<div class='movie-info'>");
+        var movieTitleElement = $("<h3>").text(movie.mname);
+        var showtimeElement = $("<p>").text("상영 시간: " + movie.showtime);
+        // 필요한 다른 정보도 추가
+
+        movieInfoElement.append(movieTitleElement, showtimeElement);
+        movieInfoDiv.append(movieInfoElement);
+    }
+}  */
+
+
+
+
+
 function updateMaxDay() {
-    // 엘리먼트
     var yearSelect = document.getElementById("year");
     var monthSelect = document.getElementById("month");
     var daySelect = document.getElementById("day");
 
-    // 변수 지정
     var selectedYear = yearSelect.value;
     var selectedMonth = monthSelect.value;
     var selectedDay = daySelect.value;
 
-    // 월을 1일부터 보여줌
+    // 1월부터
     var adjustedMonth = selectedMonth - 1;
 
-    // 현재 선택된 날짜
+    // 선택된 날짜
     var currentDate = new Date(selectedYear, adjustedMonth, selectedDay);
 
-    // 선택된 월의 마지막 날짜
     var lastDay = new Date(selectedYear, adjustedMonth + 1, 0).getDate();
 
-    // 기존의 일자 옵션을 모두 제거하여 초기화
+    //초기화
     daySelect.innerHTML = "";
 
-    // 선택한 월의 마지막 날까지 옵션을 생성하고 추가
+    // 선택한 날짜 옵션 추가해줌
     for (var i = 1; i <= lastDay; i++) {
         var option = document.createElement("option");
         option.value = i;
@@ -494,7 +615,7 @@ function updateMaxDay() {
     }
 }
 
-// 페이지가 로딩될 때 초기화 함수를 호출하여 현재 날짜 설정
+// 페이지 로딩할 때 초기화
 window.onload = function() {
     updateMaxDay();
 };
@@ -502,44 +623,44 @@ window.onload = function() {
 function openModal(name) {
     if (name === "스케줄 없음") {
         // 스케줄 없음 모달 열기
-        document.getElementById("myModal").style.display = "block";
+        document.getElementById("no_has_schedule").style.display = "block";
         // 모달을 띄울 때 해당 버튼의 이름을 저장
-        document.getElementById("myModal").dataset.buttonName = name;
+        document.getElementById("no_has_schedule").dataset.buttonName = name;
     } else {
         // 다른 버튼을 누를 때 기타 모달 열기
-        document.getElementById("other_modal").style.display = "block";
+        document.getElementById("has_schedule").style.display = "block";
         // 모달을 띄울 때 해당 버튼의 이름을 저장
-        document.getElementById("other_modal").dataset.buttonName = name;
+        document.getElementById("has_schedule").dataset.buttonName = name;
     }
 }
 
 function saveMovie(modalName) {
-    if (modalName === "myModal") {
+    if (modalName === "no_has_schedule") {
         const movieName = document.getElementById("movieName").value;
         const movieDescription = document.getElementById("movieDescription").value;
         // 해당 버튼의 값을 업데이트
-        const buttonName = document.getElementById("myModal").dataset.buttonName;
+        const buttonName = document.getElementById("no_has_schedule").dataset.buttonName;
         document.querySelector(`input[name="${buttonName}"]`).value = movieName;
         // 모달을 닫음
-        closeModal("myModal");
-    } else if (modalName === "other_modal") {
+        closeModal("no_has_schedule");
+    } else if (modalName === "has_schedule") {
         const otherInfo = document.getElementById("otherInfo").value;
         // 해당 버튼의 값을 업데이트
-        const buttonName = document.getElementById("other_modal").dataset.buttonName;
+        const buttonName = document.getElementById("has_schedule").dataset.buttonName;
         // 예: 버튼 텍스트를 업데이트
         document.querySelector(`input[name="${buttonName}"]`).value = otherInfo;
         // 모달을 닫음
-        closeModal("other_modal");
+        closeModal("has_schedule");
     }
 }
 
 function closeModal(modalName) {
-    if (modalName === "myModal") {
+    if (modalName === "no_has_schedule") {
         // 스케줄 없음 모달 닫기
-        document.getElementById("myModal").style.display = "none";
-    } else if (modalName === "other_modal") {
+        document.getElementById("no_has_schedule").style.display = "none";
+    } else if (modalName === "has_schedule") {
         // 기타 모달 닫기
-        document.getElementById("other_modal").style.display = "none";
+        document.getElementById("has_schedule").style.display = "none";
     }
 }
 </script>

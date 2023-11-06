@@ -43,10 +43,10 @@ public class ManageScreenDAO {
 			
 			StringBuilder selectScheduleDate=new StringBuilder();
 			selectScheduleDate.append(" SELECT S.MOVIECODE, TO_CHAR(S.SHOWTIME, 'YYYY-MM-DD HH24:MI') AS SHOWTIME, M.MNAME")
-			.append(" FROM SCHEDULE S")
-			.append(" INNER JOIN MOVIE M ON S.MOVIECODE = M.MOVIECODE")
-			.append(" WHERE S.SCREENNUM = ?")
-			.append(" AND S.SHOWTIME BETWEEN TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD')) AND TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD')) + 1");
+			.append(" FROM SCHEDULE S																					  ")
+			.append(" INNER JOIN MOVIE M ON S.MOVIECODE = M.MOVIECODE													  ")
+			.append(" WHERE S.SCREENNUM = ?																				  ")
+			.append(" AND S.SHOWTIME BETWEEN TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD')) AND TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD')) + 1 ORDER BY SHOWTIME ");
 			
 			pstmt=con.prepareStatement(selectScheduleDate.toString());
 			
@@ -72,8 +72,50 @@ public class ManageScreenDAO {
 		return list;
 	}//selectScheduleDate
 	
-	public NonScheduleVO selectShowtime(Date d)throws SQLException{
+	public List<ScheduleVO> selectMovieSchedule(ChooseScheduleVO csVO) throws SQLException {
+	    List<ScheduleVO> list = new ArrayList<ScheduleVO>();
+	    DBConnection db = DBConnection.getInstance();
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    ScheduleVO sVO = null;
+
+	    try {
+	        con = db.getCon();
+	        // SQL 쿼리를 작성
+	        StringBuilder selectMovieSchedule=new StringBuilder();
+	        selectMovieSchedule.append(" SELECT S.MOVIECODE, TO_CHAR(S.SHOWTIME, 'YYYY-MM-DD HH24:MI') AS SHOWTIME, M.MNAME")
+			.append(" FROM SCHEDULE S																					  ")
+			.append(" INNER JOIN MOVIE M ON S.MOVIECODE = M.MOVIECODE													  ")
+			.append(" WHERE S.SCREENNUM = ?																				  ")
+			.append(" AND S.SHOWTIME BETWEEN TO_DATE(TO_CHAR(?, 'YYYY-MM-DD')) AND TO_DATE(TO_CHAR(?, 'YYYY-MM-DD')) + 1 ORDER BY SHOWTIME ");
+
+	        pstmt = con.prepareStatement(selectMovieSchedule.toString());
+	        pstmt.setInt(1, csVO.getScreenNum());
+	        pstmt.setDate(2, (Date)(csVO.getShowtime()));
+	        pstmt.setDate(3, (Date)(csVO.getShowtime()));
+
+	        rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            sVO = new ScheduleVO();
+	            sVO.setMovieCode(rs.getString("moviecode"));
+	            sVO.setShowtime(rs.getString("showtime"));
+	            sVO.setMname(rs.getString("mname"));
+	            list.add(sVO);
+	        }
+	    } finally {
+	        db.dbClose(rs, pstmt, con);
+	    }//end finally
+
+	    return list;
+	}//selectMovieSchedule
+	
+	
+	public NonScheduleVO selectShowtime(Date scheduleDate)throws SQLException{
 		NonScheduleVO nsVO=null;
+		
+		
 		
 		
 		return nsVO;
