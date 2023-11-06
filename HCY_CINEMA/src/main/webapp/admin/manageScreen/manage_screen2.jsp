@@ -546,7 +546,7 @@ function updateMovieSchedule() {
             updateMovieInfo(data);
         },
         error: function (error) {
-            alert("스케줄을 불러오는데 오류가 발생하였습니다.");
+            alert(error.status);
         },
     });
 }

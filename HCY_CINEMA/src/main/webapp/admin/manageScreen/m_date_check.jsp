@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="org.json.simple.JSONArray"%>
@@ -59,7 +60,7 @@ try {
     
     List<ScheduleVO> list = msDAO.selectMovieSchedule(csVO);
 
-    /* System.out.println(list); */
+     /* System.out.println(list); */
     // JSON 배열
     JSONArray jsonArray = new JSONArray();
     JSONObject scheduleJson = new JSONObject();
@@ -69,8 +70,7 @@ try {
         scheduleJson.put("mname", sVO.getMname());
         jsonArray.add(scheduleJson);
     }//end for
-
-    response.getWriter().write(jsonArray.toJSONString());
+     response.getWriter().write(jsonArray.toJSONString()); 
 } catch (Exception e) {
     e.printStackTrace();
 }//end catch

@@ -1,3 +1,4 @@
+<%@page import="java.sql.Date"%>
 <%@page import="screen.ScheduleVO"%>
 <%@page import="java.util.List"%>
 <%@page import="screen.ManageScreenDAO"%>
@@ -381,7 +382,7 @@ for(int i=0;i<fixedHours.length;i++){
 	boolean hasSchedule=false;
 	for(int j=0;j<list.size();j++){
 		sVO=list.get(j);
-		int scheduleHour=Integer.parseInt(sVO.getShowtime().substring(11,13));
+		 int scheduleHour=Integer.parseInt(sVO.getShowtime().substring(11,13));
 		
 		if(scheduleHour==hour){
 			hasSchedule=true;
@@ -542,12 +543,12 @@ function updateMovieSchedule() {
             screenNum: selectedScreenNum //1관
         },
         dataType: "json",
-        success: function (data) {
-            updateMovieInfo(data);
-        },
         error: function (error) {
             alert("스케줄을 불러오는데 오류가 발생하였습니다.");
         },
+        success: function (data) {
+            updateMovieInfo(data);
+        }
     });
 }
 

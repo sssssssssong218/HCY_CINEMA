@@ -104,7 +104,6 @@ public class ManageScreenDAO {
 	            sVO.setMname(rs.getString("mname"));
 	            list.add(sVO);
 	        }
-	        System.out.println(list);
 	    } finally {
 	        db.dbClose(rs, pstmt, con);
 	    }//end finally
