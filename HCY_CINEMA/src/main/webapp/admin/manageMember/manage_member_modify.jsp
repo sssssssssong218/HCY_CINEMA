@@ -372,10 +372,22 @@
                             
         <script>
        function confirmSave() {
+    	   
            var confirmSave = confirm("수정된 회원정보를 저장하시겠습니까?");
            if (confirmSave) {
+        	   var name=$("#newName").val();
+        	   var tel=$("#newTel").val();
+        	   var email=$("#newEmail").val();
+        	   var birth=$("#newBirth").val();
+        	   if(name.includes(" ")||tel.includes(" ")||email.includes(" ")||birth.includes(" ")){
+        		   alert("회원정보를 올바르게 입력하세요");
+        	   }
+        	   else{
                $("#frm").submit();
                alert("회원정보가 변경되었습니다.");
+        		   
+        	   }
+        	   
            } else {
                alert("변경된 내용이 취소되었습니다.");
                window.location.href = "http://localhost/HCY_CINEMA/admin/manageMember/manage_member_info.jsp?memberId=<%= mVO.getId()%>"; 
@@ -413,7 +425,7 @@
                                         <tr>
                                             <th style="width:250px"><strong>이름</strong></th>
                                             <td style="text-align: center;">
-                                            <input type="text" name="newName" value="<%= name %>">
+                                            <input type="text" id="newName"name="newName" value="<%= name %>">
                                             </td>
                                             <td>ex) 홍길동</td>
                                         </tr>
@@ -426,21 +438,21 @@
                                         <tr>
                                             <th><strong>생년월일</strong></th>
                                             <td style="text-align: center; margin-left: 1000px;">
-                                            <input type="text" name="newBirth" value="<%= formattedBirthDate %>">
+                                            <input type="text" id="newBirth" name="newBirth" value="<%= formattedBirthDate %>">
                                             </td>
                                             <td style="width:400px">ex) 19980101</td>
                                         </tr>
                                         <tr>
                                             <th><strong>휴대전화</strong></th>
                                             <td style="text-align: center;">
-                                            <input type="text" name="newTel" value="<%=tel %>">
+                                            <input type="text" id="newTel" name="newTel" value="<%=tel %>">
                                             </td>
                                             <td>ex) 010-1234-5678</td>
                                         </tr>
                                         <tr>
                                             <th><strong>이메일</strong></th>
                                             <td style="text-align: center;">
-                                            <input type="text" name="newEmail" value="<%=email %>">
+                                            <input type="text" name="newEmail" id="newEmail" value="<%=email %>">
                                             </td>
                                             <td>ex) songsong@naver.com</td>
                                         </tr>
