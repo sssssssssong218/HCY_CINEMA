@@ -94,7 +94,7 @@
 		alert(스틸컷의 확장자는 jpg또는 png만 가능합니다);
 
 		<%
-		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_detail_movie.jsp");
+		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
 		return;
 		}
 		}
@@ -165,7 +165,7 @@
 		alert(업로드 실패: 올바른 파일 확장자를 사용하세요);
 		
 		<%
-		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_detail_movie.jsp");
+		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
 		return;
 		}
 		
@@ -186,7 +186,7 @@
 		%>
 		alert(파일업로드 중 오류발생);
 		<%
-		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_detail_movie.jsp");
+		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
 		return;
 		}
 		mVO.setPosterFile(posterfile);
@@ -200,7 +200,7 @@
 		alert(업로드 실패: 올바른 파일 확장자를 사용하세요);
 		
 		<%
-		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_detail_movie.jsp");
+		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
 		return;
 		}
 
@@ -226,7 +226,7 @@
 alert(파일업로드 중 오류발생);
 		
 		<%
-		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_detail_movie.jsp");
+		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
 		return;
 		}
 	
@@ -260,7 +260,7 @@ alert(파일업로드 중 오류발생);
 		alert(파일업로드 중 오류발생)
 		
 		<%
-		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_detail_movie.jsp");
+		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
 		return;
 		}
 		}
@@ -277,10 +277,10 @@ alert(파일업로드 중 오류발생);
 		alert(상영시간은 숫자로만 입력이 가능합니다.);
 
 		<%
-		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_detail_movie.jsp");
+		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
 		return;
 		}
-		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_detail_movie.jsp");
+		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
 		%>
 	});
 </script>
