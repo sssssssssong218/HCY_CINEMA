@@ -22,14 +22,14 @@
     <meta http-equiv="Cache-Control" content="No-Cache">
     <meta http-equiv="imagetoolbar" content="no">
     <meta name="viewport" content="width=1024">
-    <meta id="ctl00_og_title" property="og:title" content="나의 예매내역 | 영화 그 이상의 감동. CGV">
+    <meta id="ctl00_og_title" property="og:title" content="나의 예매내역 | 영화 그 이상의 감동. HCY">
     
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
-    <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
-    <title id="ctl00_headerTitle">나의 예매내역 | 영화 그 이상의 감동. CGV</title>
-    <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
+    <link rel="shortcut icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
+    <title id="ctl00_headerTitle">나의 예매내역 | 영화 그 이상의 감동. HCY</title>
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/layout.css">
@@ -262,7 +262,7 @@
 <div class="cols-content">
   <div class="col-aside">
 		<div class="skipnaiv">
-			<a href="#mycgv_contents" id="skipMycgvMenu">MYCGV 서브메뉴 건너띄기</a>
+			<a href="#mycgv_contents" id="skipMycgvMenu">MYHCY 서브메뉴 건너띄기</a>
 		</div>
 	    <h2>MY HCY 서브메뉴</h2>
 	    
@@ -422,7 +422,7 @@
 		
 	    <!-- CGV 예매 관련 정책 안내 Box Type -->
 	    <div class="sect-box-descri">
-	        <h4>CGV 예매 관련 정책 안내</h4>
+	        <h4>HCY 예매 관련 정책 안내</h4>
 	        <!-- Box Moudle -->
 	        <div class="box-polaroid">
 	            <div class="box-inner">
