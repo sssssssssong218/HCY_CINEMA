@@ -241,7 +241,7 @@
                     <!-- 최대 10개까지만 보여집니다 2 -->
                     <span class="screentype">
                         
-                            <a href="/theaters/special/?regioncode=SCX&amp;theaterCode=0056" class="imax">imax</a>
+                            <a href="http://localhost/HCY_CINEMA/user/home/iMax.jsp" class="imax">imax</a>
                         
                     </span>
                 </div>
