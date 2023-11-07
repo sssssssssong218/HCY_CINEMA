@@ -683,7 +683,7 @@ $(document).ready(function() {
 				<thead>
 					<tr>
 					<th scope="col">번호</th>
-                    <th scope="col">작성자</th>
+                    <th scope="col">작성자 ID</th>
 					<th scope="col" class="tit" style="text-align: center">제목</th>
 					<th scope="col">등록일</th>
 					<th scope="col">조회수</th>
