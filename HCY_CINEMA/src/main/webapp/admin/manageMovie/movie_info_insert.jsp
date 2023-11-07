@@ -42,7 +42,9 @@
 		AddMovieDAO amDAO = AddMovieDAO.getInstance();
 		AddMovieVO amVO = new AddMovieVO();
 		String hide = "";
+		String movieCode="";
 		String[] hideArr = null;
+		DetailMovieDAO dmDAO=DetailMovieDAO.getInstance(); 
 		List<String> list = new ArrayList<String>();
 		try {
 		    File saveDir = new File("C:/Users/user/git/HCY_CINEMA/HCY_CINEMA/src/main/webapp/common/movie_files");
@@ -96,8 +98,8 @@
 		    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		    java.sql.Date sqlDate1 = new java.sql.Date(date1.getTime());
 		     amDAO.insertMovie(new AddMovieVO(mname, sqlDate, sqlDate1, plot, Integer.parseInt(runningtime), age, status));
-		    String movieCode = amDAO.selectMovieCode(mname);
-			DetailMovieDAO dmDAO=DetailMovieDAO.getInstance(); 
+		   movieCode = amDAO.selectMovieCode(mname);
+			
 
 			 miVO.setActor(actor_list);
 			 miVO.setExtra(extra_list);
@@ -110,10 +112,10 @@
 			dmDAO.insertContryInfo(country, movieCode);
 			
 		    if (!(posterfileExtension.equals(".jpg") || posterfileExtension.equals(".png") || trailerfileExtension.equals(".mp4"))) {
-		%>
-		    alert(업로드 실패: 올바른 파일 확장자를 사용하세요);
-		<%
-		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+		    	dmDAO.deleteMovie(movieCode);
+		        session.setAttribute("msg", "업로드 실패! 올바른 확장자를 입력해주세요!");
+				session.setAttribute("url", "http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+				response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
 		        return;
 		    }
 
@@ -142,10 +144,10 @@
 		        // 성공적으로 복사되었으면 포스터 파일 이름 업데이트
 		        posterfile = posternewFileName;
 		    } else {
-		    %>
-		    alert("파일업로드 중 오류발생");
-		    <%
-		    response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+		    	dmDAO.deleteMovie(movieCode);
+		        session.setAttribute("msg", "파일업로드중 오류발생!");
+				session.setAttribute("url", "http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+				response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
 		        return;
 		    }
 
@@ -156,10 +158,10 @@
 		        // 성공적으로 복사되었으면 트레일러 파일 이름 업데이트
 		        trailerfile = trailernewFileName;
 		    } else {
-		    %>
-		  alert("파일업로드 중 오류발생");
-		    <%
-		    response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+		    	dmDAO.deleteMovie(movieCode);
+		        session.setAttribute("msg", "파일업로드중 오류발생!");
+				session.setAttribute("url", "http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+				response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
 		        return;
 		    }
 
@@ -177,10 +179,10 @@
 		            // 성공적으로 복사되었으면 리스트에 업데이트
 		            list.set(i, stillnewFileName);
 		        } else {
-		        %>
-		       alert("파일업로드중 오류발생")
-		        <%
-		        response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+		        	dmDAO.deleteMovie(movieCode);
+			        session.setAttribute("msg", "파일업로드중 오류발생!");
+					session.setAttribute("url", "http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+					response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
 		            return;
 		        }
 		    }
@@ -195,11 +197,9 @@
 		    if (amDAO.insertMoviePosterFile(mVO, movieCode)) {
 		    	amDAO.insertMovieStillFile(mVO, movieCode);
 		        amDAO.insertMainTrailer(mVO, movieCode);
-		%>
-		    alert("업로드 성공");
-		    
-		<%
-		response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+		        session.setAttribute("msg", "업로드 성공!");
+				session.setAttribute("url", "http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+				response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
 		return;
 		    } else {
 		%>
@@ -208,15 +208,22 @@
 		    }
 		} catch (IOException ie) {
 		    ie.printStackTrace();
-		    out.println("파일 업로드 처리 중 문제 발생");
+		    dmDAO.deleteMovie(movieCode);
+			session.setAttribute("msg", "파일업로드중 문제발생!");
+			session.setAttribute("url", "http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+			response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
 		}catch(NumberFormatException nfe){
 			nfe.printStackTrace();
-			%>
-			alert("상영시간은 숫자만 입력가능합니다.");
-			
-			<%
-			response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+			dmDAO.deleteMovie(movieCode);
+			session.setAttribute("msg", "상영시간은 숫자만 입력가능합니다!");
+			session.setAttribute("url", "http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+			response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
 			return;
+		}catch(NullPointerException npe){
+			dmDAO.deleteMovie(movieCode);
+			session.setAttribute("msg", "빈칸이 존재합니다!");
+			session.setAttribute("url", "http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+			response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
 		}
 		%>
 	});

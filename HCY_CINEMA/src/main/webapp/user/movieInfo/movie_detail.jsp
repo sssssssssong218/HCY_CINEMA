@@ -356,10 +356,8 @@
 								
 							</div>
 							<div class="score">
-								<strong class="percent">예매율&nbsp;<span>16.9%</span></strong>
 								<!-- 2020.05.07 개봉전 프리에그 노출, 개봉후 골든에그지수 노출변경 -->
 								<div class="egg-gage small">
-									<span class="sprite_preegg default"></span> 
 										
 								</div>
 							</div>
@@ -380,8 +378,6 @@
 										%>
 										<span><%=director%></span>
 									</dd>
-									<dt>&nbsp;/ 프로듀서 :&nbsp;</dt>
-									<dd>김주상</dd>
 
 									<dt>&nbsp;/ 배우 :&nbsp;</dt>
 									<dd class="on">
@@ -436,7 +432,7 @@
 											break;
 									}
 									%>
-									<dd class="on"><%=movieRating%>,&nbsp;<%=mVO.getRunningtime()%>분,&nbsp;국가
+									<dd class="on"><%=movieRating%>,&nbsp;<%=mVO.getRunningtime()%>분 / &nbsp;국가
 										: <%= country==null||"".equals(country) ?  forigen:country %>
 									</dd>
 									<dt>개봉 :&nbsp;</dt>

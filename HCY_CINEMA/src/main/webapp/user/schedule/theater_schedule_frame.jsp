@@ -309,7 +309,7 @@
                                         <em>
                                             </em>
                                     </span> <i>
-                                           ${mVO.runningTime }</i>/ <i>
+                                           ${mVO.runningTime }분</i>/ <i>
                                                 ${mVO.releseDate }
                                                 개봉</i>
                                 </div>
@@ -336,7 +336,7 @@
                                                     	if(sdVO.getTicketedSeat()<169){
                                                     		%>
                                                     		<li>
-                                                    	<a href="" target="_top" data-theatercode="0056" data-playymd="20231031" data-screencode="001" data-playnum="6" data-playstarttime="2030" data-playendtime="2232" data-theatername="CGV 강남" data-seatremaincnt="140" data-screenkorname="1관 6층">
+                                                    	<a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp" target="_top" data-theatercode="0056" data-playymd="20231031" data-screencode="001" data-playnum="6" data-playstarttime="2030" data-playendtime="2232" data-theatername="CGV 강남" data-seatremaincnt="140" data-screenkorname="1관 6층">
                                                     	<em>${sdVO.showtime }</em>
                                                     	<span class="txt-lightblue">
                                                     	<span class="hidden">잔여좌석</span>${169-sdVO.ticketedSeat }석</span></a>
