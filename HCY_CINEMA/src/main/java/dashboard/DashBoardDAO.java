@@ -83,7 +83,7 @@ public class DashBoardDAO {
 			selectMovieName
 			.append(" 		SELECT COUNT(ticketdate) now_week												")
 			.append(" 		from ticketing																	")
-			.append(" 	 	WHERE ticketdate BETWEEN to_date(to_char(sysdate,'yyyy-mm-dd'))-7 AND to_date(to_char(sysdate,'yyyy-mm-dd'))									")
+			.append(" 	 	WHERE ticketdate BETWEEN sysdate-7 AND sysdate									")
 			.append(" 		GROUP BY moviecode																");
 
 			pstmt = con.prepareStatement(selectMovieName.toString());

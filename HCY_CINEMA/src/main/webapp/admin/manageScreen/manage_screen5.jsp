@@ -526,7 +526,7 @@ $(function () {
 	$(".schedule_btn").click(function () {
 	    // 클릭된 버튼의 아이디를 가져와서 name에 설정
 	    
-	    var name = $(this).attr("name");
+	   var name=$(this).val()
 	    var buttonId = $(this).attr("id"); // 클릭된 버튼의 아이디 가져오기
 	    var selected = $("#movieName");
 
