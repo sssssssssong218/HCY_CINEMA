@@ -141,7 +141,20 @@ to {
 
 		</div>
 
-
+<script>
+function logout(){
+	location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp");
+}
+ if (performance.navigation.type == 2) {
+     // 페이지가 뒤로가기로 로드된 경우
+     location.reload();
+ }
+<%
+if(session.getAttribute("userName")==null||"".equals(session.getAttribute("userName"))){%>
+location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp");
+<%}
+%>
+</script>
 		<div id="sidebar" class="sidebar">
 
 			<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
@@ -154,12 +167,10 @@ to {
 							</div>
 							<div class="info">
 								<div class="name dropdown">
-									<a href="javascript:;" data-toggle="dropdown">admin <b class="caret"></b></a>
-									<ul class="dropdown-menu">
-										<li><a href="javascript:;">Log Out</a></li>
-									</ul>
-								</div>
-								<div class="position">Front End Designer</div>
+									<div class="name dropdown">
+<a href="javascript:;" data-toggle="dropdown"><%= session.getAttribute("userName") %> </a>
+	<a href="#"onclick="logout();">Log Out</a>
+</div>	</div>
 							</div>
 						</li>
 						<li class="nav-header">today work</li>
