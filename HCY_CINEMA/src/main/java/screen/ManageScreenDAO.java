@@ -90,7 +90,7 @@ public class ManageScreenDAO {
 	        selectMovieSchedule.append(" SELECT S.MOVIECODE, TO_CHAR(S.SHOWTIME, 'YYYY-MM-DD HH24:MI') AS SHOWTIME, M.MNAME")
 			.append(" FROM SCHEDULE S																					  ")
 			.append(" INNER JOIN MOVIE M ON S.MOVIECODE = M.MOVIECODE													  ")
-			.append(" WHERE S.SCREENNUM = ?																				  ")
+			.append(" WHERE S.SCREENNUM = ?	and m.status='Y'																			  ")
 			.append(" AND S.SHOWTIME BETWEEN TO_DATE(TO_CHAR(?, 'YYYY-MM-DD')) AND TO_DATE(TO_CHAR(?, 'YYYY-MM-DD')) + 1 ORDER BY SHOWTIME ");
 
 	        pstmt = con.prepareStatement(selectMovieSchedule.toString());
@@ -240,7 +240,7 @@ public class ManageScreenDAO {
 		try {
 			con=db.getCon();
 			
-			String selectMovie="select moviecode, mname,plot from movie where releasedate<? and enddate>?";
+			String selectMovie="select moviecode, mname,plot from movie where releasedate<? and enddate>? and status='Y'";
 			
 			pstmt=con.prepareStatement(selectMovie);
 			pstmt.setDate(1,date);
