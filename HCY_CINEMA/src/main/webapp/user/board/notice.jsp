@@ -28,9 +28,9 @@
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
-    <link rel="shortcut icon" href="http://192.168.10.145/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
     <title id="ctl00_headerTitle">공지/뉴스 &lt; 고객센터 | 영화 그 이상의 감동. HCY</title>
-    <link rel="shortcut icon" type="image/x-icon" href="http://192.168.10.145/HCY_CINEMA/common/images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/layout.css">
