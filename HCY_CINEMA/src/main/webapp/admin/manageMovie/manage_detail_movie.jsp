@@ -451,7 +451,7 @@ document.getElementById("nextdate").value = <%=enddate%>;
 <input type="radio" id="ageGroup" name="ageGroup" value="12" <%= "12".equals(mmVO.getMovieRatting()) ? "checked='checked'" : "" %>><label style="font-size:15px">12세</label><img src="../../common/images/12age.png" style="padding-left:10px"><br>
 <input type="radio" id="ageGroup" name="ageGroup" value="15" <%= "15".equals(mmVO.getMovieRatting()) ? "checked='checked'" : "" %>><label style="font-size:15px">15세</label><img src="../../common/images/15age.png" style="padding-left:10px"><br>
 <input type="radio" id="ageGroup" name="ageGroup" value="18" <%= "18".equals(mmVO.getMovieRatting()) ? "checked='checked'" : "" %>><label style="font-size:15px">청소년 관람 불가</label><img src="../../common/images/18age.png" style="padding-left:10px"><br>
-<input type="radio" id="ageGroup" name="ageGroup" value="RS" <%= "RS".equals(mmVO.getMovieRatting()) ? "checked='checked'" : "" %>><label style="font-size:15px">제한사영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="RS" <%= "RS".equals(mmVO.getMovieRatting()) ? "checked='checked'" : "" %>><label style="font-size:15px">제한상영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
 </div>
 <% 
 MainTrailerVO mtVO=dmDAO.selectMaintrailer(movieCode);
