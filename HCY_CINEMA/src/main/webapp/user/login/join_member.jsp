@@ -284,12 +284,15 @@
 		$("#btnSearch").click(function(){
 			if($("#txtUserName").val() == "" || $("#txtUserTel").val() == "" || $("#txtUserBirth").val() == ""){
 				alert("이름, 생년월일, 전화번호를 모두 입력해 주시기 바랍니다.")
+				return;
 			}//if
 			if(!/^\d{3}-\d{4}-\d{4}$/.test($("#txtUserTel").val())){
 				alert("전화번호의 형식이 올바르지 않습니다.\n전화번호의 형식은 000-0000-0000 입니다")
+				return;
 			}//if
 			if(!/^\d{8}$/.test($("#txtUserBirth").val())){
 				alert("생년월일의 형식이 올바르지 않습니다.\n생년월일은 19970101의 형식으로 작성해주세요")
+				return;
 			}//if
 			
 			$("#name").val($("#txtUserName").val())

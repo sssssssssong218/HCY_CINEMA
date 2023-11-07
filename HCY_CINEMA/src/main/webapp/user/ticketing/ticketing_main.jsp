@@ -76,6 +76,10 @@
 
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
+    <%
+    if(request.getParameter("movie")!=null){session.setAttribute("movie", request.getParameter("movie"));}
+    if(request.getParameter("schedule")!=null){session.setAttribute("schedule", request.getParameter("movie"));}
+    %>
     $(document).ready(function() {
     	if(${login!="true"} && ${nonMemLogin!="true"}){
     		alert("로그인 후 이용해주세요!")
