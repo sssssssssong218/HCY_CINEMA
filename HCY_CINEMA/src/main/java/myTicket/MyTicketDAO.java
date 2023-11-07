@@ -39,10 +39,10 @@ private String selectSeatNum(int tNum) throws SQLException {
 		pstmt.setInt(1, tNum);
 		
 		rs = pstmt.executeQuery();
-		
+		String[] seatName = {"A","B","C","D","E","F","G","H","I","J","K","L","M"};
 		while(rs.next()) {
 			result.append(",")
-			.append(rs.getString("SEATNUM"));
+			.append(seatName[rs.getInt("SEATNUM")/13]+rs.getInt("SEATNUM")%13);
 		}//while
 		result.replace(0, 1, "");
 	}finally {
