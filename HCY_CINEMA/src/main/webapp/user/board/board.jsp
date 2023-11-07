@@ -497,10 +497,10 @@ $(document).ready(function() {
         				text += '</td>'
         				text += '<td>' 
         				text += json.id
-        				text += '</a></td>' 
+        				text += '</td>' 
         				text += '<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/board_specific.jsp?postNum=' 
         				text += json.postNum 
-        				text += '/>">' 
+        				text += '">' 
         				text += json.title 
         				text += '</a></td>' 
         				text += '<td>'

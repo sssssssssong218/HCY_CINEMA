@@ -689,10 +689,10 @@ out.println(BoardUtil.getInstance().pageNation(buVO));
         				text += '</td>'
         				text += '<td>' 
         				text += json.section
-        				text += '</a></td>' 
-        				text += '<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/board_specific.jsp?noticeNum=' 
+        				text += '</td>' 
+        				text += '<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/notice_specific.jsp?noticeNum=' 
         				text += json.noticeNum 
-        				text += '/>">' 
+        				text += '">' 
         				text += json.title 
         				text += '</a></td>' 
         				text += '<td>'
