@@ -64,7 +64,6 @@
                     <input type="text" title="아이디" id="txtUserId" name="txtUserId" data-title="아이디를 " data-message="입력하세요." required="required">
                     <input type="password" title="패스워드" id="txtPassword" name="txtPassword" data-title="패스워드를 " data-message="입력하세요." required="required">
                 </div>
-                <div class="save-id"> <input type="checkbox" id="loginSet"><label for="save_id">아이디 저장</label></div>
 
                 <input type="button" id="loginBtn" name="loginBtn" value="로그인" class="btn btn-danger" style="width: 215px;"/>
                 <div class="login-option">
