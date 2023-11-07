@@ -411,7 +411,7 @@
                 <h2><a href="http://localhost/HCY_CINEMA/user/movieInfo/movieChart.jsp">영화</a></h2>
                 <dl class="nav_overMenu" style="display: none;">
                     <dt><h2><a href="http://localhost/HCY_CINEMA/user/movieInfo/movieChart.jsp" tabindex="-1">영화</a></h2></dt>
-                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/movieInfo/movieChart.jsp">무비차트</a></h3></dd>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/movieInfo/moviechart.jsp">무비차트</a></h3></dd>
                 </dl>
             </li>
             <li>
@@ -426,8 +426,8 @@
                 <h2><a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp"><strong>예매</strong></a></h2>
                 <dl class="nav_overMenu" style="display: none;">
                     <dt><h2><a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp" tabindex="-1">예매</a></h2></dt>
-                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/ticketing/mainTicketing.jsp">빠른예매</a></h3></dd>
-                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/movieSchedule/ticketingSchedule.jsp">상영스케줄</a></h3></dd>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp">빠른예매</a></h3></dd>
+                    <dd><h3><a href="http://localhost/HCY_CINEMA/user/schedule/theater_schedule.jsp">상영스케줄</a></h3></dd>
                 </dl>
             </li>
             <li>
