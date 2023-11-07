@@ -19,9 +19,9 @@
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/Theater/Theater/2014/1211/CGVgangnam.jpg">
     <link rel="alternate" href="http://m.cgv.co.kr">
-    <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
     <title id="ctl00_headerTitle">HCY극장 &lt; 특별관</title>
-    <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/layout.css">
@@ -246,8 +246,6 @@ ScreenX가 마치 현장에 있는 것처럼 실감나는 이유는<br>
 <video controls="" controlslist="nodownload" muted="" poster="https://img.cgv.co.kr/resource_pc/images/specialtheater/screenx/poster.jpg"><source src="http://h.vod.cgv.co.kr/vodCGVa/newVideoUrl/2019/0816/20190816145446053.mp4" type="video/mp4"> 이 브라우저는 Video 태그를 지원하지 않습니다. (Your browser does not support the video tag.)</video>
 </div>
 </div></article>
-        <article class="specialtheater_detail_event_wrap">    <div class="contents">        <h4 class="specialtheater_detail_title">SCREENX 이벤트</h4>            <div class="specialtheater_detail_event_list_wrap">            <div class="swiper specialtheater_detail_event_list noneSlider">                <div class="swiper-wrapper">                <div class="swiper-slide">                    <a href="/culture-event/event/detailViewUnited.aspx?seq=38633&amp;menu=">                        <div class="img_wrap"><img src="http://img.cgv.co.kr/WebApp/contents/eventV4/38633/16971587529350.jpg" onerror="errorImage(this)"></div>                        <strong>CGV ScreenX 포토부스이벤트</strong>                        <span>2023.10.11 ~ 2023.11.10</span>                    </a>                </div>                </div>                <div class="event-button-next event-button-next"></div>                <div class="event-button-prev"></div>        </div>    </div></div></article>
-        <article class="specialtheater_detail_link_info_wrap">    <div class="contents">        <div class="specialtheater_detail_link_info_txt_wrap">            <strong>고객</strong>님, 이런 정보 찾고 계신가요?         </div>        <ul class="specialtheater_detail_link_info_list">            <li><a href="http://www.cgv.co.kr/theaters/theaterPrice.aspx?tc=0257&amp;spe=07">가격안내</a></li>        <!-- ul -->    <!-- div --></ul></div></article>
         <article class="specialtheater_detail_edit_wrap"></article>
     </div>
     <!--/각페이지 Header End--> 

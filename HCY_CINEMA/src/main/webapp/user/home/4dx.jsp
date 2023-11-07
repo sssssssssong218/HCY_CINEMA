@@ -11,17 +11,17 @@
     <meta http-equiv="Cache-Control" content="No-Cache">
     <meta http-equiv="imagetoolbar" content="no">
     <meta name="viewport" content="width=1024">
-    <meta name="keywords" content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
-    <meta name="description" content="CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
-    <meta property="og:site_name" content="영화 그 이상의 감동. CGV">
-    <meta id="ctl00_og_title" property="og:title" content="CGV강남 | 영화 그 이상의 감동. CGV">
+    <meta name="keywords" content="HCY, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Hcy, hcy, 예매, 상영작">
+    <meta name="description" content="HCY는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. HCY홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
+    <meta property="og:site_name" content="영화 그 이상의 감동. HCY">
+    <meta id="ctl00_og_title" property="og:title" content="HCY | 영화 그 이상의 감동. HCY">
     
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/Theater/Theater/2014/1211/CGVgangnam.jpg">
     <link rel="alternate" href="http://m.cgv.co.kr">
-    <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
     <title id="ctl00_headerTitle">HCY극장 &lt; 특별관</title>
-    <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/layout.css">
@@ -219,7 +219,7 @@
         <!-- 유닛관리-->
         <article class="specialtheater_detail_edit_wrap"><div class="contents"><strong class="specialtheater_detail_edit_title tAlignC">Absolute Cinema Experience</strong> <span class="specialtheater_detail_edit_context tAlignC"> 4DX 상영관은 영화의 장면에 맞추어 움직이는 모션시트와 더불어<br>
 바람, 빛, 안개, 향기, 진동 등의 다양한 환경 효과를 느낄 수 있는 오감 체험 특별 상영관입니다. </span>
-<p class="fourdx_list_comment">*CGV 극장별&nbsp;4DX 효과는 상이할 수 있습니다.</p>
+<p class="fourdx_list_comment">*HCY 극장별&nbsp;4DX 효과는 상이할 수 있습니다.</p>
 </div>
 
 <div class="specialtheater_detail_edit_contents_wrap">
@@ -256,7 +256,6 @@
 <div class="contents"><strong class="specialtheater_detail_edit_title">Environmental Effects</strong> <span class="specialtheater_detail_edit_context">단순한 영화 관람을 넘어 영화 속 주인공이 된 듯한 체험을 할 수 있으며,<br>
 장면마다 생생함을 극대화시키는 4DX 효과를 통해 영화에 더욱 몰입할 수 있습니다.</span> <img alt="Tilting Screen - 영화 시작과 동시에 관객 방향으로 기울어져 눈앞에 있는 것 같은 틸팅 스크린" src="https://img.cgv.co.kr/resource_pc/images/specialtheater/4dx/specialtheater_4dx0.jpg"> <strong class="specialtheater_detail_edit_title">Motion Seat</strong>&nbsp;<span class="specialtheater_detail_edit_context">좌석이 상하좌우/앞뒤로 움직이며 현장감을 극대화합니다.</span> <img alt="Flexound - 개별좌석 마다 생생한 음향을 제공하는 빌트인 개인 증강 사운드 시스템" src="https://img.cgv.co.kr/resource_pc/images/specialtheater/4dx/specialtheater_4dx1.jpg"></div></article>
         
-        <article class="specialtheater_detail_link_info_wrap">    <div class="contents">        <div class="specialtheater_detail_link_info_txt_wrap">            <strong>고객</strong>님, 이런 정보 찾고 계신가요?         </div>        <ul class="specialtheater_detail_link_info_list">            <li><a href="http://www.cgv.co.kr/theaters/theaterPrice.aspx?tc=0257&amp;spe=07">가격안내</a></li>            <li><a href="http://www.cgv.co.kr/culture-event/popcorn-store/product-detail.aspx?GG_NO=100255">관람권 구매</a></li>        <!-- ul -->    <!-- div --></ul></div></article>
         <article class="specialtheater_detail_edit_wrap"></article>
         
     
@@ -272,7 +271,7 @@
         <div id="pop_supportOS" class="popup" style="display:none">
             <div class="pop_iexp_wrap" style="position:fixed; left:50%; top:50%; width:600px; margin:-165px 0 0 -300px; z-index:1000;">
                 <div class="pi_headline">
-                    <img src="https://img.cgv.co.kr/images/popup/1606_iexp/pop_iexp_headline2.jpg" alt="CGV 홈페이지는 고객님께서 사용중인 MS Windows XP에서 정상적인 서비스 이용이 어려울 수 있으며, OS업데이트를 권장합니다.">
+                    <img src="https://img.cgv.co.kr/images/popup/1606_iexp/pop_iexp_headline2.jpg" alt="HCY 홈페이지는 고객님께서 사용중인 MS Windows XP에서 정상적인 서비스 이용이 어려울 수 있으며, OS업데이트를 권장합니다.">
                 </div>
                 <div class="down_app">
                     <p><img src="https://img.cgv.co.kr/images/popup/1606_iexp/pop_iexp_downtxt.jpg" alt="OS 업데이트가 어려운 경우 모바일앱을 이용하세요!!!"></p>
