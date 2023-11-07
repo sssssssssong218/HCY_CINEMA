@@ -81,6 +81,12 @@
 
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
+    $(document).ready(function() {
+    	if(${login!="true"} && ${nonMemLogin!="true"}){
+    		alert("로그인 후 이용해주세요!")
+    		location.href="http://localhost/HCY_CINEMA/user/login/login.jsp"
+    	}//if
+    });//ready
         //<![CDATA[
         _TRK_CP = "/고객센터/공지/뉴스";
 
