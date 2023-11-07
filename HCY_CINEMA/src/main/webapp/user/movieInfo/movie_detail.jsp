@@ -432,7 +432,7 @@
 											break;
 									}
 									%>
-									<dd class="on"><%=movieRating%>,&nbsp;<%=mVO.getRunningtime()%>분,&nbsp;국가
+									<dd class="on"><%=movieRating%>,&nbsp;<%=mVO.getRunningtime()%>분 / &nbsp;국가
 										: <%= country==null||"".equals(country) ?  forigen:country %>
 									</dd>
 									<dt>개봉 :&nbsp;</dt>
