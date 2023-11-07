@@ -358,7 +358,7 @@
 		
 		$("#txtUserId").keydown(function(){
             $("#idDupFlag").val('0')
-            if("${orimVO.id}")
+            
         })//txtUserId
 	})//ready
 	
