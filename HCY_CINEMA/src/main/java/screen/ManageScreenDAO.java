@@ -48,7 +48,7 @@ public class ManageScreenDAO {
 			selectScheduleDate.append(" SELECT S.MOVIECODE, TO_CHAR(S.SHOWTIME, 'YYYY-MM-DD HH24:MI') AS SHOWTIME, M.MNAME")
 			.append(" FROM SCHEDULE S																					  ")
 			.append(" INNER JOIN MOVIE M ON S.MOVIECODE = M.MOVIECODE													  ")
-			.append(" WHERE S.SCREENNUM = ?																				  ")
+			.append(" WHERE S.SCREENNUM = ?	and m.status in('Y','W')																			  ")
 			.append(" AND S.SHOWTIME BETWEEN TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD')) AND TO_DATE(TO_CHAR(SYSDATE, 'YYYY-MM-DD')) + 1 ORDER BY SHOWTIME ");
 			
 			pstmt=con.prepareStatement(selectScheduleDate.toString());
@@ -90,14 +90,13 @@ public class ManageScreenDAO {
 	        selectMovieSchedule.append(" SELECT S.MOVIECODE, TO_CHAR(S.SHOWTIME, 'YYYY-MM-DD HH24:MI') AS SHOWTIME, M.MNAME")
 			.append(" FROM SCHEDULE S																					  ")
 			.append(" INNER JOIN MOVIE M ON S.MOVIECODE = M.MOVIECODE													  ")
-			.append(" WHERE S.SCREENNUM = ?	and m.status='Y'																			  ")
-			.append(" AND S.SHOWTIME BETWEEN TO_DATE(TO_CHAR(?, 'YYYY-MM-DD')) AND TO_DATE(TO_CHAR(?, 'YYYY-MM-DD')) + 1 ORDER BY SHOWTIME ");
+			.append(" WHERE S.SCREENNUM = ?	and m.status in('Y','W')																			  ")
+			.append("  AND S.SHOWTIME BETWEEN TO_DATE(TO_CHAR(?, 'YYYY-MM-DD')) AND TO_DATE(TO_CHAR(?, 'YYYY-MM-DD')) + 1 ORDER BY SHOWTIME ");
 
 	        pstmt = con.prepareStatement(selectMovieSchedule.toString());
 	        pstmt.setInt(1, csVO.getScreenNum());
 	        pstmt.setDate(2, (Date)(csVO.getShowtime()));
 	        pstmt.setDate(3, (Date)(csVO.getShowtime()));
-
 	        rs = pstmt.executeQuery();
 
 	        while (rs.next()) {

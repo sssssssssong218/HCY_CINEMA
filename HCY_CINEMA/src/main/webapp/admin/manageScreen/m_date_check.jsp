@@ -23,12 +23,15 @@ try {
     int month = Integer.parseInt(request.getParameter("month"));
     int day = Integer.parseInt(request.getParameter("day"));
 
-    
+    int time=0;
+    int min=0;
     
     Calendar showtime = Calendar.getInstance();
     showtime.set(Calendar.YEAR, year);
     showtime.set(Calendar.MONTH, month - 1); 
     showtime.set(Calendar.DAY_OF_MONTH, day);
+    showtime.set(Calendar.HOUR_OF_DAY, time);
+    showtime.set(Calendar.MINUTE, min);
     
     Date selectedDate = new Date(showtime.getTimeInMillis());
     
@@ -43,6 +46,8 @@ try {
     
     List<ScheduleVO> list = msDAO.selectMovieSchedule(csVO);
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	
+      System.out.println(sdf.format(selectedDate)); 
       System.out.println(list); 
     // JSON 배열
   
