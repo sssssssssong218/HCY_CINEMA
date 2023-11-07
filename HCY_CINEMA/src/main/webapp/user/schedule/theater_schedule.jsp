@@ -250,7 +250,7 @@
                     <ul>
                         
                     </ul>
-                    <a class="link-more" href="/support/news/Default.aspx?type=2" target="_blank" title="새창 열림">공지사항 더보기</a>
+                    <a class="link-more" href="http://localhost/HCY_CINEMA/user/board/notice.jsp" target="_blank" title="새창 열림">공지사항 더보기</a>
                 </div>
             </div>
         </div>
