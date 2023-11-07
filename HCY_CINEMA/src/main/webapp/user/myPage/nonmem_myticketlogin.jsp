@@ -211,9 +211,9 @@
             </c:if>
         <li><a href="http://192.168.10.146/HCY_CINEMA/user/login/login.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginPassword.png" alt="${login}"><span><c:out value="${login}"/></span></a></li>
         <c:if test="${sessionScope.login eq false}">
-            <li><a href="http://localhost/HCY_CINEMA/user/login/join.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
+            <li><a href="http://localhost/HCY_CINEMA/user/login/join_member.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
             </c:if>
-            <li><a href="http://localhost/HCY_CINEMA/user/mypage/my_ticket.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png" alt="MY PAGE"><span>MY PAGE</span></a></li>
+            <li><a href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png" alt="MY PAGE"><span>MY PAGE</span></a></li>
             <li><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png" alt="고객센터"><span>고객센터</span></a></li>
         </ul>
     </div>
@@ -458,10 +458,10 @@
     <div class="sect-user">
         <ul class="tab-menu-round">
             <li>
-                <a href="/user/login/">로그인</a>
+                <a href="http://localhost/HCY_CINEMA/user/login/login.jsp">로그인</a>
             </li>
             <li>
-                <a href="/user/guest/login-agreement.aspx">비회원 예매</a>
+                <a href="http://localhost/HCY_CINEMA/user/ticketing/nonmem_ticketing_main.jsp">비회원 예매</a>
             </li>
             <li class="on">
                 <a href="/user/guest/login.aspx">비회원 예매확인</a>
