@@ -373,8 +373,9 @@ function checkSeat(){
 		text += ", ";
 		}//if
 		seat = seatnums[i]
-		text += row[parseInt(seat/13)]
-		text += (seat%13+1)
+		text += row[parseInt((seat-1)/13)]
+		text += (seat%13)==0 ? 13:(seat%13);
+		
 	}//for
 	$(".data.ellipsis-line3").html(text)
 	$(".data > .price").html($("#schedule"+scheduleCode).data("price")*seatnums.length)
