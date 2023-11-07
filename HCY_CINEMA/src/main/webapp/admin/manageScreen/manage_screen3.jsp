@@ -381,7 +381,7 @@ for(int i=0;i<fixedHours.length;i++){
 	boolean hasSchedule=false;
 	for(int j=0;j<list.size();j++){
 		sVO=list.get(j);
-		int scheduleHour=Integer.parseInt(sVO.getShowtime().substring(11,13));
+		 int scheduleHour=Integer.parseInt(sVO.getShowtime().substring(11,13));
 		
 		if(scheduleHour==hour){
 			hasSchedule=true;
@@ -395,15 +395,16 @@ for(int i=0;i<fixedHours.length;i++){
 	 <label style="width:200px;font-size:20px">
 		<span id="hour<%=i%>" name="hour<%=i%>" value="hour<%=i%>:00"><%= hour %>:00</span>
         </label>
-	<input id="<%=i+1 %>" style="font-size:20px" type="button" class="btn btn-dark" value="<%= hasSchedule ? sVO.getMname() : "스케줄 없음" %>"
-            name="<%= hasSchedule ? sVO.getMname() : "스케줄 없음" %>" onclick="openModal('<%= hasSchedule ? sVO.getMname() : "스케줄 없음" %>')">
+	<input id="<%=i+1 %>" style="font-size:20px" type="button" class="btn btn-dark schedule_btn" value="<%= hasSchedule ? sVO.getMname() : "스케줄 없음" %>"
+            name="<%= hasSchedule ? sVO.getMname() : "스케줄 없음" %>">
+            <input type="hidden" id="hid_<%=i+1 %>" name="hid_+<%=i+1 %>" value="<%=sVO==null? "":sVO.getMovieCode() %>">
     </div>
 <%		
 }//end for
 %>
 </div>
 </div><br><br>
-<input type="hidden" name="screenNum" value="3" id="screenNum">
+<input type="hidden" name="screenNum" value="1" id="screenNum">
 
 
 <div id="no_has_schedule" class="modal" style="overflow: auto;">
@@ -412,8 +413,7 @@ for(int i=0;i<fixedHours.length;i++){
         <div class="input-container" style="overflow: auto;">
             <label for="movieName">상영중인 영화</label>
             <select id="movieName">
-                <option>영화 1</option>
-                <option>영화 2</option>
+              
                 <!-- 영화 목록을 적절히 추가 -->
             </select>
         </div>
@@ -422,8 +422,16 @@ for(int i=0;i<fixedHours.length;i++){
             <textarea id="movieDescription" rows="8" cols="50"></textarea>
         </div>
         <div class="button-container" style="overflow: auto;">
-            <button type="button" class="btn btn-primary" onclick="saveMovie('no_has_schedule')">저장</button>
-            <button type="button" class="btn btn-danger" onclick="closeModal('no_has_schedule')">취소</button>
+        <form id="frm" name="frm" action="http://localhost/HCY_CINEMA/admin/manageScreen/insertSchedule.jsp">
+            <button type="button" class="btn btn-primary save_btn">저장</button>
+            <button type="button" class="btn btn-danger cancel_btn" >취소</button>
+            <input type="hidden" id="year_hid" name="year_hid" value="">
+            <input type="hidden" id="month_hid" name="month_hid" value="">
+            <input type="hidden" id="day_hid" name="day_hid" value="">
+            <input type="hidden" id="moviecode_hid" name="moviecode_hid" value="">
+            <input type="hidden" id="screen_hid" name="screen_hid" value="">
+            <input type="hidden" id="btn_hid" name="btn_hid" value="">
+        </form>
         </div>
     </div>
 </div>
@@ -433,77 +441,15 @@ for(int i=0;i<fixedHours.length;i++){
          <div id="no_shcedule" style="margin-left:20px; max-height: 300px; overflow: auto;">
             <table class="table" style="text-align:center">
                 <thead>
-                    <tr style="width:600px">
+                    <tr style="width:1500px">
                         <th scope="col">좌석</th>
                         <th scope="col">고객 아이디</th>
                         <th scope="col">예매 상태</th>
+                        <th scope="col">예매취소</th>
                     </tr>
                 </thead>
                 <tbody style="text-align:center; ">
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                   
+              
                 </tbody>
             </table>
         </div>                    
@@ -517,22 +463,80 @@ for(int i=0;i<fixedHours.length;i++){
 <script>
 
 $(function () {
-	$("#checkBtn").click(function () {
 	    var selectedYear = $("#year").val();
 	    var selectedMonth = $("#month").val();
 	    var selectedDay = $("#day").val();
 	    var selectedScreenNum = 3;
-	        var btn1 = $("#1"); // jQuery로 요소 선택
-	        var btn2 = $("#2"); // jQuery로 요소 선택
-	        var btn3 = $("#3"); // jQuery로 요소 선택
-	        var btn4 = $("#4"); // jQuery로 요소 선택
-	        var btn5 = $("#5"); // jQuery로 요소 선택
+	    var hid1 = $("#hid_1");
+        var hid2 = $("#hid_2");
+        var hid3 = $("#hid_3");
+        var hid4 = $("#hid_4");
+        var hid5 = $("#hid_5");
+	    $("#checkBtn").click(function () {
+	        var btn1 = $("#1");
+	        var btn2 = $("#2");
+	        var btn3 = $("#3");
+	        var btn4 = $("#4");
+	        var btn5 = $("#5");
+	        selectedYear = $("#year").val();
+	        selectedMonth = $("#month").val();
+	        selectedDay = $("#day").val();
 
-	        var scheduleData = {}; // 스케줄 데이터를 저장할 객체
+	        var scheduleData = {};
 
 	        $.ajax({
 	            type: "POST",
 	            url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_date_check.jsp",
+	            data: {
+	                year: selectedYear,
+	                month: selectedMonth,
+	                day: selectedDay,
+	                screenNum: selectedScreenNum
+	            },
+	            dataType: "json",
+	            error: function (error) {
+	                console.log(error.status);
+	            },
+	            success: function (jsonObj) {
+	                $.each(jsonObj.data, function (i, json) {
+	                    var showtime = json.showtime.substring(11, 13);
+	                    var mname = json.mname;
+	                    var movieCode = json.movieCode;
+	                    scheduleData[showtime] = {
+	                        mname: mname,
+	                        movieCode: movieCode
+	                    };
+	                });
+
+	                btn1.val(scheduleData[10] ? scheduleData[10].mname : "스케줄 없음");
+	                btn2.val(scheduleData[13] ? scheduleData[13].mname : "스케줄 없음");
+	                btn3.val(scheduleData[16] ? scheduleData[16].mname : "스케줄 없음");
+	                btn4.val(scheduleData[19] ? scheduleData[19].mname : "스케줄 없음");
+	                btn5.val(scheduleData[22] ? scheduleData[22].mname : "스케줄 없음");
+
+	                hid1.val(scheduleData[10] ? scheduleData[10].movieCode : "");
+	                hid2.val(scheduleData[13] ? scheduleData[13].movieCode : "");
+	                hid3.val(scheduleData[16] ? scheduleData[16].movieCode : "");
+	                hid4.val(scheduleData[19] ? scheduleData[19].movieCode : "");
+	                hid5.val(scheduleData[22] ? scheduleData[22].movieCode : "");
+	            }
+	        });
+	    });
+
+	$(".schedule_btn").click(function () {
+	    // 클릭된 버튼의 아이디를 가져와서 name에 설정
+	    
+	    var name = $(this).attr("name");
+	    var buttonId = $(this).attr("id"); // 클릭된 버튼의 아이디 가져오기
+	    var selected = $("#movieName");
+
+	    // 버튼의 아이디를 btn_hid에 저장
+	    $("#btn_hid").val(buttonId);
+	    if (name === "스케줄 없음") {
+	        // 모달을 열 때 ajax 요청을 보내기
+	        $.ajax({
+	            type: "POST",
+	            url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_select_movie.jsp",
 	            data: {
 	                year: selectedYear,
 	                month: selectedMonth,
@@ -544,33 +548,149 @@ $(function () {
 	                console.log(error.status);
 	            },
 	            success: function (jsonObj) {
+	                // ajax 요청이 성공하면 스케줄 데이터 처리
 	                $.each(jsonObj.data, function (i, json) {
-	                    var showtime = json.showtime.substring(11, 13);
-	                    var mname = json.mname;
-
-	                    // 해당 시간대의 스케줄 데이터를 객체에 저장
-	                    scheduleData[showtime] = mname;
+	                    var option = $("<option>").text(json.mname).val(json.mname);
+	                    selected.append(option);
 	                });
 
-	                // 버튼에 스케줄 데이터 설정
-	                btn1.val(scheduleData[10] || "스케쥴 없음");
-	                btn2.val(scheduleData[13] || "스케쥴 없음");
-	                btn3.val(scheduleData[16] || "스케쥴 없음");
-	                btn4.val(scheduleData[19] || "스케쥴 없음");
-	                btn5.val(scheduleData[22] || "스케쥴 없음");
-	          /*       alert(btn1.val());
-	                alert(btn2.val());
-	                alert(btn3.val());
-	                alert(btn4.val());
-	                alert(btn5.val()); */
+	                // 스케줄 없음 모달 열기
+	                document.getElementById("no_has_schedule").style.display = "block";
+	                // 모달을 띄울 때 해당 버튼의 이름을 저장
+	                document.getElementById("no_has_schedule").dataset.buttonName = name;
+
+	                // 첫 번째 옵션을 선택
+	                selected.prop("selectedIndex", 0);
+
+	                // 페이지 로딩 시, 첫 번째 옵션에 대한 plot을 textarea에 출력
+	                var firstOptionValue = selected.val();
+	                var movieDescription = $("#movieDescription");
+
+	                if (firstOptionValue === "default") {
+	                    // 선택된 옵션이 "선택하세요"인 경우 textarea를 비웁니다.
+	                    movieDescription.val("");
+	                } else {
+	                    var selectedMovie = jsonObj.data.find(function (movie) {
+	                        return movie.mname === firstOptionValue;
+	                    });
+
+	                    if (selectedMovie) {
+	                        // 선택된 옵션에 대한 plot을 textarea에 출력
+	                        $("#moviecode_hid").val(selectedMovie.moviecode);
+	                        movieDescription.val(selectedMovie.plot);
+	                    } else {
+	                        // 선택된 영화를 찾지 못한 경우에 대한 처리
+	                        movieDescription.val("선택한 영화에 대한 설명을 찾을 수 없습니다.");
+	                    }
+	                }
+
+	                // <select> 요소가 변경되었을 때 이벤트 처리
+	                selected.on("change", function () {
+	                    // 선택된 옵션에 해당하는 json 데이터를 찾아서 json.plot을 textarea에 출력합니다.
+	                    var selectedOptionValue = selected.val();
+	                    var movieDescription = $("#movieDescription");
+
+	                    if (selectedOptionValue === "default") {
+	                        // 선택된 옵션이 "선택하세요"인 경우 textarea를 비웁니다.
+	                        movieDescription.val("");
+	                    } else {
+	                        var selectedMovie = jsonObj.data.find(function (movie) {
+	                            return movie.mname === selectedOptionValue;
+	                        });
+
+	                        if (selectedMovie) {
+	                            // 선택된 옵션에 대한 plot을 textarea에 출력
+	                             $("#moviecode_hid").val(selectedMovie.moviecode);
+	                            movieDescription.val(selectedMovie.plot);
+	                        } else {
+	                            // 선택된 영화를 찾지 못한 경우에 대한 처리
+	                            movieDescription.val("선택한 영화에 대한 설명을 찾을 수 없습니다.");
+	                        }
+	                    }
+	                });
 	            }
 	        });
-	    });
-});
+	    } else {
+	    	  var buttonId = $(this).attr("id");
+	    	  var matchingHidden = $("#hid_" + buttonId);
+	    	  var hiddenValue = matchingHidden.val();
+	    	
+	    	  var buttonId = $(this).attr("id");
+	    	  var matchingHidden = $("#hid_" + buttonId);
+	    	  var hiddenValue = matchingHidden.val();
+	    	
+	    	  $.ajax({
+	    		    type: "POST",
+	    		    url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_select_member.jsp",
+	    		    data: {
+	    		        year: selectedYear,
+	    		        month: selectedMonth,
+	    		        day: selectedDay,
+	    		        screenNum: selectedScreenNum, // 2관
+	    		        movieCode: hiddenValue,
+	    		        btnid: buttonId
+	    		    },
+	    		    dataType: "json",
+	    		    error: function (error) {
+	    		        console.log(error.status);
+	    		    },
+	    		    success: function (jsonObj) {
+	    		        var table = $("tbody");
+	    		        $.each(jsonObj.data, function (i, json) {
+	    		            var msg = "";
+	    		            if ("Y" === json.status) {
+	    		                msg = "예매";
+	    		            }
+	    		            var row = $("<tr>");
+	    		            var seatNumCell = $("<td>").text(json.seatnum);
+	    		            var idCell = $("<td>").text(json.id || json.tel);
+	    		            var statusCell = $("<td>").text(msg);
 
-f
+	    		            // 예매 취소 버튼을 추가
+	    		            var cancelButtonCell = $("<td>").append(
+	    		                $("<input>").attr({
+	    		                    type: "button",
+	    		                    class: "btn btn-info",
+	    		                    value: "예매취소"
+	    		                }).click(function () {
+	    		                    // 예매 취소 버튼 클릭 시 수행할 동작 추가
+	    		                    // 여기에서 예매 취소 로직을 추가하십시오
+	    		                	var ticketnum = json.ticketnum;
+	    		                    window.location.href="http://localhost/HCY_CINEMA/admin/manageScreen/deleteSeat.jsp?ticketnum="+ticketnum;
+	    		                })
+	    		            );
 
- function updateMovieInfo(movieData) {
+	    		            row.append(seatNumCell, idCell, statusCell, cancelButtonCell);
+	    		            table.append(row);
+	    		        });
+	    		    }
+	    		});
+
+	        // 다른 버튼을 누를 때 기타 모달 열기
+	        document.getElementById("has_schedule").style.display = "block";
+	        // 모달을 띄울 때 해당 버튼의 이름을 저장
+	        document.getElementById("has_schedule").dataset.buttonName = name;
+	    }
+	});
+	$(".save_btn").click(function(){
+		$("#year_hid").val(selectedYear);
+		$("#month_hid").val(selectedMonth);
+		$("#day_hid").val(selectedDay);
+		$("#screen_hid").val(selectedScreenNum);
+	
+		$("#frm").submit();
+	});
+	$(".cancel_btn").click(function(){
+		document.getElementById("no_has_schedule").style.display = "none";
+	})
+		
+	});
+
+
+
+
+
+/*  function updateMovieInfo(movieData) {
     var movieInfoDiv = $("#movieInfo");
     
     //영화 초기화
@@ -589,7 +709,7 @@ f
         movieInfoElement.append(movieTitleElement, showtimeElement);
         movieInfoDiv.append(movieInfoElement);
     }
-} 
+}  */
 
 
 
@@ -638,19 +758,9 @@ window.onload = function() {
     updateMaxDay();
 };
 
-function openModal(name) {
-    if (name === "스케줄 없음") {
-        // 스케줄 없음 모달 열기
-        document.getElementById("no_has_schedule").style.display = "block";
-        // 모달을 띄울 때 해당 버튼의 이름을 저장
-        document.getElementById("no_has_schedule").dataset.buttonName = name;
-    } else {
-        // 다른 버튼을 누를 때 기타 모달 열기
-        document.getElementById("has_schedule").style.display = "block";
-        // 모달을 띄울 때 해당 버튼의 이름을 저장
-        document.getElementById("has_schedule").dataset.buttonName = name;
-    }
-}
+
+
+
 
 function saveMovie(modalName) {
     if (modalName === "no_has_schedule") {
