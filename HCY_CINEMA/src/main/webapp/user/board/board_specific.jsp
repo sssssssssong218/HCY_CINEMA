@@ -462,8 +462,7 @@
 	   
 <%
 
-String postNumParam = request.getParameter("postNum");
-int postNum=Integer.parseInt(postNumParam);
+String postNum = request.getParameter("postNum");
             		
 BoardDAO bDAO=BoardDAO.getInstance();
 List<BoardVO> list= bDAO.selectSpecificBoard(postNum);

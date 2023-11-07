@@ -602,7 +602,7 @@
         		</tr>
        			 </c:forEach>
                 
-					   <!--  <tr class="first">
+					   <!--  <tr class="first"> 
 						    <td>81</td>
                             <td>[시스템점검]</td>
 						    <td class="txt"><a href="/support/news/detail-view.aspx?idx=7985&amp;page=1&amp;searchtext=&amp;searchfield=0&amp;type=1">2023년 11월 시스템점검 안내</a></td>
@@ -690,7 +690,7 @@ out.println(BoardUtil.getInstance().pageNation(buVO));
         				text += '<td>' 
         				text += json.section
         				text += '</a></td>' 
-        				text += '<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/board_specific.jsp?postNum=' 
+        				text += '<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/board_specific.jsp?noticeNum=' 
         				text += json.noticeNum 
         				text += '/>">' 
         				text += json.title 
