@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="movie.MainTrailerVO"%>
 <%@page import="movie.MovieInfoVO"%>
 <%@page import="java.util.List"%>
