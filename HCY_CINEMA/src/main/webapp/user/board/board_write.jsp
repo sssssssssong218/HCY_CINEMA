@@ -73,7 +73,7 @@
     <!-- summernote  -->
     <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>4
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
     <!-- 각페이지 Header Start--> 
     
@@ -448,43 +448,7 @@
             <!-- 서브 메뉴 -->			
 	</div>
 	<!-- E Header -->
-	<!-- summernote 시작 -->
 
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
-<!-- i18n -->
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.min.js"></script>
-
-<script type="text/javascript">
-$(function(){
-    $('#postContent').summernote({
-        toolbar: [
-    // [groupName, [list of button]]
-    ['style', ['bold', 'italic', 'underline', 'clear']],
-    // ['font', ['strikethrough', 'superscript', 'subscript']],
-    ['fontsize', ['fontsize']],
-    ['color', ['color']],
-    ['para', ['ul', 'ol', 'paragraph']],
-    // ['height', ['height']]
-    ['table', ['table']],
-  ['insert', ['picture']]
-  ],
-  placeholder: '자유롭게 영화에 대한 이야기를 나눠보세요.',
-    height: 300,
-    lang: 'ko-KR'
-   
-    });//summernote
-   
-    $("#btnSubmit").click(function(){
-    	$("#postContent").submit();
-    	
-    });//click
-});//ready
-</script>
-<!-- summernote 끝 -->
 
 	<!-- Contaniner -->
 	<div id="contaniner" class=""><!-- 벽돌 배경이미지 사용 시 class="bg-bricks" 적용 / 배경이미지가 없을 경우 class 삭제  -->
@@ -510,36 +474,9 @@ $(function(){
             <li class="on"><a href="http://localhost/HCY_CINEMA/user/board/board.jsp">자유게시판<i></i></a></li>            
         </ul>
     </div>
-
-		<div class="col-detail" style="margin-left: 185px;">
-			<div class="customer_top">
-				<h2 class="tit">자유게시판</h2>
-				<p class="stit">자유로운 영화 이야기가 가능합니다.</p>
-			</div>
-			<div class="board_view_area">
-			
-			
-				<ul class="top_title_faq">
-			<form name="frmWrite" id="frmWrite" action="board_write_prcs.jsp" method="post">
-					<li class="title">
-					<span style="color: #333333; font-family: Noto-Sans KR; font-size: 12px; margin-left: 20px"><em>제목</em></span>
-					<input type="text" id="titleTxt" class="inputBox" style="width: 350px; height: 24px; margin-left: 10px;"/>
-					</li>
-				</ul>
-				<div class="view_area">
-				
- 				 <textarea id="postContent" name="txtContent" ></textarea>
- 				 <input type="button" id="postSubmit" value="글쓰기" style="background: #5B5B58; width: 140px; height: 30px; color: #FFFFFF; font-size: 12px; margin-left: 320px"/>
-			</form>
-				<div class="customer_btn">
-			
-				<input type="button" id="btn_list" value="목록으로" style="background: #5B5B58; width: 70px; height:23px; color: #FFFFFF; font-size: 12px; font-align: center;"/></div>
-			
-			</div>
-		</div>
-	</div>
 	<!-- //Contents End -->
 </div>
+	<iframe title="글쓰기" id="write_iframe" src="http://localhost/HCY_CINEMA/user/board/board_write_frame.jsp" scrolling="no" frameborder="0" width="100%" height="750px" style="width:100%; border:1px #333;"></iframe>
 <!-- //Contents Area -->
 <script type="text/javascript">
 
@@ -549,9 +486,7 @@ $(function(){
 		goBack();
 	});//click.목록으로
 	
-	$("#postSubmit").click(function(){
-		$("#frmWrite").submit();
-	});//click.글쓰기
+
             
 });//ready
 

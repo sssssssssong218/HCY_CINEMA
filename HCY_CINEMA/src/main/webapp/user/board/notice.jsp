@@ -468,7 +468,7 @@
         고객센터 메뉴</h2>
     <div class="snb">
         <ul>
-            <li class="on"><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp">공지/뉴스<i></i></a></li>
+            <li class="on" ><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp">공지/뉴스<i></i></a></li>
             <li class=""><a href="http://localhost/HCY_CINEMA/user/board/board.jsp">자유게시판<i></i></a></li>            
         </ul>
     </div>
@@ -541,24 +541,26 @@
 			%>
 				<legend><label for="c_select">검색</label></legend>
 				<form name="frmSearch" id="frmSearch" action="notice.jsp" method="get">
-				<select name="field" id="field" class="c_select" style="width:100px;" selected="selected">
-					<option selected="selected" value="0"${param.field eq '0'?" selected='selected'":"" }>제목</option>
-					<option value="1" ${param.field eq '1'?" selected='selected'":"" }>내용</option>
+				<select name="field" id="field" class="c_select" style="width:100px;">
+					<option selected="selected" value="title"${param.field eq '0'?" selected='selected'":"" }>제목</option>
+					<option value="content" ${param.field eq '1'?" selected='selected'":"" }>내용</option>
 				</select>
 				<label for="keyword" class="hidden">검색어 입력</label>
 				<input id="keyword" type="text" class="inputBox" title="검색어 입력" placeholder="검색어를 입력해 주세요" style="width:185px; height: 29px;" value="${ param.keyword ne 'null'? param.keyword : ''  }">
-				<input type="button"  class="btn" value="검색하기" id="btn_search" style="background:#222222; color: #FFFFFF; width: 70px; height: 29px;"/>
+				<input type="text" style="display: none">
+				<input type="button" value="검색" id="btnSearch" onclick="chkNull();" class="btn btn-danger"style="margin-left: 5px; background: #FB4357; width: 60px; 
+			height: 25px; color: #FFFFFF; border: none;"/>
 				</form>
 				
 			</div>
 			<div class="c_tab_wrap">
 				<ul class="c_tab">
-					<li class="on"><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp" title="선택된 탭메뉴">전체</a></li>
-					<li class=""><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp">자주찾는질문</a></li>
-					<li class=""><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp">시스템점검</a></li>
-					<li class=""><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp">극장</a></li>
-					<li class=""><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp">자유게시판</a></li>
-                    <li class=""><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp">기타</a></li>
+					<li class="on" id="section_0" value="전체" onclick="section('0')">전체</li>
+					<li class="" id="section_1" value="자주찾는질문" onclick="section('1')">자주찾는질문</li>
+					<li class="" id="section_2" value="시스템점검" onclick="section('2')">시스템점검</li>
+					<li class="" id="section_3" value="극장" onclick="section('3')">극장</li>
+					<li class="" id="section_4" value="자유게시판" onclick="section('4')">자유게시판</li>
+                    <li class="" id="section_5" value="기타" onclick="section('5')">기타</li>
 				</ul>
 			</div>
 			<div class="tbl_area">
@@ -584,7 +586,7 @@
 					</tr>
 				</thead>
                
-                 <tbody style="text-align:center">
+                 <tbody style="text-align:center" id="tbody">
         		<c:if test="${ empty noticeList }">
       			 <tr>
    	     		<td colspan="5" style="text-align:center"><strong><font size="5">게시글이 존재하지 않습니다</font></strong></td>
@@ -593,7 +595,7 @@
         		<c:forEach var="notice" items="${ noticeList }" varStatus="i">
         		<tr class="first" >
         			<td><c:out value="${ notice.noticeNum}"/></td>
-        			<td><c:out value="${ notice.section }"/></a></td>
+        			<td><c:out value="${ notice.section }"/></td>
        				<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/notice_specific.jsp?noticeNum=<c:out value='${ notice.noticeNum }'/>"><c:out value="${ notice.title }"/></a></td>
        				<td><c:out value="${ notice.inputDate }"/></td>
        				<td class="num"><c:out value="${ notice.viewCnt }"/></td>
@@ -615,17 +617,19 @@
 			</div>
 			<!--?xml version="1.0" encoding="utf-8"?-->
 			
+			<style>
+			.currentPage{color:#FF0000}
+			</style>
+			
 <!-- 페이지번호-->
 <div class="paging" style="text-align:center">
 <ul>
-	<li>
-		<%-- <% for( int i=1; i<totalPage+1; i++ ){   %>
-		 <a href="http://localhost/HCY_CINEMA/user/board/notice.jsp?currentPage=<%=i %>&keyword=${ param.keyword }&field=${ param.field }"><%=i%></a> 
-		<%} //end for%>  --%>
+	<li id="paging">
 		<% 
 String dataFlag=request.getParameter("dataFlag");
-BoardUtilVO buVO=new BoardUtilVO("notice.jsp", dataFlag, keyword, field, currentPage, totalPage );
-	
+BoardUtilVO buVO=new BoardUtilVO("http://localhost/HCY_CINEMA/user/board/notice.jsp", dataFlag, keyword, field, currentPage, totalPage );
+
+pageContext.setAttribute("totalPage", totalPage);	
 out.println(BoardUtil.getInstance().pageNation(buVO));
 %>
 	</li>
@@ -640,78 +644,99 @@ out.println(BoardUtil.getInstance().pageNation(buVO));
 <script type="text/javascript">
 
 //<![CDATA[
+		var totalPage = ${totalPage};
+		var currentPage = 1;
+	$(document).ready(function() {
+		$("#keyword").keyup(function(evt){ //keydown은 값을 받을 수 없음
+    		if( evt.which == 13 /*엔터는 13번*/){
+    			chkNull();
+    		}//end if
+    	});//keyup
+        });//ready
 
-   
-        $(function () {
-/* 
-            var searchfield = "0";
-
-            $('#selsearchfield').val(searchfield).attr("selected", "selected"); */
-
-           /*  $('#btn_search').on('click', function () {
-//                if ($('#searchtext').val() == "") {
-//                    alert("검색어를 입력해 주세요.");
-//                    $('#searchtext').focus();
-//                    return false;
-//                } else {
-//                    Search();
-                //                }
-
-                Search();
-            });
+		function section(i){
+			$(".c_tab_wrap > .c_tab > .on").attr("class","");
+			$("#section_"+i).attr("class","on")
+			$("#keyword").val("")
 			
-			$('#searchtext').keypress(function(event){
-				if(event.which == 13){
-					if ($('#searchtext').val() == "") {
-						alert("검색어를 입력해 주세요.");
-						$('#searchtext').focus();
-						return false;
-					} else {
-						Search();
-					}
-				}
-			});
-
-
-            function Search() {
-                location.href = "http://localhost/HCY_CINEMA/user/board/notice.jsp?searchtext=" + escape($("#searchtext").val()) + "&searchfield=" + $('#selsearchfield option:selected').val();
-                return false;
-            } */
-/* 
-            $('.c_tab_wrap').children('.c_tab').children('li').on('click', function () {
-                //$('.c_tab_wrap').children('.c_tab').children('li').removeClass("on");
-                //$(this).addClass("on");
-
-                location.href = $(this).children('a').attr("href") + escape("") + "&searchfield=0";
-                return false;
-            });  */
-
-        	$("#btn_search").click(function(){
-        		chkNull();
-        	});//click
-        	
-        	$("#keyword").keyup(function(evt){ //keydown은 값을 받을 수 없음
-        		if( evt.which == 13 /*엔터는 13번*/){
-        			chkNull();
-        		}//end if
-        	});//keyup
-        	
-         });//ready 
-
+			search(1)
+		}//section
         function chkNull(){
         	var keyword = $("#keyword").val();
-        	
         	if( keyword.trim() == "" ){
         		alert("검색어를 입력해 주세요.")
         		return;
         	}//end if
-        	
-        	//글자수 제한
-        	
-        	//
-        	$("#frmSearch").submit();
-        	
+        	search(1)
         }//chkNull
+        
+        function search(page){
+        	var data = { "key":$("#keyword").val(),"field":$("#field").val(),"section":$(".c_tab_wrap > .c_tab > .on").attr("value")}
+        	$.ajax({
+        		url : "http://localhost/HCY_CINEMA/user/board/notice_search_ajax.jsp?currentPage="+page,
+        		type : "get",
+        		data : data,
+        		dataType : "json",
+        		error : function(xhr){
+        			console.log(xhr.status)
+        		},
+        		success : function(jsonArr){
+        			var text = "";
+        			$.each(jsonArr.arr,function(i,json){
+        				text += '<tr class="first" >'
+        				text += '<td>'
+        				text += json.noticeNum
+        				text += '</td>'
+        				text += '<td>' 
+        				text += json.section
+        				text += '</a></td>' 
+        				text += '<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/board_specific.jsp?postNum=' 
+        				text += json.noticeNum 
+        				text += '/>">' 
+        				text += json.title 
+        				text += '</a></td>' 
+        				text += '<td>'
+        				text += json.inputDate
+        				text += '</td>'
+        				text += '<td class="num">'
+        				text += json.viewCnt
+        				text += '</td></tr>'
+        			})//each
+        			if(jsonArr.arr.length == 0){
+        				text += '<td colspan="5" style="text-align:center"><strong><font size="5">"'
+        				text += $("#keyword").val()
+        				text += '"로 검색된 결과가 없습니다.</font></strong></td>'
+                    }//if
+        			$("#tbody").html(text)
+        			totalPage = jsonArr.total
+        			setPage(page)
+        		}//success
+        	})//ajax
+        }//search
+        
+        function paging(page){
+        	$("#paging > .currentPage").attr("class","")
+        	$("#page_"+page).attr("class","currentPage")
+        	
+        	currentPage = page
+        }//paging
+        
+        function setPage(page){
+        	var data = {"current" :page , "total":totalPage}
+        	$.ajax({
+        		url : "http://localhost/HCY_CINEMA/user/board/notice_page_ajax.jsp",
+        		type : "get",
+        		data : data,
+        		dataType : "text",
+        		error : function(xhr){
+        			console.log(xhr.status)
+        		},
+        		success : function(text){
+        			$("#paging").html(text)
+        			paging(page)
+        		}//success
+        	})//ajax
+        }//setPage
 
 
 //]]>

@@ -570,7 +570,6 @@ $(document).ready(function() {
             <li class="on"><a href="http://localhost/HCY_CINEMA/user/board/board.jsp">자유게시판<i></i></a></li>            
         </ul>
     </div>
-    
 </div>
 
 		<div class="col-detail">
@@ -614,7 +613,7 @@ $(document).ready(function() {
 			
 			<div style="display: flex; justify-content: flex-end;">
 			<input type="button" value="글쓰기"  id="btn_write" class="btn_search" style="margin-left: 10px; background: #888888; width: 70px; 
-			height: 29px; color: #FFFFFF; border: none;"/>
+			height: 29px; color: #FFFFFF; border: none;" onclick="goToWrite()"/>
 			</div>
 			
 			<div class="tbl_area">
