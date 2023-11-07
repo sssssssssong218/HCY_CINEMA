@@ -18,9 +18,9 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="No-Cache">
 <meta http-equiv="imagetoolbar" content="no">
-<meta name="keywords" content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
-<meta name="description" content="영화 그 이상의 감동. CGV">
-<title>CGV 빠른예매</title>
+<meta name="keywords" content="HCY, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Hcy, hcy, 예매, 상영작">
+<meta name="description" content="영화 그 이상의 감동. HCY">
+<title>HCY 빠른예매</title>
 <link rel="stylesheet" href="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/css/2023/0720/FORM_TYPE/common.css">
 <link rel="stylesheet" href="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/css/2023/0720/FORM_TYPE/reservation.css">
 <link rel="stylesheet" href="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/css/2023/0720/FORM_TYPE/reservation_tnb.css">

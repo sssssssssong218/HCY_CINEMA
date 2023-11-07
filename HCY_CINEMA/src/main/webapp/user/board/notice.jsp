@@ -689,10 +689,10 @@ out.println(BoardUtil.getInstance().pageNation(buVO));
         				text += '</td>'
         				text += '<td>' 
         				text += json.section
-        				text += '</a></td>' 
-        				text += '<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/board_specific.jsp?noticeNum=' 
+        				text += '</td>' 
+        				text += '<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/notice_specific.jsp?noticeNum=' 
         				text += json.noticeNum 
-        				text += '/>">' 
+        				text += '">' 
         				text += json.title 
         				text += '</a></td>' 
         				text += '<td>'
@@ -793,7 +793,7 @@ out.println(BoardUtil.getInstance().pageNation(buVO));
     <!-- S 예매하기 및 TOP Fixed 버튼 -->
     <div class="fixedBtn_wrap">
      
-        <a href="/ticket/" class="btn_fixedTicketing">예매하기</a>
+        <a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp" class="btn_fixedTicketing">예매하기</a>
         
         <a href="#none" class="btn_gotoTop"><img src="https://img.cgv.co.kr/R2014/images/common/btn/gotoTop.png" alt="최상단으로 이동"></a>
     </div>

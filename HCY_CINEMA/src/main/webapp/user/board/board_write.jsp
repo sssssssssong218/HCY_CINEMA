@@ -81,6 +81,12 @@
 
     <!--/각페이지 Header End--> 
     <script type="text/javascript">
+    $(document).ready(function() {
+    	if(${login!="true"} && ${nonMemLogin!="true"}){
+    		alert("로그인 후 이용해주세요!")
+    		location.href="http://localhost/HCY_CINEMA/user/login/login.jsp"
+    	}//if
+    });//ready
         //<![CDATA[
         _TRK_CP = "/고객센터/공지/뉴스";
 
@@ -549,7 +555,7 @@ function goBack() {
     <!-- S 예매하기 및 TOP Fixed 버튼 -->
     <div class="fixedBtn_wrap topBtn">
      
-        <a href="/ticket/" class="btn_fixedTicketing">예매하기</a>
+        <a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp" class="btn_fixedTicketing">예매하기</a>
         
         <a href="#none" class="btn_gotoTop"><img src="https://img.cgv.co.kr/R2014/images/common/btn/gotoTop.png" alt="최상단으로 이동"></a>
     </div>

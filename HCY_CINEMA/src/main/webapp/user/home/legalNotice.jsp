@@ -112,7 +112,7 @@ HCY는 이 사이트 및 다른 관련 사이트들의 서비스와 자료들 �
     <!-- S 예매하기 및 TOP Fixed 버튼 -->
     <div class="fixedBtn_wrap">
      
-        <a href="/ticket/" class="btn_fixedTicketing">예매하기</a>
+        <a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp" class="btn_fixedTicketing">예매하기</a>
         
         <a href="#none" class="btn_gotoTop"><img src="https://img.cgv.co.kr/R2014/images/common/btn/gotoTop.png" alt="최상단으로 이동"></a>
     </div>

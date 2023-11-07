@@ -44,7 +44,7 @@ function checkNull(){
 
 function useId(id){
 	opener.window.document.frm.txtUserId.value=id
-	opener.window.document.hidDupFrm.idDupFlag.value=1
+	opener.window.document.frm.idDupFlag.value=1
 	self.close();
 }//useId
 

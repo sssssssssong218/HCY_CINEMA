@@ -30,6 +30,7 @@
 		try{
 		EditMemberInfoDAO.getInstance().updateMemberStatus(id, mVO);
 		}catch(SQLException se){
+			se.printStackTrace();
 			session.setAttribute("msg", "예상치 못한 오류가 발생했습니다. 다시 로그인해주세요");
 			session.setAttribute("url", "http://localhost/HCY_CINEMA/user/login/logout.jsp");
 			response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");

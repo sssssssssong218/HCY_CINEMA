@@ -316,12 +316,12 @@
                                 <h4>회원 정보 수정</h4>
                                 <div class="box-confirm">
                                    <h5>수정하실 정보를 입력해주세요!</h5>
+                                    <form id="frm" name="frm">
                                        <label for="txtUserName" style="margin-right: 51px">이름</label>
                                        <input type="text" id="txtUserName" name="txtUserName" value="<%=mVO.getMname()%>"><br><br>
                                        
-                                       <label for="txtUserId" style="margin-right: 40px;margin-left: 82px">아이디</label>
-                                       <input type="text" id="txtUserId" name="txtUserId" placeholder="아이디를 입력해주세요." value="<%=mVO.getId()%>">
-                                       <input type="button" id="btnDup" name="btnDup" class="btn btn-dark" value="중복확인" style="width: 70px;margin-left: 10px"><br><br>
+                                       <label for="txtUserId" style="margin-right: 40px">아이디</label>
+                                       <input type="text" id="txtUserId" name="txtUserId" placeholder="아이디를 입력해주세요." value="<%=mVO.getId()%>" readonly="readonly"><br><br>
 					                   <input type="hidden" id="idDupFlag" name="idDupFlag" value="1">
                                        
                                        <label for="txtUserTel" style="margin-right: 30px">전화번호</label>
@@ -332,6 +332,7 @@
                                        
                                        <input type="button" id="btnSave" class="btn btn-danger" value="저장" style="width: 70px" onclick="clickSave()">
                                        <input type="button" id="btncancel" class="btn btn-secondary" value="취소" style="width: 70px" onclick="clickCancel()"><br><br>
+                                       </form>
                                 </div>
                             </div>
                         </div>
@@ -536,7 +537,7 @@
     <!-- S 예매하기 및 TOP Fixed 버튼 -->
     <div class="fixedBtn_wrap topBtn">
      
-        <a href="/ticket/" class="btn_fixedTicketing">예매하기</a>
+        <a href="http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp" class="btn_fixedTicketing">예매하기</a>
         
         <a href="#none" class="btn_gotoTop"><img src="https://img.cgv.co.kr/R2014/images/common/btn/gotoTop.png" alt="최상단으로 이동"></a>
     </div>
