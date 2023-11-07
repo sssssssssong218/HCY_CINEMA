@@ -471,7 +471,7 @@ function fnPricePage(){
     <!-- E 예매하기 및 TOP Fixed 버튼 -->
 	
     <!-- S Footer -->
-    <jsp:include page="../include/footer.jsp"/>
+    <jsp:include page="../include/footer.jsp"/> 
 	<!-- E Footer -->
 
     <!-- Aside Banner :  -->
