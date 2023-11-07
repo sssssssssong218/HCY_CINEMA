@@ -66,6 +66,8 @@ try {
        scheduleJson.put("tel", sVO.getTel());
        scheduleJson.put("seatnum", sVO.getScreenNum());
        scheduleJson.put("status", sVO.getStatus());
+       scheduleJson.put("ticketnum", sVO.getTicketnum());
+       
   	 	jsonArray.add(scheduleJson);
    }//end for
     jsonObj.put("data",jsonArray);

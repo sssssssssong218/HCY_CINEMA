@@ -1,7 +1,7 @@
 package screen;
 
 public class MemberVO {
-private String id,tel,status,screenNum;
+private String id,tel,status,screenNum,ticketnum;
 public String getId() {
 	return id;
 }
@@ -26,12 +26,20 @@ public String getScreenNum() {
 public void setScreenNum(String screenNum) {
 	this.screenNum = screenNum;
 }
-public MemberVO(String id, String tel, String status, String screenNum) {
+
+public String getTicketnum() {
+	return ticketnum;
+}
+public void setTicketnum(String ticketnum) {
+	this.ticketnum = ticketnum;
+}
+public MemberVO(String id, String tel, String status, String screenNum,String ticketnum) {
 	super();
 	this.id = id;
 	this.tel = tel;
 	this.status = status;
 	this.screenNum = screenNum;
+	this.ticketnum=ticketnum;
 }
 public MemberVO() {
 	super();

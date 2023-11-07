@@ -659,8 +659,8 @@ $(function () {
 	    		                }).click(function () {
 	    		                    // 예매 취소 버튼 클릭 시 수행할 동작 추가
 	    		                    // 여기에서 예매 취소 로직을 추가하십시오
-	    		                	var seatNum = $(this).closest("tr").find("td:first").text();
-	    		                    
+	    		                	var ticketnum = json.ticketnum;
+	    		                    window.location.href="http://localhost/HCY_CINEMA/admin/manageScreen/deleteSeat.jsp?ticketnum="+ticketnum;
 	    		                })
 	    		            );
 

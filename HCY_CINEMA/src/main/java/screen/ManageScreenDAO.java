@@ -203,7 +203,7 @@ public class ManageScreenDAO {
 				con=db.getCon();
 				StringBuilder selectMember =new StringBuilder();
 				selectMember
-				.append(" 	select s.seatnum,t.id,t.tel,t.status							")
+				.append(" 	select s.seatnum,t.id,t.tel,t.status,t.ticketnum							")
 				.append(" 	from seat s,ticketing t											")
 				.append(" 	where s.schedulenum=t.schedulenum and s.ticketnum=t.ticketnum	")
 				.append(" 	and t.schedulenum=?	and status='Y' order by seatnum								");
@@ -218,6 +218,7 @@ public class ManageScreenDAO {
 					mVO.setStatus(rs.getString("status"));
 					mVO.setScreenNum(rs.getString("seatnum"));
 					mVO.setTel(rs.getString("tel"));
+					mVO.setTicketnum(rs.getString("ticketnum"));
 					list.add(mVO);
 				}
 			}finally {
@@ -328,7 +329,7 @@ public class ManageScreenDAO {
 		}
 		return schedulenum;	
 	}
-	public void updateSeat(String seatNum) throws SQLException {
+	public void updateSeat(String ticketnum) throws SQLException {
 		DBConnection db=DBConnection.getInstance();
 		Connection con =null;
 		PreparedStatement pstmt=null;
@@ -336,10 +337,28 @@ public class ManageScreenDAO {
 		try {
 			con=db.getCon();
 			
-			String deleteSeat="update ticketing set seat='N' where seatnum=?";
+			String deleteSeat="update ticketing set status='N' where ticketnum=?";
 			pstmt=con.prepareStatement(deleteSeat);
 			
-			pstmt.setString(1,seatNum);
+			pstmt.setString(1,ticketnum);
+			
+			pstmt.executeUpdate();
+			
+		}finally {
+			db.dbClose(null, pstmt, con);
+		}
+	}
+	public void deleteSeat(String ticketnum) throws SQLException{
+		DBConnection db=DBConnection.getInstance();
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		try {
+			con=db.getCon();
+			
+			String deleteSeat="delete from seat where ticketnum=?";
+			pstmt=con.prepareStatement(deleteSeat);
+			
+			pstmt.setString(1,ticketnum);
 			
 			pstmt.executeUpdate();
 			
