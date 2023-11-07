@@ -21,10 +21,9 @@
 	for(String movieCode:checkMovie){
 		dmDAO.deleteMovie(movieCode);
 	}
-	%>
-	alert("영화를 종영시켰습니다.");
-	<%
-	response.sendRedirect("http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+    session.setAttribute("msg", "종영처리 되었습니다.");
+	session.setAttribute("url", "http://localhost/HCY_CINEMA/admin/manageMovie/manage_movie.jsp");
+	response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
 	%>
 });
 </script>
