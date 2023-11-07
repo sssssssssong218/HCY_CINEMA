@@ -240,7 +240,7 @@ public class ManageScreenDAO {
 		try {
 			con=db.getCon();
 			
-			String selectMovie="select moviecode, mname,plot from movie where releasedate<? and enddate>? and status='Y'";
+			String selectMovie="select moviecode, mname,plot from movie where releasedate<? and enddate>? and status in('Y','W')";
 			
 			pstmt=con.prepareStatement(selectMovie);
 			pstmt.setDate(1,date);
