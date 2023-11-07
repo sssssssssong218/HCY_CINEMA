@@ -331,8 +331,8 @@ to {
 													<td class="p-5" style="vertical-align: middle;"><%=mmVO.getEndDate()%></td>
 													<td class="p-5" style="vertical-align: middle;"><%=mmVO.getTicketRate()%></td>
 													<td class="p-5" style="vertical-align: middle;"><%=mmVO.getReviewCnt()%></td>
-													<td class="p-5" style="vertical-align: middle;">5.0 /
-														<%=mmVO.getStarRating()%></td>
+													<td class="p-5" style="vertical-align: middle;"><%=mmVO.getStarRating()%> / 5.0
+														</td>
 												</tr>
 
 												<%
