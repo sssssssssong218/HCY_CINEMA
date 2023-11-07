@@ -188,11 +188,44 @@ public class ManageScreenDAO {
 		
 	}//updateCancelTicket
 	
-	/*
-	 * public ManageSeatVO selectMember() {
-	 * 
-	 * }
-	 */
+	
+	 public List<MemberVO> selectMember(String screenNum) throws SQLException {
+	 
+		 List<MemberVO> list=new ArrayList<MemberVO>();
+			
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			
+			DBConnection db=DBConnection.getInstance();
+			
+			try {
+				con=db.getCon();
+				StringBuilder selectMember =new StringBuilder();
+				selectMember
+				.append(" 	select s.seatnum,t.id,t.tel,t.status							")
+				.append(" 	from seat s,ticketing t											")
+				.append(" 	where s.schedulenum=t.schedulenum and s.ticketnum=t.ticketnum	")
+				.append(" 	and t.schedulenum=?	and status='Y' order by seatnum								");
+				pstmt=con.prepareStatement(selectMember.toString());
+				pstmt.setString(1,screenNum);
+				
+				rs=pstmt.executeQuery();
+				MemberVO mVO=null;
+				while(rs.next()) {
+					mVO=new MemberVO();
+					mVO.setId(rs.getString("id"));
+					mVO.setStatus(rs.getString("status"));
+					mVO.setScreenNum(rs.getString("seatnum"));
+					mVO.setTel(rs.getString("tel"));
+					list.add(mVO);
+				}
+			}finally {
+				db.dbClose(rs, pstmt, con);
+			}
+			return list;
+	 }
+	 
 	
 	public List<MovieVO> selectMovie(Date date) throws SQLException{
 		List<MovieVO> list=new ArrayList<MovieVO>();
@@ -267,4 +300,51 @@ public class ManageScreenDAO {
 			db.dbClose(rs, pstmt, con);
 		}
 	}//insertSchedule
+	
+	public String selectSchedule(ScheduleNumVO snVO) throws SQLException {
+		DBConnection db=DBConnection.getInstance();
+		String schedulenum="";
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=db.getCon();
+			
+			String insertSchedule="select * from schedule where moviecode=? and screennum=? and to_char(showtime,'yyyy-mm-dd HH24:mi')=to_char(?,'yyyy-mm-dd HH24:mi')";
+			pstmt=con.prepareStatement(insertSchedule);
+			
+			pstmt.setString(1, snVO.getMoviecode());
+			pstmt.setString(2, snVO.getScreennum());
+			pstmt.setDate(3, snVO.getDate());
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				schedulenum=rs.getString("schedulenum");
+			}
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}
+		return schedulenum;	
+	}
+	public void updateSeat(String seatNum) throws SQLException {
+		DBConnection db=DBConnection.getInstance();
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		
+		try {
+			con=db.getCon();
+			
+			String deleteSeat="update ticketing set seat='N' where seatnum=?";
+			pstmt=con.prepareStatement(deleteSeat);
+			
+			pstmt.setString(1,seatNum);
+			
+			pstmt.executeUpdate();
+			
+		}finally {
+			db.dbClose(null, pstmt, con);
+		}
+	}
 }//class

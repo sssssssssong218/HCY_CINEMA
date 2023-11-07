@@ -306,6 +306,9 @@ to {
     margin-top: 30px;
     margin-left: 300px;
 }
+.schedule_btn{
+white-space: normal;
+}
 </style>
 <div style="overflow: auto">
     <h2>&nbsp;&nbsp;상영스케줄 - 2D</h2>
@@ -398,6 +401,7 @@ for(int i=0;i<fixedHours.length;i++){
         </label>
 	<input id="<%=i+1 %>" style="font-size:20px" type="button" class="btn btn-dark schedule_btn" value="<%= hasSchedule ? sVO.getMname() : "스케줄 없음" %>"
             name="<%= hasSchedule ? sVO.getMname() : "스케줄 없음" %>">
+            <input type="hidden" id="hid_<%=i+1 %>" name="hid_+<%=i+1 %>" value="<%=sVO==null? "":sVO.getMovieCode() %>">
     </div>
 <%		
 }//end for
@@ -424,7 +428,7 @@ for(int i=0;i<fixedHours.length;i++){
         <div class="button-container" style="overflow: auto;">
         <form id="frm" name="frm" action="http://localhost/HCY_CINEMA/admin/manageScreen/insertSchedule.jsp">
             <button type="button" class="btn btn-primary save_btn">저장</button>
-            <button type="button" class="btn btn-danger" >취소</button>
+            <button type="button" class="btn btn-danger cancel_btn" >취소</button>
             <input type="hidden" id="year_hid" name="year_hid" value="">
             <input type="hidden" id="month_hid" name="month_hid" value="">
             <input type="hidden" id="day_hid" name="day_hid" value="">
@@ -441,77 +445,15 @@ for(int i=0;i<fixedHours.length;i++){
          <div id="no_shcedule" style="margin-left:20px; max-height: 300px; overflow: auto;">
             <table class="table" style="text-align:center">
                 <thead>
-                    <tr style="width:600px">
+                    <tr style="width:1500px">
                         <th scope="col">좌석</th>
                         <th scope="col">고객 아이디</th>
                         <th scope="col">예매 상태</th>
+                        <th scope="col">예매취소</th>
                     </tr>
                 </thead>
                 <tbody style="text-align:center; ">
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>A1</td>
-                        <td>Otto</td>
-                        <td>예매
-                            <button type="button" class="btn btn-info" style="float:right">예매취소</button>
-                        </td>
-                    </tr>
-                   
+              
                 </tbody>
             </table>
         </div>                    
@@ -529,14 +471,22 @@ $(function () {
 	    var selectedMonth = $("#month").val();
 	    var selectedDay = $("#day").val();
 	    var selectedScreenNum = 1;
-	$("#checkBtn").click(function () {
-	        var btn1 = $("#1"); // jQuery로 요소 선택
-	        var btn2 = $("#2"); // jQuery로 요소 선택
-	        var btn3 = $("#3"); // jQuery로 요소 선택
-	        var btn4 = $("#4"); // jQuery로 요소 선택
-	        var btn5 = $("#5"); // jQuery로 요소 선택
+	    var hid1 = $("#hid_1");
+        var hid2 = $("#hid_2");
+        var hid3 = $("#hid_3");
+        var hid4 = $("#hid_4");
+        var hid5 = $("#hid_5");
+	    $("#checkBtn").click(function () {
+	        var btn1 = $("#1");
+	        var btn2 = $("#2");
+	        var btn3 = $("#3");
+	        var btn4 = $("#4");
+	        var btn5 = $("#5");
+	        selectedYear = $("#year").val();
+	        selectedMonth = $("#month").val();
+	        selectedDay = $("#day").val();
 
-	        var scheduleData = {}; // 스케줄 데이터를 저장할 객체
+	        var scheduleData = {};
 
 	        $.ajax({
 	            type: "POST",
@@ -545,7 +495,7 @@ $(function () {
 	                year: selectedYear,
 	                month: selectedMonth,
 	                day: selectedDay,
-	                screenNum: selectedScreenNum // 2관
+	                screenNum: selectedScreenNum
 	            },
 	            dataType: "json",
 	            error: function (error) {
@@ -555,25 +505,28 @@ $(function () {
 	                $.each(jsonObj.data, function (i, json) {
 	                    var showtime = json.showtime.substring(11, 13);
 	                    var mname = json.mname;
-
-	                    // 해당 시간대의 스케줄 데이터를 객체에 저장
-	                    scheduleData[showtime] = mname;
+	                    var movieCode = json.movieCode;
+	                    scheduleData[showtime] = {
+	                        mname: mname,
+	                        movieCode: movieCode
+	                    };
 	                });
 
-	                // 버튼에 스케줄 데이터 설정
-	                btn1.val(scheduleData[10] || "스케쥴 없음");
-	                btn2.val(scheduleData[13] || "스케쥴 없음");
-	                btn3.val(scheduleData[16] || "스케쥴 없음");
-	                btn4.val(scheduleData[19] || "스케쥴 없음");
-	                btn5.val(scheduleData[22] || "스케쥴 없음");
-	          /*       alert(btn1.val());
-	                alert(btn2.val());
-	                alert(btn3.val());
-	                alert(btn4.val());
-	                alert(btn5.val()); */
+	                btn1.val(scheduleData[10] ? scheduleData[10].mname : "스케줄 없음");
+	                btn2.val(scheduleData[13] ? scheduleData[13].mname : "스케줄 없음");
+	                btn3.val(scheduleData[16] ? scheduleData[16].mname : "스케줄 없음");
+	                btn4.val(scheduleData[19] ? scheduleData[19].mname : "스케줄 없음");
+	                btn5.val(scheduleData[22] ? scheduleData[22].mname : "스케줄 없음");
+
+	                hid1.val(scheduleData[10] ? scheduleData[10].movieCode : "");
+	                hid2.val(scheduleData[13] ? scheduleData[13].movieCode : "");
+	                hid3.val(scheduleData[16] ? scheduleData[16].movieCode : "");
+	                hid4.val(scheduleData[19] ? scheduleData[19].movieCode : "");
+	                hid5.val(scheduleData[22] ? scheduleData[22].movieCode : "");
 	            }
 	        });
 	    });
+
 	$(".schedule_btn").click(function () {
 	    // 클릭된 버튼의 아이디를 가져와서 name에 설정
 	    
@@ -662,6 +615,61 @@ $(function () {
 	            }
 	        });
 	    } else {
+	    	  var buttonId = $(this).attr("id");
+	    	  var matchingHidden = $("#hid_" + buttonId);
+	    	  var hiddenValue = matchingHidden.val();
+	    	
+	    	  var buttonId = $(this).attr("id");
+	    	  var matchingHidden = $("#hid_" + buttonId);
+	    	  var hiddenValue = matchingHidden.val();
+	    	
+	    	  $.ajax({
+	    		    type: "POST",
+	    		    url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_select_member.jsp",
+	    		    data: {
+	    		        year: selectedYear,
+	    		        month: selectedMonth,
+	    		        day: selectedDay,
+	    		        screenNum: selectedScreenNum, // 2관
+	    		        movieCode: hiddenValue,
+	    		        btnid: buttonId
+	    		    },
+	    		    dataType: "json",
+	    		    error: function (error) {
+	    		        console.log(error.status);
+	    		    },
+	    		    success: function (jsonObj) {
+	    		        var table = $("tbody");
+	    		        $.each(jsonObj.data, function (i, json) {
+	    		            var msg = "";
+	    		            if ("Y" === json.status) {
+	    		                msg = "예매";
+	    		            }
+	    		            var row = $("<tr>");
+	    		            var seatNumCell = $("<td>").text(json.seatnum);
+	    		            var idCell = $("<td>").text(json.id || json.tel);
+	    		            var statusCell = $("<td>").text(msg);
+
+	    		            // 예매 취소 버튼을 추가
+	    		            var cancelButtonCell = $("<td>").append(
+	    		                $("<input>").attr({
+	    		                    type: "button",
+	    		                    class: "btn btn-info",
+	    		                    value: "예매취소"
+	    		                }).click(function () {
+	    		                    // 예매 취소 버튼 클릭 시 수행할 동작 추가
+	    		                    // 여기에서 예매 취소 로직을 추가하십시오
+	    		                	var seatNum = $(this).closest("tr").find("td:first").text();
+	    		                    
+	    		                })
+	    		            );
+
+	    		            row.append(seatNumCell, idCell, statusCell, cancelButtonCell);
+	    		            table.append(row);
+	    		        });
+	    		    }
+	    		});
+
 	        // 다른 버튼을 누를 때 기타 모달 열기
 	        document.getElementById("has_schedule").style.display = "block";
 	        // 모달을 띄울 때 해당 버튼의 이름을 저장
@@ -676,7 +684,10 @@ $(function () {
 	
 		$("#frm").submit();
 	});
-
+	$(".cancel_btn").click(function(){
+		document.getElementById("no_has_schedule").style.display = "none";
+	})
+		
 	});
 
 
