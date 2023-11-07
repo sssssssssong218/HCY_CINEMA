@@ -351,7 +351,6 @@
 							<div class="title" style="display: flex">
 								<strong><%=mVO.getMname()%></strong> <em class="round brown"><span>예매중</span></em>
 								<em class="round red"><span>D-1</span></em>
-								<p>The Boys</p>
 							</div>
 							<div class="score">
 								<strong class="percent">예매율&nbsp;<span>16.9%</span></strong>
@@ -376,7 +375,7 @@
 											}
 										}
 										%>
-										<a href="/movies/persons/?pidx=8618"><%=director%></a>
+										<span><%=director%></span>
 									</dd>
 									<dt>&nbsp;/ 프로듀서 :&nbsp;</dt>
 									<dd>김주상</dd>
@@ -393,7 +392,7 @@
 										}
 										%>
 
-										<a href="/movies/persons/?pidx=331"><%=actor%></a>
+										<span><%=actor%></span>
 
 
 
@@ -700,8 +699,7 @@
 								<div class="heading">
 									<h4>트레일러</h4>
 									<span id="ctl00_PlaceHolderContent_TrailerTotalCount"
-										class="count">1건</span><a class="link-more"
-										href="trailer.aspx?midx=87429">더보기</a>
+										class="count">1건</span>
 								</div>
 								<ul>
 									<!-- 사진 동영상 조회 -->
@@ -741,8 +739,7 @@
 								class="sect-stillcut">
 								<div class="heading">
 									<h4>스틸컷</h4>
-									<span class="count"><strong id="stillcut_current">1</strong>/<%=StillList.size() %>건</span><a
-										class="link-more" href="still-cut.aspx?midx=87429">더보기</a>
+									<span class="count"><strong id="stillcut_current">1</strong>/<%=StillList.size() %>건</span>
 								</div>
 								<div class="slider-wrap">
 									<div class="slider" id="still_motion">
@@ -791,9 +788,6 @@
 							 <div class="sect-grade" id="sect-grade">
 								<!-- preegg.css 연관 UI -->
 								<div class="movie_grade">
-									<a class="info" id="goldenEggAlert" href="javascript:void(0);"><img
-										src="https://img.cgv.co.kr/R2014/images/common/ico/ico-question-mark.png"
-										alt="?"></a>
 									<div class="egg_point">
 										<!-- 영화요약문구 -->
 										<div class="title">
@@ -1103,16 +1097,14 @@ System.out.println(imtstar+" / "+img4+" / "+(double)arg+" / "+ riVO.getReviewArg
 									</script>
 
 								</div>
-								<div class="real-rating">
-									<p class="title">
+								<div class="real-rating" style="margin-top:20px;">
+									<p class="title" >
 										관람일 포함 7일 이내 관람평을 남기시면 <strong>HCY 20P</strong>가 적립됩니다.
 									</p>
 									<p class="desc">
 									</p>
-									<div class="wrap_btn">
-										<a class="link-gradewrite" href="javascript:void(0);"><span>평점작성</span></a><a
-											class="link-reviewwrite" href="/movies/point/my-list.aspx"><span>내
-												평점</span></a>
+									<div class="wrap_btn" style="margin-top: -9px;">
+										<a class="link-gradewrite" href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp"><span>평점작성</span></a>
 									</div>
 								</div>
 								<!-- //preegg.css 연관 UI -->
