@@ -41,25 +41,29 @@ public class BoardUtil {
 		String prevLink=" < ";
 		if( currentPage > pageNumber ){
 			movePage=startPage-1;
-			pageNation.append(" <a href='").append(buVO.getUrl())
-			.append("?currentPage=").append( movePage ).append("&dataFlag=")
-			.append(buVO.getDataFlag()).append("&keyword=")
-			.append(buVO.getKeyword()).append("&field=").append(buVO.getField())
-			.append("'>&lt; </a> ");
+			pageNation.append(" <span onclick = 'search(")
+			.append(movePage)
+			.append(")'>")
+			.append(" &lt; " ).append("</span>");
 		}//end if
 			
 		//6. 시작번호부터 끝번호까지 반복
 		movePage=startPage;
 		while( movePage <= endPage ){
 			if( movePage == currentPage ){//현재페이지와 이동할 페이지가 같다면 링크없이 인덱스리스트 제공
-				pageNation.append(" <span style='color:#FF0000'>")
+				pageNation.append(" <span class='currentPage' id='page_")
+				.append(movePage)
+				.append("' onclick = 'search(")
+				.append(movePage)
+				.append(")'>")
 				.append( movePage ).append("</span>");
 			}else{
-				pageNation.append(" <a href='").append(buVO.getUrl())
-				.append("?currentPage=").append( movePage ).append("&dataFlag=")
-				.append(buVO.getDataFlag()).append("&keyword=")
-				.append(buVO.getKeyword()).append("&field=")
-				.append(buVO.getField()).append("'>").append( movePage ).append("</a>");
+				pageNation.append(" <span onclick = 'search(")
+				.append(movePage)
+				.append(")' id='page_")
+				.append(movePage)
+				.append("'>")
+				.append( movePage ).append("</span>");
 			}//end else
 			movePage++;
 		}//end while
@@ -67,11 +71,10 @@ public class BoardUtil {
 		//7. 뒤에 페이지가 더 있는 경우
 		if( totalPage > endPage){
 			movePage=endPage+1;
-			pageNation.append(" <a href='").append(buVO.getUrl())
-			.append("?currentPage=").append( movePage ).append("&dataFlag=")
-			.append(buVO.getDataFlag()).append("&keyword=")
-			.append(buVO.getKeyword()).append("&field=").append(buVO.getField())
-			.append("'>&gt; </a> ");
+			pageNation.append(" <span onclick = 'search(")
+			.append(movePage)
+			.append(")'>")
+			.append(" &gt; " ).append("</span>");
 		}//end if
 		
 		return pageNation.toString();

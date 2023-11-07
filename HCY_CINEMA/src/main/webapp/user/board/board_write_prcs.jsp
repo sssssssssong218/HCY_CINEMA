@@ -1,3 +1,4 @@
+<%@page import="java.sql.SQLException"%>
 <%@page import="manageMember.MemberVO"%>
 <%@page import="board.BoardDAO"%>
 <%@page import="board.BoardVO"%>
@@ -27,13 +28,16 @@ $(function(){
 <body>
 
 <%
-request.setCharacterEncoding("UTF-8");
 //GET방식의 요청이라면 memberjoin_frm.jsp로 이동
 String method=request.getMethod();
 if("GET".equals(method)){
-	response.sendRedirect("board_write.jsp");
+	session.setAttribute("msg", "비정상적인 접근이 확인되었습니다.");
+	session.setAttribute("url", "http://localhost/HCY_CINEMA/user/board/board_write.jsp");
+	response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
 	return;
 }//end if
+
+
 %>
 
 <jsp:useBean id="bVO" class="board.BoardVO" scope="page"/>
@@ -45,23 +49,27 @@ request.setCharacterEncoding("UTF-8");
 
 MemberVO mVO = (MemberVO)session.getAttribute("mVO");
 
-String id=(String)session.getAttribute("sesID");
-String title=request.getParameter("title");
-String content=request.getParameter("content");
+String id=mVO.getId();
+System.out.println(new String(request.getParameter("titleTxt").getBytes("8859_1"),"UTF-8"));
+String title=new String(request.getParameter("titleTxt").getBytes("8859_1"),"UTF-8");
+String content=new String(request.getParameter("txtContent").getBytes("8859_1"),"UTF-8");
 BoardDAO bDAO=BoardDAO.getInstance();
 
 bVO.setId(id);
 bVO.setTitle(title);
 bVO.setContent(content);
-boolean flag=bDAO.insertBoard(bVO); 
+try{
+bDAO.insertBoard(bVO);
+session.setAttribute("msg", "성공적으로 글을 등록하였습니다!");
+session.setAttribute("url", "http://localhost/HCY_CINEMA/user/board/board.jsp");
+response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
+}catch(SQLException se){
+	se.printStackTrace();
+	session.setAttribute("msg", "예상치 못한 오류가 발생했습니다. 다시 시도해주세요!");
+	session.setAttribute("url", "http://localhost/HCY_CINEMA/user/board/board.jsp");
+	response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
+}//catch
 
-if(flag){
-	response.sendRedirect("http://localhost/HCY_CINEMA/user/board/board.jsp");
-}else{
-%>
-	<h2>게시글 등록 중 오류가 발생하였습니다.</h2>
-<%	
-}//end else
 %> 
 </body>
 </html>

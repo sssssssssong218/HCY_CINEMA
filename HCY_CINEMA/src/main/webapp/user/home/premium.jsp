@@ -19,9 +19,9 @@
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/Theater/Theater/2014/1211/CGVgangnam.jpg">
     <link rel="alternate" href="http://m.cgv.co.kr">
-    <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
     <title id="ctl00_headerTitle">HCY극장 &lt; 특별관</title>
-    <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/layout.css">
@@ -232,9 +232,8 @@
         <!-- 유닛관리-->
         <article class="specialtheater_detail_edit_wrap"><div class="contents"><strong class="specialtheater_detail_edit_title tAlignC">Premium Seat</strong> <span class="specialtheater_detail_edit_context tAlignC"> 프리미엄 관은 일반 좌석 대비 보다 편안한 영화관람을 제공하는<br>
 최고급 프리미엄 좌석을 갖춘 상영관입니다. </span>
-<p class="premium_list_comment">CGV 극장별로 리클라이너 효과 및 좌석 사양은 상이할 수 있으며, 이에 따라 일부 차등 적용됩니다.</p>
+<p class="premium_list_comment">HCY 극장별로 리클라이너 효과 및 좌석 사양은 상이할 수 있으며, 이에 따라 일부 차등 적용됩니다.</p>
 <img alt="Premium Seat" src="https://img.cgv.co.kr/resource_pc/images/specialtheater/premium/specialtheater_premium0.jpg"> <strong class="specialtheater_detail_edit_title tAlignC">Special Anniversary</strong> <span class="specialtheater_detail_edit_context tAlignC">특별한 기념일, VIP 초대 행사가 있으실 때 더욱 유용하게 이용하실 수 있습니다.</span> <img alt="Special Anniversary" src="https://img.cgv.co.kr/resource_pc/images/specialtheater/premium/specialtheater_premium1.jpg"></div></article>
-        <article class="specialtheater_detail_wrap">    <div class="contents">        <h4 class="specialtheater_detail_title">PREMIUM 극장</h4>        <div class="specialtheater_detail_inner_wrap">            <dl class="specialtheater_list_popular">                <dd class="specialtheater_list_container">                    <ul class="specialtheater_list_contents">                        <li><a href="http://www.cgv.co.kr/theaters/?theaterCode=0013">용산아이파크몰</a></li>                        <li><a href="http://www.cgv.co.kr/theaters/?theaterCode=0205">이천</a></li>                        <li><a href="http://www.cgv.co.kr/theaters/?theaterCode=0107">청담씨네시티</a></li>                        <li><a href="http://www.cgv.co.kr/theaters/?theaterCode=0235">청라</a></li>                        <li><a href="http://www.cgv.co.kr/theaters/?theaterCode=0055">신세계경기</a></li>                    </ul>                </dd>            </dl>        </div>    </div></article>
         
         
         

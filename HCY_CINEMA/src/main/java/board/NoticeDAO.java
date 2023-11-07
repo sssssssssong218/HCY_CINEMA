@@ -43,7 +43,7 @@ public class NoticeDAO {
 			
 			StringBuilder selectNotice=new StringBuilder();
 			selectNotice.append( " select noticenum, section, title, input_date, viewcount, rnum	")
-			.append(" from (select noticenum, section, title, to_char(input_date, 'yyyy-mm-dd') input_date, viewcount, ROW_NUMBER() OVER (ORDER BY noticenum DESC) as rnum	")
+			.append(" from (select noticenum, section, title, to_char(input_date, 'yyyy-mm-dd') input_date, viewcount, ROWNUM as rnum	")
 			.append(" from notice)				");
 			selectNotice.append("where rnum between ? and ?      ");
 			
@@ -119,6 +119,130 @@ public class NoticeDAO {
 		
 		return list;
 	}//selectNotice
+	
+	public List<NoticeVO> selectSpecificNoticeSection(String key,String section) throws SQLException{
+		List<NoticeVO> list = new ArrayList<NoticeVO>();
+		
+		DBConnection db = DBConnection.getInstance();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = db.getCon();
+			
+			String selectSpecificBoard = "SELECT NOTICENUM, SECTION, TITLE, INPUT_DATE, VIEWCOUNT from NOTICE where TITLE like ?";
+			
+			pstmt = con.prepareStatement(selectSpecificBoard);
+			pstmt.setString(1, "%"+key+"%");
+			pstmt.setString(2, "%"+section+"%");
+			
+			rs=pstmt.executeQuery();
+			NoticeVO nVO = null;
+			while(rs.next()) {
+				nVO = new NoticeVO();
+				nVO.setNoticeNum(rs.getInt("NOTICENUM"));
+				nVO.setSection(rs.getString("SECTION"));
+				nVO.setTitle(rs.getString("TITLE"));
+				nVO.setInputDate(rs.getDate("INPUT_DATE"));
+				nVO.setViewCnt(rs.getInt("VIEWCOUNT"));
+				list.add(nVO);
+			}//while
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}//finally
+		
+		return list;
+	}//selectSpecificBoard
+	
+	public int selectSpecificNotice(String key, String field, String section) throws SQLException{
+		int result = 0;
+		
+		DBConnection db = DBConnection.getInstance();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = db.getCon();
+			
+			StringBuilder selectSpecificBoard = new StringBuilder();
+			selectSpecificBoard.append("	SELECT count(*) from NOTICE	")
+			.append("	where	")
+			.append(field)
+			.append("	like ?	");
+			if( !"전체".equals(section)) {
+				selectSpecificBoard.append("	and 	")
+				.append("	SECTION =	'")
+				.append(section)
+				.append("'");
+			}//if
+			
+			pstmt = con.prepareStatement(selectSpecificBoard.toString());
+			pstmt.setString(1, "%"+key+"%");
+			
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}//while
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}//finally
+		
+		return result;
+	}//selectSpecificBoard
+	
+	public List<NoticeVO> selectSpecificNotice(String key, String field, String section,int page ) throws SQLException{
+		List<NoticeVO> list = new ArrayList<NoticeVO>();
+		
+		DBConnection db = DBConnection.getInstance();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = db.getCon();
+			
+			StringBuilder selectSpecificBoard = new StringBuilder();
+			selectSpecificBoard.append("SELECT * FROM (	");
+			selectSpecificBoard.append("	SELECT NOTICENUM, SECTION, TITLE, INPUT_DATE, VIEWCOUNT, ROWNUM AS rnum from NOTICE	")
+			.append("	where	")
+			.append(field)
+			.append("	like ?	")
+			.append("	and ROWNUM <= ?	");
+			if( !"전체".equals(section)) {
+				selectSpecificBoard.append("	and 	")
+				.append("	SECTION =	'")
+				.append(section)
+				.append("'");
+			}//if
+			selectSpecificBoard.append("	) 	")
+			.append("	WHERE rnum >= ?	");
+			
+			pstmt = con.prepareStatement(selectSpecificBoard.toString());
+			pstmt.setString(1, "%"+key+"%");
+			pstmt.setInt(2, page*20);
+			pstmt.setInt(3, (page-1)*20+1);
+			rs=pstmt.executeQuery();
+			NoticeVO nVO = null;
+			while(rs.next()) {
+				nVO = new NoticeVO();
+				nVO.setNoticeNum(rs.getInt("NOTICENUM"));
+				nVO.setSection(rs.getString("SECTION"));
+				nVO.setTitle(rs.getString("TITLE"));
+				nVO.setInputDate(rs.getDate("INPUT_DATE"));
+				nVO.setViewCnt(rs.getInt("VIEWCOUNT"));
+				list.add(nVO);
+			}//while
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}//finally
+		
+		return list;
+	}//selectSpecificBoard
 	
 	public List<NoticeVO> selectSpecificNotice( int noticeNum ) throws SQLException{
 		List<NoticeVO> list=new ArrayList<NoticeVO>();

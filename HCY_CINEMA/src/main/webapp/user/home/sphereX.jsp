@@ -11,17 +11,17 @@
     <meta http-equiv="Cache-Control" content="No-Cache">
     <meta http-equiv="imagetoolbar" content="no">
     <meta name="viewport" content="width=1024">
-    <meta name="keywords" content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
-    <meta name="description" content="CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
-    <meta property="og:site_name" content="영화 그 이상의 감동. CGV">
-    <meta id="ctl00_og_title" property="og:title" content="CGV강남 | 영화 그 이상의 감동. CGV">
+    <meta name="keywords" content="HCY, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Hcy hcy, 예매, 상영작">
+    <meta name="description" content="HCY는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. HCY홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
+    <meta property="og:site_name" content="영화 그 이상의 감동. HCY">
+    <meta id="ctl00_og_title" property="og:title" content="HCY | 영화 그 이상의 감동. HCY">
     
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/Theater/Theater/2014/1211/CGVgangnam.jpg">
     <link rel="alternate" href="http://m.cgv.co.kr">
-    <link rel="shortcut icon" href="https://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
     <title id="ctl00_headerTitle">HCY극장 &lt; 특별관</title>
-    <link rel="shortcut icon" type="image/x-icon" href="https://img.cgv.co.kr/R2014/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/layout.css">
@@ -239,7 +239,6 @@
 <p class="fourdx_list_comment">* 극장별 스크린, 좌석 사양이 상이할 수 있습니다.</p></article>
         
         
-        <article class="specialtheater_detail_link_info_wrap">    <div class="contents">        <div class="specialtheater_detail_link_info_txt_wrap">            <strong>고객</strong>님, 이런 정보 찾고 계신가요?         </div>        <ul class="specialtheater_detail_link_info_list">            <li><a href="http://www.cgv.co.kr/theaters/theaterPrice.aspx?tc=0088&amp;spe=SPX">가격안내</a></li>        <!-- ul -->    <!-- div --></ul></div></article>
         
     
 

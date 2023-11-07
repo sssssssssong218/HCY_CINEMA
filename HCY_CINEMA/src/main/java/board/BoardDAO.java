@@ -371,4 +371,6 @@ public class BoardDAO {
 		return list;
 	}//selectSpecificBoard
 	
+	
+	
 }//class

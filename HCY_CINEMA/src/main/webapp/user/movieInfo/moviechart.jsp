@@ -68,7 +68,9 @@
             <%
             List<MovieChartVO> mcVOList = MovieChartDAO.getInstance().selectMainMovie();
             MovieChartVO mcVO = null;
-            for(int i = 0 ; i<4;i++){
+            int max = 4;
+            if(mcVOList.size()<4){max = mcVOList.size();}
+            for(int i = 0 ; i<max;i++){
             	mcVO = mcVOList.get(i);
             	%>
             
@@ -122,7 +124,9 @@
            	</ol>
             <ol>
              <%
-            for(int i = 4 ; i<8;i++){
+             max=8;
+             if(mcVOList.size()<8){max = mcVOList.size();}
+            for(int i = 4 ; i<max;i++){
             	mcVO = mcVOList.get(i);
             	%>
                <li>
