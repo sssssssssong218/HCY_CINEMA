@@ -542,152 +542,154 @@ $(function () {
 	    // 클릭된 버튼의 아이디를 가져와서 name에 설정
 	    
 	    /* var name = $(this).attr("name"); */
-	    var name=$(this).val()
-	    var buttonId = $(this).attr("id"); // 클릭된 버튼의 아이디 가져오기
-	    var selected = $("#movieName");
+	   // 클릭된 버튼의 아이디를 가져와서 name에 설정
+var name = $(this).val();
+var buttonId = $(this).attr("id"); // 클릭된 버튼의 아이디 가져오기
+var selected = $("#movieName");
 
-	    // 버튼의 아이디를 btn_hid에 저장
-	    $("#btn_hid").val(buttonId);
-	    if (name === "스케줄 없음") {
-	        // 모달을 열 때 ajax 요청을 보내기
-	        $.ajax({
-	            type: "POST",
-	            url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_select_movie.jsp",
-	            data: {
-	                year: selectedYear,
-	                month: selectedMonth,
-	                day: selectedDay,
-	                screenNum: selectedScreenNum // 2관
-	            },
-	            dataType: "json",
-	            error: function (error) {
-	                console.log(error.status);
-	            },
-	            success: function (jsonObj) {
-	                // ajax 요청이 성공하면 스케줄 데이터 처리
-	                $.each(jsonObj.data, function (i, json) {
-	                    var option = $("<option>").text(json.mname).val(json.mname);
-	                    selected.append(option);
-	                });
+// 버튼의 아이디를 btn_hid에 저장
+$("#btn_hid").val(buttonId);
 
-	                // 스케줄 없음 모달 열기
-	                document.getElementById("no_has_schedule").style.display = "block";
-	                // 모달을 띄울 때 해당 버튼의 이름을 저장
-	                document.getElementById("no_has_schedule").dataset.buttonName = name;
+// <select> 요소의 내용을 비우기
+selected.empty();
 
-	                // 첫 번째 옵션을 선택
-	                selected.prop("selectedIndex", 0);
+if (name === "스케줄 없음") {
+    // 모달을 열 때 ajax 요청을 보내기
+    $.ajax({
+        type: "POST",
+        url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_select_movie.jsp",
+        data: {
+            year: selectedYear,
+            month: selectedMonth,
+            day: selectedDay,
+            screenNum: selectedScreenNum // 2관
+        },
+        dataType: "json",
+        error: function (error) {
+            console.log(error.status);
+        },
+        success: function (jsonObj) {
+            // ajax 요청이 성공하면 스케줄 데이터 처리
+            $.each(jsonObj.data, function (i, json) {
+                var option = $("<option>").text(json.mname).val(json.mname);
+                selected.append(option);
+            });
 
-	                // 페이지 로딩 시, 첫 번째 옵션에 대한 plot을 textarea에 출력
-	                var firstOptionValue = selected.val();
-	                var movieDescription = $("#movieDescription");
+            // 스케줄 없음 모달 열기
+            document.getElementById("no_has_schedule").style.display = "block";
+            // 모달을 띄울 때 해당 버튼의 이름을 저장
+            document.getElementById("no_has_schedule").dataset.buttonName = name;
 
-	                if (firstOptionValue === "default") {
-	                    // 선택된 옵션이 "선택하세요"인 경우 textarea를 비웁니다.
-	                    movieDescription.val("");
-	                } else {
-	                    var selectedMovie = jsonObj.data.find(function (movie) {
-	                        return movie.mname === firstOptionValue;
-	                    });
+            // 첫 번째 옵션을 선택
+            
 
-	                    if (selectedMovie) {
-	                        // 선택된 옵션에 대한 plot을 textarea에 출력
-	                        $("#moviecode_hid").val(selectedMovie.moviecode);
-	                        movieDescription.val(selectedMovie.plot);
-	                    } else {
-	                        // 선택된 영화를 찾지 못한 경우에 대한 처리
-	                        movieDescription.val("선택한 영화에 대한 설명을 찾을 수 없습니다.");
-	                    }
-	                }
+            // 페이지 로딩 시, 첫 번째 옵션에 대한 plot을 textarea에 출력
+            var firstOptionValue = selected.val();
+            var movieDescription = $("#movieDescription");
 
-	                // <select> 요소가 변경되었을 때 이벤트 처리
-	                selected.on("change", function () {
-	                    // 선택된 옵션에 해당하는 json 데이터를 찾아서 json.plot을 textarea에 출력합니다.
-	                    var selectedOptionValue = selected.val();
-	                    var movieDescription = $("#movieDescription");
+            if (firstOptionValue === "default") {
+                // 선택된 옵션이 "선택하세요"인 경우 textarea를 비웁니다.
+                movieDescription.val("");
+            } else {
+                var selectedMovie = jsonObj.data.find(function (movie) {
+                    return movie.mname === firstOptionValue;
+                });
 
-	                    if (selectedOptionValue === "default") {
-	                        // 선택된 옵션이 "선택하세요"인 경우 textarea를 비웁니다.
-	                        movieDescription.val("");
-	                    } else {
-	                        var selectedMovie = jsonObj.data.find(function (movie) {
-	                            return movie.mname === selectedOptionValue;
-	                        });
+                if (selectedMovie) {
+                    // 선택된 옵션에 대한 plot을 textarea에 출력
+                    $("#moviecode_hid").val(selectedMovie.moviecode);
+                    movieDescription.val(selectedMovie.plot);
+                } else {
+                    // 선택된 영화를 찾지 못한 경우에 대한 처리
+                    movieDescription.val("선택한 영화에 대한 설명을 찾을 수 없습니다.");
+                }
+            }
 
-	                        if (selectedMovie) {
-	                            // 선택된 옵션에 대한 plot을 textarea에 출력
-	                             $("#moviecode_hid").val(selectedMovie.moviecode);
-	                            movieDescription.val(selectedMovie.plot);
-	                        } else {
-	                            // 선택된 영화를 찾지 못한 경우에 대한 처리
-	                            movieDescription.val("선택한 영화에 대한 설명을 찾을 수 없습니다.");
-	                        }
-	                    }
-	                });
-	            }
-	        });
-	    } else {
-	    	  var buttonId = $(this).attr("id");
-	    	  var matchingHidden = $("#hid_" + buttonId);
-	    	  var hiddenValue = matchingHidden.val();
-	    	
-	    	  var buttonId = $(this).attr("id");
-	    	  var matchingHidden = $("#hid_" + buttonId);
-	    	  var hiddenValue = matchingHidden.val();
-	    	
-	    	  $.ajax({
-	    		    type: "POST",
-	    		    url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_select_member.jsp",
-	    		    data: {
-	    		        year: selectedYear,
-	    		        month: selectedMonth,
-	    		        day: selectedDay,
-	    		        screenNum: selectedScreenNum, // 2관
-	    		        movieCode: hiddenValue,
-	    		        btnid: buttonId
-	    		    },
-	    		    dataType: "json",
-	    		    error: function (error) {
-	    		        console.log(error.status);
-	    		    },
-	    		    success: function (jsonObj) {
-	    		        var table = $("tbody");
-	    		        $.each(jsonObj.data, function (i, json) {
-	    		            var msg = "";
-	    		            if ("Y" === json.status) {
-	    		                msg = "예매";
-	    		            }
-	    		            var row = $("<tr>");
-	    		            var seatNumCell = $("<td>").text(json.seatnum);
-	    		            var idCell = $("<td>").text(json.id || json.tel);
-	    		            var statusCell = $("<td>").text(msg);
+            // <select> 요소가 변경되었을 때 이벤트 처리
+            selected.on("change", function () {
+                // 선택된 옵션에 해당하는 json 데이터를 찾아서 json.plot을 textarea에 출력합니다.
+                var selectedOptionValue = selected.val();
+                var movieDescription = $("#movieDescription");
 
-	    		            // 예매 취소 버튼을 추가
-	    		            var cancelButtonCell = $("<td>").append(
-	    		                $("<input>").attr({
-	    		                    type: "button",
-	    		                    class: "btn btn-info",
-	    		                    value: "예매취소"
-	    		                }).click(function () {
-	    		                    // 예매 취소 버튼 클릭 시 수행할 동작 추가
-	    		                    // 여기에서 예매 취소 로직을 추가하십시오
-	    		                	var ticketnum = json.ticketnum;
-	    		                    window.location.href="http://localhost/HCY_CINEMA/admin/manageScreen/deleteSeat.jsp?ticketnum="+ticketnum;
-	    		                })
-	    		            );
+                if (selectedOptionValue === "default") {
+                    // 선택된 옵션이 "선택하세요"인 경우 textarea를 비웁니다.
+                    movieDescription.val("");
+                } else {
+                    var selectedMovie = jsonObj.data.find(function (movie) {
+                        return movie.mname === selectedOptionValue;
+                    });
 
-	    		            row.append(seatNumCell, idCell, statusCell, cancelButtonCell);
-	    		            table.append(row);
-	    		        });
-	    		    }
-	    		});
+                    if (selectedMovie) {
+                        // 선택된 옵션에 대한 plot을 textarea에 출력
+                        $("#moviecode_hid").val(selectedMovie.moviecode);
+                        movieDescription.val(selectedMovie.plot);
+                    } else {
+                        // 선택된 영화를 찾지 못한 경우에 대한 처리
+                        movieDescription.val("선택한 영화에 대한 설명을 찾을 수 없습니다.");
+                    }
+                }
+            });
+        }
+    });
+} else {
+    var buttonId = $(this).attr("id");
+    var matchingHidden = $("#hid_" + buttonId);
+    var hiddenValue = matchingHidden.val();
 
-	        // 다른 버튼을 누를 때 기타 모달 열기
-	        document.getElementById("has_schedule").style.display = "block";
-	        // 모달을 띄울 때 해당 버튼의 이름을 저장
-	        document.getElementById("has_schedule").dataset.buttonName = name;
-	    }
+    $.ajax({
+        type: "POST",
+        url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_select_member.jsp",
+        data: {
+            year: selectedYear,
+            month: selectedMonth,
+            day: selectedDay,
+            screenNum: selectedScreenNum, // 2관
+            movieCode: hiddenValue,
+            btnid: buttonId
+        },
+        dataType: "json",
+        error: function (error) {
+            console.log(error.status);
+        },
+        success: function (jsonObj) {
+            var table = $("tbody");
+            $.each(jsonObj.data, function (i, json) {
+                var msg = "";
+                if ("Y" === json.status) {
+                    msg = "예매";
+                }
+                var row = $("<tr>");
+                var seatNumCell = $("<td>").text(json.seatnum);
+                var idCell = $("<td>").text(json.id || json.tel);
+                var statusCell = $("<td>").text(msg);
+
+                // 예매 취소 버튼을 추가
+                var cancelButtonCell = $("<td>").append(
+                    $("<input>").attr({
+                        type: "button",
+                        class: "btn btn-info",
+                        value: "예매취소"
+                    }).click(function () {
+                        // 예매 취소 버튼 클릭 시 수행할 동작 추가
+                        // 여기에서 예매 취소 로직을 추가하십시오
+                        var ticketnum = json.ticketnum;
+                        window.location.href = "http://localhost/HCY_CINEMA/admin/manageScreen/deleteSeat.jsp?ticketnum=" + ticketnum;
+                    })
+                );
+
+                row.append(seatNumCell, idCell, statusCell, cancelButtonCell);
+                table.append(row);
+            });
+        }
+    });
+
+    // 다른 버튼을 누를 때 기타 모달 열기
+    document.getElementById("has_schedule").style.display = "block";
+    // 모달을 띄울 때 해당 버튼의 이름을 저장
+    document.getElementById("has_schedule").dataset.buttonName = name;
+}
 	});
+	
 	$(".save_btn").click(function(){
 		$("#year_hid").val(selectedYear);
 		$("#month_hid").val(selectedMonth);

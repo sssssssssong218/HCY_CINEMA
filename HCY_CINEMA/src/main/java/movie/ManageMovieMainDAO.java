@@ -51,7 +51,7 @@ public class ManageMovieMainDAO {
 			.append("	FROM (SELECT sum(star_rating) as sum_star, count(moviecode) as cnt, moviecode														")
 			.append("	FROM review GROUP BY moviecode) r) b ON m.moviecode = b.moviecode																	")
 			.append("	LEFT JOIN (SELECT count(*) as total_ticket, moviecode FROM ticketing GROUP BY moviecode) c ON m.moviecode = c.moviecode				")
-			.append("	where m.status='Y'																													");
+			.append("	where m.status in('Y','W')																													");
 			
 			pstmt=con.prepareStatement(selectMovie.toString());
 			
