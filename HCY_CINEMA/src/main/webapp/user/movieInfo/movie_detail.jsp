@@ -330,6 +330,9 @@
 					List<String> directorList = mDAO.selectMovieInfoDirector(movieCode);
 					List<String> actorList = mDAO.selectMovieInfoActor(movieCode);
 					List<String> genreList = mDAO.selectMovieInfoGenre(movieCode);
+					String country=mDAO.selectMovieInfoCountry(movieCode);
+					String forigen=mDAO.selectMovieInfoForigen(movieCode);
+					System.out.println(country+" / "+forigen);
 					%>
 					<div class="sect-base-movie">
 						<h3>
@@ -349,15 +352,15 @@
 						</div>
 						<div class="box-contents">
 							<div class="title" style="display: flex">
-								<strong><%=mVO.getMname()%></strong> <em class="round brown"><span>예매중</span></em>
-								<em class="round red"><span>D-1</span></em>
+								<strong><%=mVO.getMname()%></strong> 
+								
 							</div>
 							<div class="score">
 								<strong class="percent">예매율&nbsp;<span>16.9%</span></strong>
 								<!-- 2020.05.07 개봉전 프리에그 노출, 개봉후 골든에그지수 노출변경 -->
 								<div class="egg-gage small">
-									<span class="sprite_preegg default"></span> <span
-										class="percent">99%</span>
+									<span class="sprite_preegg default"></span> 
+										
 								</div>
 							</div>
 							<!-- 떨어지는 얘 이전 요소에 class=on을 넣는다 -->
@@ -434,7 +437,7 @@
 									}
 									%>
 									<dd class="on"><%=movieRating%>,&nbsp;<%=mVO.getRunningtime()%>분,&nbsp;국가
-										: 추가해야댐 ㅅㄱ~ 발등에 불떨어짐!!
+										: <%= country==null||"".equals(country) ?  forigen:country %>
 									</dd>
 									<dt>개봉 :&nbsp;</dt>
 									<dd class="on"><%=mVO.getReleaseDate()%></dd>
@@ -886,7 +889,6 @@ case 5:
 	 break;
 	
 }
-System.out.println(imtstar+" / "+img4+" / "+(double)arg+" / "+ riVO.getReviewArg());
 %>
 <div style="text-align: center;">
     <div class="star-rating">

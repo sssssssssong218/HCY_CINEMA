@@ -185,29 +185,53 @@ public class MovieDAO {
 		} // try
 		return list;
 	}// selectMovieInfo
-//	public String selectMovieInfoCountry(String movieCode) throws SQLException {
-//		DBConnection db=DBConnection.getInstance();
-//		
-//		Connection con=null;
-//		PreparedStatement pstmt=null;
-//		ResultSet rs=null;
-//		List<String> list=new ArrayList<String>();
-//		try {
-//			con=db.getCon();
-//			
-//			String selectMovieFile="select * from movie_info where moviecode=? and infotype='D'";
-//			pstmt=con.prepareStatement(selectMovieFile);
-//			pstmt.setString(1, movieCode);
-//			rs=pstmt.executeQuery();
-//			
-//			while(rs.next()) {
-//				list.add(rs.getString("info"));
-//			}
-//		}finally {
-//			db.dbClose(rs, pstmt, con);
-//		}//try
-//		return list;	
-//	}//selectMovieInfo 나라 넣는거 만들어야댐 ㅠ 까먹음 
+	public String selectMovieInfoCountry(String movieCode) throws SQLException {
+		DBConnection db=DBConnection.getInstance();
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String msg="";
+		try {
+			con=db.getCon();
+			
+			String selectMovieFile="select info from movie_info where moviecode=? and infotype='F'";
+			pstmt=con.prepareStatement(selectMovieFile);
+			pstmt.setString(1, movieCode);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				msg=rs.getString("info");
+			}
+				
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}//try
+		return msg;
+	}//selectMovieInfo 나라 넣는거 만들어야댐 ㅠ 까먹음 
+	public String selectMovieInfoForigen(String movieCode) throws SQLException {
+		DBConnection db=DBConnection.getInstance();
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String msg="";
+		try {
+			con=db.getCon();
+			
+			String selectMovieFile="select info from movie_info where moviecode=? and infotype='K'";
+			pstmt=con.prepareStatement(selectMovieFile);
+			pstmt.setString(1, movieCode);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				msg=rs.getString("info");
+			}
+			
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}//try
+		return msg;
+	}//selectMovieInfo 나라 넣는거 만들어야댐 ㅠ 까먹음 
+	
 
 	public String selectPosterFile(String movieCode) throws SQLException {
 		DBConnection db = DBConnection.getInstance();

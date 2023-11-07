@@ -126,10 +126,10 @@ public class DetailMovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String type="";
-		if(country.equals("국내")) {
-			type="K";
+		if(country.equals("F")) {
+			type="국외";
 		}else {
-			type="F";
+			type="국내";
 		}
 		try {
 			con = db.getCon();
@@ -139,8 +139,8 @@ public class DetailMovieDAO {
 			.append(" 	values(?,?,?)										");
 				pstmt = con.prepareStatement(movieInfo.toString());
 				pstmt.setString(1, movieCode);
-				pstmt.setString(2, country);
-				pstmt.setString(3, type);
+				pstmt.setString(2, type);
+				pstmt.setString(3, country);
 				pstmt.executeUpdate();
 		} finally {
 			db.dbClose(rs, pstmt, con);

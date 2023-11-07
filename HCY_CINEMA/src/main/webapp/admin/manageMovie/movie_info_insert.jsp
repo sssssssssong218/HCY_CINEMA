@@ -82,6 +82,7 @@
 		    String director = mr.getParameter("director");
 		    String genre = mr.getParameter("genre_select");
 		    String country = mr.getParameter("country");
+		    
 		    String plot = mr.getParameter("movie_info");
 		    String runningtime = mr.getParameter("runningtime");
 		    String age = mr.getParameter("ageGroup");
