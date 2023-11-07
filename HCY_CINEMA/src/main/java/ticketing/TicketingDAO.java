@@ -71,7 +71,7 @@ public List<ScreenVO> selectSchedule(DailyScheduleVO dsVO) throws SQLException{
 		.append("	select * from (SELECT s.SCREENNUM, s.SCREENNAME, sd.MOVIECODE,	")
 		.append("	(SELECT SCREENTYPE from SCREEN_TYPE st where s.TYPENUM = st.TYPENUM) screentyp,	")
 		.append("	sd.SCHEDULENUM, to_char(sd.SHOWTIME,'hh:mi') starttime,	(SELECT RUNNINGTIME from MOVIE m where m.MOVIECODE = sd.MOVIECODE) RUNNINGTIME,")
-		.append("	(SELECT count(*) from TICKETING t where sd.SCHEDULENUM = t.SCHEDULENUM and STATUS='Y') ticketed,	")
+		.append("	(SELECT count(*) from SEAT t where sd.SCHEDULENUM = t.SCHEDULENUM) ticketed,	")
 		.append("	(SELECT MNAME FROM MOVIE m WHERE m.MOVIECODE = sd.MOVIECODE) mname, sd.PRICE	")
 		.append("	FROM SCREEN s, SCHEDULE sd	")
 		.append("	where s.SCREENNUM(+) = sd.SCREENNUM and sd.MOVIECODE = ? and to_char(sd.SHOWTIME,'yyyymmdd') = ?) where screentyp = ?	");

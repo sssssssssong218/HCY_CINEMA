@@ -232,7 +232,7 @@
             </div>
             <div class="box-contents">
                 <div class="theater-info">
-                    <strong class="title">서울특별시 강남구 역삼동 814-6 스타플렉스<br>서울특별시 강남구 강남대로 438  (역삼동)<a href="./?page=location&amp;theaterCode=0056#menu">위치/주차 안내  &gt;</a></strong>
+                    <strong class="title">서울특별시 강남구 역삼동 814-6 스타플렉스<br>서울특별시 강남구 강남대로 438  (역삼동)<a href="http://localhost/HCY_CINEMA/user/schedule/theater_schedule_location.jsp#menu">위치/주차 안내  &gt;</a></strong>
                     <span class="txt-info">
                         <em>1544-1122</em>
                         <em>5관 / 169석</em>
@@ -250,7 +250,7 @@
                     <ul>
                         
                     </ul>
-                    <a class="link-more" href="/support/news/Default.aspx?type=2" target="_blank" title="새창 열림">공지사항 더보기</a>
+                    <a class="link-more" href="http://localhost/HCY_CINEMA/user/board/notice.jsp" target="_blank" title="새창 열림">공지사항 더보기</a>
                 </div>
             </div>
         </div>

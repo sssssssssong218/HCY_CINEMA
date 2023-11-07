@@ -11,13 +11,13 @@
     <meta http-equiv="Cache-Control" content="No-Cache">
     <meta http-equiv="imagetoolbar" content="no">
     <meta name="viewport" content="width=1024">
-    <meta id="ctl00_og_title" property="og:title" content="나의 예매내역 | 영화 그 이상의 감동. CGV">
+    <meta id="ctl00_og_title" property="og:title" content="나의 예매내역 | 영화 그 이상의 감동. HCY">
     
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
     <link rel="shortcut icon" href="http://192.168.10.145/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
-    <title id="ctl00_headerTitle">나의 예매내역 | 영화 그 이상의 감동. CGV</title>
+    <title id="ctl00_headerTitle">나의 예매내역 | 영화 그 이상의 감동. HCY</title>
     <link rel="shortcut icon" type="image/x-icon" href="http://192.168.10.145/HCY_CINEMA/common/images/re_favicon.png">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
@@ -568,7 +568,7 @@
 		
 	    <!-- CGV 예매 관련 정책 안내 Box Type -->
 	    <div class="sect-box-descri">
-	        <h4>CGV 예매 관련 정책 안내</h4>
+	        <h4>HCY 예매 관련 정책 안내</h4>
 	        <!-- Box Moudle -->
 	        <div class="box-polaroid">
 	            <div class="box-inner">

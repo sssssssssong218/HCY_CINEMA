@@ -102,14 +102,22 @@ public void updateCancelTicket(int tNum) throws SQLException {
 	
 	try {
 		con = db.getCon();
-		
+		con.setAutoCommit(false);
 		String updateCancelTicket = "UPDATE TICKETING set STATUS = 'N' where TICKETNUM = ?";
 		
 		pstmt = con.prepareStatement(updateCancelTicket);
 		pstmt.setInt(1, tNum);
 		
 		pstmt.executeUpdate();
+		
+		updateCancelTicket = "DELETE FROM SEAT WHERE TICKETNUM = ?";
+		pstmt = con.prepareStatement(updateCancelTicket);
+		pstmt.setInt(1, tNum);
+		
+		pstmt.executeUpdate();
+		con.commit();
 	}finally {
+		con.rollback();
 		db.dbClose(null, pstmt, con);
 	}//finally
 }//updateCancelTicket

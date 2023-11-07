@@ -30,9 +30,9 @@
     
     <meta id="ctl00_og_image" property="og:image" content="https://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
     <link rel="alternate" href="http://m.cgv.co.kr">
-    <link rel="shortcut icon" href="http://192.168.10.145/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png" type="image/x-icon">
     <title id="ctl00_headerTitle">자유게시판 &lt; 고객센터 | 영화 그 이상의 감동. HCY</title>
-    <link rel="shortcut icon" type="image/x-icon" href="http://192.168.10.145/HCY_CINEMA/common/images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost/HCY_CINEMA/common/images/favicon.png">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/webfont.css">
 	<link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/reset.css">
     <link rel="stylesheet" media="all" type="text/css" href="https://img.cgv.co.kr/R2014/css/layout.css">
@@ -219,7 +219,7 @@
         <c:if test="${sessionScope.login eq false}">
             <li><a href="http://localhost/HCY_CINEMA/user/login/join_member.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginJoin.png" alt="회원가입"><span>회원가입</span></a></li>
             </c:if>
-            <li><a href="http://localhost/HCY_CINEMA/user/mypage/my_ticket.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png" alt="MY PAGE"><span>MY PAGE</span></a></li>
+            <li><a href="http://localhost/HCY_CINEMA/user/myPage/mypage_myticket.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginMember.png" alt="MY PAGE"><span>MY PAGE</span></a></li>
             <li><a href="http://localhost/HCY_CINEMA/user/board/notice.jsp"><img src="https://img.cgv.co.kr/R2014/images/common/ico/loginCustomer.png" alt="고객센터"><span>고객센터</span></a></li>
         </ul>
     </div>
@@ -683,7 +683,7 @@ $(document).ready(function() {
 				<thead>
 					<tr>
 					<th scope="col">번호</th>
-                    <th scope="col">작성자</th>
+                    <th scope="col">작성자 ID</th>
 					<th scope="col" class="tit" style="text-align: center">제목</th>
 					<th scope="col">등록일</th>
 					<th scope="col">조회수</th>
