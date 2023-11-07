@@ -396,7 +396,7 @@ document.getElementById("nextdate").value = today.getDate();
 <input type="radio" id="ageGroup" name="ageGroup" value="12"><label style="font-size:15px">12세</label><img src="../../common/images/12age.png" style="padding-left:10px"><br>
 <input type="radio" id="ageGroup" name="ageGroup" value="15"><label style="font-size:15px">15세</label><img src="../../common/images/15age.png" style="padding-left:10px"><br>
 <input type="radio" id="ageGroup" name="ageGroup" value="18"><label style="font-size:15px">청소년 관람 불가</label><img src="../../common/images/18age.png" style="padding-left:10px"><br>
-<input type="radio" id="ageGroup" name="ageGroup" value="RS"><label style="font-size:15px">제한사영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
+<input type="radio" id="ageGroup" name="ageGroup" value="RS"><label style="font-size:15px">제한상영가</label><img src="../../common/images/rs.png" style="padding-left:10px"><br>
 </div>
 </div>
 
