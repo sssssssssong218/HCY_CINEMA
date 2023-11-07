@@ -107,7 +107,7 @@ function mListClickListener(index , name, rate){
 	mListSelect = true;
 	$(".placeholder.hidden").attr("class","placeholder")
 	var value = $("#"+index).data("value");
-	$(".selected").attr("class","")
+	$(".movie-list.nano > .content.scroll-y > .selected").attr("class","")
 	$("#"+index).attr("class","selected")
 	$("#movie").val(index)
 	selectMovie = index;
@@ -344,6 +344,7 @@ function seatClick(seatNum){
 	seatnums = seatnums.filter(function(value) {
     return value !== seatNum;
 	});
+	$("#tnb_step_btn_right").attr("class","btn-right");
 	checkSeat()
 	return
 	}//if
@@ -354,7 +355,7 @@ function seatClick(seatNum){
 	checkSeat()
 	if(pCount == seatnums.length){
 		$("#tnb_step_btn_right").attr("class","btn-right on")
-	}//if
+	}
 	
 	return
 	}//if
@@ -769,7 +770,7 @@ document.addEventListener("DOMContentLoaded", function() {
 				</div>
 				<!-- //step2 -->
 				<!-- step3 -->
-				<div class="step step3">
+				<div class="step step3" style="height:600px">
 
 <div class="ticket_payment_method">
 	<a href="#" onclick="return false;" id="ticket_payment_top" class="sreader">결제시작</a>
@@ -2092,11 +2093,37 @@ document.addEventListener("DOMContentLoaded", function() {
 		</div>
 	</div>
 	
+	<script type="text/javascript">
+	function leftClick(){
+		if(btnStep == "step2"){
+			$(".step.step2").attr("style","display:none;")
+			$(".step.step1").attr("style","display:flex;")
+			
+			$("#screenList").html("")
+			btnStep = "step1"
+			seatnums = [];
+			$(".tnb.step2").attr("class","tnb step1")
+			$(".data > .price").text("0")
+			$(".data.ellipsis-line3").html("")
+		}//if
+		if(btnStep == "step3"){
+			$(".step.step3").attr("style","display:none;")
+			$(".step.step2").attr("style","display:flex;")
+			$("#tnb_step_btn_right").attr("class","btn-right on")
+			btnStep = "step2"
+		}//if
+		if(btnStep == "step4"){
+			$(".step.step4").attr("style","display:none;")
+			$(".step.step3").attr("style","display:flex;")
+			btnStep = "step3"
+		}//if
+	}//leftClick
+	</script>
 	
 	<div id="ticket_tnb" class="tnb_container ">
 		<div class="tnb step1">
 			<!-- btn-left -->
-			<a class="btn-left" href="#" onclick="OnTnbLeftClick(); return false;" title="">이전단계로 이동</a>
+			<a class="btn-left" href="#" onclick="leftClick(); return false;" title="">이전단계로 이동</a>
 			<div class="info movie">
 				<span class="movie_poster"></span>
 				<div class="row movie_title colspan2">
