@@ -1,3 +1,4 @@
+<%@page import="ticketing.NonMemberTicketingDAO"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.sql.Date"%>
@@ -309,7 +310,7 @@
 	        <%
 	        MemberVO mVO = (MemberVO)session.getAttribute("mVO");
 	        if(mVO==null){return;}
-	        List<MyTicketVO> list = MyTicketDAO.getInstance().selectMyTicket(mVO.getId());
+	        List<MyTicketVO> list = NonMemberTicketingDAO.getInstance().selectMyTicket(mVO.getTel());
 	        String button = "";
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd(E) HH:mm");
 	        for(MyTicketVO mtVO : list){
