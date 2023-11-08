@@ -81,9 +81,9 @@ public class DashBoardDAO {
 
 			StringBuilder selectMovieName = new StringBuilder();
 			selectMovieName
-			.append(" 		SELECT COUNT(ticketdate) now_week												")
+			.append(" 		SELECT sum(sum(PPLCOUNT)) now_week												")
 			.append(" 		from ticketing																	")
-			.append(" 	 	WHERE ticketdate BETWEEN sysdate-7 AND sysdate									")
+			.append(" 	 	WHERE ticketdate BETWEEN sysdate-7 AND sysdate	and status='Y'					")
 			.append(" 		GROUP BY moviecode																");
 
 			pstmt = con.prepareStatement(selectMovieName.toString());
@@ -110,9 +110,9 @@ public class DashBoardDAO {
 			con=db.getCon();
 			
 			StringBuilder monthCnt=new StringBuilder();
-			monthCnt.append("select((select SUM(capacity) from screen)-(select count(*) from ticketing where ticketdate between to_date(to_char(sysdate,'yyyy-mm-dd'))-30 and to_date(to_char(sysdate,'yyyy-mm-dd')))) vacany,")
-					.append("(select count(*) from ticketing where ticketdate between to_date(to_char(sysdate,'yyyy-mm-dd'))-30 and to_date(to_char(sysdate,'yyyy-mm-dd'))) month_ticket,										")
-					.append("(select count(*) from ticketing where status='N') cancel_ticket																	")
+			monthCnt.append("select((select SUM(capacity) from screen)-(select count(*) from ticketing where ticketdate between sysdate-30 and sysdate)) vacany,")
+					.append("(select sum(PPLCOUNT) from ticketing where ticketdate between sysdate-30 and sysdate and status='Y') month_ticket,									")
+					.append("(select sum(PPLCOUNT) from ticketing where status='N') cancel_ticket																	")
 					.append("from dual																															");
 			pstmt=con.prepareStatement(monthCnt.toString());
 			
