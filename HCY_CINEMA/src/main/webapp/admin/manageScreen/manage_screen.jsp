@@ -458,7 +458,7 @@ for(int i=0;i<fixedHours.length;i++){
                 <thead>
                     <tr style="width:1500px">
                         <th scope="col">좌석</th>
-                        <th scope="col">고객 아이디</th>
+                        <th scope="col">고객 아이디(비회원은 전화번호)</th>
                         <th scope="col">예매 상태</th>
                         <th scope="col">예매취소</th>
                     </tr>
@@ -635,7 +635,8 @@ if (name === "스케줄 없음") {
     var buttonId = $(this).attr("id");
     var matchingHidden = $("#hid_" + buttonId);
     var hiddenValue = matchingHidden.val();
-
+    var table = $("tbody");
+    table.empty();
     $.ajax({
         type: "POST",
         url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_select_member.jsp",
@@ -652,7 +653,7 @@ if (name === "스케줄 없음") {
             console.log(error.status);
         },
         success: function (jsonObj) {
-            var table = $("tbody");
+           
             $.each(jsonObj.data, function (i, json) {
                 var msg = "";
                 if ("Y" === json.status) {

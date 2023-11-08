@@ -1,3 +1,5 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
+<%@page import="encryption.Encryption"%>
 <%@page import="screen.ScheduleNumVO"%>
 <%@page import="java.sql.Date"%>
 <%@page import="java.util.Calendar"%>
@@ -54,17 +56,35 @@ try {
 
    snVO.setDate(selectedDate);
    snVO.setMoviecode(movieCode);
+   
+   
+   
    snVO.setScreennum(request.getParameter("screenNum"));
    
    String schedulenum=msDAO.selectSchedule(snVO);
    List<MemberVO> list = msDAO.selectMember(schedulenum);
    // JSON 배열
- 
+ 	Encryption en=Encryption.getInstance();
    for (MemberVO sVO : list) {
    	scheduleJson=new JSONObject();
        scheduleJson.put("id", sVO.getId());
-       scheduleJson.put("tel", sVO.getTel());
-       scheduleJson.put("seatnum", sVO.getScreenNum());
+       if(sVO.getId()==null){
+       scheduleJson.put("tel", en.decryption(sVO.getTel()));
+       }
+       int M = 13; // 행 수
+       int N = 13; // 열 수
+       int seatNum = Integer.parseInt(sVO.getScreenNum());
+       String seatLabel="";
+       if (seatNum >= 1 && seatNum <= M * N) {
+           seatNum--; // 좌석 번호를 0부터 시작하도록 1을 뺍니다
+           char row = (char) ('A' + seatNum / N);
+           int column = (seatNum % N) + 1;
+          seatLabel = String.format("%c%d", row, column);
+       } else {
+           System.out.println("잘못된 좌석 번호");
+       }
+
+       scheduleJson.put("seatnum", seatLabel);
        scheduleJson.put("status", sVO.getStatus());
        scheduleJson.put("ticketnum", sVO.getTicketnum());
        
