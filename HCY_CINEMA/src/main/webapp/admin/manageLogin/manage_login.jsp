@@ -163,6 +163,17 @@ if(session.getAttribute("userName")!=null){
             }
             return unescape(cookieValue);
         }
+        $("#userPassword").keydown(function(event){
+        	if(event.which == 13){
+        	var id=$("#userName").val();
+        	var pass=$("#userPassword").val();
+        	if(id !== "" && pass !== ""){
+        		$("#login-form").submit();
+        	}else{
+        		alert("아이디와 비밀번호를 입력해주세요")
+        	}
+        	}
+        })
     });
 	 if (performance.navigation.type == 2) {
 	     // 페이지가 뒤로가기로 로드된 경우
