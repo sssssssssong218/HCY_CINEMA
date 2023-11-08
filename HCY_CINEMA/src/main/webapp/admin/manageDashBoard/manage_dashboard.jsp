@@ -192,9 +192,7 @@ location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp
 <small class="text-muted m-l-5"></small>
 </h4>
 
-
-<canvas id="monthly-report-chart" height="431" style="display: block; width: 1293px; height: 431px;" width="1293" class="chartjs-render-monitor"></canvas>
-
+<canvas id="monthly-report-chart" height="431" style="display: block; width: 1293px; height: 431px;" width="1300" class="chartjs-render-monitor"></canvas>
 </div>
 
 
@@ -574,15 +572,18 @@ var filteredData = [];
 <% } %>
 
 if (filteredData.length > 0) {
-    var totalWidth = filteredData.length * (2 * barWidth + spacing1 + spacing2) - spacing1 - spacing2;
+    // 데이터가 5개 이상일 경우, 처음 5개만 사용
+    var limitedData = filteredData.slice(0, 5);
+
+    var totalWidth = limitedData.length * (2 * barWidth + spacing1 + spacing2) - spacing1 - spacing2;
     var xOffset = (canvas.width - totalWidth) / 2;
 
-    var maxValue = filteredData[0].value1; // 첫 번째 값이 가장 큰 값
+    var maxValue = limitedData[0].value1; // 첫 번째 값이 가장 큰 값
 
-    for (var i = 0; i < filteredData.length; i++) {
-        var value1 = filteredData[i].value1;
-        var value2 = filteredData[i].value2;
-        var text = filteredData[i].text;
+    for (var i = 0; i < limitedData.length; i++) {
+        var value1 = limitedData[i].value1;
+        var value2 = limitedData[i].value2;
+        var text = limitedData[i].text;
 
         // 그래프 높이를 최대값에 비례하여 계산
         var scaledValue1 = (value1 / maxValue) * (canvas.height - 60);
@@ -607,7 +608,6 @@ if (filteredData.length > 0) {
         ctx.fillText(text, textX-10, textY);
 
         xOffset += 2 * barWidth + spacing1 + spacing2;
-        
     }
 } else {
     // 데이터가 없을 때 처리
@@ -615,6 +615,8 @@ if (filteredData.length > 0) {
     ctx.fillStyle = "white";
     ctx.fillText("No data available", canvas.width / 2 - 60, canvas.height / 2);
 }
+
+
 //마우스 이벤트 처리
 
 
