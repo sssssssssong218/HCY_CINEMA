@@ -316,6 +316,9 @@ location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp
     margin-top: 30px;
     margin-left: 300px;
 }
+.schedule_btn{
+white-space: normal;
+}
 </style>
 <div style="overflow: auto">
     <h2>&nbsp;&nbsp;상영스케줄 - 2D</h2>
