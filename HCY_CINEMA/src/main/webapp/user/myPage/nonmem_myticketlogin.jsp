@@ -561,13 +561,11 @@
             				console.log(xhr.status)
             			},
             			success : function(json){
-            				alert(json.flag)
             				if(json.flag == "f"){
             					alert("인증에 실패했습니다. 다시 시도해주세요")
             					return
             				}//if
             				alert("인증에 성공했습니다.")
-            				alert(${mVO})
             				location.href="http://localhost/HCY_CINEMA/user/myPage/nonmem_myticket.jsp"
             				return
             			}//success

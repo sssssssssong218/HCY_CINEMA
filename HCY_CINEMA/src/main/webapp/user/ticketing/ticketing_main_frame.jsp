@@ -78,7 +78,7 @@ function ListClickListener(index){
 	var value = $("#"+index).data("value");
 	$("#2D").attr("class","")
 	$("#3D").attr("class","")
-	$("#IMAX").attr("class","")
+	$("#iMAX").attr("class","")
 	$("#"+index).attr("class","selected")
 	$("#screenType").val(index)
 	localStorage.setItem('screencat', index);
@@ -304,7 +304,6 @@ function TnbRightClick(){
 	$("#scheduleNum").val(scheduleCode);
 	$("#id").val("${memVO.id}");
 	$("#movieCode").val(selectMovie);
-	alert(screenCode)
 	$("#screenNum").val(screenCode);
 	$("#pplCount").val(seatnums.length);
 	$("#payment").val(paymentName[selectedIndex]);
@@ -525,7 +524,7 @@ document.addEventListener("DOMContentLoaded", function() {
 										<ul id="screenlist">
 											<li class="" id="2D" data-title="2D" data-index="0" areaindex="1" theater_cd="0056" rating_cd="undefined" style="display: list-item;"><a href="#" onclick="ListClickListener('2D');return false;" id="1" data-value="2D">2D<span class="sreader"></span></a></li>
 											<li class="" id="3D" data-title="3D" data-index="0" areaindex="1" theater_cd="0056" rating_cd="undefined" style="display: list-item;"><a href="#" onclick="ListClickListener('3D');return false;" id="2" data-value="3D">3D<span class="sreader"></span></a></li>
-											<li class="" id="IMAX" data-title="IMAX" data-index="0" areaindex="1" theater_cd="0056" rating_cd="undefined" style="display: list-item;"><a href="#" onclick="ListClickListener('IMAX');return false;" id="3" data-value="IMAX">IMAX<span class="sreader"></span></a></li>
+											<li class="" id="iMAX" data-title="iMAX" data-index="0" areaindex="1" theater_cd="0056" rating_cd="undefined" style="display: list-item;"><a href="#" onclick="ListClickListener('iMAX');return false;" id="3" data-value="IMAX">IMAX<span class="sreader"></span></a></li>
 										</ul>
 									</div>
 									<div class="theater-cgv-list nano" id="theater_cgv_list">

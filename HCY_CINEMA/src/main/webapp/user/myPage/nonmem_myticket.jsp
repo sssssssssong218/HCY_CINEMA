@@ -86,7 +86,6 @@
     <script type="text/javascript">
     
      $(document).ready(function() {
-    	 alert(${nonMemLogin})
     	if(${login!="true"} && ${nonMemLogin!="true"}){
     		alert("잘못된 접근입니다! 다시 시도해주세요!")
     		location.href="http://localhost/HCY_CINEMA/user/login/login.jsp"
