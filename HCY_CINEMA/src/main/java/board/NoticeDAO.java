@@ -42,13 +42,13 @@ public class NoticeDAO {
 			con=db.getCon();
 			
 			StringBuilder selectNotice=new StringBuilder();
-			selectNotice.append( " select noticenum, section, title, input_date, viewcount, rnum	")
-			.append(" from (select noticenum, section, title, to_char(input_date, 'yyyy-mm-dd') input_date, viewcount, ROWNUM as rnum	")
-			.append(" from notice)				");
+			selectNotice.append( " select *	")
+			.append(" from (select noticenum, section, title, input_date, viewcount, ROWNUM as rnum	")
+			.append(" from (select noticenum, section, title, to_char(input_date, 'yyyy-mm-dd') input_date, viewcount from notice order by noticenum desc))				");
 			selectNotice.append("where rnum between ? and ?      ");
 			
 			pstmt=con.prepareStatement(selectNotice.toString());
-			 
+			 System.out.println(selectNotice.toString());
 			 int bindCnt=1;
 	         if( brVO.getKeyword() != null &&  !"".equals(brVO.getKeyword() ) &&  !"null".equals( brVO.getKeyword() )) {
 	         pstmt.setString( bindCnt++ , brVO.getKeyword());
@@ -205,27 +205,26 @@ public class NoticeDAO {
 		
 		try {
 			con = db.getCon();
-			
 			StringBuilder selectSpecificBoard = new StringBuilder();
 			selectSpecificBoard.append("SELECT * FROM (	");
-			selectSpecificBoard.append("	SELECT NOTICENUM, SECTION, TITLE, INPUT_DATE, VIEWCOUNT, ROWNUM AS rnum from NOTICE	")
+			selectSpecificBoard.append("	SELECT NOTICENUM, SECTION, TITLE, INPUT_DATE, VIEWCOUNT, ROWNUM AS rnum from (SELECT NOTICENUM, SECTION, TITLE, INPUT_DATE, VIEWCOUNT from notice	")
 			.append("	where	")
 			.append(field)
-			.append("	like ?	")
-			.append("	and ROWNUM <= ?	");
+			.append("	like ?		");
 			if( !"전체".equals(section)) {
 				selectSpecificBoard.append("	and 	")
 				.append("	SECTION =	'")
 				.append(section)
 				.append("'");
 			}//if
-			selectSpecificBoard.append("	) 	")
-			.append("	WHERE rnum >= ?	");
+			selectSpecificBoard.append("	order by NOTICENUM desc)) 	")
+			.append("	where rnum >= ? and rnum <= ?	");
 			
 			pstmt = con.prepareStatement(selectSpecificBoard.toString());
+			System.out.println(selectSpecificBoard.toString());
 			pstmt.setString(1, "%"+key+"%");
-			pstmt.setInt(2, page*20);
-			pstmt.setInt(3, (page-1)*20+1);
+			pstmt.setInt(2, (page-1)*20+1);
+			pstmt.setInt(3, page*20);
 			rs=pstmt.executeQuery();
 			NoticeVO nVO = null;
 			while(rs.next()) {
