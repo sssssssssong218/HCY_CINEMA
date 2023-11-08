@@ -512,7 +512,7 @@
                             </tbody>
                         </table>
                         <div class="box-btn">
-	                        <button type="submit" class="round inred" id="btn_submit"><span>비회원 예매확인</span></button>
+	                        <input type="button" class="round inred" id="btn_submit" value="비회원 예매확인" style="width: 150px"/>
                         </div>
                     </fieldset>
                     </form>
@@ -542,6 +542,37 @@
 
     (function ($) {
         $(function () {
+        	
+        	$("#btn_submit").click(function(){
+        		if($("#txtBirthday").val()=="" || $("#txtMobile2").val()=="" || 
+            			$("#txtMobile3").val()=="" || $("#txtPassword").val()==""){
+            		alert("모든 정보를 입력해주세요!")
+            		return
+            		}//if
+            		
+            		var tel = $("#txtMobile1").val()+"-"+$("#txtMobile2").val()+"-"+$("#txtMobile3").val()
+            		var data = {"tel":tel, "birth" : $("#txtBirthday").val(),"pass":$("#txtPassword").val()}
+            		$.ajax({
+            			url : "http://localhost/HCY_CINEMA/user/myPage/nonmem_myticketlogin_ajax.jsp",
+            			type : "post",
+            			data : data,
+            			dataType : "json",
+            			error : function(xhr){
+            				console.log(xhr.status)
+            			},
+            			success : function(json){
+            				alert(json.flag)
+            				if(json.flag == "f"){
+            					alert("인증에 실패했습니다. 다시 시도해주세요")
+            					return
+            				}//if
+            				alert("인증에 성공했습니다.")
+            				alert(${mVO})
+            				location.href="http://localhost/HCY_CINEMA/user/myPage/nonmem_myticket.jsp"
+            				return
+            			}//success
+            		})
+        	})//click
 
             var $frm = $('#form1');
             $frm.validate({

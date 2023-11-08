@@ -33,6 +33,8 @@ pVO.setSeat(request.getParameter("seatNum"));
 pVO.setPass(request.getParameter("pass"));
 pVO.setName(request.getParameter("name"));
 pVO.setBirth(request.getParameter("birth"));
+
+System.out.println("log : "+session.getAttribute("nonMemLogin"));
     try{
     	if(session.getAttribute("nonMemLogin")!= null && (boolean)session.getAttribute("nonMemLogin")){
     		NonMemberTicketingDAO.getInstance().insertNonmemberPayment(pVO);
@@ -44,6 +46,7 @@ pVO.setBirth(request.getParameter("birth"));
 	   	session.setAttribute("msg","비정상적인 접근이 확인되었습니다.<br>다시 시도해주세요!" );
 	   	session.setAttribute("url","http://localhost/HCY_CINEMA/user/ticketing/ticketing_main.jsp" );
 	   	response.sendRedirect("http://localhost/HCY_CINEMA/user/ticketing/ticketing_main_frame_err_msg.jsp");
+	   	return;
     }//catch
     if(session.getAttribute("nonMemLogin")!= null && (boolean)session.getAttribute("nonMemLogin")){
     	session.setAttribute("nonMemLogin",false);

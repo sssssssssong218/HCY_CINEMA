@@ -232,6 +232,7 @@
             		$("#txtConfirmPassword").focus()
             		return
             	}//if      
+            	alert($("#txtName").val())
             	
             	$("#frm1").submit()
             })//ticketing
