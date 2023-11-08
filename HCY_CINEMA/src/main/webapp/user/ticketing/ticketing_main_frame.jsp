@@ -725,9 +725,6 @@ document.addEventListener("DOMContentLoaded", function() {
 									<div class="mini_region" style="height: 96px; width: 130px; top: 25px; left: 5px;"><span></span></div>
 								</div>
 								<div class="legend" style="width: 125px;">
-									<div class="buttons">
-										<a class="btn-zoom" id="seat_zoom_btn" href="#" onclick="ts2SeatZoomClickListener();return false;">크게보기</a>
-									</div>
 									<div class="seat-icon-desc">
 										<span class="icon selected"><span class="icon"></span>선택</span>
 										<span class="icon reserved"><span class="icon"></span>예매완료</span>
