@@ -164,7 +164,7 @@ location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp
 </ol>
 
 
-<h1 class="page-header">Dashboard v3 <small>header small text goes here...</small></h1>
+<h1 class="page-header">Dashboard v3 </h1>
 
 
 <div class="row">
@@ -189,7 +189,7 @@ location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp
 
 <h4 class="text-white m-t-0 m-b-10">
 <i class="fa fa-snowflake-o text-success-light"></i> Sales Report
-<small class="text-muted m-l-5">past 12 months</small>
+<small class="text-muted m-l-5"></small>
 </h4>
 
 

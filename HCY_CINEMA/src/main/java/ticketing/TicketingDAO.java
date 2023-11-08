@@ -36,7 +36,7 @@ public List<MovieVO> selectMovie() throws SQLException{
 	try {
 		con = db.getCon();
 		
-		String selectMovie = "select MOVIECODE, MNAME, MOVIE_RATING FROM MOVIE where status = 'Y' and RELEASEDATE <= sysdate and ENDDATE >= sysdate";
+		String selectMovie = "select MOVIECODE, MNAME, MOVIE_RATING FROM MOVIE where (status = 'Y' or status = 'W') and ENDDATE >= sysdate";
 		
 		pstmt = con.prepareStatement(selectMovie);
 		rs = pstmt.executeQuery();

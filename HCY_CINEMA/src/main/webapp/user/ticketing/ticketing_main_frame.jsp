@@ -292,9 +292,9 @@ function TnbRightClick(){
 		$(".step.step3").attr("style","display:flex;")
 		
 		$(".string2.amount").html($("#schedule"+scheduleCode).data("price"))
-		$("#summary_total_amount").html($("#schedule"+scheduleCode).data("price"))
-		$("#summary_payment_total").html($("#schedule"+scheduleCode).data("price"))
-		$("#summary_payment_total_cat").html($("#schedule"+scheduleCode).data("price"))
+		$("#summary_total_amount").html($("#schedule"+scheduleCode).data("price")*seatnums.length)
+		$("#summary_payment_total").html($("#schedule"+scheduleCode).data("price")*seatnums.length)
+		$("#summary_payment_total_cat").html($("#schedule"+scheduleCode).data("price")*seatnums.length)
 		$("#ticket_tnb > .tnb.step1").attr("class","tnb step3")
 		$("#tnb_step_btn_right").attr("class","btn-right")
 		
