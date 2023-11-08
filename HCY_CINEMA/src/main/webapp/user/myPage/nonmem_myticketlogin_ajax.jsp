@@ -14,10 +14,6 @@ String pass = en.directEncryption(request.getParameter("pass"));
 String result = "f";
 boolean flag = false;
 JSONObject json = new JSONObject();
-System.out.println("tel : "+tel);
-System.out.println("birth : "+birth);
-System.out.println("pass : "+pass);
-
 
 flag = NonMemberTicketingDAO.getInstance().selectNonmember(tel,birth,pass);
 if(flag){
