@@ -153,8 +153,7 @@ var remain_seat = "";
 var scheduleCode = "";
 var screenCode = "";
 function sTimeClickListener( sdnum,snum ){
-	$("#screen"+snum+" > .selected").attr("class","")
-	$("#screen"+snum+" > .moring.selected").attr("class","")
+	$("#schedule"+scheduleCode).attr("class","")
 	$("#schedule"+sdnum).attr("class","selected")
 	screenCode = snum;
 	scheduleCode=sdnum;
@@ -163,7 +162,7 @@ function sTimeClickListener( sdnum,snum ){
 	$("#tnb_step_btn_right").attr("class","btn-right on")
 }//sTimeClickListener
 function msTimeClickListener( sdnum,snum ){
-	$("#screen"+snum+" > .selected").attr("class","")
+	$("#schedule"+scheduleCode).attr("class","")
 	$("#schedule"+sdnum).attr("class","morning selected")
 	screenCode = snum;
 	
@@ -195,12 +194,12 @@ function runAjax(){
 				screenList += '<span class="floor">'+element.screenName+'</span>';
 				screenList += '<span class="seatcount">(총169석)</span>';
 				screenList += '</span>';
-				screenList += '<ul id="screen'+element.screenCode+'"></ul></div>';
+				screenList += '<ul id="screen'+element.screenCode+'" class="scrlist"></ul></div>';
 				
 				$("#screenList").append(screenList);
 				$.each(element.screenArr,function(i,jsonele){
 					var temp = "";
-					if(i==0){
+					if(i.index == 0){
 					temp += '<li data-index="0" data-remain_seat="'+jsonele.remain+'" play_start_tm="1340" screen_cd="'+element.screenCode+'" movie_cd="'+element.movieCode+'" play_num="2" class="'+(jsonele.flag?'morning':'disalbe')+'" data-price="'+jsonele.price+'" id="schedule'+jsonele.scheduleCode+'">';
 					temp += '<a class="button" href="#" onclick="msTimeClickListener('+jsonele.scheduleCode+','+element.screenCode+');return false;">';
 					}else{
