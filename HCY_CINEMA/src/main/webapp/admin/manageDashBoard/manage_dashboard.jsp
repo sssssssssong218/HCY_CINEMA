@@ -188,7 +188,7 @@ location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp
 
 
 <h4 class="text-white m-t-0 m-b-10">
-<i class="fa fa-snowflake-o text-success-light"></i> Sales Report
+<i class="fa fa-snowflake-o text-success-light"></i> Movie Report
 <small class="text-muted m-l-5"></small>
 </h4>
 
@@ -619,9 +619,42 @@ if (filteredData.length > 0) {
 
 //마우스 이벤트 처리
 
+// 툴팁 엘리먼트를 생성하고 초기적으로 숨김
+var tooltip = document.createElement("div");
+tooltip.className = "tooltip";
+tooltip.style.display = "none";
+document.body.appendChild(tooltip);
 
+// 그래프 위에서 마우스를 움직일 때 이벤트 처리
+canvas.addEventListener("mousemove", function(event) {
+    var rect = canvas.getBoundingClientRect();
+    var mouseX = event.clientX - rect.left;
+    var mouseY = event.clientY - rect.top;
+
+    for (var i = 0; i < limitedData.length; i++) {
+        var xOffset = i * (2 * barWidth + spacing1 + spacing2);
+        var barX = xOffset + startX;
+
+        // 마우스 이벤트가 해당 그래프의 막대 범위 내에 있는지 확인
+        if (mouseX >= barX && mouseX <= barX + barWidth) {
+            var value1 = limitedData[i].value1;
+            var value2 = limitedData[i].value2;
+            var tooltipText = "예매수: " + value1 + "<br>예매수: " + value2;
+
+            // 툴팁 위치 및 텍스트 설정
+            tooltip.style.left = (event.clientX + 10) + "px";
+            tooltip.style.top = (event.clientY + 10) + "px";
+            tooltip.innerHTML = tooltipText;
+
+            // 툴팁 표시
+            tooltip.style.display = "block";
+        }
+    }
+});
+
+// 마우스가 그래프 위에서 벗어날 때 툴팁 숨김
 canvas.addEventListener("mouseout", function(event) {
-    hideTooltip(); // 마우스가 그래프에서 벗어나면 툴팁을 숨김
+    tooltip.style.display = "none";
 });
 
 function showTooltip(event, data) {
