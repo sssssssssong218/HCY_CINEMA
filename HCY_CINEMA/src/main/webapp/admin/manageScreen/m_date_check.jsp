@@ -41,14 +41,14 @@ try {
     csVO.setScreenNum(screenNum);
     csVO.setShowtime(new java.sql.Date(showtime.getTime().getTime()));//date로 변환
 
-    System.out.println("선택한 날짜"+selectedDate+" ");
-    System.out.println(screenNum+"관");
+    //System.out.println("선택한 날짜"+selectedDate+" ");
+    //System.out.println(screenNum+"관");
     
     List<ScheduleVO> list = msDAO.selectMovieSchedule(csVO);
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
-      System.out.println(sdf.format(selectedDate)); 
-      System.out.println(list); 
+      //System.out.println(sdf.format(selectedDate)); 
+      //System.out.println(list); 
     // JSON 배열
   
     for (ScheduleVO sVO : list) {

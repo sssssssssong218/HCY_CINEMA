@@ -273,7 +273,7 @@ for(int i=0;i<actorList.size();i++){
 <%
 List<String> extraList=new ArrayList<String>();
 extraList=dmDAO.selectExtra(movieCode);
-System.out.println(extraList);
+//System.out.println(extraList);
 if(extraList.size()>0){
 for(int i=0;i<extraList.size();i++){
 %>

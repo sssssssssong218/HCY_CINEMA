@@ -34,7 +34,7 @@ pVO.setPass(request.getParameter("pass"));
 pVO.setName(request.getParameter("name"));
 pVO.setBirth(request.getParameter("birth"));
 
-System.out.println("log : "+session.getAttribute("nonMemLogin"));
+//System.out.println("log : "+session.getAttribute("nonMemLogin"));
     try{
     	if(session.getAttribute("nonMemLogin")!= null && (boolean)session.getAttribute("nonMemLogin")){
     		NonMemberTicketingDAO.getInstance().insertNonmemberPayment(pVO);

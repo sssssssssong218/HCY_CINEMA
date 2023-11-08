@@ -31,9 +31,9 @@ mVO.setMname(enc.encryption(name));
 mVO.setBirth(birth);
 mVO.setTel(enc.encryption(tel));
 LoginDAO lDAO = LoginDAO.getInstance();
-System.out.println(enc.encryption(name));
-System.out.println(birth);
-System.out.println(enc.encryption(tel));
+//System.out.println(enc.encryption(name));
+//System.out.println(birth);
+//System.out.println(enc.encryption(tel));
 %>
 	$("#name").val("<%=name %>")
 	$("#birth").val("<%=birth %>")

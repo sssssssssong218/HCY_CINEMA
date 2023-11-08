@@ -332,7 +332,7 @@
 					List<String> genreList = mDAO.selectMovieInfoGenre(movieCode);
 					String country=mDAO.selectMovieInfoCountry(movieCode);
 					String forigen=mDAO.selectMovieInfoForigen(movieCode);
-					System.out.println(country+" / "+forigen);
+					//System.out.println(country+" / "+forigen);
 					%>
 					<div class="sect-base-movie">
 						<h3>
@@ -838,7 +838,7 @@ double img4=0;
 double img5=0;
 double imtstar=0;
 int arg=(int)riVO.getReviewArg();
-System.out.println(arg);
+//System.out.println(arg);
 switch(arg){
 
 case 0:

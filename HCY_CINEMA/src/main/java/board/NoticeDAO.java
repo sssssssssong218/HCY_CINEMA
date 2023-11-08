@@ -48,7 +48,7 @@ public class NoticeDAO {
 			selectNotice.append("where rnum between ? and ?      ");
 			
 			pstmt=con.prepareStatement(selectNotice.toString());
-			 System.out.println(selectNotice.toString());
+			 //System.out.println(selectNotice.toString());
 			 int bindCnt=1;
 	         if( brVO.getKeyword() != null &&  !"".equals(brVO.getKeyword() ) &&  !"null".equals( brVO.getKeyword() )) {
 	         pstmt.setString( bindCnt++ , brVO.getKeyword());
@@ -221,7 +221,7 @@ public class NoticeDAO {
 			.append("	where rnum >= ? and rnum <= ?	");
 			
 			pstmt = con.prepareStatement(selectSpecificBoard.toString());
-			System.out.println(selectSpecificBoard.toString());
+			//System.out.println(selectSpecificBoard.toString());
 			pstmt.setString(1, "%"+key+"%");
 			pstmt.setInt(2, (page-1)*20+1);
 			pstmt.setInt(3, page*20);

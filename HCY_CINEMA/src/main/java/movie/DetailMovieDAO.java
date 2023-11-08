@@ -195,7 +195,7 @@ public class DetailMovieDAO {
 				mmVO.setMovieRatting(rs.getString("movie_rating"));
 
 			} // if
-			System.out.println(mmVO);
+			//System.out.println(mmVO);
 		} finally {
 			db.dbClose(rs, pstmt, con);
 		} // try

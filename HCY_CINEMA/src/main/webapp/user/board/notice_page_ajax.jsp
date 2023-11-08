@@ -6,7 +6,7 @@
         <%@ page info="" %>
          <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-System.out.println("c : "+ request.getParameter("current") + "t : "+request.getParameter("total"));
+//System.out.println("c : "+ request.getParameter("current") + "t : "+request.getParameter("total"));
 int currentPage = Integer.parseInt(request.getParameter("current"));
 int totalPage = Integer.parseInt(request.getParameter("total"));
 BoardUtilVO buVO=new BoardUtilVO("http://localhost/HCY_CINEMA/user/board/notice.jsp", "", "", "", currentPage, totalPage );

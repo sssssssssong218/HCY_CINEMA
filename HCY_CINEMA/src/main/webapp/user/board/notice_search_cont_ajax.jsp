@@ -27,5 +27,5 @@ for (NoticeVO nVO : list) {
 
     jsonArray.add(jsonObject);
 }//for
-    System.out.println("ajax : "+jsonArray.toJSONString());
+    //System.out.println("ajax : "+jsonArray.toJSONString());
 %><%=jsonArray.toJSONString()%>

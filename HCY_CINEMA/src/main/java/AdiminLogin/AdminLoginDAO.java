@@ -31,7 +31,7 @@ public class AdminLoginDAO {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
-			System.out.println("asdfasdf");
+			//System.out.println("asdfasdf");
 			con=db.getCon();
 			
 			String sql="select * from administrator where id=?";

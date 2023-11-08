@@ -50,7 +50,7 @@ request.setCharacterEncoding("UTF-8");
 MemberVO mVO = (MemberVO)session.getAttribute("mVO");
 
 String id=mVO.getId();
-System.out.println(new String(request.getParameter("titleTxt").getBytes("8859_1"),"UTF-8"));
+//System.out.println(new String(request.getParameter("titleTxt").getBytes("8859_1"),"UTF-8"));
 String title=new String(request.getParameter("titleTxt").getBytes("8859_1"),"UTF-8");
 String content=new String(request.getParameter("txtContent").getBytes("8859_1"),"UTF-8");
 BoardDAO bDAO=BoardDAO.getInstance();

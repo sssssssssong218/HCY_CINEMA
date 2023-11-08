@@ -218,7 +218,7 @@ public void insertJoinMember(MemberVO mVO) throws SQLException {
 		pstmt.setString(1, mVO.getId());
 		pstmt.setString(2, mVO.getPassword());
 		pstmt.setString(3, mVO.getMname());
-		System.out.println(mVO.getMname());
+		//System.out.println(mVO.getMname());
 		pstmt.setString(4, mVO.getBirth());
 		pstmt.setString(5, mVO.getTel());
 		pstmt.setString(6, mVO.getEmail());

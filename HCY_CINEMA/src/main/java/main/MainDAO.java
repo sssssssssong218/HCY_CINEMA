@@ -88,7 +88,7 @@ private static MainDAO mnDAO;
 			MainMovieVO mmVO = null;
 			while(rs.next()) {
 			mmVO = new MainMovieVO();
-			System.out.println(rs.getString("MNAME")+" / ");
+			//System.out.println(rs.getString("MNAME")+" / ");
 			mmVO.setMovieCode(rs.getString("MOVIECODE"));
 			mmVO.setmName(rs.getString("MNAME"));
 			mmVO.setTicketRate(rs.getString("ticketrate"));

@@ -9,7 +9,7 @@ $(function(){
 
 <%
 String ticketnum=request.getParameter("ticketnum");
-System.out.print(ticketnum);
+//System.out.print(ticketnum);
 ManageScreenDAO msDAO=ManageScreenDAO.getInstance();
 try{
 msDAO.deleteSeat(ticketnum);

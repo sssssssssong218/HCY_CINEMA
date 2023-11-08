@@ -46,6 +46,6 @@ for (MovieVO movie : movieList) {
 JSONObject result = new JSONObject();
 result.put("list", jsonArray);
 
-System.out.println(result.toJSONString());
+//System.out.println(result.toJSONString());
 %>
 <%= result.toJSONString() %>

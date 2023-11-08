@@ -51,7 +51,7 @@
 <%
 MemberVO memVO = (MemberVO)session.getAttribute("mVO");
 pageContext.setAttribute("memVO", memVO);
-System.out.println("mem : "+memVO);
+//System.out.println("mem : "+memVO);
 %>
 
 

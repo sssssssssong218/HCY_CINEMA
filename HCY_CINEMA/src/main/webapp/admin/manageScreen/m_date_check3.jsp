@@ -55,12 +55,12 @@ try {
     csVO.setScreenNum(screenNum);
     csVO.setShowtime(new java.sql.Date(showtime.getTime().getTime()));//date로 변환
 
-    System.out.println("선택한 날짜"+selectedDate+" ");
-    System.out.println(screenNum+"관");
+    //System.out.println("선택한 날짜"+selectedDate+" ");
+    //System.out.println(screenNum+"관");
     
     List<ScheduleVO> list = msDAO.selectMovieSchedule(csVO);
 
-     /* System.out.println(list); */
+     /* //System.out.println(list); */
     // JSON 배열
     JSONObject jsonObj=new JSONObject();
     JSONArray jsonArray = new JSONArray();
@@ -71,7 +71,7 @@ try {
         scheduleJson.put("mname", sVO.getMname());
         jsonArray.add(scheduleJson);
     }//end for
-    System.out.println(jsonArray);
+    //System.out.println(jsonArray);
     jsonObj.put("data",jsonArray);
      response.getWriter().write(jsonArray.toJSONString()); 
 } catch (Exception e) {

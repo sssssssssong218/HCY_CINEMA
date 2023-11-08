@@ -81,7 +81,7 @@ try {
            int column = (seatNum % N) + 1;
           seatLabel = String.format("%c%d", row, column);
        } else {
-           System.out.println("잘못된 좌석 번호");
+           //System.out.println("잘못된 좌석 번호");
        }
 
        scheduleJson.put("seatnum", seatLabel);

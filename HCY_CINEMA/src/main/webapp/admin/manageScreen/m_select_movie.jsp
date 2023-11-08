@@ -43,7 +43,7 @@ try {
     	jsonArray.add(movieJson);
     }
     jsonObj.put("data",jsonArray);
-    /* System.out.println(jsonObj); */
+    /* //System.out.println(jsonObj); */
     // JSON 배열
   
 } catch (Exception e) {
