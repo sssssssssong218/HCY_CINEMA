@@ -254,10 +254,15 @@ List<String> stillImgList=dmDAO.selectStill(movieCode);
 <%
 List<String> actorList=new ArrayList<String>();
 actorList=dmDAO.selectActor(movieCode);
+if(actorList.size()>0){
 for(int i=0;i<actorList.size();i++){
 %>
 <input type="text" class="form-control actor_input" value="<%= actorList.get(i) %>" id="actor_<%=i %>" name="actor_<%=i %>">
-<%} %>
+<%}
+}else{%>
+<input type="text" class="form-control actor_input" placeholder="주연" id="actor_0" name="actor_0">
+
+<%}%>
 </div>
 <input type="hidden" name="actor_hide" id="actor_hide">
 <input type="button" value="추가" id="actor_btn" class="insertBtn"  style="height:35px">
@@ -268,9 +273,14 @@ for(int i=0;i<actorList.size();i++){
 <%
 List<String> extraList=new ArrayList<String>();
 extraList=dmDAO.selectExtra(movieCode);
+System.out.println(extraList);
+if(extraList.size()>0){
 for(int i=0;i<extraList.size();i++){
 %>
 <input type="text" class="form-control extra_input" value="<%= extraList.get(i) %>" id="extra_<%= i %>" name="extra_<%=i%>">
+<%} 
+}else{%>
+<input type="text" class="form-control actor_input" placeholder="조연" id="extra_0" name="extra_0">
 <%} %>
 </div>
 <input type="hidden" name="extra_hide" id="extra_hide">
@@ -284,9 +294,13 @@ for(int i=0;i<extraList.size();i++){
 <%
 List<String> directorList=new ArrayList<String>();
 directorList=dmDAO.selectDirector(movieCode);
+if(directorList.size()>0){
 for(int i=0;i<directorList.size();i++){
 %>
 <input class="form-control director_input" type="text" value="<%= directorList.get(i) %>" id="director_<%=i %>" name="director_<%=i%>">
+<%}
+}else{%>
+<input type="text" class="form-control actor_input" placeholder="감독" id="director_0" name="director_0">
 <%} %>
 </div>
 <input type="hidden" name="director_hide" id="director_hide">
@@ -299,6 +313,7 @@ for(int i=0;i<directorList.size();i++){
 <%
 List<String> genreList=new ArrayList<String>();
 genreList=dmDAO.selectGenre(movieCode);
+if(genreList.size()>0){
 for(int i=0;i<genreList.size();i++){
 %>
 <select class="form-control genre_select" id="genre_select_<%= i %>" name="genre_select_<%=i%>">
@@ -310,6 +325,18 @@ for(int i=0;i<genreList.size();i++){
 <option value="액션" <%= "액션".equals(genreList.get(i)) ? "selected='selected'":"" %>>액션</option>
 <option value="SF" <%= "SF".equals(genreList.get(i)) ? "selected='selected'":"" %>>SF</option>
 <option value="애니메이션" <%= "애니메이션".equals(genreList.get(i)) ? "selected='selected'":"" %>>애니메이션</option>
+</select>
+<%} 
+}else{%>
+<select class="form-control genre_select" id="genre_select_0" name="genre_select_0">
+<option value="코미디">코미디</option>
+<option value="스릴러">스릴러</option>
+<option value="공포">공포</option>
+<option value="로맨스">로맨스</option>
+<option value="드라마">드라마</option>
+<option value="액션">액션</option>
+<option value="SF">SF</option>
+<option value="애니메이션">애니매이션</option>
 </select>
 <%} %>
 </div>
@@ -736,10 +763,20 @@ if(mtVO.getMovieCode()!=null){
          actor_newInput.style.position = "relative";
          actor_newInput.style.left="15px";
          actor_newInput.style.width = "450px";
+         var deleteButton = document.createElement("button");
+         deleteButton.textContent = "삭제";
+         deleteButton.style.marginLeft = "30px";
+         deleteButton.addEventListener("click", function () {
+             // 클릭된 삭제 버튼과 연결된 라벨과 입력 요소를 제거
+             actor_titleContainer.removeChild(extra_newLabel);
+             actor_titleContainer.removeChild(extra_newInput);
+             actor_titleContainer.removeChild(deleteButton);
+         });
+         
          // 복제한 라벨과 입력 요소를 추가
          actor_titleContainer.appendChild(actor_newLabel);
          actor_titleContainer.appendChild(actor_newInput);
-
+         actor_titleContainer.appendChild(deleteButton);
          actor_counter++; // 카운터 증가
      });
 	 var extra_Button = document.getElementById("extra_btn");
@@ -765,10 +802,20 @@ if(mtVO.getMovieCode()!=null){
          extra_newInput.style.position = "relative";
          extra_newInput.style.left="15px";
          extra_newInput.style.width = "450px";
-         // 복제한 라벨과 입력 요소를 추가
+         var deleteButton = document.createElement("button");
+         deleteButton.textContent = "삭제";
+         deleteButton.style.marginLeft = "30px";
+         deleteButton.addEventListener("click", function () {
+             // 클릭된 삭제 버튼과 연결된 라벨과 입력 요소를 제거
+             extra_titleContainer.removeChild(extra_newLabel);
+             extra_titleContainer.removeChild(extra_newInput);
+             extra_titleContainer.removeChild(deleteButton);
+         });
+
+         // 복제한 라벨, 입력 요소 및 삭제 버튼을 추가
          extra_titleContainer.appendChild(extra_newLabel);
          extra_titleContainer.appendChild(extra_newInput);
-
+         extra_titleContainer.appendChild(deleteButton);
          extra_counter++; // 카운터 증가
      });
      
@@ -795,38 +842,84 @@ if(mtVO.getMovieCode()!=null){
          director_newInput.style.left="15px";
          director_newInput.style.width = "450px";
 		
-         // 복제한 라벨과 입력 요소를 추가
+         var deleteButton = document.createElement("button");
+         deleteButton.textContent = "삭제";
+         deleteButton.style.marginLeft = "30px";
+         deleteButton.addEventListener("click", function () {
+             // 클릭된 삭제 버튼과 연결된 라벨과 입력 요소를 제거
+             director_titleContainer.removeChild(director_newLabel);
+             director_titleContainer.removeChild(director_newInput);
+             director_titleContainer.removeChild(deleteButton);
+         });
+
+         // 복제한 라벨, 입력 요소 및 삭제 버튼을 추가
          director_titleContainer.appendChild(director_newLabel);
          director_titleContainer.appendChild(director_newInput);
+         director_titleContainer.appendChild(deleteButton);
 
          director_counter++; // 카운터 증가
      });
      var genre_addButton = document.getElementById("genre_btn");
      var genre_titleContainer = document.getElementById("genre_title");
+     var genre_counter = <%= genreList.size() %>;
 
-     var genre_counter=<%=genreList.size()%>;
-
-     genre_addButton.addEventListener("click", function() {
+     genre_addButton.addEventListener("click", function () {
          var genre_label = genre_titleContainer.querySelector(".genre_label");
          var genre_Input = genre_titleContainer.querySelector(".genre_select");
 
          // 라벨 복사
          var genre_newLabel = genre_label.cloneNode(true);
-         
+
          // 입력 요소 복사
          var genre_newInput = genre_Input.cloneNode(true);
          genre_newInput.name = "genre_select_" + genre_counter;
          genre_newInput.id = "genre_select_" + genre_counter;
          genre_newInput.style.position = "relative";
-         genre_newInput.style.left="15px";
+         genre_newInput.style.left = "15px";
          genre_newInput.style.width = "450px";
 
          // 복제한 라벨과 입력 요소를 추가
          genre_titleContainer.appendChild(genre_newLabel);
          genre_titleContainer.appendChild(genre_newInput);
-         
-         genre_counter++;
 
+         // 삭제 버튼 생성
+         var deleteButton = document.createElement("button");
+         deleteButton.textContent = "삭제";
+         deleteButton.style.marginLeft = "30px";
+         deleteButton.addEventListener("click", function () {
+             // 클릭된 삭제 버튼과 연결된 라벨, 입력 요소 및 삭제 버튼을 제거
+             genre_titleContainer.removeChild(genre_newLabel);
+             genre_titleContainer.removeChild(genre_newInput);
+             genre_titleContainer.removeChild(deleteButton);
+
+             // 삭제된 값을 다시 원본 select에 추가
+             var option = document.createElement("option");
+             option.value = genre_newInput.value;
+             option.textContent = genre_newInput.value;
+             genre_Input.appendChild(option);
+         });
+
+         // 원본 "genre_select" 엘리먼트에서 선택된 값을 가져옵니다.
+         var selectedValue = genre_Input.value;
+
+         // 새로 생성된 입력 엘리먼트의 값을 선택된 값으로 설정합니다.
+         genre_newInput.value = selectedValue;
+
+         // 원본 "select" 엘리먼트에서 선택된 옵션을 제거합니다.
+         var selectedOption = genre_Input.querySelector('option[value="' + selectedValue + '"]');
+         if (selectedOption) {
+             selectedOption.remove();
+         }
+
+         // 복제한 라벨, 입력 요소, 삭제 버튼을 추가
+         genre_titleContainer.appendChild(genre_newLabel);
+         genre_titleContainer.appendChild(genre_newInput);
+         genre_titleContainer.appendChild(deleteButton);
+
+         // 새로 생성된 select를 비활성화
+         genre_newInput.disabled = true;
+
+         genre_counter++;
      });
      var genre_selectElement = document.getElementById("genre_select");
     /*  genre_disableButton.addEventListener("click", function() {
