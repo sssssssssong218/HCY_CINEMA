@@ -625,11 +625,8 @@ $(function () {
 	    	  var buttonId = $(this).attr("id");
 	    	  var matchingHidden = $("#hid_" + buttonId);
 	    	  var hiddenValue = matchingHidden.val();
-	    	
-	    	  var buttonId = $(this).attr("id");
-	    	  var matchingHidden = $("#hid_" + buttonId);
-	    	  var hiddenValue = matchingHidden.val();
-	    	
+	    	  var table = $("tbody");
+	    	    table.empty();
 	    	  $.ajax({
 	    		    type: "POST",
 	    		    url: "http://localhost/HCY_CINEMA/admin/manageScreen/m_select_member.jsp",
@@ -646,7 +643,6 @@ $(function () {
 	    		        console.log(error.status);
 	    		    },
 	    		    success: function (jsonObj) {
-	    		        var table = $("tbody");
 	    		        $.each(jsonObj.data, function (i, json) {
 	    		            var msg = "";
 	    		            if ("Y" === json.status) {
