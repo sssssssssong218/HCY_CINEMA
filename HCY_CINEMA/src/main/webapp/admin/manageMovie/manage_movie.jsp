@@ -225,7 +225,7 @@ to {
 
 
 			<h1 class="page-header">
-				Movie <small>Movie Manger</small>
+				Movie <small>Movie Manager</small>
 			</h1>
 
 
