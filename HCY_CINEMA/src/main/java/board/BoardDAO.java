@@ -336,7 +336,35 @@ public class BoardDAO {
 	    return updatedViewCount;
 	}//UpdatedViewCount
 	
-	public List<BoardVO> selectSpecificBoard(String key) throws SQLException{
+	public int selectSpecificBoard(String key) throws SQLException{
+		int result = 0;
+		
+		DBConnection db = DBConnection.getInstance();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = db.getCon();
+			
+			String selectSpecificBoard = "SELECT count(*) from BOARD where TITLE like ?";
+			
+			pstmt = con.prepareStatement(selectSpecificBoard);
+			pstmt.setString(1, "%"+key+"%");
+			
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}//if
+		}finally {
+			db.dbClose(rs, pstmt, con);
+		}//finally
+		
+		return result;
+	}//selectSpecificBoard
+	
+	public List<BoardVO> selectSpecificBoard(String key , int page) throws SQLException{
 		List<BoardVO> list = new ArrayList<BoardVO>();
 		
 		DBConnection db = DBConnection.getInstance();
@@ -348,10 +376,12 @@ public class BoardDAO {
 		try {
 			con = db.getCon();
 			
-			String selectSpecificBoard = "SELECT POSTNUM, ID, TITLE, INPUT_DATE, VIEWCOUNT from BOARD where TITLE like ?";
+			String selectSpecificBoard = "select * from (select POSTNUM, ID, TITLE, INPUT_DATE, VIEWCOUNT, ROWNUM AS rnum  from (SELECT POSTNUM, ID, TITLE, INPUT_DATE, VIEWCOUNT from BOARD where TITLE like ?	order by POSTNUM desc)) where rnum >= ? and rnum <= ?	";
 			
 			pstmt = con.prepareStatement(selectSpecificBoard);
 			pstmt.setString(1, "%"+key+"%");
+			pstmt.setInt(2, (page-1)*20+1);
+			pstmt.setInt(3, page*20);
 			
 			rs=pstmt.executeQuery();
 			BoardVO bVO = null;
