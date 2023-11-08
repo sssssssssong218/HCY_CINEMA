@@ -9,9 +9,14 @@
 <%request.setCharacterEncoding("UTF-8");
 String key = request.getParameter("search");
 
-List<BoardVO> list = BoardDAO.getInstance().selectSpecificBoard(key);
+int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+
+List<BoardVO> list = BoardDAO.getInstance().selectSpecificBoard(key,currentPage);
+int total = (BoardDAO.getInstance().selectSpecificBoard(key)/20)+1;
+
 
 JSONArray jsonArray = new JSONArray(); // JSONArray 생성
+JSONObject json = new JSONObject(); 
 
     JSONObject jsonObject = null; // JSONObject 생성
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
@@ -25,5 +30,7 @@ for (BoardVO board : list) {
 
     jsonArray.add(jsonObject);
 }//for
-    System.out.println("ajax : "+jsonArray.toJSONString());
-%><%=jsonArray.toJSONString()%>
+
+json.put("arr", jsonArray);
+json.put("total", total);
+%><%=json.toJSONString()%>

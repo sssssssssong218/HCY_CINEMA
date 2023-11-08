@@ -435,7 +435,7 @@ location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp
                                <thead>
                                  <caption>회원관리 목록</caption>
                                     <tr bgcolor="#E4ECEF" style="text-align:center" >
-                                       <th scope="col" style="width: 250px">회원번호</th>
+                                       <th scope="col" style="width: 250px">번호</th>
                                        <th scope="col" style="width: 250px">이름</th>
                                        <th scope="col" style="width: 250px">아이디</th>
                                        <th scope="col" style="width: 250px">가입일</th>

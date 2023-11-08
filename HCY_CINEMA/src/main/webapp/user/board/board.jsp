@@ -456,98 +456,7 @@
 		 <div id="contents" class="">
  
  <!-- //Contents Area -->
-<script type="text/javascript">
 
-      
-$(document).ready(function() {
-	$("#keyword").keyup(function(event) {
-        if (event.keyCode === 13) {
-        	chkNull()
-        }//if
-    });//keyUp
-	
-});//ready        
-
-        function chkNull(){
-        	var keyword = $("#keyword").val();
-        	
-        	if( keyword.trim() == "" ){
-        		alert("검색 키워드를 입력해 주세요.")
-        		return;
-        	}//end if
-        	search()
-        }//chkNull
-        
-        function search(){
-        	var data = { "search":$("#keyword").val()}
-        	$.ajax({
-        		url : "http://localhost/HCY_CINEMA/user/board/board_ajax.jsp",
-        		type : "get",
-        		data : data,
-        		dataType : "json",
-        		error : function(xhr){
-        			console.log(xhr.status)
-        		},
-        		success : function(jsonArr){
-        			var text = "";
-        			$.each(jsonArr,function(i,json){
-        				text += '<tr class="first" >'
-        				text += '<td>'
-        				text += json.postNum
-        				text += '</td>'
-        				text += '<td>' 
-        				text += json.id
-        				text += '</td>' 
-        				text += '<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/board_specific.jsp?postNum=' 
-        				text += json.postNum 
-        				text += '">' 
-        				text += json.title 
-        				text += '</a></td>' 
-        				text += '<td>'
-        				text += json.inputDate
-        				text += '</td>'
-        				text += '<td class="num">'
-        				text += json.viewCount
-        				text += '</td></tr>'
-        			})//each
-        			if(jsonArr.length == 0){
-        				text += '<td colspan="5" style="text-align:center"><strong><font size="5">"'
-        				text += $("#keyword").val()
-        				text += '"로 검색된 결과가 없습니다.</font></strong></td>'
-                    }//if
-        			$("#tbody").html(text)
-        		}//success
-        	})//ajax
-        }//search
-        
-        
-        function memberDetail( id ){
-                  
-                  $( "#id" ).val( id );
-                  $( "#hidFrm" ).submit();
-                  
-               }//memberDetail
-        
-               
-               
-               function goToWrite(){
-            	location.href="http://localhost/HCY_CINEMA/user/board/board_write.jsp";
-            	return false;
-            }//goToWrite
-            
-        /* function chkNull(){
-        	var keyword = $("#keyword").val();
-        	
-        	if( keyword.trim() == "" ){
-        		alert("검색 키워드를 입력해 주세요.")
-        		return;
-        	}//end if
-        	
-        	//글자수 제한
-        	
-        	$("#frmSearch").submit();
-        }//chkNull */
-</script>
 
             
             <!--/ Contents End -->   
@@ -710,24 +619,144 @@ $(document).ready(function() {
 				</table>
 			</div>
 			<!--?xml version="1.0" encoding="utf-8"?-->
-			
+			<style>
+			.currentPage{color:#FF0000}
+			</style>
 <!-- 페이지번호-->
 <div class="paging" style="text-align:center">
 <ul>
-	<li>
+	<li id="paging">
 	<%-- 	<% for( int i=1; i<totalPage+1; i++ ){   %>
 		 <a href="http://localhost/HCY_CINEMA/user/board/board.jsp?currentPage=<%=i %>&keyword=${ param.keyword }&field=${ param.field }"><%=i%></a> 
 		<%} //end for%>   --%>
  <% 
 String dataFlag=request.getParameter("dataFlag");
 BoardUtilVO buVO=new BoardUtilVO("board.jsp", dataFlag, keyword, field, currentPage, totalPage );
-	
+
+pageContext.setAttribute("totalPage", totalPage);
 out.println(BoardUtil.getInstance().pageNation(buVO));
 %> 
 	</li>
 </ul>
 </div>
+<script type="text/javascript">
 
+var totalPage = ${totalPage};
+var currentPage = 1;
+$(document).ready(function() {
+	$("#keyword").keyup(function(event) {
+        if (event.keyCode === 13) {
+        	chkNull()
+        }//if
+    });//keyUp
+	
+});//ready        
+
+        function chkNull(){
+        	var keyword = $("#keyword").val();
+        	
+        	if( keyword.trim() == "" ){
+        		alert("검색 키워드를 입력해 주세요.")
+        		return;
+        	}//end if
+        	search(1)
+        }//chkNull
+        
+        function search(page){
+        	var data = { "search":$("#keyword").val()}
+        	$.ajax({
+        		url : "http://localhost/HCY_CINEMA/user/board/board_ajax.jsp?currentPage="+page,
+        		type : "get",
+        		data : data,
+        		dataType : "json",
+        		error : function(xhr){
+        			console.log(xhr.status)
+        		},
+        		success : function(jsonArr){
+        			var text = "";
+        			$.each(jsonArr.arr,function(i,json){
+        				text += '<tr class="first" >'
+        				text += '<td>'
+        				text += json.postNum
+        				text += '</td>'
+        				text += '<td>' 
+        				text += json.id
+        				text += '</td>' 
+        				text += '<td class="txt"><a href="http://localhost/HCY_CINEMA/user/board/board_specific.jsp?postNum=' 
+        				text += json.postNum 
+        				text += '">' 
+        				text += json.title 
+        				text += '</a></td>' 
+        				text += '<td>'
+        				text += json.inputDate
+        				text += '</td>'
+        				text += '<td class="num">'
+        				text += json.viewCount
+        				text += '</td></tr>'
+        			})//each
+        			if(jsonArr.arr.length == 0){
+        				text += '<td colspan="5" style="text-align:center"><strong><font size="5">"'
+        				text += $("#keyword").val()
+        				text += '"로 검색된 결과가 없습니다.</font></strong></td>'
+                    }//if
+        			$("#tbody").html(text)
+        			totalPage = jsonArr.total
+        			setPage(page)
+        		}//success
+        	})//ajax
+        }//search
+        
+        function paging(page){
+        	$("#paging > .currentPage").attr("class","")
+        	$("#page_"+page).attr("class","currentPage")
+        	
+        	currentPage = page
+        }//paging
+        
+        function setPage(page){
+        	var data = {"current" :page , "total":totalPage}
+        	$.ajax({
+        		url : "http://localhost/HCY_CINEMA/user/board/notice_page_ajax.jsp",
+        		type : "get",
+        		data : data,
+        		dataType : "text",
+        		error : function(xhr){
+        			console.log(xhr.status)
+        		},
+        		success : function(text){
+        			$("#paging").html(text)
+        			paging(page)
+        		}//success
+        	})//ajax
+        }//setPage
+        
+        function memberDetail( id ){
+                  
+                  $( "#id" ).val( id );
+                  $( "#hidFrm" ).submit();
+                  
+               }//memberDetail
+        
+               
+               
+               function goToWrite(){
+            	location.href="http://localhost/HCY_CINEMA/user/board/board_write.jsp";
+            	return false;
+            }//goToWrite
+            
+        /* function chkNull(){
+        	var keyword = $("#keyword").val();
+        	
+        	if( keyword.trim() == "" ){
+        		alert("검색 키워드를 입력해 주세요.")
+        		return;
+        	}//end if
+        	
+        	//글자수 제한
+        	
+        	$("#frmSearch").submit();
+        }//chkNull */
+</script>
 
 		</div>
 	</div>

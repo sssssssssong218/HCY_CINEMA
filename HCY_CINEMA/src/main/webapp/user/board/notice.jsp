@@ -551,7 +551,6 @@
 				<input type="button" value="검색" id="btnSearch" onclick="chkNull();" class="btn btn-danger"style="margin-left: 5px; background: #FB4357; width: 60px; 
 			height: 25px; color: #FFFFFF; border: none;"/>
 				</form>
-				
 			</div>
 			<div class="c_tab_wrap">
 				<ul class="c_tab">

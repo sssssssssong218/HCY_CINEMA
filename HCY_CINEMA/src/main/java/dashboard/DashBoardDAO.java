@@ -144,7 +144,7 @@ public class DashBoardDAO {
 			member
 			.append("	select																		")
 			.append("	(select count(status) from member where status='M') member,					")
-			.append("	(select count(status) from member where status='W') former					")
+			.append("	(select count(status) from member where status='N') former					")
 			.append("	from dual																	");
 			
 			pstmt=con.prepareStatement(member.toString());
