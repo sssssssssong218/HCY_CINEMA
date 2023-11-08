@@ -318,7 +318,7 @@ location.replace("http://localhost/HCY_CINEMA/admin/manageLogin/manage_login.jsp
 }
 </style>
 <div style="overflow: auto">
-    <h2>&nbsp;&nbsp;상영스케줄 - 2D</h2>
+    <h2>&nbsp;&nbsp;상영스케줄 - 3D</h2>
     <br>
     <img src="http://localhost/HCY_CINEMA/common/images/movie_seat_icon.png" style="margin-left:100px">
     <br><br><br>

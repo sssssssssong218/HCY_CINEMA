@@ -71,7 +71,7 @@ private static MovieChartDAO mnDAO;
 		try {
             con=db.getCon();
 			//쿼리문부터
-			String spl = "select to_char(RELEASEDATE,'yyyy-mm-dd') RELEASEDATE, MOVIECODE, MNAME, round((SELECT count(*) from TICKETING t where TICKETDATE BETWEEN sysdate-7 AND sysdate and t.MOVIECODE = m.MOVIECODE)/(SELECT count(*) from TICKETING t where TICKETDATE BETWEEN sysdate-7 AND sysdate),3)*100||'%' ticketrate, MOVIE_RATING, PLOT,(SELECT round(sum(STAR_RATING)/count(*)) from REVIEW r where r.MOVIECODE = m.MOVIECODE) starrating FROM  MOVIE m where status = 'Y' order by ticketrate desc";
+			String spl = "select to_char(RELEASEDATE,'yyyy-mm-dd') RELEASEDATE, MOVIECODE, MNAME, round((SELECT count(*) from TICKETING t where TICKETDATE BETWEEN sysdate-7 AND sysdate and t.MOVIECODE = m.MOVIECODE)/(SELECT count(*) from TICKETING t where TICKETDATE BETWEEN sysdate-7 AND sysdate),3)*100||'%' ticketrate, MOVIE_RATING, PLOT,(SELECT round(sum(STAR_RATING)/count(*)) from REVIEW r where r.MOVIECODE = m.MOVIECODE) starrating FROM  MOVIE m where status = 'Y' ORDER BY TO_NUMBER(REPLACE(ticketrate, '%')) DESC";
 			
 			pstmt = con.prepareStatement(spl);
 			rs = pstmt.executeQuery();
